@@ -1,12 +1,9 @@
 import './css/App.css';
-
+import Login from './components/Login';
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        Mr. Bin Kire
-        
-      </header>
+        <Login></Login> 
     </div>
   );
 }
