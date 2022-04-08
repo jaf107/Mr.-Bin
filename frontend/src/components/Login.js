@@ -9,7 +9,7 @@ class Login extends React.Component {
       <div class="container pb-5">
         <div class="row m-5  shadow-lg">
           <div class="col-md-6 d-none d-md-block">
-            <img src={require("../assets/login.jpg")} class="img-fluid" />
+            <img src={require("../assets/login.jpg")} class="img-fluid" alt="login"/>
           </div>
           <div class="col-md-6 bg-white p-4">
             <h3 class="pb-3 text-center fw-bold mt-5">SIGN IN</h3>
@@ -38,7 +38,7 @@ class Login extends React.Component {
                     <span class="pl-2 fw-light">Remember Me</span>
                   </div>
                   <div>
-                    <a href="#" class="text-decoration-none text-danger">Forget Password?</a>
+                    <a href="forgetPassword.js" class="text-decoration-none text-danger">Forget Password?</a>
                   </div>
                 </div>
                 <div class="pb-2 text-center mt-4">
