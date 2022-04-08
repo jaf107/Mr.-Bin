@@ -6,7 +6,7 @@ class Header extends React.Component {
   state = {};
   render() {
     return (
-      <div className="container">
+      <div className="container header">
         <nav class="navbar navbar-expand-lg">
           <a class="navbar-brand" href="#">
             <img src={require("../../assets/logo.png")} alt="logo" width={70} />
