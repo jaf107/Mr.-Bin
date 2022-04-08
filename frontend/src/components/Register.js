@@ -14,7 +14,7 @@ class Register extends React.Component {
             <h3 class="pb-3 text-center fw-bold mt-5">REGISTER</h3>
             <div class="form-style p-5">
               <form>
-              <div class="form-group pb-3">
+                <div class="form-group pb-3">
                   <input
                     type="text"
                     placeholder="Name"
@@ -57,19 +57,16 @@ class Register extends React.Component {
                     id="exampleInputPassword1"
                   />
                 </div>
-            
+
                 <div class="pb-2 text-center mt-4">
                   <button type="submit" class="btn btn-success w-50">
                     Register
                   </button>
                 </div>
-              </form>         
+              </form>
               <div class="pt-4 text-center">
                 Already have an Account?{" "}
-                <Link
-                  to="/"
-                  class=" text-success text-decoration-none fw-bold"
-                >
+                <Link to="/login" class=" text-success text-decoration-none fw-bold">
                   Sign In
                 </Link>
               </div>
