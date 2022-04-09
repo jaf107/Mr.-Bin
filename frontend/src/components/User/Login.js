@@ -1,15 +1,17 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import "../css/Login.css";
+import "./Login.css";
+import { useState } from "react";
 
-class Login extends React.Component {
-  state = {};
-  render() {
+function Login (){
+  
+  const [loginEmail, setLoginEmail] = useState("");
+  const [loginPassword, setLoginPassword] = useState("");
     return (
       <div class="container pb-5">
         <div class="row m-5  shadow-lg">
           <div class="col-md-6 d-none d-md-block">
-            <img src={require("../assets/login.jpg")} class="img-fluid" alt="login"/>
+            <img src={require("../../assets/login.jpg")} class="img-fluid" alt="login"/>
           </div>
           <div class="col-md-6 bg-white p-4">
             <h3 class="pb-3 text-center fw-bold mt-5">SIGN IN</h3>
@@ -64,7 +66,7 @@ class Login extends React.Component {
         </div>
       </div>
     );
-  }
 }
+
 
 export default Login;
