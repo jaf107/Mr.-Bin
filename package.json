@@ -1,0 +1,7 @@
+{
+  "dependencies": {
+    "react-alert-template-basic": "^1.0.2",
+    "redux-devtools-extension": "^2.13.9",
+    "redux-thunk": "^2.4.1"
+  }
+}
