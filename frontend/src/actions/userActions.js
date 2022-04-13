@@ -41,13 +41,12 @@ import {
   // Login
   export const login = (email, password) => async (dispatch) => {
     try {
-      console.log("Login Initiated")
       dispatch({ type: LOGIN_REQUEST });
   
       const config = { headers: { "Content-Type": "application/json" } };
   
       const { data } = await axios.post(
-        `/api/v1/login`,
+        `http://localhost:5000/api/v1/login`,
         { email, password },
         config
       );
@@ -65,7 +64,10 @@ export const register = (userData) => async (dispatch) => {
 
     const config = { headers: { "Content-Type": "multipart/form-data" } };
 
-    const { data } = await axios.post(`/api/v1/register`, userData, config);
+
+    const { data } = await axios.post(`http://localhost:5000/api/v1/register`, userData, config);
+
+    console.log(data)
 
     dispatch({ type: REGISTER_USER_SUCCESS, payload: data.user });
   } catch (error) {
