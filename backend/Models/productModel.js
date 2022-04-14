@@ -16,6 +16,7 @@ const productSchema = new mongoose.Schema({
     },
     condition: {
         type: String,
+        required:[true, "Please enter the condition of your product"],
         default: "average"
     },
     image: [
@@ -35,7 +36,8 @@ const productSchema = new mongoose.Schema({
         required: [true, "Please enter product Description"]
     },
     date_of_purchase: {
-        type: Date
+        type: Date,
+        required:[true, "Please enter the Date of Purchase"]
     },
     purchase_price: {
         type: Number,
