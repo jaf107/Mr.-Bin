@@ -50,3 +50,5 @@ const productSchema = new mongoose.Schema({
         default: Date.now
     }
 })
+
+module.exports = mongoose.model("Product", productSchema);
