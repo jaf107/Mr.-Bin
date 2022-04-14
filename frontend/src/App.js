@@ -4,8 +4,7 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        Mr. Bin Kire
-        
+        Mr. Bin Frontend
       </header>
     </div>
   );
