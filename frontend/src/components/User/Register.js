@@ -1,10 +1,16 @@
-import {React, useState} from "react";
-import { Link } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { register } from "../../actions/userActions";
-function Register({ history, location }) {
-  const dispatch = useDispatch();
+import { React, useState, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { useDispatch,useSelector  } from "react-redux";
+import { clearErrors, register } from "../../actions/userActions";
+import { useAlert } from "react-alert";
 
+function Register({ location }) {
+  const dispatch = useDispatch();
+  const alert = useAlert();
+  const navigate = useNavigate();
+  const { error, isAuthenticated } = useSelector(
+    (state) => state.user
+  );
   const [user, setUser] = useState({
     name: "",
     email: "",
@@ -40,23 +46,37 @@ function Register({ history, location }) {
     }
   };
 
+  // const redirect = "/account";
+
+  useEffect(() => {
+    if (error) {
+      alert.error(error);
+      dispatch(clearErrors());
+    }
+
+    if (isAuthenticated) {
+      navigate("/");
+    }
+  }, [dispatch, error, alert, navigate, isAuthenticated]);
+
   return (
-    <div class="container pb-5">
-      <div class="row m-5  shadow-lg">
-        <div class="col-md-6 d-none d-md-block">
+    <div className="container pb-5">
+      <div className="row m-5  shadow-lg">
+        <div className="col-md-6 d-none d-md-block">
           <img
             src={require("../../assets/register.jpg")}
-            class="img-fluid"
+            className="img-fluid"
             alt="register"
           />
         </div>
-        <div class="col-md-6 bg-white p-4">
-          <h3 class="pb-3 text-center fw-bold mt-5">REGISTER</h3>
-          <div class="form-style p-5">
+        <div className="col-md-6 bg-white p-4">
+          <h3 className="pb-3 text-center fw-bold mt-5">REGISTER</h3>
+          <div className="form-style p-5">
             <form onSubmit={registerSubmit}>
-              <div class="form-group pb-3">
+              <div className="form-group pb-3">
                 <input
                   ype="text"
+                  className=" form-control"
                   placeholder="Name"
                   required
                   name="name"
@@ -64,55 +84,57 @@ function Register({ history, location }) {
                   onChange={registerDataChange}
                 />
               </div>
-              <div class="form-group pb-3">
+              <div className="form-group pb-3">
                 <input
                   type="email"
                   placeholder="Email"
+                  className=" form-control"
                   required
                   name="email"
                   value={email}
                   onChange={registerDataChange}
                 />
               </div>
-              {/* <div class="form-group pb-3">
+              {/* <div className="form-group pb-3">
                 <input
                   type="text"
                   placeholder="Phone Number"
-                  class="form-control"
+                  className="form-control"
                   id="exampleInputEmail1"
                   aria-describedby="emailHelp"
                 />
               </div> */}
-              <div class="form-group pb-3">
+              <div className="form-group pb-3">
                 <input
-                    type="password"
-                    placeholder="Password"
-                    required
-                    name="password"
-                    value={password}
-                    onChange={registerDataChange}
+                  type="password"
+                  className=" form-control"
+                  placeholder="Password"
+                  required
+                  name="password"
+                  value={password}
+                  onChange={registerDataChange}
                 />
               </div>
-              {/* <div class="form-group pb-3">
+              {/* <div className="form-group pb-3">
                 <input
                   type="password"
                   placeholder="Confirm Password"
-                  class="form-control"
+                  className="form-control"
                   id="exampleInputPassword1"
                 />
               </div> */}
 
-              <div class="pb-2 text-center mt-4">
-                <button type="submit" class="btn btn-success w-50">
+              <div className="pb-2 text-center mt-4">
+                <button type="submit" className="btn btn-success w-50">
                   Register
                 </button>
               </div>
             </form>
-            <div class="pt-4 text-center">
+            <div className="pt-4 text-center">
               Already have an Account?{" "}
               <Link
                 to="/login"
-                class=" text-success text-decoration-none fw-bold"
+                className=" text-success text-decoration-none fw-bold"
               >
                 Sign In
               </Link>

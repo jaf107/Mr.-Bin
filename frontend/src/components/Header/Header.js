@@ -1,10 +1,34 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import "./Header.css";
+import { React, useEffect } from "react";
+import {  useSelector, useDispatch } from "react-redux";
+import { clearErrors } from "../../actions/userActions";
+import { logout } from "../../actions/userActions";
+import { useAlert } from "react-alert";
 
-class Header extends React.Component {
-  state = {};
-  render() {
+function Header(){
+  const dispatch = useDispatch();
+  const alert = useAlert();
+  const navigate = useNavigate();
+  const { error, isAuthenticated } = useSelector((state) => state.user);
+  useEffect(() => {
+    if (error) {
+      alert.error(error);
+      dispatch(clearErrors());
+    }
+
+    if (isAuthenticated) {
+    }
+  }, [dispatch, error, alert, isAuthenticated]);
+
+  function logoutUser() {
+    dispatch(logout());
+    console.log(isAuthenticated);
+    alert.success("Logout Successfully");
+    //navigate('/login');
+  }
+
+
     return (
       <div className="container header">
         <nav class="navbar navbar-expand-lg">
@@ -68,19 +92,25 @@ class Header extends React.Component {
                 </a>
               </li>
             </ul>
-            <ul class="navbar-nav mr-auto">
+            { !isAuthenticated && <ul class="navbar-nav mr-auto">
               <li class="nav-item p-2">
                 <Link class="nav-link " to="/login"><i class="fa-solid fa-right-to-bracket fs-4"></i></Link>
               </li>
               <li class="nav-item p-2">
                 <Link class="nav-link " to="/register"><i class="fa-solid fa-user-plus fs-4"></i></Link>
               </li>
-            </ul>
+            </ul>}
+            {
+              isAuthenticated && <ul class="navbar-nav mr-auto">
+                <li class="nav-item p-2">
+                <button class="nav-link btn" onClick={logoutUser}>Logout</button>
+              </li>
+              </ul>
+            }
           </div>
         </nav>
       </div>
     );
-  }
 }
 
 export default Header;

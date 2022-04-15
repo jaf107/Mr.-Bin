@@ -2,6 +2,7 @@ const express = require("express");
 const {
   registerUser,
   loginUser,
+  logout
 } = require("../controllers/userController");
 const { isAuthenticatedUser, authorizeRoles } = require("../middleware/auth");
 
@@ -15,7 +16,7 @@ router.route("/login").post(loginUser);
 
 // router.route("/password/reset/:token").put(resetPassword);
 
-// router.route("/logout").get(logout);
+router.route("/logout").get(logout);
 
 // router.route("/me").get(isAuthenticatedUser, getUserDetails);
 

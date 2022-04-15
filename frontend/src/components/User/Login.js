@@ -1,15 +1,16 @@
 import { React, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./Login.css";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useAlert } from "react-alert";
-import { login } from "../../actions/userActions";
+import { login,clearErrors } from "../../actions/userActions";
 
 
 function Login({ history, location }) {
   const dispatch = useDispatch();
   const alert = useAlert();
+  const navigate = useNavigate();
   const { error, isAuthenticated } = useSelector((state) => state.user);
 
   const [loginEmail, setLoginEmail] = useState("");
@@ -23,14 +24,17 @@ function Login({ history, location }) {
   useEffect(() => {
     if (error) {
       alert.error(error);
-      //dispatch(clearErrors());
+      dispatch(clearErrors());
     }
 
     if (isAuthenticated) {
-      //history.push("/");
-      console.log("User Authenticated");
+      if(loginEmail === "jiteshsureka@gmail.com")
+          navigate("/admin/dashboard");
+      else 
+      navigate("/");
+     
     }
-  }, [dispatch, error, alert, history, isAuthenticated]);
+  }, [dispatch, error, alert, navigate, isAuthenticated, loginEmail]);
 
   return (
       <div class="container pb-5">
