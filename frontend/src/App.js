@@ -6,6 +6,7 @@ import { Outlet } from "react-router-dom";
 import HomePage from "./components/Home/HomePage";
 import ProtectedRoute from "./components/Route/ProtectedRoute";
 import Dashboard from "./components/Admin/Dashboard";
+import UserAccount from "./components/User/UserAccount";
 
 function App() {
   return (
@@ -24,6 +25,8 @@ function App() {
               </ProtectedRoute>
             }
           ></Route>
+          <Route path="/account" exact element={<UserAccount></UserAccount>}></Route>
+
         </Routes>
       </BrowserRouter>
       <Outlet></Outlet>

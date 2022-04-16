@@ -105,6 +105,9 @@ function Header(){
                 <li class="nav-item p-2">
                 <button class="nav-link btn" onClick={logoutUser}>Logout</button>
               </li>
+              <li class="nav-item p-2">
+                <Link to="/account"><i className="fa-solid fa-user"></i></Link>
+              </li>
               </ul>
             }
           </div>

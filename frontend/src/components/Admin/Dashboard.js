@@ -37,19 +37,19 @@ function Dashboard(){
               <li class="active ">
                 <a href="javascript:;">
                   <i class="nc-icon nc-bank"></i>
-                  <p>First Item</p>
+                  <p>Users</p>
                 </a>
               </li>
               <li>
                 <a href="javascript:;">
                   <i class="nc-icon nc-diamond"></i>
-                  <p>Second Item</p>
+                  <p>Transactions</p>
                 </a>
               </li>
               <li>
                 <a href="javascript:;">
                   <i class="nc-icon nc-pin-3"></i>
-                  <p>Third Item</p>
+                  <p>Statistics</p>
                 </a>
               </li>
             </ul>
