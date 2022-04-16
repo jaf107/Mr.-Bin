@@ -41,7 +41,17 @@ import {
   CLEAR_ERRORS,
 } from "../constants/userConstants";
 
-export const userReducer = (state = { user: {} }, action) => {
+const initialState = {
+  user: {},
+  isAuthenticated: null,
+  token: localStorage.getItem('token'),
+  token: localStorage.getItem('token') && {isAuthenticated : true},
+
+  isLoading: false,
+  isRegistered: false
+}
+
+export const userReducer = (state =initialState, action) => {
   switch (action.type) {
     case LOGIN_REQUEST:
     case REGISTER_USER_REQUEST:

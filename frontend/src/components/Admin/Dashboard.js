@@ -26,7 +26,7 @@ function Dashboard(){
     }
   
     return(
-        <div class="wrapper ">
+        <div class="wrapper dashboard">
         <div class="sidebar" data-color="white" data-active-color="danger">
           <div class="logo">
          

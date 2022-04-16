@@ -112,6 +112,9 @@ function Login({ history, location }) {
                   Sign Up
                 </Link>
               </div>
+              <div className=" text-center pt-3"> 
+                <Link to={'/'} className='text-decoration-none fw-bolder'>Return to Home</Link>
+              </div>
             </div>
           </div>
         </div>
