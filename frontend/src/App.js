@@ -7,6 +7,7 @@ import HomePage from "./components/Home/HomePage";
 import ProtectedRoute from "./components/Route/ProtectedRoute";
 import Dashboard from "./components/Admin/Dashboard";
 import UserAccount from "./components/User/UserAccount";
+import Marketplace from "./components/Marketplace/Marketplace";
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
             }
           ></Route>
           <Route path="/account" exact element={<UserAccount></UserAccount>}></Route>
+          <Route path="/marketplace" exact element={<Marketplace/>} ></Route>
 
         </Routes>
       </BrowserRouter>
