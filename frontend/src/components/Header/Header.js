@@ -60,24 +60,24 @@ function Header() {
           </form>
           <ul class="navbar-nav  fw-normal">
             <li class="nav-item active p-2">
-              <a class="nav-link" href="#">
+              <Link class="nav-link"to="/">
                 Home
-              </a>
+              </Link>
             </li>
             <li class="nav-item p-2">
-              <a class="nav-link" href="#">
+              <Link class="nav-link" to="/">
                 Marketplace
-              </a>
+              </Link>
             </li>
             <li class="nav-item p-2">
-              <a class="nav-link" href="#">
+              <Link class="nav-link" to="/recycle">
                 Recycle
-              </a>
+              </Link>
             </li>
             <li class="nav-item p-2">
-              <a class="nav-link" href="#">
+              <Link class="nav-link" to="/donate">
                 Donate
-              </a>
+              </Link>
             </li>
             <li class="nav-item p-2">
               <a class="nav-link" href="#">
@@ -103,12 +103,12 @@ function Header() {
             <ul class="navbar-nav mr-auto">
               <li class="nav-item p-2 pt-3">
                 <Link to="/account" className=" nav-link">
-                  <i className="fa-solid fa-bell-on fs-4"></i>
+                  <i className="fa-solid fa-message fs-4"></i>
                 </Link>
               </li>
               <li class="nav-item p-2 pt-3">
                 <Link to="/" className=" nav-link">
-                  <i className="fa-solid fa-messages fs-4"></i>
+                  <i className="fa-solid fa-bell fs-4"></i>
                 </Link>
               </li>
               <li class="nav-item p-2 pt-3">
