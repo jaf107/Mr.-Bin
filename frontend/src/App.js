@@ -11,6 +11,7 @@ import UserAccount from "./components/User/UserAccount";
 function App() {
   return (
     <div className="App">
+
       <BrowserRouter>
         <Routes>
           <Route path="/" exact element={<HomePage />}></Route>
@@ -30,6 +31,7 @@ function App() {
         </Routes>
       </BrowserRouter>
       <Outlet></Outlet>
+
     </div>
   );
 }
