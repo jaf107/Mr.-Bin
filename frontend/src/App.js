@@ -8,11 +8,13 @@ import ProtectedRoute from "./components/Route/ProtectedRoute";
 import Dashboard from "./components/Admin/Dashboard";
 import UserAccount from "./components/User/UserAccount";
 import Marketplace from "./components/Marketplace/Marketplace";
+import Header from "./components/Header/Header";
+import Footer from "./components/Footer/Footer";
 
 function App() {
   return (
     <div className="App">
-
+      {/* <Header/> */}
       <BrowserRouter>
         <Routes>
           <Route path="/" exact element={<HomePage />}></Route>
@@ -32,6 +34,7 @@ function App() {
 
         </Routes>
       </BrowserRouter>
+      {/* <Footer/> */}
       <Outlet></Outlet>
 
     </div>
