@@ -40,12 +40,13 @@ import {
   USER_DETAILS_FAIL,
   CLEAR_ERRORS,
 } from "../constants/userConstants";
+import Cookies from 'js-cookie';
 
 const initialState = {
   user: {},
   isAuthenticated: null,
-  token: localStorage.getItem('token'),
-  token: localStorage.getItem('token') && {isAuthenticated : true},
+  token: Cookies.get('token'),
+  //token: localStorage.getItem('token') && {isAuthenticated : true},
 
   isLoading: false,
   isRegistered: false

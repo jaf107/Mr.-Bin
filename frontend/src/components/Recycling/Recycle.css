@@ -2,3 +2,9 @@
     background:linear-gradient(0deg, rgba(49, 49, 49, 0.747), rgba(49, 49, 49, 0.733)), url('../../assets/recyclecover.png');
     min-height: 300px;
 }
+
+.recycle .btn:hover{
+    color: #20C1BD !important;
+    background-color: white !important;
+    border: 1px solid black !important;
+}
