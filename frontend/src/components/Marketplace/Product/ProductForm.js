@@ -5,9 +5,9 @@ const ProductForm = () => {
     return (
         <div>
             <Header />
-            <div className='container'>
+            <div className='container productform'>
 
-                <form class="form-horizontal">
+                <form className="form-horizontal">
                     <fieldset>
 
                         {/* <!-- Form Name --> */}
@@ -17,18 +17,18 @@ const ProductForm = () => {
 
                         {/* <!-- Text input--> */}
 
-                        {/* <div class="form-group">
-                            <label class="col-md-4 control-label" for="product_id">PRODUCT ID</label>
-                            <div class="col-md-4">
-                                <input id="product_id" name="product_id" placeholder="PRODUCT ID" class="form-control input-md" required="" type="text" />
+                        {/* <div className="form-group">
+                            <label className="col-md-4 control-label" for="product_id">PRODUCT ID</label>
+                            <div className="col-md-4">
+                                <input id="product_id" name="product_id" placeholder="PRODUCT ID" className="form-control input-md" required="" type="text" />
                             </div>
                         </div> */}
 
                         {/* <!-- Text input--> */}
-                        <div class="form-group">
-                            <label class="col-md-4 control-label" for="product_name">PRODUCT NAME</label>
-                            <div class="col-md-4">
-                                <input id="product_name" name="product_name" placeholder="PRODUCT NAME" class="form-control input-md" required="" type="text" />
+                        <div className="form-group">
+                            <label className="col-md-4 control-label" for="product_name">PRODUCT NAME</label>
+                            <div className ="col-md-4">
+                                <input id="product_name" name="product_name" placeholder="PRODUCT NAME" className ="form-control input-md" required="" type="text" />
                             </div>
                         </div>
 
@@ -36,11 +36,11 @@ const ProductForm = () => {
 
 
                         {/* <!-- Select Basic --> */}
-                        <div class="form-group">
-                            <label class="col-md-4 control-label" for="product_categorie">PRODUCT CATEGORY</label>
-                            <div class="col-md-4">
+                        <div className ="form-group">
+                            <label className ="col-md-4 control-label" for="product_categorie">PRODUCT CATEGORY</label>
+                            <div className ="col-md-4">
                                 <select
-                                    id="product_categorie" name="product_categorie" class="form-control"
+                                    id="product_categorie" name="product_categorie" className ="form-control"
                                 >
                                       <option value="book">BOOKS</option>
                                       <option value="newspaper">NEWSPAPERr</option>
@@ -55,46 +55,46 @@ const ProductForm = () => {
                         </div>
 
                         {/* <!-- Text input--> */}
-                        <div class="form-group">
-                            <label class="col-md-4 control-label" for="quantity"> QUANTITY</label>
-                            <div class="col-md-4">
-                                <input id="quantity" name="quantity" placeholder="AVAILABLE QUANTITY" class="form-control input-md" required="" type="text" />
+                        <div className ="form-group">
+                            <label className ="col-md-4 control-label" for="quantity"> QUANTITY</label>
+                            <div className ="col-md-4">
+                                <input id="quantity" name="quantity" placeholder="AVAILABLE QUANTITY" className ="form-control input-md" required="" type="text" />
 
                             </div>
                         </div>
 
 
                         {/* <!-- Textarea --> */}
-                        <div class="form-group">
-                            <label class="col-md-4 control-label" for="product_description">PRODUCT DESCRIPTION</label>
-                            <div class="col-md-4">
-                                <textarea class="form-control" id="product_description" name="product_description"></textarea>
+                        <div className ="form-group">
+                            <label className ="col-md-4 control-label" for="product_description">PRODUCT DESCRIPTION</label>
+                            <div className ="col-md-4">
+                                <textarea className ="form-control" id="product_description" name="product_description"></textarea>
                             </div>
                         </div>
 
 
 
                         {/* <!-- Text input--> */}
-                        <div class="form-group">
-                            <label class="col-md-4 control-label" for="product_condition">PRODUCT CONDITION</label>
-                            <div class="col-md-4">
-                                <input id="product_condition" name="product_condition" placeholder="PRODUCT CONDITION" class="form-control input-md" required="" type="text" />
+                        <div className ="form-group">
+                            <label className ="col-md-4 control-label" for="product_condition">PRODUCT CONDITION</label>
+                            <div className ="col-md-4">
+                                <input id="product_condition" name="product_condition" placeholder="PRODUCT CONDITION" className ="form-control input-md" required="" type="text" />
 
                             </div>
                         </div>
-                        <div class="form-group">
-                            <label class="col-md-4 control-label" for="purchase_price">PURCHASE PRICE</label>
-                            <div class="col-md-4">
-                                <input id="purchase_price" name="purchase_price" placeholder="PURCHASE PRICE" class="form-control input-md" required="" type="text" />
+                        <div className ="form-group">
+                            <label className ="col-md-4 control-label" for="purchase_price">PURCHASE PRICE</label>
+                            <div className ="col-md-4">
+                                <input id="purchase_price" name="purchase_price" placeholder="PURCHASE PRICE" className ="form-control input-md" required="" type="text" />
 
                             </div>
                         </div>
 
                         {/* <!-- Text input--> */}
-                        <div class="form-group">
-                            <label class="col-md-4 control-label" for="date_of_purchase">DATE OF PURCHASE</label>
-                            <div class="col-md-4">
-                                <input id="date_of_purchase" name="date_of_purchase" placeholder="ONLINE DATE" class="form-control input-md" required="" type="date" />
+                        <div className ="form-group">
+                            <label className ="col-md-4 control-label" for="date_of_purchase">DATE OF PURCHASE</label>
+                            <div className ="col-md-4">
+                                <input id="date_of_purchase" name="date_of_purchase" placeholder="ONLINE DATE" className ="form-control input-md" required="" type="date" />
 
                             </div>
                         </div>
