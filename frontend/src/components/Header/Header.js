@@ -65,7 +65,7 @@ function Header() {
               </Link>
             </li>
             <li class="nav-item p-2">
-              <Link class="nav-link" to="/">
+              <Link class="nav-link" to="/marketplace">
                 Marketplace
               </Link>
             </li>
