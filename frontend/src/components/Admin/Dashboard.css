@@ -1935,7 +1935,7 @@ Copyright (c) 2015 Daniel Eden
   .form-check-radio input[type="radio"]:disabled + .form-check-sign::after {
     color: #9A9A9A; }
   
-  .navbar {
+  .dashboard .navbar {
     padding-top: 0.625rem;
     padding-bottom: 0.625rem;
     min-height: 53px;
