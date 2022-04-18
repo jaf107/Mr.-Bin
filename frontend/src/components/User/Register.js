@@ -75,7 +75,7 @@ function Register({ location }) {
             <form onSubmit={registerSubmit}>
               <div className="form-group pb-3">
                 <input
-                  ype="text"
+                  type="text"
                   className=" form-control"
                   placeholder="Name"
                   required
