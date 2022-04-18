@@ -2,6 +2,8 @@ import React from 'react'
 import Header from '../Header/Header'
 import Footer from '../Footer/Footer'
 import "./Marketplace.css";
+import { Link } from "react-router-dom";
+
 
 const Marketplace = () => {
   let product = {
@@ -31,6 +33,10 @@ const Marketplace = () => {
       
       <section id="sidebar">
         <div>
+          {/* <button className='btn btn-primary' onClick={addProduct()}> Add Product</button> */}
+          <Link class="nav-link btn btn-primary" to="/product">
+                Add Product
+          </Link>
           <h6 class="p-1 border-bottom">Commodity types</h6>
           <ul>
             <li><a href="#">Books</a></li>
