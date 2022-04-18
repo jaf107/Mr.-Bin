@@ -2,6 +2,7 @@ import Header from "../Header/Header";
 import React from "react";
 import Banner from "./Banner";
 import SectionCard from "./SectionCard";
+import Footer from "../Footer/Footer";
 
 class HomePage extends React.Component {
   state = {};
@@ -11,7 +12,7 @@ class HomePage extends React.Component {
         <Header />
         <Banner />
         <SectionCard></SectionCard>
-
+        <Footer></Footer>
 
       </div>
     );

@@ -12,7 +12,7 @@ class SectionCard extends React.Component {
         <hr className=" m-5"/>
         <div className="row p-4">
           <div className="col-md-4">
-            <div class="card bg-dark text-white">
+            <div class="card border-0 text-white">
               <img src={require("../../assets/donate.png")} class="card-img" alt="..." />
               <div class="card-img-overlay text-center">
                 <button className="btn btn-lg mt-5">Donate</button>
@@ -20,7 +20,7 @@ class SectionCard extends React.Component {
             </div>
           </div>
           <div className="col-md-4">
-            <div class="card bg-dark text-white">
+            <div class="card bg-dark border-0 text-white">
               <img src={require("../../assets/Shop.png")} class="card-img" alt="..." />
               <div class="card-img-overlay text-center">
                 <button className="btn mt-5 btn-lg">Shop</button>
@@ -28,7 +28,7 @@ class SectionCard extends React.Component {
             </div>
           </div>
           <div className="col-md-4">
-            <div class="card bg-dark text-white">
+            <div class="card bg-dark border-0 text-white">
               <img src={require("../../assets/Recycle.png")} class="card-img" alt="..." />
               <div class="card-img-overlay text-center">
                 <button className="btn mt-5 btn-lg">Recycle</button>
