@@ -84,24 +84,6 @@ const Marketplace = () => {
                       <div className="flex-fill border-0 btn btn-danger"><i className=' fas fa-heart'></i></div>
                       <div className="flex-fill border-0 btn btn-primary"> Buy</div>
                     </div>
-                    {/* <div className="d-flex">
-                      <div className="flex-fill border-0 ">
-                        <button className='btn btn-success card-button'>
-                          Bid
-                        </button>
-                      </div>
-                      <div className="flex-fill border-0 ">
-                        <button className='btn btn-danger card-button'>
-                          <i className=' fas fa-heart'></i></button> </div>
-                      <div className="flex-fill border-0 ">
-                        <button className='btn btn-primary border-0 card-button'>
-                          Buy
-                        </button>
-                      </div>
-
-                    </div> */}
-
-
                   </div>
                 </div>
               </div>
