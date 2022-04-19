@@ -4,8 +4,9 @@ import './UserAccount.css'
 
 function UserAccount(user) {
     return (
-        <div class="container bootstrap snippets bootdey">
-            <Header/>
+        <div>            <Header/>
+
+            <div class="container bootstrap snippets bootdey">
             <div class="row">
                 <div class="profile-nav col-md-3">
                     <div class="panel">
@@ -114,8 +115,10 @@ function UserAccount(user) {
                     </div>
                 </div>
             </div>
-            <Footer/>
+        </div>            <Footer/>
+
         </div>
+        
     )
 }
 

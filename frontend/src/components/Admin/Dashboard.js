@@ -1,36 +1,40 @@
 import './Dashboard.css';
-import {  useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { React, useEffect } from "react";
-import {  useSelector, useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { clearErrors } from "../../actions/userActions";
 import { logout } from "../../actions/userActions";
 import { useAlert } from "react-alert";
- 
-function Dashboard(){
-    const dispatch = useDispatch();
-    const alert = useAlert();
-    const navigate = useNavigate();
-    const { error, isAuthenticated } = useSelector((state) => state.user);
-    useEffect(() => {
-      if (error) {
-        alert.error(error);
-        dispatch(clearErrors());
-      }
-    }, [dispatch, error, alert, isAuthenticated]);
-  
-    function logoutUser() {
-      dispatch(logout());
-      console.log(isAuthenticated);
-      alert.success("Logout Successfully");
-      navigate('/');
+import Header from '../Header/Header';
+import Footer from '../Footer/Footer';
+
+function Dashboard() {
+  const dispatch = useDispatch();
+  const alert = useAlert();
+  const navigate = useNavigate();
+  const { error, isAuthenticated } = useSelector((state) => state.user);
+  useEffect(() => {
+    if (error) {
+      alert.error(error);
+      dispatch(clearErrors());
     }
-  
-    return(
-        <div class="wrapper dashboard">
+  }, [dispatch, error, alert, isAuthenticated]);
+
+  function logoutUser() {
+    dispatch(logout());
+    console.log(isAuthenticated);
+    alert.success("Logout Successfully");
+    navigate('/');
+  }
+
+  return (
+    <div>
+      {/* <Header /> */}
+      <div class="wrapper dashboard">
         <div class="sidebar" data-color="white" data-active-color="danger">
           <div class="logo">
-         
-            <a href=""><img src={require("../../assets/logo.png")} alt="" width={100}/></a>
+
+            <a href="/"><img src={require("../../assets/logo.png")} alt="" width={100} /></a>
           </div>
           <div class="sidebar-wrapper">
             <ul class="nav">
@@ -55,7 +59,7 @@ function Dashboard(){
             </ul>
           </div>
         </div>
-        <div class="main-panel" style={{height: 100 + "vh"}}>
+        <div class="main-panel" style={{ height: 100 + "vh" }}>
           <nav class="navbar navbar-expand-lg navbar-absolute fixed-top navbar-transparent">
             <div class="container-fluid">
               <div class="navbar-wrapper">
@@ -76,7 +80,7 @@ function Dashboard(){
               <div class="collapse navbar-collapse justify-content-end" id="navigation">
                 <form>
                   <div class="input-group no-border">
-                    <input type="text" value="" class="form-control" placeholder="Search..."/>
+                    <input type="text" value="" class="form-control" placeholder="Search..." />
                     <div class="input-group-append">
                       <div class="input-group-text">
                         <i class="nc-icon nc-zoom-split"></i>
@@ -101,11 +105,11 @@ function Dashboard(){
             <div class="container-fluid">
               <div class="row">
                 <nav class="footer-nav">
-                 
+
                 </nav>
                 <div class="credits ml-auto">
                   <span class="copyright">
-                <i class="fa fa-heart heart"></i> From Mr. Bin
+                    <i class="fa fa-heart heart"></i> From Mr. Bin
                   </span>
                 </div>
               </div>
@@ -113,7 +117,9 @@ function Dashboard(){
           </footer>
         </div>
       </div>
-    )
+      {/* <Footer /> */}
+    </div>
+  )
 }
 
 export default Dashboard;
