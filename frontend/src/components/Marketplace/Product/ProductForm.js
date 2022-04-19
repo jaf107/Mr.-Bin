@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import Header from '../../Header/Header'
 import { useDispatch, useSelector } from "react-redux";
+import Footer from '../../Footer/Footer';
 
 
 const ProductForm = () => {
@@ -171,7 +172,7 @@ const ProductForm = () => {
 
 
             </div>
-
+            <Footer/>
         </div>
     )
 }

@@ -59,10 +59,11 @@ const Marketplace = () => {
           </div>
         </section>
         <section id="products">
+
+        <h3 className='p-4 ' >Marketplace</h3>
+
           <div class="container">
             <div class="row">
-
-              <h3 className='p-4'>Marketplace</h3>
 
               <div class="col-lg-3 col-sm-6 col-11 offset-sm-0 offset-1">
                 <div class="card">
