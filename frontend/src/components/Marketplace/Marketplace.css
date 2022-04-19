@@ -36,27 +36,23 @@
     font-size: 20px
 }
 
-.marketplace #red {
-    color: #e94545d7
-}
-
-.marketplace #teal {
-    color: rgb(69, 129, 129)
-}
-
-.marketplace #blue {
-    color: #0000ff
-}
 
 .marketplace .card {
+    border-radius: 20px;
     width: 250px;
     display: inline-block;
-    height: 300px
+    /* height: 300px */
+}
+
+.marketplace .card-title{
+    margin: 5px;
 }
 
 .marketplace .card-img-top {
     width: 250px;
-    height: 210px
+    height: 200px;
+    border-radius: 10px;
+    opacity: .9;
 }
 
 .marketplace .card-body p {
