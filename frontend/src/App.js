@@ -11,6 +11,7 @@ import Donate from "./components/Donation/Donate";
 import Recycle from "./components/Recycling/Recycle";
 import Marketplace from "./components/Marketplace/Marketplace";
 import ProductForm from "./components/Marketplace/Product/ProductForm";
+import About from "./components/About/About";
 
 function App() {
   return (
@@ -35,6 +36,7 @@ function App() {
           <Route path="/account" exact element={<UserAccount></UserAccount>}></Route>
           <Route path="/marketplace" exact element={<Marketplace/>} ></Route>
           <Route path="/product" exact element={<ProductForm/>}></Route>
+          <Route path="/about" exact element={<About/>}></Route>
 
         </Routes>
       </BrowserRouter>
