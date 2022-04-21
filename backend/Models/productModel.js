@@ -36,13 +36,12 @@ const productSchema = new mongoose.Schema({
         required: [true, "Please enter product Description"]
     },
     date_of_purchase: {
-        type: Date,
+        type: String,
         required:[true, "Please enter the Date of Purchase"]
     },
     purchase_price: {
         type: Number,
         required: [true, "Please enter product Price"],
-        maxlength: [8, "Price cannot exceed 8 characters"]
     },
 
     // created_at: {

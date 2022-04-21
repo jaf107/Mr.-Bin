@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import Header from '../../Header/Header'
 import { useDispatch, useSelector } from "react-redux";
 import Footer from '../../Footer/Footer';
-
+import { addProduct } from '../../../actions/productActions';
 
 const ProductForm = () => {
     const dispatch = useDispatch();
@@ -17,7 +17,7 @@ const ProductForm = () => {
         purchase_price: "",
     })
 
-    const registerSubmit = (e) => {
+    const productSubmit = (e) => {
         e.preventDefault();
 
         const productForm = FormData();
@@ -29,7 +29,7 @@ const ProductForm = () => {
         productForm.set("purchase_price", purchase_price);
 
 
-        // dispatch(addProduct(productForm));
+     dispatch(addProduct(productForm));
     }
 
     const registerDataChange = (e) => {
@@ -45,7 +45,7 @@ const ProductForm = () => {
             <Header />
             <div className='container productform'>
 
-                <form className="form-horizontal" onSubmit={registerSubmit}>
+                <form className="form-horizontal" onSubmit={productSubmit}>
                     <fieldset>
 
                         <h2>Product Form</h2>
