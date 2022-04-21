@@ -16,8 +16,9 @@ if (process.env.NODE_ENV !== "PRODUCTION") {
 // Connecting to database
 connectDatabase();
 
-const server = app.listen(5000, () => {
-  console.log(`Server is working on http://localhost:5000`);
+let port = process.env.port || 5000;
+const server = app.listen(port, () => {
+  console.log(`Server is working on http://localhost:${port}`);
 });
 
 // Unhandled Promise Rejection
