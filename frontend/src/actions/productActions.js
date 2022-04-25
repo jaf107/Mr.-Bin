@@ -1,4 +1,5 @@
-import { ADD_PRODUCT_REQUEST } from "../constants/productConstants";
+import { ADD_PRODUCT_REQUEST,ADD_PRODUCT_SUCCESS,ADD_PRODUCT_FAIL } from "../constants/productConstants";
+const axios = require('axios')
 
 export const addProduct = (productData) => async (dispatch) =>{
     try {
