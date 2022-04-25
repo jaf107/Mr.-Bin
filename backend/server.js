@@ -1,5 +1,6 @@
 const app = require("./index.js");
 const connectDatabase = require("./config/database");
+const cloudinary = require("cloudinary");
 
 // Handling Uncaught Exception
 process.on("uncaughtException", (err) => {
@@ -12,6 +13,12 @@ process.on("uncaughtException", (err) => {
 if (process.env.NODE_ENV !== "PRODUCTION") {
   require("dotenv").config({ path: "./config/config.env" });
 }
+//Cloudinary Config
+cloudinary.config({ 
+  cloud_name: 'mr-bin', 
+  api_key: '758227615992231', 
+  api_secret: 'yOjbVwGc3q_OcGoLbldPNHnMvns' 
+});
 
 // Connecting to database
 connectDatabase();

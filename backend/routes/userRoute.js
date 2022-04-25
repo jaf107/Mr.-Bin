@@ -2,7 +2,8 @@ const express = require("express");
 const {
   registerUser,
   loginUser,
-  logout
+  logout,
+  getUserDetails
 } = require("../controllers/userController");
 const { isAuthenticatedUser, authorizeRoles } = require("../middleware/auth");
 
@@ -18,7 +19,7 @@ router.route("/login").post(loginUser);
 
 router.route("/logout").get(logout);
 
-// router.route("/me").get(isAuthenticatedUser, getUserDetails);
+ router.route("/me").get(isAuthenticatedUser, getUserDetails);
 
 // router.route("/password/update").put(isAuthenticatedUser, updatePassword);
 
