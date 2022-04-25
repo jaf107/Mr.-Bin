@@ -10,13 +10,13 @@ function Header() {
   const dispatch = useDispatch();
   const alert = useAlert();
   const navigate = useNavigate();
-  const { error, isAuthenticated, token} = useSelector((state) => state.user);
+  const { error, isAuthenticated, token } = useSelector((state) => state.user);
   useEffect(() => {
     if (error) {
       alert.error(error);
       dispatch(clearErrors());
     }
-      console.log(token)
+    console.log(token)
   }, [dispatch, error, alert, isAuthenticated]);
 
   function logoutUser() {
@@ -60,12 +60,12 @@ function Header() {
           </form>
           <ul class="navbar-nav  fw-normal">
             <li class="nav-item active p-2">
-              <Link class="nav-link"to="/">
+              <Link class="nav-link" to="/">
                 Home
               </Link>
             </li>
             <li class="nav-item p-2">
-              <Link class="nav-link" to="/">
+              <Link class="nav-link" to="/marketplace">
                 Marketplace
               </Link>
             </li>
@@ -80,9 +80,10 @@ function Header() {
               </Link>
             </li>
             <li class="nav-item p-2">
-              <a class="nav-link" href="#">
+              <Link class="nav-link" to="/about">
                 About
-              </a>
+              </Link>
+
             </li>
           </ul>
           {!isAuthenticated && (

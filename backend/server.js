@@ -1,5 +1,6 @@
 const app = require("./index.js");
 const connectDatabase = require("./config/database");
+const cloudinary = require("cloudinary");
 
 // Handling Uncaught Exception
 process.on("uncaughtException", (err) => {
@@ -12,12 +13,19 @@ process.on("uncaughtException", (err) => {
 if (process.env.NODE_ENV !== "PRODUCTION") {
   require("dotenv").config({ path: "./config/config.env" });
 }
+//Cloudinary Config
+cloudinary.config({ 
+  cloud_name: 'mr-bin', 
+  api_key: '758227615992231', 
+  api_secret: 'yOjbVwGc3q_OcGoLbldPNHnMvns' 
+});
 
 // Connecting to database
 connectDatabase();
 
-const server = app.listen(5000, () => {
-  console.log(`Server is working on http://localhost:5000`);
+let port = process.env.port || 5000;
+const server = app.listen(port, () => {
+  console.log(`Server is working on http://localhost:${port}`);
 });
 
 // Unhandled Promise Rejection

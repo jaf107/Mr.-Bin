@@ -7,11 +7,6 @@ const crypto = require("crypto");
 
 // Register a User
 exports.registerUser = catchAsyncErrors(async (req, res, next) => {
-  // const myCloud = await cloudinary.v2.uploader.upload(req.body.avatar, {
-  //   folder: "avatars",
-  //   width: 150,
-  //   crop: "scale",
-  // });
 
   const { name, email, password } = req.body;
   console.log(name);
@@ -137,15 +132,15 @@ exports.logout = catchAsyncErrors(async (req, res, next) => {
 //   sendToken(user, 200, res);
 // });
 
-// // Get User Detail
-// exports.getUserDetails = catchAsyncErrors(async (req, res, next) => {
-//   const user = await User.findById(req.user.id);
+// Get User Detail
+exports.getUserDetails = catchAsyncErrors(async (req, res, next) => {
+  const user = await User.findById(req.user.id);
 
-//   res.status(200).json({
-//     success: true,
-//     user,
-//   });
-// });
+  res.status(200).json({
+    success: true,
+    user,
+  });
+});
 
 // // update User password
 // exports.updatePassword = catchAsyncErrors(async (req, res, next) => {

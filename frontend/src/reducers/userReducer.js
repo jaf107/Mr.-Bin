@@ -40,19 +40,10 @@ import {
   USER_DETAILS_FAIL,
   CLEAR_ERRORS,
 } from "../constants/userConstants";
-import Cookies from 'js-cookie';
+// import Cookies from 'js-cookie';
 
-const initialState = {
-  user: {},
-  isAuthenticated: null,
-  token: Cookies.get('token'),
-  //token: localStorage.getItem('token') && {isAuthenticated : true},
 
-  isLoading: false,
-  isRegistered: false
-}
-
-export const userReducer = (state =initialState, action) => {
+export const userReducer = (state= { user: {} }, action) => {
   switch (action.type) {
     case LOGIN_REQUEST:
     case REGISTER_USER_REQUEST:

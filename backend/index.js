@@ -34,11 +34,14 @@ app.use(function (req, res, next) {
   // Pass to next layer of middleware
   next();
 });
+
+
 // Route Imports
 const user = require("./routes/userRoute");
-
+const product = require("./routes/productRoute");
 
 app.use("/api/v1", user);
+app.use("/api/v1", product);
 
 
 // app.use(express.static(path.join(__dirname, "../frontend/build")));
