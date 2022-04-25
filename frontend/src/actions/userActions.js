@@ -37,7 +37,7 @@ import {
     CLEAR_ERRORS,
   } from "../constants/userConstants";
   import axios from "axios";
-  
+  axios.defaults.withCredentials = true;
   // Login
   export const login = (email, password) => async (dispatch) => {
     try {
