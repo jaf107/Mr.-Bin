@@ -27,6 +27,11 @@ const userSchema = new mongoose.Schema({
     type: String,
     default: "user",
   },
+  phone: {
+    type: String,
+    unique: [true, "Phone Number Already Exists"],
+
+  },
   createdAt: {
     type: Date,
     default: Date.now,

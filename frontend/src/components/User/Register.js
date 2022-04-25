@@ -15,17 +15,25 @@ function Register({ location }) {
     name: "",
     email: "",
     password: "",
+    phone:""
   });
 
-  const { name, email, password } = user;
+  const { name, email, password, phone } = user;
+  const [confirmPassword, setConfirmPassword] = useState("");
+
   const registerSubmit = (e) => {
     e.preventDefault();
 
     const myForm = new FormData();
-
+    if(password!=confirmPassword)
+      {
+        alert.error("Password Not Matching")
+        return
+      }
     myForm.set("name", name);
     myForm.set("email", email);
     myForm.set("password", password);
+    myForm.set("phone", phone);
     dispatch(register(myForm));
   };
 
@@ -53,7 +61,7 @@ function Register({ location }) {
       alert.error(error);
       dispatch(clearErrors());
     }
-
+ 
     if (isAuthenticated) {
       navigate("/");
     }
@@ -95,15 +103,17 @@ function Register({ location }) {
                   onChange={registerDataChange}
                 />
               </div>
-              {/* <div className="form-group pb-3">
+              <div className="form-group pb-3">
                 <input
-                  type="text"
-                  placeholder="Phone Number"
+                  type="tel"
+                  placeholder="Phone Number (01********)"
                   className="form-control"
                   id="exampleInputEmail1"
                   aria-describedby="emailHelp"
+                  value={phone}
+                  onChange={registerDataChange}
                 />
-              </div> */}
+              </div>
               <div className="form-group pb-3">
                 <input
                   type="password"
@@ -115,14 +125,16 @@ function Register({ location }) {
                   onChange={registerDataChange}
                 />
               </div>
-              {/* <div className="form-group pb-3">
+              <div className="form-group pb-3">
                 <input
                   type="password"
                   placeholder="Confirm Password"
                   className="form-control"
                   id="exampleInputPassword1"
+                  value={confirmPassword}
+                  onChange={(e) => setConfirmPassword(e.target.value)}
                 />
-              </div> */}
+              </div>
 
               <div className="pb-2 text-center mt-4">
                 <button type="submit" className="btn btn-success w-50">
