@@ -1,4 +1,6 @@
 const catchAsyncErrors = require("../middleware/catchAsyncErrors");
+const Product = require("../models/productModel");
+
 
 exports.addProduct = catchAsyncErrors(async (req, res, next) => {
   
@@ -22,11 +24,14 @@ exports.addProduct = catchAsyncErrors(async (req, res, next) => {
         purchase_price 
     });
   
-    sendToken(product, 201, res);
+    res.status(201).json({
+        success: true,
+        product,
+      });
   });
 
-exports.getProduct = catchAsyncErrors(async (req,res,next)=>{
-    const product = await Product.findById(req.product.name);
+exports.getProducts = catchAsyncErrors(async (req,res,next)=>{
+    const product = await Product.find();
 
     res.status(200).json({
         success: true,
