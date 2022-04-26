@@ -33,21 +33,21 @@ const productSchema = new mongoose.Schema({
     // ],
     description: {
         type: String,
-        required: [true, "Please enter product Description"]
+        //required: [true, "Please enter product Description"]
     },
     date_of_purchase: {
         type: String,
-        required:[true, "Please enter the Date of Purchase"]
+       // required:[true, "Please enter the Date of Purchase"]
     },
     purchase_price: {
         type: Number,
-        required: [true, "Please enter product Price"],
+       // required: [true, "Please enter product Price"],
     },
 
-    // created_at: {
-    //     type: Date,
-    //     default: Date.now
-    // }
+    created_at: {
+        type: Date,
+        default: Date.now
+    }
 })
 
 module.exports = mongoose.model("Product", productSchema);
