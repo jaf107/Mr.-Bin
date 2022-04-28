@@ -19,18 +19,23 @@ const productSchema = new mongoose.Schema({
         required:[true, "Please enter the condition of your product"],
         default: "average"
     },
-    // image: [
-    //     {
-    //         public_id:{
-    //             type: String,
-    //             required:true,
-    //         },
-    //         url:{
-    //             type: String,
-    //             required:true,   
-    //         }
-    //     }
-    // ],
+    images: [
+        {
+          public_id: {
+            type: String,
+            required: true,
+          },
+          url: {
+            type: String,
+            required: true,
+          },
+        },
+      ],
+    user: {
+        type: mongoose.Schema.ObjectId,
+        ref: "User",
+        required: true,
+      },
     description: {
         type: String,
         //required: [true, "Please enter product Description"]

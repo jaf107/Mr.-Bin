@@ -20,10 +20,40 @@ function Recycle(params) {
             <h1>300</h1>
           </div>
         </div>
-        <div className=" row  align-items-center h-100">
-          <div className="col-md-5 text-center align-middle">
+        <div className="row mt-4">
+          <div className="col-md-4">
+            <div className="row p-2">
+              <div className="col-md-6 p-2">
+                <div className="itemsCard text-center p-3">
+                  <h6>Newspaper</h6>
+                  <i class="fa-solid fa-newspaper fs-2 mt-3 mb-4"></i>
+                </div>
+              </div>
+              <div className="col-md-6 p-2">
+                <div className="itemsCard text-center p-3">
+                  <h6>Plastic Bottles</h6>
+                  <i class="fa-solid fa-bottle-water fs-2 mt-3 mb-4"></i>
+                </div>
+              </div>
+            </div>
+            <div className="row p-2">
+              <div className="col-md-6 p-2">
+                <div className="itemsCard text-center p-3">
+                  <h6>Electronics</h6>
+                  <i class="fa-solid fa-mobile fs-2 mt-3 mb-4"></i>
+                </div>
+              </div>
+              <div className="col-md-6 p-2">
+                <div className="itemsCard text-center p-3">
+                  <h6>Books</h6>
+                  <i class="fa-solid fa-book fs-2 mt-3 mb-4"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="col-md-4 text-center mt-5">
             <button
-              className=" btn btn-success border-0 btn-lg fw-bold"
+              className=" btn border-0 btn-lg fw-bold mt-5 p-4"
               data-bs-toggle="modal"
               data-bs-target="#exampleModal"
             >
@@ -36,7 +66,6 @@ function Recycle(params) {
               tabindex="-1"
               aria-labelledby="exampleModalLabel"
               aria-hidden="true"
-
             >
               <div class="modal-dialog">
                 <div class="modal-content">
@@ -131,20 +160,51 @@ function Recycle(params) {
                       </div>
                       <div class="col-12">
                         <button type="submit" class="btn btn-primary border-0 ">
-                         Place Request
+                          Place Request
                         </button>
                       </div>
                     </form>
                   </div>
-                 
                 </div>
               </div>
             </div>
           </div>
+          <div className="col-md-4">
+            <div className="row p-2">
+              <div className="col-md-6 p-2">
+                <div className="itemsCard text-center p-3">
+                  <h6>Home Appliances</h6>
+                  <i class="fa-solid fa-blender-phone fs-2 mt-3 mb-4"></i>
+                </div>
+              </div>
+              <div className="col-md-6 p-2">
+                <div className="itemsCard text-center p-3">
+                  <h6>Furniture</h6>
+                  <i class="fa-solid fa-chair fs-2 mt-3 mb-4"></i>
+                </div>
+              </div>
+            </div>
+            <div className="row p-2">
+              <div className="col-md-6 p-2">
+                <div className="itemsCard text-center p-3">
+                  <h6>Clothes</h6>
+                  <i class="fa-solid fa-house-user fs-2 mt-3 mb-4"></i>
+                </div>
+              </div>
+              <div className="col-md-6 p-2">
+                <div className="itemsCard text-center p-3">
+                  <h6>Others</h6>
+                  <i class="fa-solid fa-shuffle fs-2 mt-3 mb-4"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className=" row  align-items-center h-100">
 
-          <div className="col-md-7 ">
-            <h4>Our Recyclers</h4>
-            <div class="row row-cols-1 row-cols-md-2 g-4">
+          <div className="col-md-12 text-center">
+            <h4 >Our Recyclers</h4>
+            <div class="row  g-4">
               <div class="col">
                 <div class="card">
                   <img
@@ -158,8 +218,7 @@ function Recycle(params) {
                     <h5 class="card-title">Recycler 1</h5>
                     <p class="card-text">
                       This is a longer card with supporting text below as a
-                      natural lead-in to additional content. This content is a
-                      little bit longer.
+                      natural lead-in to additional content. 
                     </p>
                   </div>
                 </div>
@@ -177,8 +236,7 @@ function Recycle(params) {
                     <h5 class="card-title">Recycler 2</h5>
                     <p class="card-text">
                       This is a longer card with supporting text below as a
-                      natural lead-in to additional content. This content is a
-                      little bit longer.
+                      natural lead-in to additional content. 
                     </p>
                   </div>
                 </div>

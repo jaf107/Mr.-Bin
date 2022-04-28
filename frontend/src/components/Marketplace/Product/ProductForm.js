@@ -29,9 +29,11 @@ const ProductForm = () => {
     purchase_price,
   } = product;
 
+  const [images, setImages] = useState([]);
+  const [imagesPreview, setImagesPreview] = useState([]);
+
   const productSubmit = (e) => {
     e.preventDefault();
-
     const productForm = new FormData();
     productForm.set("name", name);
     productForm.set("category", category);
@@ -40,7 +42,9 @@ const ProductForm = () => {
     productForm.set("description", description);
     productForm.set("date_of_purchase", date_of_purchase);
     productForm.set("purchase_price", purchase_price);
-    console.log(category);
+    images.forEach((image) => {
+      productForm.append("images", image);
+    });
     dispatch(addProduct(productForm));
   };
 
@@ -48,6 +52,22 @@ const ProductForm = () => {
     setProduct({ ...product, [e.target.name]: e.target.value });
   };
 
+  const createProductImagesChange = (e) => {
+    const files = Array.from(e.target.files);
+    setImages([]);
+    setImagesPreview([]);
+    files.forEach((file) => {
+      const reader = new FileReader();
+
+      reader.onload = () => {
+        if (reader.readyState === 2) {
+          setImagesPreview((old) => [...old, reader.result]);
+          setImages((old) => [...old, reader.result]);
+        }
+      };
+      reader.readAsDataURL(file);
+    });
+  };
   return (
     <div>
       <Header />
@@ -153,6 +173,21 @@ const ProductForm = () => {
                   value={date_of_purchase}
                   onChange={registerDataChange}
                 />
+              </div>
+              <div id="createProductFormFile">
+                <input
+                  type="file"
+                  name="avatar"
+                  accept="image/*"
+                  onChange={createProductImagesChange}
+                  multiple
+                />
+              </div>
+
+              <div id="createProductFormImage">
+                {imagesPreview.map((image, index) => (
+                  <img key={index} src={image} alt="Product Preview" />
+                ))}
               </div>
 
               <div className=" ">

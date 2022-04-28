@@ -53,3 +53,13 @@ background-color:#ebebeb;
     background-color: #20C1BD;
     margin-left: 10px;
 }
+
+.productform #createProductFormImage {
+	width: 100%;
+	overflow: auto;
+  }
+  
+ .productform #createProductFormImage > img {
+	width: 3vmax;
+	margin: 0 0.5vmax;
+  }

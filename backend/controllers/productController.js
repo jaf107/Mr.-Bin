@@ -1,40 +1,43 @@
 const catchAsyncErrors = require("../middleware/catchAsyncErrors");
 const Product = require("../models/productModel");
-
+const cloudinary = require("cloudinary");
 
 exports.addProduct = catchAsyncErrors(async (req, res, next) => {
-  
-    const { 
-        name, 
-        category, 
-        quantity, 
-        condition,
-        description, 
-        date_of_purchase, 
-        purchase_price 
-    } = req.body;
-    console.log(name);
-    const product = await Product.create({ 
-        name, 
-        category, 
-        quantity, 
-        condition,
-        description, 
-        date_of_purchase, 
-        purchase_price 
+  let images = [];
+
+  if (typeof req.body.images === "string") {
+    images.push(req.body.images);
+  } else {
+    images = req.body.images;
+  }
+  const imagesLinks = [];
+
+  for (let i = 0; i < images.length; i++) {
+    const result = await cloudinary.v2.uploader.upload(images[i], {
+      folder: "products/" + req.user.id,
     });
-  
-    res.status(201).json({
-        success: true,
-        product,
-      });
+
+    imagesLinks.push({
+      public_id: result.public_id,
+      url: result.secure_url,
+    });
+  }
+
+  req.body.images = imagesLinks;
+  req.body.user = req.user.id;
+  const product = await Product.create(req.body);
+
+  res.status(201).json({
+    success: true,
+    product,
   });
+});
 
-exports.getProducts = catchAsyncErrors(async (req,res,next)=>{
-    const product = await Product.find();
+exports.getProducts = catchAsyncErrors(async (req, res, next) => {
+  const product = await Product.find();
 
-    res.status(200).json({
-        success: true,
-        product,
-    });
-})
+  res.status(200).json({
+    success: true,
+    product,
+  });
+});
