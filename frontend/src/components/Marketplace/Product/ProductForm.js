@@ -71,7 +71,7 @@ const ProductForm = () => {
   return (
     <div>
       <div className="container productform">
-      <h3 className=" mt-3 mb-4">Add A New Product To Marketplace </h3>
+      <h3 className=" mt-3 mb-4">Add A New Product </h3>
             <form className="form-floating" onSubmit={productSubmit}>
               <div className="form-group mb-4">
                 <input
