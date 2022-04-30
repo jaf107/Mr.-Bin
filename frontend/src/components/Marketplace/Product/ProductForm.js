@@ -70,11 +70,8 @@ const ProductForm = () => {
   };
   return (
     <div>
-      <Header />
       <div className="container productform">
-        <div className="row">
-          <div className="col-md-6 p-5">
-            <h3 className=" mt-3 mb-4">Add A New Product To Marketplace </h3>
+      <h3 className=" mt-3 mb-4">Add A New Product To Marketplace </h3>
             <form className="form-floating" onSubmit={productSubmit}>
               <div className="form-group mb-4">
                 <input
@@ -200,21 +197,7 @@ const ProductForm = () => {
                 </button>
               </div>
             </form>
-          </div>
-          <div className="col-md-6 text-center">
-            <lottie-player
-              src="https://assets10.lottiefiles.com/packages/lf20_komemhfl.json"
-              background="transparent"
-              speed="1"
-              style={{ width: "600px", height: "600px" }}
-              loop
-              autoplay
-            ></lottie-player>
-          </div>
-        </div>
       </div>
-
-      <Footer />
     </div>
   );
 };

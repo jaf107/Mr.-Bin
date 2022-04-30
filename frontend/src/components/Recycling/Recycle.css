@@ -6,6 +6,7 @@
 .recycle .btn:hover{
     color: white !important;
     background-color: #20C1BD !important;
+    border: 0px !important;
 }
 
 .recycle .btn{

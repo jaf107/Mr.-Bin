@@ -1,5 +1,6 @@
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
+import ProductForm from "../Marketplace/Product/ProductForm";
 import "./Recycle.css";
 function Recycle(params) {
   return (
@@ -81,89 +82,7 @@ function Recycle(params) {
                     ></button>
                   </div>
                   <div class="modal-body">
-                    <form class="row g-3">
-                      <div class="col-md-6 p-3">
-                        <label for="inputEmail4" class="form-label">
-                          Product Name
-                        </label>
-                        <input
-                          type="email"
-                          class="form-control"
-                          id="inputEmail4"
-                        />
-                      </div>
-                      <div class="col-md-6 p-3">
-                        <label for="inputPassword4" class="form-label">
-                          Category
-                        </label>
-                        <input
-                          type="text"
-                          class="form-control"
-                          id="inputPassword4"
-                        />
-                      </div>
-                      <div class="col-12">
-                        <label for="inputAddress" class="form-label">
-                          Quantity
-                        </label>
-                        <input
-                          type="text"
-                          class="form-control"
-                          id="inputAddress"
-                          placeholder="10"
-                        />
-                      </div>
-                      <div class="col-12">
-                        <label for="inputAddress2" class="form-label">
-                          Address
-                        </label>
-                        <input
-                          type="number"
-                          class="form-control"
-                          id="inputAddress2"
-                          placeholder="Apartment, studio, or floor"
-                        />
-                      </div>
-                      <div class="col-md-6">
-                        <label for="inputCity" class="form-label">
-                          City
-                        </label>
-                        <input
-                          type="text"
-                          class="form-control"
-                          id="inputCity"
-                        />
-                      </div>
-                      <div class="col-md-4">
-                        <label for="inputState" class="form-label">
-                          State
-                        </label>
-                        <select id="inputState" class="form-select">
-                          <option selected>Choose...</option>
-                          <option>...</option>
-                        </select>
-                      </div>
-                      <div class="col-md-2">
-                        <label for="inputZip" class="form-label">
-                          Zip
-                        </label>
-                        <input type="text" class="form-control" id="inputZip" />
-                      </div>
-                      <div class="col-12">
-                        <div class="form-check">
-                          <input
-                            class="form-check-input"
-                            type="checkbox"
-                            id="gridCheck"
-                          />
-                        </div>
-                      </div>
-                      <div class="col-12">
-                        <button type="submit" class="btn btn-primary border-0 ">
-                          Place Request
-                        </button>
-                      </div>
-                    </form>
+                    <ProductForm></ProductForm>
                   </div>
                 </div>
               </div>
