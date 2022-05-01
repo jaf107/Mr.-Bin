@@ -5,6 +5,8 @@ const {
   logout,
   getUserDetails
 } = require("../controllers/userController");
+const { isAuthenticatedUser } = require("../middleware/auth");
+
 
 const router = express.Router();
 
