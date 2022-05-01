@@ -1,13 +1,25 @@
 import { useState } from "react";
 import { useRef } from "react";
+
+import { useDispatch } from "react-redux";
+import { useEffect } from "react";
+import { useAlert } from "react-alert";
+import { useSelector } from "react-redux";
+import "./Recycle.css";
 function RecycleForm(props) {
   const ref = useRef();
+  const dispatch = useDispatch();
+  const alert = useAlert();
+  const { isAuthenticated } = useSelector((state) => state.user);
+  const { recyclers } = useSelector((state) => state.recyclers);
 
-  const [toggle, setToggle] = useState(false);
+  useEffect(() => {
+    if (isAuthenticated) {
+      console.log(recyclers)
+    }
+  }, [dispatch, alert, isAuthenticated]);
+  const listItems = recyclers.map((recyclers) => <option>{recyclers.name}</option>);
 
-  const handleClick = () => {
-    props.handleToggle(true);
-  };
   return (
     <div className="">
       <form action="">
@@ -20,12 +32,7 @@ function RecycleForm(props) {
             <option value="" disabled selected>
               Select Recycler
             </option>
-            <option>Books</option>
-            <option>Newspapers</option>
-            <option>Clothes</option>
-            <option>Plastic</option>
-            <option>Glassware</option>
-            <option>Electronics</option>
+            {listItems}
           </select>
         </div>
         <div className="form-group mb-3">
@@ -42,14 +49,11 @@ function RecycleForm(props) {
           />
         </div>
         <div className=" ">
-                <button
-                  type="submit"
-                  className="btn btn-success border-0  fw-normal"
-                >
-                  {" "}
-                  Submit Order
-                </button>
-              </div>
+          <button type="submit" className="btn btn-success border-0  fw-normal">
+            {" "}
+            Submit Order
+          </button>
+        </div>
       </form>
     </div>
   );

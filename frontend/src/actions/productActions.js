@@ -11,6 +11,7 @@ import {
 
 } from "../constants/productConstants";
 const axios = require("axios");
+axios.defaults.withCredentials = true;
 
 export const addProduct = (productData) => async (dispatch) => {
   try {
@@ -59,9 +60,6 @@ export const getUserProducts = (user_id) => async (dispatch) => {
       user_id,
       config
     );
-
-    console.log(data);
-
     dispatch({ type: GET_USER_PRODUCT_SUCCESS, payload: data.product });
   } catch (error) {
      dispatch({ type: GET_USER_PRODUCT_FAIL, payload: error.response.data.message });

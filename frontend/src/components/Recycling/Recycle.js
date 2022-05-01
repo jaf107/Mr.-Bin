@@ -9,12 +9,13 @@ import { useAlert } from "react-alert";
 import { useSelector } from "react-redux";
 import "./Recycle.css";
 import { getUserProducts } from "../../actions/productActions";
+import { getRecyclers } from "../../actions/recyclerActions";
 
 function Recycle(state) {
   const dispatch = useDispatch();
   const alert = useAlert();
   const { id, isAuthenticated } = useSelector((state) => state.user);
-  const  product  = useSelector((state) => state.product);
+  const { products } = useSelector((state) => state.products);
   const [toggleForm, setToggleForm] = useState(false);
   const [toggleAddNew, setToggleAddNew] = useState(false);
 
@@ -28,11 +29,11 @@ function Recycle(state) {
   useEffect(() => {
     if (isAuthenticated) {
       dispatch(getUserProducts(id));
-      console.log(product)
+      dispatch(getRecyclers());
     }
   }, [dispatch, alert, isAuthenticated]);
 
-
+  const listItems = products.map((products) => <option>{products.name}</option>);
   return (
     <div className="">
       <Header />
@@ -134,12 +135,7 @@ function Recycle(state) {
                                   <option value="" disabled selected>
                                     Select Products
                                   </option>
-                                  <option>Books</option>
-                                  <option>Newspapers</option>
-                                  <option>Clothes</option>
-                                  <option>Plastic</option>
-                                  <option>Glassware</option>
-                                  <option>Electronics</option>
+                                  {listItems}
                                 </select>
                               </div>
                               <button

@@ -10,7 +10,7 @@ import {
   GET_USER_PRODUCT_SUCCESS,
 } from "../constants/productConstants";
 
-export const newProductReducer = (state = { product: {} }, action) => {
+export const productReducer = (state = { products: [] }, action) => {
   switch (action.type) {
     case ADD_PRODUCT_REQUEST:
       return {
@@ -21,7 +21,7 @@ export const newProductReducer = (state = { product: {} }, action) => {
       return {
         loading: false,
         success: action.payload.success,
-        product: action.payload.product,
+        products: action.payload.product,
       };
     case ADD_PRODUCT_FAIL:
       return {
@@ -40,7 +40,7 @@ export const newProductReducer = (state = { product: {} }, action) => {
       return {
         loading: false,
         success: action.payload.success,
-        product: action.payload.product,
+        products: action.payload.product,
       };
     case GET_USER_PRODUCT_FAIL:
       return {
@@ -49,11 +49,17 @@ export const newProductReducer = (state = { product: {} }, action) => {
         error: action.payload,
       };
     case GET_USER_PRODUCT_REQUEST:
+      return {
+        loading: true,
+        products: [],
+      };
     case GET_USER_PRODUCT_SUCCESS:
       return {
         loading: false,
-        success: action.payload.success,
-        product: action.payload.product,
+        products: action.payload,
+      
       };
+    default:
+      return state;
   }
 };
