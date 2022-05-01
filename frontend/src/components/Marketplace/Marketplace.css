@@ -3,6 +3,11 @@
     color: grey
 }
 
+.spanMarket{
+    font-size: 20px;
+}
+
+
 .marketplace #sidebar {
     width: 20%;
     padding: 10px;
@@ -27,9 +32,25 @@
     text-decoration: none
 }
 
+.addbtn{
+    position: relative;
+
+    margin-left: 47%;
+}
+
+.marketplace .card-button{
+    margin: 5px;
+    border-radius: 10px;
+}
+
 .marketplace li a:hover {
     text-decoration: none;
     color: darksalmon
+}
+
+.marketplace .separate-card{
+    /* border: 1px solid black; */
+    margin: 10px;
 }
 
 .marketplace .fa-circle {
@@ -38,7 +59,8 @@
 
 
 .marketplace .card {
-    border-radius: 20px;
+    margin: 10px;
+    border-radius: 10px;
     width: 250px;
     display: inline-block;
     /* height: 300px */
