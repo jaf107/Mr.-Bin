@@ -19,35 +19,40 @@ const productSchema = new mongoose.Schema({
         required:[true, "Please enter the condition of your product"],
         default: "average"
     },
-    // image: [
-    //     {
-    //         public_id:{
-    //             type: String,
-    //             required:true,
-    //         },
-    //         url:{
-    //             type: String,
-    //             required:true,   
-    //         }
-    //     }
-    // ],
+    images: [
+        {
+          public_id: {
+            type: String,
+            required: true,
+          },
+          url: {
+            type: String,
+            required: true,
+          },
+        },
+      ],
+    user: {
+        type: mongoose.Schema.ObjectId,
+        ref: "User",
+        required: true,
+      },
     description: {
         type: String,
-        required: [true, "Please enter product Description"]
+        //required: [true, "Please enter product Description"]
     },
     date_of_purchase: {
         type: String,
-        required:[true, "Please enter the Date of Purchase"]
+       // required:[true, "Please enter the Date of Purchase"]
     },
     purchase_price: {
         type: Number,
-        required: [true, "Please enter product Price"],
+       // required: [true, "Please enter product Price"],
     },
 
-    // created_at: {
-    //     type: Date,
-    //     default: Date.now
-    // }
+    created_at: {
+        type: Date,
+        default: Date.now
+    }
 })
 
 module.exports = mongoose.model("Product", productSchema);

@@ -1,8 +1,22 @@
 import Footer from '../Footer/Footer';
 import Header from '../Header/Header';
 import './UserAccount.css'
+import { useSelector } from 'react-redux';
+import { useAlert } from 'react-alert';
+import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
 
-function UserAccount(user) {
+function UserAccount() {
+
+    const navigate = useNavigate();
+    const { user, isAuthenticated } = useSelector((state) => state.user);
+    useEffect(() => {
+        if (isAuthenticated === false) {
+          navigate("/login");
+        }
+      }, [isAuthenticated]);
     return (
         <div>            <Header/>
 
@@ -12,10 +26,10 @@ function UserAccount(user) {
                     <div class="panel">
                         <div class="user-heading round">
                             <a href="#">
-                                <img src={require("../../assets/avatar3.png")} alt="" />
+                                <img src={user.avatar.url} alt="" />
                             </a>
-                            <h1>Test User</h1>
-                            <p>test@gmail.com</p>
+                            <h1>{user.name}</h1>
+                            <p>{user.email}</p>
                         </div>
 
                         <ul class="nav nav-pills nav-stacked flex-column">
@@ -33,25 +47,14 @@ function UserAccount(user) {
                         <div class="panel-body bio-graph-info m-5">
                             <div class="row">
                                 <div class="bio-row">
-                                    <p><span>First Name </span>: Camila</p>
+                                    <p><span> Name </span>: {user.name}</p>
                                 </div>
                                 <div class="bio-row">
-                                    <p><span>Last Name </span>: Smith</p>
+                                    <p><span>Email </span>: {user.email}</p>
                                 </div>
+
                                 <div class="bio-row">
-                                    <p><span>Country </span>: Australia</p>
-                                </div>
-                                <div class="bio-row">
-                                    <p><span>Birthday</span>: 13 July 1983</p>
-                                </div>
-                                <div class="bio-row">
-                                    <p><span>Occupation </span>: UI Designer</p>
-                                </div>
-                                <div class="bio-row">
-                                    <p><span>Email </span>: jsmith@flatlab.com</p>
-                                </div>
-                                <div class="bio-row">
-                                    <p><span>Mobile </span>: (+880) 13 4567890</p>
+                                    <p><span>Mobile </span>: (+88) {user.phone}</p>
                                 </div>
                             </div>
                         </div>

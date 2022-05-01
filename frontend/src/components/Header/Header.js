@@ -1,4 +1,4 @@
-import { Link, Navigate, useNavigate } from "react-router-dom";
+import { Link} from "react-router-dom";
 import "./Header.css";
 import { React, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
@@ -9,14 +9,12 @@ import { useAlert } from "react-alert";
 function Header() {
   const dispatch = useDispatch();
   const alert = useAlert();
-  const navigate = useNavigate();
-  const { error, isAuthenticated, token } = useSelector((state) => state.user);
+  const { error, isAuthenticated } = useSelector((state) => state.user);
   useEffect(() => {
     if (error) {
       alert.error(error);
       dispatch(clearErrors());
     }
-    console.log(token)
   }, [dispatch, error, alert, isAuthenticated]);
 
   function logoutUser() {
