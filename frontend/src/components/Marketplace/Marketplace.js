@@ -58,9 +58,9 @@ const Marketplace = () => {
                       Price: {product.price}
                     </p>
                     <div className="d-flex">
-                      <div className="card-button flex-fill border-0 btn btn-success" >Bid</div>
+                      <div className="card-button flex-fill border-0 btn btn-success" >Buy</div>
                       <div className="card-button flex-fill border-0 btn btn-danger"><i className=' fas fa-heart'></i></div>
-                      <div className="card-button flex-fill border-0 btn btn-primary"> Buy</div>
+                      <div className="card-button flex-fill border-0 btn btn-warning"> Bid</div>
                     </div>
                   </div>
                 </div>
@@ -83,9 +83,9 @@ const Marketplace = () => {
                       Price: {product.price}
                     </p>
                     <div className="d-flex">
-                      <div className="card-button flex-fill border-0 btn btn-success" >Bid</div>
+                      <div className="card-button flex-fill border-0 btn btn-success" >Buy</div>
                       <div className="card-button flex-fill border-0 btn btn-danger"><i className=' fas fa-heart'></i></div>
-                      <div className="card-button flex-fill border-0 btn btn-primary"> Buy</div>
+                      <div className="card-button flex-fill border-0 btn btn-warning"> Bid</div>
                     </div>
                   </div>
                 </div>
@@ -108,9 +108,9 @@ const Marketplace = () => {
                       Price: {product.price}
                     </p>
                     <div className="d-flex">
-                      <div className="card-button flex-fill border-0 btn btn-success" >Bid</div>
+                      <div className="card-button flex-fill border-0 btn btn-success" >Buy</div>
                       <div className="card-button flex-fill border-0 btn btn-danger"><i className=' fas fa-heart'></i></div>
-                      <div className="card-button flex-fill border-0 btn btn-primary"> Buy</div>
+                      <div className="card-button flex-fill border-0 btn btn-warning"> Bid</div>
                     </div>
                   </div>
                 </div>
