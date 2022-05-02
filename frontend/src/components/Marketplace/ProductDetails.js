@@ -121,6 +121,7 @@ const Product = () => {
                                         >
                                             Bid
                                         </button>
+                                        <h4  >Your bidded amount is <strong>{bidAmount} </strong> </h4>
 
                                         <div
                                             className="modal fade"
