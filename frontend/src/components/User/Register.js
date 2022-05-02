@@ -120,6 +120,7 @@ function Register({ location }) {
                   aria-describedby="emailHelp"
                   value={phone}
                   onChange={registerDataChange}
+                  name="phone"
                 />
               </div>
               <div className="form-group pb-3">

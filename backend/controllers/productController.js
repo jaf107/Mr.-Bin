@@ -41,3 +41,12 @@ exports.getProducts = catchAsyncErrors(async (req, res, next) => {
     product,
   });
 });
+
+//Get Products of a Specific User
+exports.getUserProducts = catchAsyncErrors(async (req, res, next) => {
+  const product = await Product.find({ user: req.user.id });
+  res.status(200).json({
+    success: true,
+    product,
+  });
+});

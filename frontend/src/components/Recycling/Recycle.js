@@ -1,7 +1,39 @@
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
+import ProductForm from "../Marketplace/Product/ProductForm";
+import { useState } from "react";
+import RecycleForm from "./RecycleForm";
+import { useDispatch } from "react-redux";
+import { useEffect } from "react";
+import { useAlert } from "react-alert";
+import { useSelector } from "react-redux";
 import "./Recycle.css";
-function Recycle(params) {
+import { getUserProducts } from "../../actions/productActions";
+import { getRecyclers } from "../../actions/recyclerActions";
+
+function Recycle(state) {
+  const dispatch = useDispatch();
+  const alert = useAlert();
+  const { id, isAuthenticated } = useSelector((state) => state.user);
+  const { products } = useSelector((state) => state.products);
+  const [toggleForm, setToggleForm] = useState(false);
+  const [toggleAddNew, setToggleAddNew] = useState(false);
+
+  const onHandleToggle = () => {
+    if (toggleForm === true) setToggleForm(false);
+    else setToggleForm(true);
+  };
+  const handleAddNew = (e) => {
+    setToggleAddNew(true);
+  };
+  useEffect(() => {
+    if (isAuthenticated) {
+      dispatch(getUserProducts(id));
+      dispatch(getRecyclers());
+    }
+  }, [dispatch, alert, isAuthenticated]);
+
+  const listItems = products.map((products) => <option>{products.name}</option>);
   return (
     <div className="">
       <Header />
@@ -67,11 +99,19 @@ function Recycle(params) {
               aria-labelledby="exampleModalLabel"
               aria-hidden="true"
             >
-              <div class="modal-dialog">
-                <div class="modal-content">
+              <div class="modal-dialog  mw-100 w-75">
+                <div class="modal-content container">
                   <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">
-                      Add Product to Recycle
+                    {toggleForm && (
+                      <button
+                        className=" btn btn-sm m-3"
+                        onClick={onHandleToggle}
+                      >
+                        Previous
+                      </button>
+                    )}
+                    <h5 class="modal-title d" id="exampleModalLabel">
+                      Add Product
                     </h5>
                     <button
                       type="button"
@@ -81,89 +121,55 @@ function Recycle(params) {
                     ></button>
                   </div>
                   <div class="modal-body">
-                    <form class="row g-3">
-                      <div class="col-md-6 p-3">
-                        <label for="inputEmail4" class="form-label">
-                          Product Name
-                        </label>
-                        <input
-                          type="email"
-                          class="form-control"
-                          id="inputEmail4"
-                        />
-                      </div>
-                      <div class="col-md-6 p-3">
-                        <label for="inputPassword4" class="form-label">
-                          Category
-                        </label>
-                        <input
-                          type="text"
-                          class="form-control"
-                          id="inputPassword4"
-                        />
-                      </div>
-                      <div class="col-12">
-                        <label for="inputAddress" class="form-label">
-                          Quantity
-                        </label>
-                        <input
-                          type="text"
-                          class="form-control"
-                          id="inputAddress"
-                          placeholder="10"
-                        />
-                      </div>
-                      <div class="col-12">
-                        <label for="inputAddress2" class="form-label">
-                          Address
-                        </label>
-                        <input
-                          type="number"
-                          class="form-control"
-                          id="inputAddress2"
-                          placeholder="Apartment, studio, or floor"
-                        />
-                      </div>
-                      <div class="col-md-6">
-                        <label for="inputCity" class="form-label">
-                          City
-                        </label>
-                        <input
-                          type="text"
-                          class="form-control"
-                          id="inputCity"
-                        />
-                      </div>
-                      <div class="col-md-4">
-                        <label for="inputState" class="form-label">
-                          State
-                        </label>
-                        <select id="inputState" class="form-select">
-                          <option selected>Choose...</option>
-                          <option>...</option>
-                        </select>
-                      </div>
-                      <div class="col-md-2">
-                        <label for="inputZip" class="form-label">
-                          Zip
-                        </label>
-                        <input type="text" class="form-control" id="inputZip" />
-                      </div>
-                      <div class="col-12">
-                        <div class="form-check">
-                          <input
-                            class="form-check-input"
-                            type="checkbox"
-                            id="gridCheck"
-                          />
+                    {!toggleForm && (
+                      <div>
+                        <div className="row">
+                          <div className="col-md-5">
+                            <form action="">
+                              <div className="form-group mb-4">
+                                <select
+                                  id="product_categorie"
+                                  name="category"
+                                  className="form-control"
+                                >
+                                  <option value="" disabled selected>
+                                    Select Products
+                                  </option>
+                                  {listItems}
+                                </select>
+                              </div>
+                              <button
+                                className=" btn btn-primary m-2"
+                                onClick={onHandleToggle}
+                              >
+                                Choose Product
+                              </button>
+                            </form>
+                          </div>
+                          <div className="col-md-2">
+                            <h5> OR</h5>
+                          </div>
+                          <div className="col-md-5">
+                            {!toggleAddNew && (
+                              <button
+                                className=" btn btn-success"
+                                onClick={handleAddNew}
+                              >
+                                Add New
+                              </button>
+                            )}
+                            {toggleAddNew && <ProductForm></ProductForm>}{" "}
+                          </div>
                         </div>
                       </div>
-                      <div class="col-12">
-                        <button type="submit" class="btn btn-primary border-0 ">
-                          Place Request
-                        </button>
+                    )}
+                    {toggleForm && (
+                      <div>
+                        <RecycleForm
+                          handleToggle={onHandleToggle}
+                        ></RecycleForm>
                       </div>
-                    </form>
+                    )}
                   </div>
                 </div>
               </div>
@@ -201,9 +207,8 @@ function Recycle(params) {
           </div>
         </div>
         <div className=" row  align-items-center h-100">
-
           <div className="col-md-12 text-center">
-            <h4 >Our Recyclers</h4>
+            <h4>Our Recyclers</h4>
             <div class="row  g-4">
               <div class="col">
                 <div class="card">
@@ -218,7 +223,7 @@ function Recycle(params) {
                     <h5 class="card-title">Recycler 1</h5>
                     <p class="card-text">
                       This is a longer card with supporting text below as a
-                      natural lead-in to additional content. 
+                      natural lead-in to additional content.
                     </p>
                   </div>
                 </div>
@@ -236,7 +241,7 @@ function Recycle(params) {
                     <h5 class="card-title">Recycler 2</h5>
                     <p class="card-text">
                       This is a longer card with supporting text below as a
-                      natural lead-in to additional content. 
+                      natural lead-in to additional content.
                     </p>
                   </div>
                 </div>
