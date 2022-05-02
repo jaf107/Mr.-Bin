@@ -4,10 +4,11 @@
 }
 
 .product img {
-  max-width: 100%;
+  max-width: 90%;
 }
 
 .product .preview {
+  /* margin: 5px; */
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -17,6 +18,11 @@
   -webkit-flex-direction: column;
   -ms-flex-direction: column;
   flex-direction: column;
+}
+
+.product button {
+  height: 50px;
+  width: 100px;
 }
 
 @media screen and (max-width: 996px) {
@@ -66,6 +72,11 @@
   animation-name: opacity;
   -webkit-animation-duration: .3s;
   animation-duration: .3s;
+}
+
+.product .btn {
+  margin-right: 10px;
+  padding: 10px;
 }
 
 .product .card {

@@ -15,7 +15,7 @@ import About from "./components/About/About";
 import store from "./store";
 import { loadUser } from "./actions/userActions";
 import { useEffect } from "react";
-import Product from "./components/Marketplace/Product";
+import ProductDetails from "./components/Marketplace/ProductDetails";
 
 
 function App() {
@@ -45,7 +45,7 @@ function App() {
           <Route path="/marketplace" exact element={<Marketplace/>} ></Route>
           <Route path="/addproduct" exact element={<ProductForm/>}></Route>
           <Route path="/about" exact element={<About/>}></Route>
-          <Route path="/product" exact element={<Product/>}></Route>
+          <Route path="/product" exact element={<ProductDetails/>}></Route>
 
 
         </Routes>
