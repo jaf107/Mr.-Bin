@@ -4,7 +4,7 @@ import Footer from "../../Footer/Footer";
 import ProductForm from "./ProductForm";
 import "./ProductForm.css";
 
-const ProductForm = () => {
+const AddProduct = () => {
   
   return (
     <div>
@@ -31,4 +31,4 @@ const ProductForm = () => {
   );
 };
 
-export default ProductForm;
+export default AddProduct;
