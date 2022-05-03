@@ -8,6 +8,9 @@ import {
   GET_USER_PRODUCT_FAIL,
   GET_USER_PRODUCT_REQUEST,
   GET_USER_PRODUCT_SUCCESS,
+  GET_SINGLE_PRODUCT_FAIL,
+  GET_SINGLE_PRODUCT_REQUEST,
+  GET_SINGLE_PRODUCT_SUCCESS,
 } from "../constants/productConstants";
 
 export const productReducer = (state = { products: [] }, action) => {
@@ -63,3 +66,30 @@ export const productReducer = (state = { products: [] }, action) => {
       return state;
   }
 };
+
+
+export const singleProductReducer = (state = { product : {} }, action) => {
+  switch (action.type) {
+    case GET_SINGLE_PRODUCT_FAIL:
+      return {
+        ...state,
+        loading: false,
+        error: action.payload,
+      };
+    case GET_SINGLE_PRODUCT_REQUEST:
+      return {
+        loading: true,
+        product: {},
+      };
+    case GET_SINGLE_PRODUCT_SUCCESS:
+      return {
+        loading: false,
+        product: action.payload,
+      
+      };
+    default:
+      return state;
+  }
+};
+
+

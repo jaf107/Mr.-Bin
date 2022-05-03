@@ -50,3 +50,16 @@ exports.getUserProducts = catchAsyncErrors(async (req, res, next) => {
     product,
   });
 });
+
+// Get Single Product Details
+exports.getSingleProduct = catchAsyncErrors(async (req, res, next) => {
+  const product = await Product.findById(req.params.id);
+  if (!product) {
+    return next(new ErrorHander("Product not found", 404));
+  }
+
+  res.status(200).json({
+    success: true,
+    product,
+  });
+});

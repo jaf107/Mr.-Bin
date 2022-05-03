@@ -1,39 +1,31 @@
-const mongoose = require('mongoose')
+const mongoose = require("mongoose");
 
-const recyclerSchema = new mongoose.Schema({
-    name: { 
-        type:String,
+const recyclerSchema = new mongoose.Schema(
+  {
+    name: {
+      type: String,
     },
     company: {
-        type: String
+      type: String,
     },
     location: {
-        type: String,
-    },
-    orders:{
-        product:{
-             type: mongoose.Schema.ObjectId,
-            ref: "Product"
-        },
-        status:{
-            type:"String"
-        }
+      type: String,
     },
     avatar: {
-        public_id: {
-          type: String,
-        },
-        url: {
-          type: String,
-        },
-      },
-      orders:{
+      public_id: {
         type: String,
-    }
-},
-    {
-        collection: "recyclers"
-    }
-)
+      },
+      url: {
+        type: String,
+      },
+    },
+    phone: {
+      type: String,
+    },
+  },
+  {
+    collection: "recyclers",
+  }
+);
 
 module.exports = mongoose.model("Recyclers", recyclerSchema);
