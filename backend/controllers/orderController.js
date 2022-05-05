@@ -3,7 +3,7 @@ const Order = require("../models/orderModel.js");
 
 // Place an order
 exports.placeOrder = catchAsyncErrors(async (req, res, next) => {
-  req.body.user = req.user.id;
+  req.body.user = req.user.id
   const order = await Order.create(req.body);
   res.status(200).json({
     success: true,
@@ -13,8 +13,8 @@ exports.placeOrder = catchAsyncErrors(async (req, res, next) => {
 
 //Get User specific Orders
 exports.getUserOrder = catchAsyncErrors(async (req, res, next) => {
-        
-  const order = await Order.find({user: req.user._id});
+  
+  const order = await Order.find({ user: req.user._id });
 
   res.status(200).json({
     success: true,

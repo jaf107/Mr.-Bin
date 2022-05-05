@@ -3,47 +3,85 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getUserOrder } from "../../actions/orderActions";
 import { getSingleProduct } from "../../actions/productActions";
+import { getSingleRecycler } from "../../actions/recyclerActions";
 
 function RecycleOrders() {
   const dispatch = useDispatch();
-  const { product } = useSelector((state) => state.product);
+  // const [orders, setOrder] = useState([{
+  //   product: "",
+  //   recycler: "",
+  //   address: "",
+  //   pickupDate: "",
+  //   orderType: "recycle",
+  // }]);
   const { orders } = useSelector((state) => state.orders);
 
   useEffect(() => {
-    if (orders.length >= 1) {
-      dispatch(getSingleProduct(orders[0].product));
-    }
-  }, [dispatch, orders]);
-  //   const orderList = orders.map((orders) => (
-  //     //dispatch(getSingleProduct(orders.product))
-  //     // <option key={products._id} value={products._id}>
-  //     //   {products.name}
-  //     // </option>
-  //   ));
+    dispatch(getUserOrder());
+  }, [dispatch]);
+  const orderList = orders.map((order) => (
+    <div key={order._id} value={order._id}>
+      <div className="row shadow-sm m-3">
+        <div className="col-md-5">
+          <ProductDetails order={order}></ProductDetails>
+        </div>
+        <div className="col-md-4">
+          <RecyclerDetails order={order}></RecyclerDetails>
+        </div>
+        <div className="col-md-3">
+          <span class="badge bg-success p-2   rounded-pill mt-5">
+           { order.status}
+          </span>
+        </div>
+      </div>
+    </div>
+  ));
   return (
     <div>
       <h3 className=" text-center">Placed Orders</h3>
 
-      <div className="row shadow-sm ">
-        <div className="col-md-5">
-          <h5>{product.name}</h5>
-          <p>Quantity : 2 KG</p>
-          <p>Pickup Date: 22-05-2022</p>
-          <p>Address : 21, Rajarhat Road, Kushtia</p>
-        </div>
-        <div className="col-md-4">
-          <h5>Recycler Details</h5>
-          <p>Name : Abdur Rahman</p>
-          <p>Company : Rematter</p>
-        </div>
-        <div className="col-md-3">
-          <span class="badge bg-success fs-6 rounded-pill mt-5">
-            Processing
-          </span>
-        </div>
-      </div>
+      {orderList}
     </div>
   );
 }
 
 export default RecycleOrders;
+
+function ProductDetails(props) {
+  const { product } = useSelector((state) => state.product);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getSingleProduct(props.order.product));
+  }, [dispatch, props.order.product]);
+
+  return (
+    <div>
+      <h6>Product Details</h6>
+      <p>{product.name}</p>
+      <p>Quantity : {product.quantity}</p>
+      <p>Pickup Date:{props.order.pickupDate}</p>
+      <p>Address : {props.order.address}</p>
+    </div>
+  );
+}
+
+function RecyclerDetails(props) {
+  const { recycler } = useSelector((state) => state.recycler);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getSingleRecycler(props.order.recycler));
+  }, [dispatch, props.order.recycler]);
+
+  return (
+    <div>
+      {recycler && (
+        <div>
+          <h6>Recycler Details</h6>
+          <p>{recycler.name}</p>
+          <p>{recycler.company}</p>
+          <p>{recycler.phone}</p>
+        </div>
+      )}
+    </div>
+  );
+}

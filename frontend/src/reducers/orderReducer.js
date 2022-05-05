@@ -17,7 +17,7 @@ import {
       case PLACE_ORDER_SUCCESS:
         return {
           loading: false,
-          orders: action.payload,
+          orders:action.payload,
         };
       case PLACE_ORDER_FAIL:
         return {
@@ -30,11 +30,15 @@ import {
           ...state,
           loading: false,
           error: action.payload,
+
         };
       case GET_USER_ORDER_REQUEST:
-      case GET_USER_ORDER_SUCCESS:
         return {
           ...state,
+          loading: true,
+        };
+      case GET_USER_ORDER_SUCCESS:
+        return {
           loading: false,
           orders: action.payload,
         };

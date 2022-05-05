@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useRef } from "react";
-import { placeOrder } from "../../actions/orderActions";
+import { getUserOrder, placeOrder } from "../../actions/orderActions";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { useAlert } from "react-alert";
@@ -46,6 +46,8 @@ function RecycleForm(props) {
   useEffect(() => {
     
     if (isAuthenticated) {
+      dispatch(getUserOrder());
+
     }
   }, [dispatch, alert, isAuthenticated]);
 

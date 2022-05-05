@@ -39,7 +39,6 @@ function Recycle(state) {
     if (isAuthenticated) {
       dispatch(getUserProducts(id));
       dispatch(getRecyclers());
-      dispatch(getUserOrder());
     }
 
     if(closeModal ===true)

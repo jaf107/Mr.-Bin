@@ -10,7 +10,7 @@ import {
   //   userDetailsReducer,
   userReducer,
 } from "./reducers/userReducer";
-import {recyclerReducer} from "./reducers/recyclerReducer";
+import {recyclerReducer, singleRecyclerReducer} from "./reducers/recyclerReducer";
 import { orderReducer } from "./reducers/orderReducer";
 
 
@@ -35,6 +35,7 @@ const reducer = combineReducers({
   //   productReviews: productReviewsReducer,
   //   review: reviewReducer,
   recyclers: recyclerReducer,
+  recycler: singleRecyclerReducer,
   orders:orderReducer
 });
 
