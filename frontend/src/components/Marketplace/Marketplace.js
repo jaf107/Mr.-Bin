@@ -11,7 +11,9 @@ import { getProducts } from '../../actions/productActions';
 const Marketplace = () => {
   const dispatch = useDispatch();
   const { products } = useSelector((state) => state.products);
+
   useEffect(() => {
+
     dispatch(getProducts());
   }, [dispatch]);
 
@@ -20,7 +22,6 @@ const Marketplace = () => {
   const goToProduct = () => {
     navigate('/product');
   }
-
 
   return (
 

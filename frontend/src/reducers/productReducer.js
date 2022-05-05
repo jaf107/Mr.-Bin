@@ -12,23 +12,7 @@ import {
 
 export const productReducer = (state = { products: [] }, action) => {
   switch (action.type) {
-    case ADD_PRODUCT_REQUEST:
-      return {
-        ...state,
-        loading: true,
-      };
-    case ADD_PRODUCT_SUCCESS:
-      return {
-        loading: false,
-        success: action.payload.success,
-        products: action.payload.product,
-      };
-    case ADD_PRODUCT_FAIL:
-      return {
-        ...state,
-        loading: false,
-        error: action.payload,
-      };
+    
     case GET_PRODUCT_FAIL:
       return {
         ...state,
@@ -39,26 +23,58 @@ export const productReducer = (state = { products: [] }, action) => {
     case GET_PRODUCT_SUCCESS:
       return {
         loading: false,
-        success: action.payload.success,
         products: action.payload,
       };
-    case GET_USER_PRODUCT_FAIL:
+    // case GET_USER_PRODUCT_FAIL:
+    //   return {
+    //     ...state,
+    //     loading: false,
+    //     error: action.payload,
+    //   };
+    // case GET_USER_PRODUCT_REQUEST:
+    //   return {
+    //     loading: true,
+    //     products: [],
+    //   };
+    // case GET_USER_PRODUCT_SUCCESS:
+    //   return {
+    //     loading: false,
+    //     products: action.payload,
+      
+    //   };
+    default:
+      return state;
+  }
+};
+
+export const newProductReducer = (state = { product: {} }, action) => {
+  switch (action.type) {
+    case ADD_PRODUCT_REQUEST:
+      return {
+        ...state,
+        loading: true,
+      };
+    case ADD_PRODUCT_SUCCESS:
+      return {
+        loading: false,
+        product: action.payload.product,
+      };
+    case ADD_PRODUCT_FAIL:
       return {
         ...state,
         loading: false,
         error: action.payload,
       };
-    case GET_USER_PRODUCT_REQUEST:
-      return {
-        loading: true,
-        products: [],
-      };
-    case GET_USER_PRODUCT_SUCCESS:
-      return {
-        loading: false,
-        products: action.payload,
-      
-      };
+    // case NEW_PRODUCT_RESET:
+    //   return {
+    //     ...state,
+    //     success: false,
+    //   };
+    // case CLEAR_ERRORS:
+    //   return {
+    //     ...state,
+    //     error: null,
+    //   };
     default:
       return state;
   }
