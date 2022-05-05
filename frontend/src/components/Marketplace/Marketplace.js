@@ -11,7 +11,9 @@ import { getProducts } from '../../actions/productActions';
 const Marketplace = () => {
   const dispatch = useDispatch();
   const { products } = useSelector((state) => state.products);
+
   useEffect(() => {
+
     dispatch(getProducts());
   }, [dispatch]);
 
@@ -23,7 +25,6 @@ const Marketplace = () => {
     // window.location.href = '/product'
 
   }
-
 
   return (
 
@@ -43,8 +44,8 @@ const Marketplace = () => {
           <div class="container">
             <div class="row">
 
-              {products.map((product) => (
-                <div class="separate-card col-lg-3 col-sm-6 col-11">
+              {products?.map((product) => (
+                <div class="separate-card col-lg-3 col-sm-6 col-11" >
                 <div class="card" onClick={goToProduct} >
                   <img
                     class="card-img-top"
