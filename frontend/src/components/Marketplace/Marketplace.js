@@ -18,10 +18,7 @@ const Marketplace = () => {
   const navigate = useNavigate();
 
   const goToProduct = () => {
-    // console.log(products);
     navigate('/product');
-    // window.location.href = '/product'
-
   }
 
 
@@ -40,21 +37,21 @@ const Marketplace = () => {
           </Link>
           {/* <button   > Add Product</button> */}
 
-          <div class="container">
-            <div class="row">
+          <div className="container">
+            <div className="row">
 
               {products.map((product) => (
-                <div class="separate-card col-lg-3 col-sm-6 col-11">
-                <div class="card" onClick={goToProduct} >
+                <div className="separate-card col-lg-3 col-sm-6 col-11">
+                <div className="card" onClick={goToProduct} >
                   <img
-                    class="card-img-top"
+                    className="card-img-top"
                     src={require("../../assets/laptop.jpg")}
                     alt="Card image cap"
                   />
-                  <div class="card-body" >
+                  <div className="card-body" >
 
                     <h5 className='card-title' >{product.name}</h5>
-                    <p class="card-text p-2">
+                    <p className="card-text p-2">
                       {product.description} </p>
                     <p className='card-text text-center p-2'>
                       Price: {product.purchase_price}
