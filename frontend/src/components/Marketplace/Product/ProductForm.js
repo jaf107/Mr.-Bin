@@ -5,6 +5,7 @@ import Footer from "../../Footer/Footer";
 import { addProduct } from "../../../actions/productActions";
 import { useRef } from "react";
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import "./ProductForm.css";
 import { useAlert } from "react-alert";
 
@@ -205,13 +206,16 @@ const ProductForm = () => {
           </div>
 
           <div className=" ">
-            <button
+            {/* <button
               type="submit"
               className="btn btn-success border-0  fw-normal"
             >
               {" "}
               Add Product
-            </button>
+            </button> */}
+            <Link className='btn btn-success addbtn' to={'/marketplace'}>
+              Add Product
+            </Link>
           </div>
         </form>
       </div>
