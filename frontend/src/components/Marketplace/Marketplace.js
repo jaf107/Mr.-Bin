@@ -13,7 +13,6 @@ const Marketplace = () => {
   const { products } = useSelector((state) => state.products);
 
   useEffect(() => {
-
     dispatch(getProducts());
   }, [dispatch]);
 
