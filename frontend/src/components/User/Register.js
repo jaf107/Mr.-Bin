@@ -80,8 +80,8 @@ function Register({ location }) {
           <h3 className="pb-3 text-center fw-bold mt-5">REGISTER</h3>
           <div className="form-style p-5">
             <form onSubmit={registerSubmit}>
-            <div className="form-group pb-3 text-center">
-                <img src={avatarPreview} alt="Avatar Preview" className=" text-center" width={100}/>
+              <div className="form-group pb-3 text-center">
+                <img src={avatarPreview} alt="Avatar Preview" className=" text-center" width={100} />
                 <input
                   type="file"
                   name="avatar"
@@ -145,7 +145,7 @@ function Register({ location }) {
                 />
               </div>
 
-            
+
 
               <div className="pb-2 text-center mt-4">
                 <button type="submit" className="btn btn-success w-50">

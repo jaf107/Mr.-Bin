@@ -20,6 +20,7 @@ import { useEffect } from "react";
 import ProductDetails from "./components/Marketplace/ProductDetails";
 import AddProduct from "./components/Marketplace/Product/AddProduct";
 import EnhancedTable from "./components/Marketplace/UserProduct/EnhancedTable";
+import UpdateProfile from "./components/User/UpdateProfile";
 
 
 function App() {
@@ -52,6 +53,8 @@ function App() {
           <Route path="/product" exact element={<ProductDetails/>}></Route>
           <Route path="/me/products" exact element={<MyProducts/>} ></Route>
           <Route path="/me/data-table" exact element={<EnhancedTable/>} ></Route>
+          <Route path="/profile/update" exact element={<UpdateProfile/>} ></Route>
+          
 
 
         </Routes>

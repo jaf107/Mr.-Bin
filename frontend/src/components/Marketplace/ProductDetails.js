@@ -7,20 +7,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getSingleProduct } from '../../actions/productActions';
 import { useNavigate } from 'react-router-dom';
 const Product = () => {
-    const dispatch = useDispatch();
-    const { product } = useSelector((state) => state.product);
-    useEffect(() => {
+   
 
-        // ID needs to be passed
-        dispatch(getSingleProduct());
-    }, [dispatch]);
-
-    const navigate = useNavigate();
-    
-
-
-
-    let productx = {
+    let product = {
         name: "Laptop",
         price: 500,
         condition: "Good",
