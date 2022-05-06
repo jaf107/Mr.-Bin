@@ -20,6 +20,7 @@ const Marketplace = () => {
 
   const goToProduct = () => {
     navigate('/product');
+    
   }
 
   return (
@@ -45,7 +46,7 @@ const Marketplace = () => {
 
               {products?.map((product) => (
                 <div className="separate-card col-lg-3 col-sm-6 col-11">
-                  <div className="card" onClick={goToProduct} >
+                  <Link className="card" to={`/product/${product._id}`} >
                     <img
                       className="card-img-top"
                       src={product.images[0].url}
@@ -66,7 +67,7 @@ const Marketplace = () => {
                         <div className="card-button flex-fill border-0 btn btn-warning"> Bid</div>
                       </div>
                     </div>
-                  </div>
+                  </Link>
                 </div>
               ))}
 

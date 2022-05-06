@@ -49,7 +49,7 @@ function App() {
           <Route path="/marketplace" exact element={<Marketplace/>} ></Route>
           <Route path="/addproduct" exact element={<AddProduct/>}></Route>
           <Route path="/about" exact element={<About/>}></Route>
-          <Route path="/product" exact element={<ProductDetails/>}></Route>
+          <Route path="/product/:id" exact element={<ProductDetails/>}></Route>
           <Route path="/me/products" exact element={<MyProducts/>} ></Route>
           <Route path="/me/data-table" exact element={<EnhancedTable/>} ></Route>
 
