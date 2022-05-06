@@ -11,6 +11,7 @@ import Donate from "./components/Donation/Donate";
 import Recycle from "./components/Recycling/Recycle";
 import Marketplace from "./components/Marketplace/Marketplace";
 import ProductForm from "./components/Marketplace/Product/ProductForm";
+import MyProducts from "./components/Marketplace/UserProduct/MyProducts";
 // import ProductForm from "./components/Marketplace/ProductForm/ProductForm";
 import About from "./components/About/About";
 import store from "./store";
@@ -18,6 +19,7 @@ import { loadUser } from "./actions/userActions";
 import { useEffect } from "react";
 import ProductDetails from "./components/Marketplace/ProductDetails";
 import AddProduct from "./components/Marketplace/Product/AddProduct";
+import EnhancedTable from "./components/Marketplace/UserProduct/EnhancedTable";
 
 
 function App() {
@@ -48,6 +50,8 @@ function App() {
           <Route path="/addproduct" exact element={<AddProduct/>}></Route>
           <Route path="/about" exact element={<About/>}></Route>
           <Route path="/product" exact element={<ProductDetails/>}></Route>
+          <Route path="/me/products" exact element={<MyProducts/>} ></Route>
+          <Route path="/me/data-table" exact element={<EnhancedTable/>} ></Route>
 
 
         </Routes>

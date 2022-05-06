@@ -6,7 +6,7 @@ const router = express.Router();
 
 router.route("/product/new").post(isAuthenticatedUser, addProduct);
 router.route("/product").get(getProducts);
-router.route("/me/product").get(isAuthenticatedUser, getUserProducts);
+router.route("/me/products").get(isAuthenticatedUser, getUserProducts);
 router.route("/product/:id").get(getSingleProduct);
 
 
