@@ -8,13 +8,12 @@ const cloudinary = require("cloudinary");
 
 // Register a User
 exports.registerUser = catchAsyncErrors(async (req, res, next) => {
-
   const myCloud = await cloudinary.v2.uploader.upload(req.body.avatar, {
     folder: "avatars",
     width: 150,
     crop: "scale",
   });
-  const { name, email, password,phone } = req.body;
+  const { name, email, password, phone } = req.body;
   console.log(name);
   const user = await User.create({
     name,
@@ -208,6 +207,30 @@ exports.updateProfile = catchAsyncErrors(async (req, res, next) => {
 
   res.status(200).json({
     success: true,
+  });
+});
+
+exports.addFavoriteProduct = catchAsyncErrors(async (req, res, next) => {
+  const user = await User.findById(req.user.id);
+  if (!user) {
+    return next(new ErrorHander("User not found", 404));
+  }
+  user.favorites.push(req.params.product_id);
+  await user.save({ validateBeforeSave: false });
+
+  res.status(200).json({
+    success: true,
+  });
+});
+
+exports.getFavoriteProduct = catchAsyncErrors(async (req, res, next) => {
+  const user = await User.findById(req.user.id);
+  if (!user) {
+    return next(new ErrorHander("User not found", 404));
+  }
+  const favorites = user.favorites;
+  res.status(200).json({
+    favorites,
   });
 });
 

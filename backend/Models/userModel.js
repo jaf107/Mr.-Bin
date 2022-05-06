@@ -30,7 +30,6 @@ const userSchema = new mongoose.Schema({
   phone: {
     type: String,
     unique: [true, "Phone Number Already Exists"],
-
   },
   favorites: [],
   avatar: {
