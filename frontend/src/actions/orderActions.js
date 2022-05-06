@@ -19,7 +19,7 @@ import {
         orderData,
         config
       );
-      dispatch({ type: PLACE_ORDER_SUCCESS });
+      dispatch({ type: PLACE_ORDER_SUCCESS,  payload: data.order});
     } catch (error) {
       dispatch({
         type: PLACE_ORDER_FAIL,

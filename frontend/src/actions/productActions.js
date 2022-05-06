@@ -28,7 +28,7 @@ export const addProduct = (productData) => async (dispatch) => {
       config
     );
 
-    dispatch({ type: ADD_PRODUCT_SUCCESS, payload: data.product });
+    dispatch({ type: ADD_PRODUCT_SUCCESS });
   } catch (error) {
     dispatch({
       type: ADD_PRODUCT_FAIL,

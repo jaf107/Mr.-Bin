@@ -6,11 +6,9 @@ import { useEffect } from "react";
 import { useAlert } from "react-alert";
 import { useSelector } from "react-redux";
 import "./Recycle.css";
-import { useNavigate } from "react-router-dom";
-function RecycleForm(props) {
+function RecycleForm(props, state) {
   const ref = useRef();
   const dispatch = useDispatch();
-  const navigate = useNavigate();
   const alert = useAlert();
   const [order, setOrder] = useState({
     product: props.product,
@@ -43,6 +41,7 @@ function RecycleForm(props) {
   };
   const { isAuthenticated } = useSelector((state) => state.user);
   const { recyclers } = useSelector((state) => state.recyclers);
+  
   useEffect(() => {
     
     if (isAuthenticated) {
@@ -51,7 +50,7 @@ function RecycleForm(props) {
     }
   }, [dispatch, alert, isAuthenticated]);
 
-  const recyclerList = recyclers.map((recyclers) => (
+  const recyclerList = recyclers?.map((recyclers) => (
     <option key={recyclers._id} value={recyclers._id}>
       {recyclers.name}
     </option>

@@ -10,17 +10,18 @@ import { useSelector } from "react-redux";
 import "./Recycle.css";
 import { getUserProducts } from "../../actions/productActions";
 import { getRecyclers } from "../../actions/recyclerActions";
-import { getUserOrder } from "../../actions/orderActions";
 import RecycleOrders from "./RecyclerOrders";
-function Recycle(state) {
+
+function Recycle() {
   const dispatch = useDispatch();
   const alert = useAlert();
   const { id, isAuthenticated } = useSelector((state) => state.user);
-  const { products } = useSelector((state) => state.products);
+  const { products } = useSelector((state) => state.userProducts);
   const [toggleForm, setToggleForm] = useState(false);
   const [toggleAddNew, setToggleAddNew] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState("");
   const [closeModal, setCloseModal] = useState(false);
+    console.log(products)
 
   const onChooseProduct = (e) => {
     e.preventDefault();
@@ -28,13 +29,13 @@ function Recycle(state) {
     else {
       const myForm = new FormData();
       myForm.set("selectedProduct", selectedProduct);
-      // dispatch(register(myForm));
       setToggleForm(true);
     }
   };
   const handleAddNew = (e) => {
     setToggleAddNew(true);
   };
+  
   useEffect(() => {
     if (isAuthenticated) {
       dispatch(getUserProducts(id));
@@ -48,7 +49,7 @@ function Recycle(state) {
     }
   }, [dispatch, alert, isAuthenticated]);
 
-  const productList = products.map((products) => (
+  const productList = products?.map((products) => (
     <option key={products._id} value={products._id}>
       {products.name}
     </option> 

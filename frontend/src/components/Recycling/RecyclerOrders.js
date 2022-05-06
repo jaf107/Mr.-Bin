@@ -1,5 +1,4 @@
-import { useState } from "react";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getUserOrder } from "../../actions/orderActions";
 import { getSingleProduct } from "../../actions/productActions";
@@ -7,19 +6,11 @@ import { getSingleRecycler } from "../../actions/recyclerActions";
 
 function RecycleOrders() {
   const dispatch = useDispatch();
-  // const [orders, setOrder] = useState([{
-  //   product: "",
-  //   recycler: "",
-  //   address: "",
-  //   pickupDate: "",
-  //   orderType: "recycle",
-  // }]);
-  const { orders } = useSelector((state) => state.orders);
-
+  const { orders } = useSelector((state) => state.userOrders);
   useEffect(() => {
     dispatch(getUserOrder());
   }, [dispatch]);
-  const orderList = orders.map((order) => (
+  const orderList = orders?.map((order) => (
     <div key={order._id} value={order._id}>
       <div className="row shadow-sm m-3">
         <div className="col-md-5">
@@ -48,11 +39,20 @@ function RecycleOrders() {
 export default RecycleOrders;
 
 function ProductDetails(props) {
-  const { product } = useSelector((state) => state.product);
+  const { productDetail } = useSelector((state) => state.product);
+  const [product, setProduct] = useState({
+    name: "",
+    quantity : ""
+  })
+  if(productDetail)
+  setProduct(productDetail)
   const dispatch = useDispatch();
+  
   useEffect(() => {
+    if(props)
     dispatch(getSingleProduct(props.order.product));
-  }, [dispatch, props.order.product]);
+
+  }, [dispatch,props.order.product ]);
 
   return (
     <div>
@@ -68,9 +68,12 @@ function ProductDetails(props) {
 function RecyclerDetails(props) {
   const { recycler } = useSelector((state) => state.recycler);
   const dispatch = useDispatch();
+
   useEffect(() => {
+    if(props)
     dispatch(getSingleRecycler(props.order.recycler));
-  }, [dispatch, props.order.recycler]);
+
+  }, []);
 
   return (
     <div>

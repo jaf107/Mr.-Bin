@@ -2,6 +2,7 @@ const catchAsyncErrors = require("../middleware/catchAsyncErrors");
 const Product = require("../models/productModel");
 const cloudinary = require("cloudinary");
 const Recycler = require("../models/recyclerModel.js");
+const ErrorHander = require("../utils/errorhander");
 
 exports.addProduct = catchAsyncErrors(async (req, res, next) => {
   let images = [];

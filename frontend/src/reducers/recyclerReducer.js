@@ -39,6 +39,7 @@ export const singleRecyclerReducer = (state = { recycler : {} }, action) => {
       };
     case GET_SINGLE_RECYCLER_REQUEST:
       return {
+        ...state,
         loading: true,
         recycler: null,
       };

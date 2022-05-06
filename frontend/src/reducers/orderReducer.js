@@ -7,7 +7,7 @@ import {
     GET_USER_ORDER_SUCCESS
 } from "../constants/orderConstants";
   
-  export const orderReducer = (state = { orders: [] }, action) => {
+  export const orderReducer = (state = { order: {} }, action) => {
     switch (action.type) {
       case PLACE_ORDER_REQUEST:
         return {
@@ -16,6 +16,7 @@ import {
         };
       case PLACE_ORDER_SUCCESS:
         return {
+          ...state,
           loading: false,
           orders:action.payload,
         };
@@ -25,22 +26,33 @@ import {
           loading: false,
           error: action.payload,
         };
+      default:
+        return state;
+    }
+  };
+
+    
+  export const userOrderReducer = (state = { userOrders: [] }, action) => {
+    switch (action.type) {
+  
       case GET_USER_ORDER_FAIL:
         return {
           ...state,
           loading: false,
           error: action.payload,
-
+          userOrders: []
         };
       case GET_USER_ORDER_REQUEST:
         return {
           ...state,
           loading: true,
+          userOrders: [],
         };
       case GET_USER_ORDER_SUCCESS:
         return {
+          ...state,
           loading: false,
-          orders: action.payload,
+          userOrders: action.payload,
         };
       default:
         return state;
