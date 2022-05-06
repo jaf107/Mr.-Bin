@@ -211,16 +211,30 @@ exports.updateProfile = catchAsyncErrors(async (req, res, next) => {
 });
 
 exports.addFavoriteProduct = catchAsyncErrors(async (req, res, next) => {
+ 
   const user = await User.findById(req.user.id);
   if (!user) {
     return next(new ErrorHander("User not found", 404));
   }
-  user.favorites.push(req.params.product_id);
-  await user.save({ validateBeforeSave: false });
-
-  res.status(200).json({
-    success: true,
-  });
+  if(user.favorites.find(o => o.product_id === req.param.id))
+   {
+      res.status(400).json({
+        success: false,
+      });
+   }
+   else{
+     const info = {
+       product_id : req.param.id
+     }
+    user.favorites.push(info);
+    await user.save();
+  
+    res.status(200).json({
+      success: true,
+    });
+   }
+ 
+ 
 });
 
 exports.getFavoriteProduct = catchAsyncErrors(async (req, res, next) => {

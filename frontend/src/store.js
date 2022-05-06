@@ -9,6 +9,7 @@ import {
 } from "./reducers/productReducer";
 
 import {
+  FavoriteReducer,
   //   allUsersReducer,
   //   forgotPasswordReducer,
   //   profileReducer,
@@ -25,6 +26,8 @@ const reducer = combineReducers({
   //   products: productsReducer,
   //   productDetails: productDetailsReducer,
   user: userReducer,
+  favorites:FavoriteReducer,
+  
   //   profile: profileReducer,
   //   forgotPassword: forgotPasswordReducer,
   //   cart: cartReducer,

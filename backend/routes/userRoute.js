@@ -32,9 +32,9 @@ router.route("/password/update").put(isAuthenticatedUser, updatePassword);
 
 router.route("/me/update").put(isAuthenticatedUser, updateProfile);
 
-router.route("/user/favorites/:id").put(isAuthenticatedUser, addFavoriteProduct);
+router.route("/me/favorites/:id").put(isAuthenticatedUser, addFavoriteProduct);
 
-router.route("/user/favorites").get(isAuthenticatedUser, getFavoriteProduct);
+router.route("/me/favorites").get(isAuthenticatedUser, getFavoriteProduct);
 
 
 module.exports = router;

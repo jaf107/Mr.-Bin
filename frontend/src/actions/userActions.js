@@ -35,6 +35,12 @@ import {
   USER_DETAILS_SUCCESS,
   USER_DETAILS_FAIL,
   CLEAR_ERRORS,
+  ADD_FAVORITE_REQUEST,
+  ADD_FAVORITE_SUCCESS,
+  ADD_FAVORITE_FAIL,
+  GET_FAVORITE_REQUEST,
+  GET_FAVORITE_SUCCESS,
+  GET_FAVORITE_FAIL,
 } from "../constants/userConstants";
 import axios from "axios";
 axios.defaults.withCredentials = true;
@@ -105,4 +111,33 @@ export const logout = () => async (dispatch) => {
 // Clearing Errors
 export const clearErrors = () => async (dispatch) => {
   dispatch({ type: CLEAR_ERRORS });
+};
+
+// ADD A PRODUCT TO USER FAVORITE
+export const addToFavorite = (id) => async (dispatch) => {
+  try {
+    dispatch({ type: ADD_FAVORITE_REQUEST });
+    const config = { headers: { "Content-Type": "application/json" } };
+
+    const { data } = await axios.put(
+      `http://localhost:5000/api/v1/me/favorites/${id}`
+    );
+    dispatch({ type: ADD_FAVORITE_SUCCESS });
+  } catch (error) {
+    dispatch({ type: ADD_FAVORITE_FAIL, payload: error.response.data.message });
+  }
+};
+
+// Get User Favorite Products
+export const getFavorites = () => async (dispatch) => {
+  try {
+    dispatch({ type: GET_FAVORITE_REQUEST });
+
+    const { data } = await axios.get(`http://localhost:5000/api/v1/me/favorites`);
+
+    console.log(data);
+    dispatch({ type: GET_FAVORITE_SUCCESS, payload: data.favorites });
+  } catch (error) {
+    dispatch({ type: GET_FAVORITE_FAIL, payload: error });
+  }
 };
