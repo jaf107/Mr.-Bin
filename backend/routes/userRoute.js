@@ -7,7 +7,9 @@ const {
   forgotPassword,
   resetPassword,
   updatePassword,
-  updateProfile
+  updateProfile,
+  addFavoriteProduct,
+  getFavoriteProduct
 } = require("../controllers/userController");
 const { isAuthenticatedUser } = require("../middleware/auth");
 
@@ -30,6 +32,9 @@ router.route("/password/update").put(isAuthenticatedUser, updatePassword);
 
 router.route("/me/update").put(isAuthenticatedUser, updateProfile);
 
+router.route("/user/favorites/:id").put(isAuthenticatedUser, addFavoriteProduct);
+
+router.route("/user/favorites").get(isAuthenticatedUser, getFavoriteProduct);
 
 
 module.exports = router;

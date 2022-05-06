@@ -16,12 +16,12 @@ function Recycle() {
   const dispatch = useDispatch();
   const alert = useAlert();
   const { id, isAuthenticated } = useSelector((state) => state.user);
-  const { products } = useSelector((state) => state.userProducts);
+  const { userProducts } = useSelector((state) => state.userProducts);
   const [toggleForm, setToggleForm] = useState(false);
   const [toggleAddNew, setToggleAddNew] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState("");
   const [closeModal, setCloseModal] = useState(false);
-    console.log(products)
+    console.log(userProducts)
 
   const onChooseProduct = (e) => {
     e.preventDefault();
@@ -49,7 +49,7 @@ function Recycle() {
     }
   }, [dispatch, alert, isAuthenticated]);
 
-  const productList = products?.map((products) => (
+  const productList = userProducts?.map((products) => (
     <option key={products._id} value={products._id}>
       {products.name}
     </option> 

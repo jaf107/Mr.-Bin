@@ -1,58 +1,91 @@
-const mongoose = require('mongoose')
+const mongoose = require("mongoose");
 
 const productSchema = new mongoose.Schema({
-    name: { 
-        type:String,
-        required: [true, "Please enter product Name"],
-        trim: true,
-    },
-    category: {
+  name: {
+    type: String,
+    required: [true, "Please enter product Name"],
+    trim: true,
+  },
+  category: {
+    type: String,
+    required: [true, "Please enter Product Category"],
+  },
+  quantity: {
+    type: Number,
+    required: [true, "Please enter the Product Stock Quantity"],
+  },
+  condition: {
+    type: String,
+    required: [true, "Please enter the condition of your product"],
+    default: "used",
+  },
+  images: [
+    {
+      public_id: {
         type: String,
-        required: [true, "Please enter Product Category"],
-    },
-    quantity: {
-        type: Number,
-        required: [true, "Please enter the Product Stock Quantity"]
-    },
-    condition: {
-        type: String,
-        required:[true, "Please enter the condition of your product"],
-        default: "average"
-    },
-    images: [
-        {
-          public_id: {
-            type: String,
-            required: true,
-          },
-          url: {
-            type: String,
-            required: true,
-          },
-        },
-      ],
-    user: {
-        type: mongoose.Schema.ObjectId,
-        ref: "User",
-        required: true,
+       // required: true,
       },
-    description: {
+      url: {
         type: String,
-        //required: [true, "Please enter product Description"]
+      //  required: true,
+      },
     },
-    date_of_purchase: {
-        type: String,
-       // required:[true, "Please enter the Date of Purchase"]
+  ],
+  user: {
+    type: mongoose.Schema.ObjectId,
+    ref: "User",
+    required: true,
+  },
+  product_type:{
+    type: String,
+    default: "marketplace"
+  },
+  description: {
+    type: String,
+    //required: [true, "Please enter product Description"]
+  },
+  date_of_purchase: {
+    type: String,
+    // required:[true, "Please enter the Date of Purchase"]
+  },
+  purchase_price: {
+    type: Number,
+    // required: [true, "Please enter product Price"],
+  },
+  bids: {
+    buyer_id: {
+      type: mongoose.Schema.ObjectId,
+      // required: [true, "Please enter buyer id number"],
     },
-    purchase_price: {
-        type: Number,
-       // required: [true, "Please enter product Price"],
+    date: {
+      type: Date,
+      default: Date.now,
     },
-
+    amount: {
+      type: Number,
+      // required: [true, "Please enter the amount"],
+    },
+    product_id: {
+      type: String,
+      // required: [true],
+    },
+  },
+  comments: {
+    user_id: {
+      type: mongoose.Schema.ObjectId,
+    },
+    comment_body: {
+      type: String,
+    },
     created_at: {
-        type: Date,
-        default: Date.now
-    }
-})
+      type: Date,
+      default: Date.now,
+    },
+  },
+  created_at: {
+    type: Date,
+    default: Date.now,
+  },
+});
 
 module.exports = mongoose.model("Product", productSchema);
