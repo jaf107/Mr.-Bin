@@ -4,11 +4,14 @@ import { useDispatch, useSelector } from "react-redux";
 import Footer from "../../Footer/Footer";
 import { addProduct } from "../../../actions/productActions";
 import { useRef } from "react";
+import { useNavigate } from "react-router-dom";
 import "./ProductForm.css";
 
 const ProductForm = () => {
   const dispatch = useDispatch();
   const ref = useRef();
+  const navigate = useNavigate();
+
   const [product, setProduct] = useState({
     name: "",
     category: "",
@@ -68,6 +71,12 @@ const ProductForm = () => {
       reader.readAsDataURL(file);
     });
   };
+
+  const goToMarketplace = (e) => {
+    navigate('/marketplace');
+
+  }
+
   return (
     <div>
       <div className="container productform">

@@ -28,7 +28,6 @@ export const addProduct = (productData) => async (dispatch) => {
       config
     );
 
-
     dispatch({ type: ADD_PRODUCT_SUCCESS, payload: data.product });
   } catch (error) {
     dispatch({
@@ -38,17 +37,19 @@ export const addProduct = (productData) => async (dispatch) => {
   }
 };
 
-
 // Get Products
 export const getProducts = () => async (dispatch) => {
   try {
     dispatch({ type: GET_PRODUCT_REQUEST });
+    const config = { headers: { "Content-Type": "application/json" } };
 
-    const { data } = await axios.get(`http://localhost:5000/api/v1/products`);
-
+    const { data } = await axios.get(
+      `http://localhost:5000/api/v1/product`,
+      config
+    );
     dispatch({ type: GET_PRODUCT_SUCCESS, payload: data.product });
   } catch (error) {
-     dispatch({ type: GET_PRODUCT_FAIL, payload: error.response.data.message });
+    dispatch({ type: GET_PRODUCT_FAIL, payload: error });
   }
 };
 
@@ -65,7 +66,10 @@ export const getUserProducts = (user_id) => async (dispatch) => {
     );
     dispatch({ type: GET_USER_PRODUCT_SUCCESS, payload: data.product });
   } catch (error) {
-     dispatch({ type: GET_USER_PRODUCT_FAIL, payload: error.response.data.message });
+    dispatch({
+      type: GET_USER_PRODUCT_FAIL,
+      payload: error.response.data.message,
+    });
   }
 };
 

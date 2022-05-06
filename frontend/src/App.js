@@ -11,10 +11,12 @@ import Donate from "./components/Donation/Donate";
 import Recycle from "./components/Recycling/Recycle";
 import Marketplace from "./components/Marketplace/Marketplace";
 import ProductForm from "./components/Marketplace/Product/ProductForm";
+// import ProductForm from "./components/Marketplace/ProductForm/ProductForm";
 import About from "./components/About/About";
 import store from "./store";
 import { loadUser } from "./actions/userActions";
 import { useEffect } from "react";
+import ProductDetails from "./components/Marketplace/ProductDetails";
 
 
 function App() {
@@ -42,8 +44,10 @@ function App() {
           ></Route>
           <Route path="/account" exact element={<UserAccount></UserAccount>}></Route>
           <Route path="/marketplace" exact element={<Marketplace/>} ></Route>
-          <Route path="/product" exact element={<ProductForm/>}></Route>
+          <Route path="/addproduct" exact element={<ProductForm/>}></Route>
           <Route path="/about" exact element={<About/>}></Route>
+          <Route path="/product" exact element={<ProductDetails/>}></Route>
+
 
         </Routes>
       </BrowserRouter>
