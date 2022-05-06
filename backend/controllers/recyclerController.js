@@ -48,4 +48,17 @@ exports.createRecycler = catchAsyncErrors(async (req, res, next) => {
       recycler,
     });
   });
-  
+
+
+  // Get Single Recycler Details
+exports.getSingleRecycler = catchAsyncErrors(async (req, res, next) => {
+  const recycler = await Recycler.findById(req.params.id);
+  if (!recycler) {
+    return next(new ErrorHander("Product not found", 404));
+  }
+
+  res.status(200).json({
+    success: true,
+    recycler,
+  });
+});

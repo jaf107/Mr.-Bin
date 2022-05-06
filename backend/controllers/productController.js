@@ -1,6 +1,8 @@
 const catchAsyncErrors = require("../middleware/catchAsyncErrors");
 const Product = require("../models/productModel");
 const cloudinary = require("cloudinary");
+const Recycler = require("../models/recyclerModel.js");
+const ErrorHander = require("../utils/errorhander");
 
 exports.addProduct = catchAsyncErrors(async (req, res, next) => {
   let images = [];
@@ -45,6 +47,19 @@ exports.getProducts = catchAsyncErrors(async (req, res, next) => {
 //Get Products of a Specific User
 exports.getUserProducts = catchAsyncErrors(async (req, res, next) => {
   const product = await Product.find({ user: req.user.id });
+  res.status(200).json({
+    success: true,
+    product,
+  });
+});
+
+// Get Single Product Details
+exports.getSingleProduct = catchAsyncErrors(async (req, res, next) => {
+  const product = await Product.findById(req.params.id);
+  if (!product) {
+    return next(new ErrorHander("Product not found", 404));
+  }
+
   res.status(200).json({
     success: true,
     product,

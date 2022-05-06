@@ -6,12 +6,13 @@ import { addProduct } from "../../../actions/productActions";
 import { useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import "./ProductForm.css";
+import { useAlert } from "react-alert";
 
 const ProductForm = () => {
   const dispatch = useDispatch();
   const ref = useRef();
   const navigate = useNavigate();
-
+  const alert = useAlert();
   const [product, setProduct] = useState({
     name: "",
     category: "",
@@ -49,9 +50,21 @@ const ProductForm = () => {
       productForm.append("images", image);
     });
     dispatch(addProduct(productForm));
+    alert.success("PRODUCT ADDED SUCCESSFULLY");
+    setProduct({
+      name: "",
+      category: "",
+      quantity: "",
+      condition: "",
+      description: "",
+      date_of_purchase: "",
+      purchase_price: "",
+    })
+    setImages([]);
+    setImagesPreview([]);
   };
 
-  const registerDataChange = (e) => {
+  const productDataChange = (e) => {
     setProduct({ ...product, [e.target.name]: e.target.value });
   };
 
@@ -72,11 +85,6 @@ const ProductForm = () => {
     });
   };
 
-  const goToMarketplace = (e) => {
-    navigate('/marketplace');
-
-  }
-
   return (
     <div>
       <div className="container productform">
@@ -90,7 +98,7 @@ const ProductForm = () => {
               name="name"
               type="text"
               value={name}
-              onChange={registerDataChange}
+              onChange={productDataChange}
             />
           </div>
           <div className="form-group mb-4">
@@ -99,7 +107,7 @@ const ProductForm = () => {
               name="category"
               className="form-control"
               value={category}
-              onChange={registerDataChange}
+              onChange={productDataChange}
             >
               <option value="" disabled selected>
                 Select Product Category
@@ -122,7 +130,7 @@ const ProductForm = () => {
               required=""
               type="text"
               value={quantity}
-              onChange={registerDataChange}
+              onChange={productDataChange}
             />
           </div>
 
@@ -133,7 +141,7 @@ const ProductForm = () => {
               id="product_description"
               name="description"
               value={description}
-              onChange={registerDataChange}
+              onChange={productDataChange}
             ></textarea>
           </div>
 
@@ -143,7 +151,7 @@ const ProductForm = () => {
               name="condition"
               className="form-control"
               value={condition}
-              onChange={registerDataChange}
+              onChange={productDataChange}
             >
               <option value="" disabled selected>
                 Select Product Condition
@@ -161,7 +169,7 @@ const ProductForm = () => {
               required=""
               type="number"
               value={purchase_price}
-              onChange={registerDataChange}
+              onChange={productDataChange}
             />
           </div>
 
@@ -177,7 +185,7 @@ const ProductForm = () => {
               required=""
               type="text"
               value={date_of_purchase}
-              onChange={registerDataChange}
+              onChange={productDataChange}
             />
           </div>
           <div id="createProductFormFile">
@@ -200,7 +208,6 @@ const ProductForm = () => {
             <button
               type="submit"
               className="btn btn-success border-0  fw-normal"
-              onClick={goToMarketplace}
             >
               {" "}
               Add Product

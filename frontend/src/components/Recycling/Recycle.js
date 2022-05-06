@@ -10,30 +10,62 @@ import { useSelector } from "react-redux";
 import "./Recycle.css";
 import { getUserProducts } from "../../actions/productActions";
 import { getRecyclers } from "../../actions/recyclerActions";
+import RecycleOrders from "./RecyclerOrders";
 
-function Recycle(state) {
+function Recycle() {
   const dispatch = useDispatch();
   const alert = useAlert();
   const { id, isAuthenticated } = useSelector((state) => state.user);
-  const { products } = useSelector((state) => state.products);
+  const { products } = useSelector((state) => state.userProducts);
   const [toggleForm, setToggleForm] = useState(false);
   const [toggleAddNew, setToggleAddNew] = useState(false);
+  const [selectedProduct, setSelectedProduct] = useState("");
+  const [closeModal, setCloseModal] = useState(false);
+    console.log(products)
 
-  const onHandleToggle = () => {
+  const onChooseProduct = (e) => {
+    e.preventDefault();
     if (toggleForm === true) setToggleForm(false);
-    else setToggleForm(true);
+    else {
+      const myForm = new FormData();
+      myForm.set("selectedProduct", selectedProduct);
+      setToggleForm(true);
+    }
   };
   const handleAddNew = (e) => {
     setToggleAddNew(true);
   };
+  
   useEffect(() => {
     if (isAuthenticated) {
       dispatch(getUserProducts(id));
       dispatch(getRecyclers());
     }
+
+    if(closeModal ===true)
+    {
+      setSelectedProduct("");
+      setToggleForm(false);
+    }
   }, [dispatch, alert, isAuthenticated]);
 
-  const listItems = products.map((products) => <option>{products.name}</option>);
+  const productList = products?.map((products) => (
+    <option key={products._id} value={products._id}>
+      {products.name}
+    </option> 
+  ));
+
+  const selectedProductChange = (e) => {
+    setSelectedProduct(e.target.value);
+   // setSelectedProduct({ ...selectedProduct, [e.target.name]: e.target.value });
+    //console.log(selectedProduct);
+  };
+
+  const onCloseModal = (closeModal) =>{
+    setToggleForm(false)
+    setCloseModal(closeModal);
+  }
+  
   return (
     <div className="">
       <Header />
@@ -105,7 +137,7 @@ function Recycle(state) {
                     {toggleForm && (
                       <button
                         className=" btn btn-sm m-3"
-                        onClick={onHandleToggle}
+                        onClick={onChooseProduct}
                       >
                         Previous
                       </button>
@@ -128,19 +160,20 @@ function Recycle(state) {
                             <form action="">
                               <div className="form-group mb-4">
                                 <select
-                                  id="product_categorie"
-                                  name="category"
+                                  id="select_product"
                                   className="form-control"
+                                  onChange={selectedProductChange}
                                 >
                                   <option value="" disabled selected>
                                     Select Products
                                   </option>
-                                  {listItems}
+                                  {productList}
                                 </select>
                               </div>
                               <button
+                                type="submit"
                                 className=" btn btn-primary m-2"
-                                onClick={onHandleToggle}
+                                onClick={onChooseProduct}
                               >
                                 Choose Product
                               </button>
@@ -165,9 +198,7 @@ function Recycle(state) {
                     )}
                     {toggleForm && (
                       <div>
-                        <RecycleForm
-                          handleToggle={onHandleToggle}
-                        ></RecycleForm>
+                        <RecycleForm product={selectedProduct} closeModal={onCloseModal}></RecycleForm>
                       </div>
                     )}
                   </div>
@@ -207,6 +238,7 @@ function Recycle(state) {
           </div>
         </div>
         <div className=" row  align-items-center h-100">
+          <RecycleOrders></RecycleOrders>
           <div className="col-md-12 text-center">
             <h4>Our Recyclers</h4>
             <div class="row  g-4">

@@ -1,7 +1,12 @@
 import { createStore, combineReducers, applyMiddleware } from "redux";
 import thunk from "redux-thunk";
 import { composeWithDevTools } from "redux-devtools-extension";
-import { newProductReducer, productReducer } from "./reducers/productReducer";
+import {
+  singleProductReducer,
+  productReducer,
+  userProductReducer,
+  newProductReducer,
+} from "./reducers/productReducer";
 
 import {
   //   allUsersReducer,
@@ -10,7 +15,11 @@ import {
   //   userDetailsReducer,
   userReducer,
 } from "./reducers/userReducer";
-import {recyclerReducer} from "./reducers/recyclerReducer";
+import {
+  recyclerReducer,
+  singleRecyclerReducer,
+} from "./reducers/recyclerReducer";
+import { orderReducer, userOrderReducer } from "./reducers/orderReducer";
 
 const reducer = combineReducers({
   //   products: productsReducer,
@@ -24,7 +33,10 @@ const reducer = combineReducers({
   //   orderDetails: orderDetailsReducer,
   //   newReview: newReviewReducer,
   products: productReducer,
-  product: newProductReducer,
+  newProduct: newProductReducer,
+  product: singleProductReducer,
+  userProducts: userProductReducer,
+
   //   product: productReducer,
   //   allOrders: allOrdersReducer,
   //   order: orderReducer,
@@ -32,7 +44,10 @@ const reducer = combineReducers({
   //   userDetails: userDetailsReducer,
   //   productReviews: productReviewsReducer,
   //   review: reviewReducer,
-  recyclers: recyclerReducer
+  recyclers: recyclerReducer,
+  recycler: singleRecyclerReducer,
+  order: orderReducer,
+  userOrders: userOrderReducer,
 });
 
 let initialState = {
