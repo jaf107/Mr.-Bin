@@ -1,7 +1,8 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
-import Footer from '../../Footer/Footer'
-import Header from '../../Header/Header'
+import Footer from '../../Footer/Footer';
+import Header from '../../Header/Header';
+import "./MyProducts.css"
 
 const MyProducts = () => {
 
@@ -45,7 +46,9 @@ const MyProducts = () => {
                         {products.map((product, index) => (
                             <tr>
                                 <td>{index + 1}</td>
-                                <td>
+                                <td style={{
+                                  textAlign: 'left'
+                                }}>
                                     <Link to={'/product'}>
                                         {product.name}
                                     </Link> </td>
