@@ -50,13 +50,13 @@ export const userProductReducer = (state = { userProducts: [] }, action) => {
     case GET_USER_PRODUCT_REQUEST:
       return {
         loading: true,
-        products: null,
+        userProducts: null,
       };
     case GET_USER_PRODUCT_SUCCESS:
       return {
         ...state,
         loading: false,
-        products: action.payload,
+        userProducts: action.payload,
       
       };
     default:

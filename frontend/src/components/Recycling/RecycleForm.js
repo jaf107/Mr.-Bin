@@ -28,7 +28,6 @@ function RecycleForm(props, state) {
     myForm.set("pickupDate", pickupDate);
     myForm.set("address", address);
     myForm.set("orderType", orderType);
-    console.log(product);
     setOrder({
       product: props.product,
       recycler: "",
@@ -37,6 +36,8 @@ function RecycleForm(props, state) {
     });
     props.closeModal(true);
     dispatch(placeOrder(myForm));
+    dispatch(getUserOrder());
+
     alert.success("ORDER PLACED SUCCESSFULLY");
   };
   const { isAuthenticated } = useSelector((state) => state.user);
@@ -44,11 +45,8 @@ function RecycleForm(props, state) {
   
   useEffect(() => {
     
-    if (isAuthenticated) {
-      dispatch(getUserOrder());
-
-    }
-  }, [dispatch, alert, isAuthenticated]);
+ 
+  }, [ ]);
 
   const recyclerList = recyclers?.map((recyclers) => (
     <option key={recyclers._id} value={recyclers._id}>

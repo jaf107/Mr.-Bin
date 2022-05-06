@@ -6,11 +6,12 @@ import { getSingleRecycler } from "../../actions/recyclerActions";
 
 function RecycleOrders() {
   const dispatch = useDispatch();
-  const { orders } = useSelector((state) => state.userOrders);
+  const { userOrders } = useSelector((state) => state.userOrders);
   useEffect(() => {
     dispatch(getUserOrder());
   }, [dispatch]);
-  const orderList = orders?.map((order) => (
+
+  const orderList = userOrders?.map((order) => (
     <div key={order._id} value={order._id}>
       <div className="row shadow-sm m-3">
         <div className="col-md-5">
@@ -21,7 +22,7 @@ function RecycleOrders() {
         </div>
         <div className="col-md-3">
           <span class="badge bg-success p-2   rounded-pill mt-5">
-           { order.status}
+            {order.status}
           </span>
         </div>
       </div>
@@ -39,28 +40,24 @@ function RecycleOrders() {
 export default RecycleOrders;
 
 function ProductDetails(props) {
-  const { productDetail } = useSelector((state) => state.product);
-  const [product, setProduct] = useState({
-    name: "",
-    quantity : ""
-  })
-  if(productDetail)
-  setProduct(productDetail)
   const dispatch = useDispatch();
-  
+  const { product } = useSelector((state) => state.product);
   useEffect(() => {
-    if(props)
     dispatch(getSingleProduct(props.order.product));
-
-  }, [dispatch,props.order.product ]);
+  
+  }, [dispatch, props.order.product]);
 
   return (
     <div>
       <h6>Product Details</h6>
-      <p>{product.name}</p>
-      <p>Quantity : {product.quantity}</p>
-      <p>Pickup Date:{props.order.pickupDate}</p>
-      <p>Address : {props.order.address}</p>
+      {product && (
+        <div>
+          <p>{product.name}</p>
+          <p>Quantity : {product.quantity}</p>
+          <p>Pickup Date:{props.order.pickupDate}</p>
+          <p>Address : {props.order.address}</p>
+        </div>
+      )}
     </div>
   );
 }
@@ -70,9 +67,7 @@ function RecyclerDetails(props) {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if(props)
-    dispatch(getSingleRecycler(props.order.recycler));
-
+   dispatch(getSingleRecycler(props.order.recycler));
   }, []);
 
   return (

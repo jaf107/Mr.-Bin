@@ -19,8 +19,9 @@ import {
         orderData,
         config
       );
-      dispatch({ type: PLACE_ORDER_SUCCESS,  payload: data.order});
+      dispatch({ type: PLACE_ORDER_SUCCESS});
     } catch (error) {
+      console.log(error);
       dispatch({
         type: PLACE_ORDER_FAIL,
         payload: error.response.data.message,
