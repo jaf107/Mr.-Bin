@@ -1,10 +1,26 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Footer from '../Footer/Footer'
 import Header from '../Header/Header'
 import "./ProductDetails.css";
 import Carousel from 'react-bootstrap/Carousel';
+import { useDispatch, useSelector } from 'react-redux';
+import { getSingleProduct } from '../../actions/productActions';
+import { useNavigate } from 'react-router-dom';
 const Product = () => {
-    let product = {
+    const dispatch = useDispatch();
+    const { product } = useSelector((state) => state.product);
+    useEffect(() => {
+
+        // ID needs to be passed
+        dispatch(getSingleProduct());
+    }, [dispatch]);
+
+    const navigate = useNavigate();
+    
+
+
+
+    let productx = {
         name: "Laptop",
         price: 500,
         condition: "Good",
