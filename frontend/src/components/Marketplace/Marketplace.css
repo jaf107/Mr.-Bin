@@ -32,10 +32,15 @@
     text-decoration: none
 }
 
-.addbtn{
-    position: relative;
+.myproductbtn{
 
-    margin-left: 47%;
+    margin: 5%;
+    margin-left: 50%;
+}
+
+.addbtn{
+    /* position: relative; */
+    margin-left: 50%;
 }
 
 .marketplace .card-button{

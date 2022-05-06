@@ -43,10 +43,8 @@ export const getProducts = () => async (dispatch) => {
     dispatch({ type: GET_PRODUCT_REQUEST });
     const config = { headers: { "Content-Type": "application/json" } };
 
-    const { data } = await axios.get(
-      `http://localhost:5000/api/v1/product`,
-      config
-    );
+    const { data } = await axios.get(`http://localhost:5000/api/v1/product`);
+    console.log(data.product);
     dispatch({ type: GET_PRODUCT_SUCCESS, payload: data.product });
   } catch (error) {
     dispatch({ type: GET_PRODUCT_FAIL, payload: error });

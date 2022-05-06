@@ -13,17 +13,13 @@ const Marketplace = () => {
   const { products } = useSelector((state) => state.products);
 
   useEffect(() => {
-
     dispatch(getProducts());
   }, [dispatch]);
 
   const navigate = useNavigate();
 
   const goToProduct = () => {
-    // console.log(products);
     navigate('/product');
-    // window.location.href = '/product'
-
   }
 
   return (
@@ -36,38 +32,42 @@ const Marketplace = () => {
         <section id="products">
 
           <span className='p-5 spanMarket' >Marketplace</span>
-          <Link className='btn btn-success addbtn' to={'/addproduct'}>
-            Add Product
-          </Link>
-          {/* <button   > Add Product</button> */}
-
-          <div class="container">
-            <div class="row">
+          <div className='container'>
+            {/* <Link className='btn btn-success myproductbtn' to={'/my/products'}>
+              My Products
+            </Link> */}
+            <Link className='btn btn-success addbtn' to={'/addproduct'}>
+              Add Product
+            </Link>
+          </div>
+          <div className="container">
+            <div className="row">
 
               {products?.map((product) => (
-                <div class="separate-card col-lg-3 col-sm-6 col-11" >
-                <div class="card" onClick={goToProduct} >
-                  <img
-                    class="card-img-top"
-                    src={require("../../assets/laptop.jpg")}
-                    alt="Card image cap"
-                  />
-                  <div class="card-body" >
+                <div className="separate-card col-lg-3 col-sm-6 col-11">
+                  <div className="card" onClick={goToProduct} >
+                    <img
+                      className="card-img-top"
+                      src={product.images[0].url}
+                      // src={require("../../assets/laptop.jpg")}
+                      alt="Card image cap"
+                    /> 
+                    <div className="card-body" >
 
-                    <h5 className='card-title' >{product.name}</h5>
-                    <p class="card-text p-2">
-                      {product.description} </p>
-                    <p className='card-text text-center p-2'>
-                      Price: {product.purchase_price}
-                    </p>
-                    <div className="d-flex">
-                      <div className="card-button flex-fill border-0 btn btn-success" >Buy</div>
-                      <div className="card-button flex-fill border-0 btn btn-danger"><i className=' fas fa-heart'></i></div>
-                      <div className="card-button flex-fill border-0 btn btn-warning"> Bid</div>
+                      <h5 className='card-title' >{product.name}</h5>
+                      <p className="card-text p-2">
+                        {product.description} </p>
+                      <p className='card-text text-center p-2'>
+                        Price: {product.purchase_price}
+                      </p>
+                      <div className="d-flex">
+                        <div className="card-button flex-fill border-0 btn btn-success" >Buy</div>
+                        <div className="card-button flex-fill border-0 btn btn-danger"><i className=' fas fa-heart'></i></div>
+                        <div className="card-button flex-fill border-0 btn btn-warning"> Bid</div>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
               ))}
 
 
