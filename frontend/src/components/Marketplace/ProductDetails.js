@@ -6,9 +6,8 @@ import Carousel from "react-bootstrap/Carousel";
 import { useDispatch, useSelector } from "react-redux";
 import { getSingleProduct } from "../../actions/productActions";
 import { useNavigate, useParams } from "react-router-dom";
-import Bid from "./Product/Bid"
-
-import LaptopPic1 from '../../assets/laptop1.jpg'
+import BidButton from "./Product/BidButton"
+import FavoriteButton from "./Product/FavoriteButton";
 const Product = () => {
   const dispatch = useDispatch();
   const { product } = useSelector((state) => state.product);
@@ -17,20 +16,7 @@ const Product = () => {
     // ID needs to be passed
     dispatch(getSingleProduct(id));
   }, [dispatch]);
-  // const {images} = product;
-  let images = [
-    {
-      src: '"../../assets/laptop1.jpg"',
-    },
-    {
-      src: '"../../assets/laptop2.jpg"',
-    },
-    {
-      src: '"../../assets/laptop3.jpg"',
-    },
-  ]
-  let imageSrc = "../../assets/laptop1.jpg";
-  // console.log(imageSrc);
+
   const navigate = useNavigate();
 
   const [bidAmount, setBidAmount] = useState(0);
@@ -54,24 +40,14 @@ const Product = () => {
                 <div className="wrapper row">
                   <div className="preview col-md-6">
                     <Carousel>
-                      {images.map((image) => (
+                      {product.images.map((image) => (
                         <Carousel.Item>
                           <img
                             className="d-block w-100"
-                            // src={image.src}
-                            src={LaptopPic1}
-                            // src={require({imageSrc})}
-
-                            // src={require(image.src)}
+                            src={image.url}
                             alt="First slide"
                           />
-                          <Carousel.Caption>
-                            <h3>First slide label</h3>
-                            <p>
-                              Nulla vitae elit libero, a pharetra augue mollis
-                              interdum.
-                            </p>
-                          </Carousel.Caption>
+                        
                         </Carousel.Item>
                       ))}
                     </Carousel>
@@ -104,14 +80,9 @@ const Product = () => {
                       >
                         Buy
                       </button>
-                      <button
-                        className="flex-fill border-0 btn btn-danger"
-                        type="button"
-                      >
-                        <span className="fa fa-heart"></span>
-                      </button>
+                      <FavoriteButton  product_id={product._id}></FavoriteButton>
 
-                      <Bid></Bid>
+                      <BidButton></BidButton>
                     </div>
                   </div>
 

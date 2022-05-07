@@ -42,18 +42,16 @@ export default RecycleOrders;
 function ProductDetails(props) {
   const dispatch = useDispatch();
   const { product } = useSelector((state) => state.product);
-  useEffect(() => {
-    dispatch(getSingleProduct(props.order.product));
-  
-  }, [dispatch, props.order.product]);
+  const { products } = useSelector((state) => state.products);
+  const temp = products.find( o => o._id === props.order.product)
 
   return (
     <div>
       <h6>Product Details</h6>
-      {product && (
+      {temp && (
         <div>
-          <p>{product.name}</p>
-          <p>Quantity : {product.quantity}</p>
+          <p>{temp.name}</p>
+          <p>Quantity : {temp.quantity}</p>
           <p>Pickup Date:{props.order.pickupDate}</p>
           <p>Address : {props.order.address}</p>
         </div>
@@ -65,19 +63,18 @@ function ProductDetails(props) {
 function RecyclerDetails(props) {
   const { recycler } = useSelector((state) => state.recycler);
   const dispatch = useDispatch();
+  const { recyclers } = useSelector((state) => state.recyclers);
+  const temp = recyclers.find( o => o._id === props.order.recycler)
 
-  useEffect(() => {
-   dispatch(getSingleRecycler(props.order.recycler));
-  }, []);
 
   return (
     <div>
-      {recycler && (
+      {temp && (
         <div>
           <h6>Recycler Details</h6>
-          <p>{recycler.name}</p>
-          <p>{recycler.company}</p>
-          <p>{recycler.phone}</p>
+          <p>{temp.name}</p>
+          <p>{temp.company}</p>
+          <p>{temp.phone}</p>
         </div>
       )}
     </div>

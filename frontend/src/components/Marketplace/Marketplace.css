@@ -97,7 +97,7 @@
     margin: 0
 }
 
-.marketplace .favorite-btn:focus{
+.favorite-btn:focus{
     background-color: white;
     color:red;
     border: 1px solid red;

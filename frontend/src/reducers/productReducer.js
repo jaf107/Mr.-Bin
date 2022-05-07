@@ -25,7 +25,7 @@ export const productReducer = (state = { products: [] }, action) => {
     case GET_PRODUCT_REQUEST:
       return {
         loading: true,
-        products: null,
+        products: [],
       };
     case GET_PRODUCT_SUCCESS:
       return {
@@ -50,7 +50,7 @@ export const userProductReducer = (state = { userProducts: [] }, action) => {
     case GET_USER_PRODUCT_REQUEST:
       return {
         loading: true,
-        userProducts: null,
+        userProducts: [],
       };
     case GET_USER_PRODUCT_SUCCESS:
       return {

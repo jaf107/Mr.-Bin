@@ -88,3 +88,4 @@ exports.getBid = catchAsyncErrors(async (req, res, next) => {
     bids,
   });
 });
+

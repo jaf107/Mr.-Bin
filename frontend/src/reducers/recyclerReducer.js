@@ -16,6 +16,11 @@ export const recyclerReducer = (state = { recyclers: [] }, action) => {
         error: action.payload,
       };
     case GET_RECYCLER_REQUEST:
+      return{
+        ...state,
+        recyclers:[]
+
+      }
     case GET_RECYCLER_SUCCESS:
       return {
         ...state,

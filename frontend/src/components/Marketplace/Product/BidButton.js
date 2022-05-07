@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-function Bid() {
+function BidButton() {
   const [bidAmount, setBidAmount] = useState(0);
 
   const onBidAmountChange = (e) => {
@@ -17,15 +17,15 @@ function Bid() {
     <span>
       <button
         type="button"
-        className="flex-fill border-0 btn btn-warning"
+        className=" card-button flex-fill border-0 btn btn-warning"
         data-bs-toggle="modal"
         data-bs-target="#staticBackdrop"
       >
         Bid
       </button>
-      <h4>
-        Your bidded amount is <strong>{bidAmount} </strong>{" "}
-      </h4>
+      {/* <h4>
+       Your bidded amount is <strong>{bidAmount} </strong>{" "}
+      </h4> */}
       <div
         className="modal fade"
         id="staticBackdrop"
@@ -83,4 +83,4 @@ function Bid() {
   );
 }
 
-export default Bid;
+export default BidButton;

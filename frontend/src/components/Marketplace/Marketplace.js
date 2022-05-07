@@ -9,7 +9,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { getProducts } from "../../actions/productActions";
 import { useAlert } from "react-alert";
 import { addToFavorite, getFavorites } from "../../actions/userActions";
-
+import FavoriteButton from "./Product/FavoriteButton";
+import BidButton from "./Product/BidButton";
 const Marketplace = () => {
   const dispatch = useDispatch();
   const { products } = useSelector((state) => state.products);
@@ -65,18 +66,16 @@ const Marketplace = () => {
                         <div className="card-button flex-fill border-0 btn btn-success">
                           Buy
                         </div>
-                        <button
+                        <FavoriteButton product_id={product._id}></FavoriteButton>
+                        {/* <button
                           className="card-button flex-fill border-0 btn btn-danger  favorite-btn"
                           onClick={() => {
                             onFavoriteClick(product._id);
                           }}
                         >
                           <i className=" fas fa-heart "></i>
-                        </button>
-                        <div className="card-button flex-fill border-0 btn btn-warning">
-                          {" "}
-                          Bid
-                        </div>
+                        </button> */}
+                        <BidButton></BidButton>
                       </div>
                     </div>
                   </div>
