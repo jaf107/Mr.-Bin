@@ -52,24 +52,26 @@ const productSchema = new mongoose.Schema({
     type: Number,
     // required: [true, "Please enter product Price"],
   },
-  bids: {
-    buyer_id: {
-      type: mongoose.Schema.ObjectId,
-      // required: [true, "Please enter buyer id number"],
-    },
-    date: {
-      type: Date,
-      default: Date.now,
-    },
-    amount: {
-      type: Number,
-      // required: [true, "Please enter the amount"],
-    },
-    product_id: {
-      type: String,
-      // required: [true],
-    },
-  },
+  bids: [
+    {
+      buyer_id: {
+        type: mongoose.Schema.ObjectId,
+        // required: [true, "Please enter buyer id number"],
+      },
+      date: {
+        type: Date,
+        default: Date.now,
+      },
+      amount: {
+        type: Number,
+        // required: [true, "Please enter the amount"],
+      },
+      product_id: {
+        type: mongoose.Schema.ObjectId,
+        // required: [true],
+      },
+    }
+  ],
   comments: {
     user_id: {
       type: mongoose.Schema.ObjectId,

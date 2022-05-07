@@ -31,7 +31,15 @@ const userSchema = new mongoose.Schema({
     type: String,
     unique: [true, "Phone Number Already Exists"],
   },
-  favorites: [],
+  favorites: [
+    {
+      product_id :{
+        type: mongoose.Schema.ObjectId,
+        ref: "Product",
+        unique:true
+      }
+    }
+  ],
   avatar: {
     public_id: {
       type: String,

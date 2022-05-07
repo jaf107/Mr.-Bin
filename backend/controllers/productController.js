@@ -65,3 +65,26 @@ exports.getSingleProduct = catchAsyncErrors(async (req, res, next) => {
     product,
   });
 });
+
+
+//create a bid by user
+exports.createBid = catchAsyncErrors(async (req, res, next) => {
+  const product = await Product.findById(req.params.id);
+  product.bids.push(req.body);
+  await product.save();
+  res.status(201).json({
+    success: true,
+  });
+});
+
+
+//Get all the bids on a product
+exports.getBid = catchAsyncErrors(async (req, res, next) => {
+  const product = await Product.findById(req.params.id);
+  const bids = product.bids;
+
+  res.status(200).json({
+    success: true,
+    bids,
+  });
+});

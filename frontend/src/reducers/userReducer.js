@@ -39,11 +39,16 @@ import {
   USER_DETAILS_SUCCESS,
   USER_DETAILS_FAIL,
   CLEAR_ERRORS,
+  ADD_FAVORITE_FAIL,
+  ADD_FAVORITE_REQUEST,
+  ADD_FAVORITE_SUCCESS,
+  GET_FAVORITE_FAIL,
+  GET_FAVORITE_REQUEST,
+  GET_FAVORITE_SUCCESS,
 } from "../constants/userConstants";
 // import Cookies from 'js-cookie';
 
-
-export const userReducer = (state= { user: {} }, action) => {
+export const userReducer = (state = { user: {} }, action) => {
   switch (action.type) {
     case LOGIN_REQUEST:
     case REGISTER_USER_REQUEST:
@@ -261,6 +266,48 @@ export const userDetailsReducer = (state = { user: {} }, action) => {
         error: action.payload,
       };
 
+    case CLEAR_ERRORS:
+      return {
+        ...state,
+        error: null,
+      };
+
+    default:
+      return state;
+  }
+};
+
+export const FavoriteReducer = (state = { favorites:[] }, action) => {
+  switch (action.type) {
+    case ADD_FAVORITE_FAIL:
+      return{
+        ...state,
+        error : true
+      }
+    case ADD_FAVORITE_REQUEST:
+      return {
+        ...state,
+        loading: true,
+        error: null,
+      };
+    case ADD_FAVORITE_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+      };
+    case GET_FAVORITE_FAIL:
+    case GET_FAVORITE_REQUEST:
+      return {
+        ...state,
+        loading: true,
+        error: null,
+      };
+    case GET_FAVORITE_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        favorites: action.payload,
+      };
     case CLEAR_ERRORS:
       return {
         ...state,
