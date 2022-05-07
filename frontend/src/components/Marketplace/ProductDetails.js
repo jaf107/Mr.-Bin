@@ -13,17 +13,22 @@ const Product = () => {
   const { product } = useSelector((state) => state.product);
   const { id } = useParams();
   useEffect(() => {
-    // ID needs to be passed
     dispatch(getSingleProduct(id));
   }, [dispatch]);
 
   const navigate = useNavigate();
 
+  const [comment, setComment] = useState("");
   const [bidAmount, setBidAmount] = useState(0);
 
   const onBidAmountChange = (e) => {
     setBidAmount(e.target.value);
   };
+
+  const submitForm = (e) => {
+
+    // e.preventDefault()
+  }
 
   const submitBid = (e) => {
     console.log(bidAmount);
@@ -85,31 +90,62 @@ const Product = () => {
                       <BidButton></BidButton>
                     </div>
                   </div>
-
-
                 </div>
 
+
                 <div className="wrapper row">
-                  <div className="col-md-6">
+                  <div className="col-md-8">
                     <h3>Comment Array</h3>
-                    
+                    {COMMENT.map((comment) => (
+                      <ul>
+                        <li className="form-control comment">
+                          {comment.text}
+
+                          <small className="mvright">
+                            -{comment.person}
+                          </small>
+                        </li>
+                      </ul>
+                    ))}
                   </div>
-                  <div className="col-md-6">
+
+                  <div className="col-md-4">
+
                     <h3>Comment Form</h3>
-                    <input
-                      type="text"
-                      placeholder="Enter Name">
-                    </input><br />
-                    <textarea
-                      placeholder="Enter Your Comment"
-                    >
-                    </textarea>
-                    <br/>
-                    <input
-                        type='submit'
-                        className="btn btn-primary"
-                        value='Submit Comment'>
-                      </input>
+                    <form onSubmit={submitForm()}>
+
+                      <div className="mb-3">
+                        <label>Name</label>
+                        <input
+                          type="text"
+                          className="form-control"
+                          placeholder="Enter Name">
+                        </input>
+                      </div>
+                      <div className="mb-3">
+                        <textarea
+                          className="form-control"
+                          rows={2}
+                          placeholder="Enter Your Comment"
+                          value={comment}
+                          onChange={
+                            (e) => setComment(e.target.value)
+                          }
+                        >
+                        </textarea>
+                      </div>
+
+                      <div className="mb-3">
+                        <input
+                          type='submit'
+                          className="btn btn-primary"
+                          value='Submit Comment'
+                        >
+                        </input>
+                      </div>
+
+                    </form>
+
                   </div>
                 </div>
               </div>
