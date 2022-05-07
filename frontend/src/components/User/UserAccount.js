@@ -44,8 +44,14 @@ function UserAccount() {
                                         </span>
                                     </a>
                                 </li>
-                                <li className='p-3'><a href="#" className='text-decoration-none'> <i class="fa fa-calendar"></i> Recent Activity <span class="label label-warning pull-right r-activity">9</span></a></li>
-                                <li className='p-3'><a href="/profile/update" className='text-decoration-none'> <i class="fa fa-edit"></i> Edit profile</a></li>
+                                <li className='p-3'>
+                                    <a href="/me/favorites" className='text-decoration-none'>
+                                        <i class="fa fa-calendar"></i>
+                                        Favorites
+                                        <span class="label label-warning pull-right r-activity">9</span>
+                                    </a>
+                                </li>
+                                <li className='p-3'><a href="#" className='text-decoration-none'> <i class="fa fa-edit"></i> Edit profile</a></li>
                             </ul>
                         </div>
                     </div>
