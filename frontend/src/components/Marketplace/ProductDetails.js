@@ -7,6 +7,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { getSingleProduct } from "../../actions/productActions";
 import { useNavigate, useParams } from "react-router-dom";
 import Bid from "./Product/Bid"
+
+import LaptopPic1 from '../../assets/laptop1.jpg'
 const Product = () => {
   const dispatch = useDispatch();
   const { product } = useSelector((state) => state.product);
@@ -15,26 +17,26 @@ const Product = () => {
     // ID needs to be passed
     dispatch(getSingleProduct(id));
   }, [dispatch]);
-
+  // const {images} = product;
+  let images = [
+    {
+      src: '"../../assets/laptop1.jpg"',
+    },
+    {
+      src: '"../../assets/laptop2.jpg"',
+    },
+    {
+      src: '"../../assets/laptop3.jpg"',
+    },
+  ]
+  let imageSrc = "../../assets/laptop1.jpg";
+  // console.log(imageSrc);
   const navigate = useNavigate();
-
-  let productx = {
-    name: "Laptop",
-    price: 500,
-    condition: "Good",
-    description: "Used for 10 months. Urgent sell. No issues",
-    years_of_use: 5,
-    bid_open: false,
-    bids: [],
-  };
 
   const [bidAmount, setBidAmount] = useState(0);
 
   const onBidAmountChange = (e) => {
-    // setBidAmount({ ...bidAmount, [e.target.name]: e.target.value });
     setBidAmount(e.target.value);
-    // console.log(bidAmount);
-    // setBidAmount({...bidAmount, e.target.name: e.target.value} );
   };
 
   const submitBid = (e) => {
@@ -52,58 +54,35 @@ const Product = () => {
                 <div className="wrapper row">
                   <div className="preview col-md-6">
                     <Carousel>
-                      <Carousel.Item>
-                        <img
-                          className="d-block w-100"
-                          src={require("../../assets/laptop1.jpg")}
-                          alt="First slide"
-                        />
-                        <Carousel.Caption>
-                          <h3>First slide label</h3>
-                          <p>
-                            Nulla vitae elit libero, a pharetra augue mollis
-                            interdum.
-                          </p>
-                        </Carousel.Caption>
-                      </Carousel.Item>
-                      <Carousel.Item>
-                        <img
-                          className="d-block w-100"
-                          src={require("../../assets/laptop2.jpg")}
-                          alt="Second slide"
-                        />
+                      {images.map((image) => (
+                        <Carousel.Item>
+                          <img
+                            className="d-block w-100"
+                            // src={image.src}
+                            src={LaptopPic1}
+                            // src={require({imageSrc})}
 
-                        <Carousel.Caption>
-                          <h3>Second slide label</h3>
-                          <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing
-                            elit.
-                          </p>
-                        </Carousel.Caption>
-                      </Carousel.Item>
-                      <Carousel.Item>
-                        <img
-                          className="d-block w-100"
-                          src={require("../../assets/laptop3.jpg")}
-                          alt="Third slide"
-                        />
-
-                        <Carousel.Caption>
-                          <h3>Third slide label</h3>
-                          <p>
-                            Praesent commodo cursus magna, vel scelerisque nisl
-                            consectetur.
-                          </p>
-                        </Carousel.Caption>
-                      </Carousel.Item>
+                            // src={require(image.src)}
+                            alt="First slide"
+                          />
+                          <Carousel.Caption>
+                            <h3>First slide label</h3>
+                            <p>
+                              Nulla vitae elit libero, a pharetra augue mollis
+                              interdum.
+                            </p>
+                          </Carousel.Caption>
+                        </Carousel.Item>
+                      ))}
                     </Carousel>
+
                   </div>
                   <div className="details col-md-6">
                     <h3 className="product-title">{product.name}</h3>
                     <h5 className="price">
                       current price:
                       <span> </span>
-                      <span>${product.price}</span>
+                      <span>${product.purchase_price}</span>
                     </h5>
                     <p className="product-description">{product.description}</p>
                     <p>
@@ -111,7 +90,7 @@ const Product = () => {
                       <strong>{product.condition}</strong>
                     </p>
                     <p className="vote">
-                      Years of Use - <strong>{product.years_of_use} </strong>
+                      Date of purchase - <strong>{product.date_of_purchase} </strong>
                     </p>
                     <p className="vote">
                       <strong>91%</strong> of buyers enjoyed this product!{" "}
@@ -131,9 +110,35 @@ const Product = () => {
                       >
                         <span className="fa fa-heart"></span>
                       </button>
-              
-                    <Bid></Bid>
+
+                      <Bid></Bid>
                     </div>
+                  </div>
+
+
+                </div>
+
+                <div className="wrapper row">
+                  <div className="col-md-6">
+                    <h3>Comment Array</h3>
+                    
+                  </div>
+                  <div className="col-md-6">
+                    <h3>Comment Form</h3>
+                    <input
+                      type="text"
+                      placeholder="Enter Name">
+                    </input><br />
+                    <textarea
+                      placeholder="Enter Your Comment"
+                    >
+                    </textarea>
+                    <br/>
+                    <input
+                        type='submit'
+                        className="btn btn-primary"
+                        value='Submit Comment'>
+                      </input>
                   </div>
                 </div>
               </div>

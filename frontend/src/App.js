@@ -20,6 +20,7 @@ import { useEffect } from "react";
 import ProductDetails from "./components/Marketplace/ProductDetails";
 import AddProduct from "./components/Marketplace/Product/AddProduct";
 import Favorites from "./components/Marketplace/UserProduct/Favorites";
+import EditAccount from "./components/User/EditAccount";
 // import EnhancedTable from "./components/Marketplace/UserProduct/EnhancedTable";
 // import UpdateProfile from "./components/User/UpdateProfile";
 
@@ -36,6 +37,7 @@ function App() {
           <Route path="/" exact element={<HomePage />}></Route>
           <Route path="/login" exact element={<Login />}></Route>
           <Route path="/register" element={<Register />}></Route>
+          <Route path="/profile/edit" element={<EditAccount/>}></Route>
           <Route path="/donate" element={<Donate/>}></Route>
           <Route path="/recycle" element={<Recycle/>}></Route>
           <Route

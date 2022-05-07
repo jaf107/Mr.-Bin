@@ -2,10 +2,6 @@ import Footer from '../Footer/Footer';
 import Header from '../Header/Header';
 import './UserAccount.css'
 import { useSelector } from 'react-redux';
-import { useAlert } from 'react-alert';
-import { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { Link } from "react-router-dom";
 import { useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
 
@@ -51,7 +47,12 @@ function UserAccount() {
                                         <span class="label label-warning pull-right r-activity">9</span>
                                     </a>
                                 </li>
-                                <li className='p-3'><a href="#" className='text-decoration-none'> <i class="fa fa-edit"></i> Edit profile</a></li>
+                                <li className='p-3'>
+                                    <a href="/profile/edit" className='text-decoration-none'>
+                                        <i class="fa fa-edit"></i>
+                                        Edit profile
+                                    </a>
+                                </li>
                             </ul>
                         </div>
                     </div>
