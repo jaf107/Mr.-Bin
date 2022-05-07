@@ -7,37 +7,27 @@ import { useDispatch, useSelector } from "react-redux";
 import { getSingleProduct } from "../../actions/productActions";
 import { useNavigate, useParams } from "react-router-dom";
 import Bid from "./Product/Bid"
+import COMMENT from '../../data/Comments.js'
 
-import LaptopPic1 from '../../assets/laptop1.jpg'
 const Product = () => {
   const dispatch = useDispatch();
   const { product } = useSelector((state) => state.product);
   const { id } = useParams();
   useEffect(() => {
-    // ID needs to be passed
     dispatch(getSingleProduct(id));
   }, [dispatch]);
-  // const {images} = product;
-  let images = [
-    {
-      src: '"../../assets/laptop1.jpg"',
-    },
-    {
-      src: '"../../assets/laptop2.jpg"',
-    },
-    {
-      src: '"../../assets/laptop3.jpg"',
-    },
-  ]
-  let imageSrc = "../../assets/laptop1.jpg";
-  // console.log(imageSrc);
-  const navigate = useNavigate();
 
+  const [comment, setComment] = useState("");
   const [bidAmount, setBidAmount] = useState(0);
 
   const onBidAmountChange = (e) => {
     setBidAmount(e.target.value);
   };
+
+  const submitForm = (e) => {
+
+    // e.preventDefault()
+  }
 
   const submitBid = (e) => {
     console.log(bidAmount);
@@ -54,16 +44,12 @@ const Product = () => {
                 <div className="wrapper row">
                   <div className="preview col-md-6">
                     <Carousel>
-                      {images.map((image) => (
+                      {product.images?.map((image) => (
                         <Carousel.Item>
                           <img
                             className="d-block w-100"
-                            // src={image.src}
-                            src={LaptopPic1}
-                            // src={require({imageSrc})}
-
-                            // src={require(image.src)}
-                            alt="First slide"
+                            src={image.url}
+                            alt="Carousal slide"
                           />
                           <Carousel.Caption>
                             <h3>First slide label</h3>
@@ -114,31 +100,62 @@ const Product = () => {
                       <Bid></Bid>
                     </div>
                   </div>
-
-
                 </div>
 
+
                 <div className="wrapper row">
-                  <div className="col-md-6">
+                  <div className="col-md-8">
                     <h3>Comment Array</h3>
-                    
+                    {COMMENT.map((comment) => (
+                      <ul>
+                        <li className="form-control comment">
+                          {comment.text}
+
+                          <small className="mvright">
+                            -{comment.person}
+                          </small>
+                        </li>
+                      </ul>
+                    ))}
                   </div>
-                  <div className="col-md-6">
+
+                  <div className="col-md-4">
+
                     <h3>Comment Form</h3>
-                    <input
-                      type="text"
-                      placeholder="Enter Name">
-                    </input><br />
-                    <textarea
-                      placeholder="Enter Your Comment"
-                    >
-                    </textarea>
-                    <br/>
-                    <input
-                        type='submit'
-                        className="btn btn-primary"
-                        value='Submit Comment'>
-                      </input>
+                    <form onSubmit={submitForm()}>
+
+                      <div className="mb-3">
+                        <label>Name</label>
+                        <input
+                          type="text"
+                          className="form-control"
+                          placeholder="Enter Name">
+                        </input>
+                      </div>
+                      <div className="mb-3">
+                        <textarea
+                          className="form-control"
+                          rows={2}
+                          placeholder="Enter Your Comment"
+                          value={comment}
+                          onChange={
+                            (e) => setComment(e.target.value)
+                          }
+                        >
+                        </textarea>
+                      </div>
+
+                      <div className="mb-3">
+                        <input
+                          type='submit'
+                          className="btn btn-primary"
+                          value='Submit Comment'
+                        >
+                        </input>
+                      </div>
+
+                    </form>
+
                   </div>
                 </div>
               </div>

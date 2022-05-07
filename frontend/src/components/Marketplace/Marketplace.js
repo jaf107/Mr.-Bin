@@ -51,7 +51,6 @@ const Marketplace = () => {
                       <img
                         className="card-img-top"
                         src={product.images[0].url}
-                        // src={require("../../assets/laptop.jpg")}
                         alt="Card image cap"
                       />
                     </Link>
