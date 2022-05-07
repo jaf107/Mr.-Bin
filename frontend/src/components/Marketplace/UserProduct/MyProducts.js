@@ -40,6 +40,8 @@ const MyProducts = () => {
                             <th scope="col">Price</th>
                             <th scope="col">Quantity</th>
                             <th scope="col">Date</th>
+                            <th scope="col">Edit</th>
+                            <th scope="col">Delete</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -55,6 +57,8 @@ const MyProducts = () => {
                                 <td>{product.price} </td>
                                 <td>{product.quantity} </td>
                                 <td>{product.date} </td>
+                                <td><button className='btn btn-warning '> Edit </button> </td>
+                                <td><button className='btn btn-danger '> Delete </button></td>
                             </tr>
                         ))}
                     </tbody>

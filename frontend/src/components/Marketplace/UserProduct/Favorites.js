@@ -38,6 +38,7 @@ const Favorites = () => {
                             <th scope="col">Price</th>
                             <th scope="col">Quantity</th>
                             <th scope="col">Date</th>
+                            <th scope="col">Delete</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -45,7 +46,7 @@ const Favorites = () => {
                             <tr>
                                 <td>{index + 1}</td>
                                 <td style={{
-                                  textAlign: 'left'
+                                  textAlign: 'center'
                                 }}>
                                     <Link to={'/product'}>
                                         {product.name}
@@ -53,6 +54,8 @@ const Favorites = () => {
                                 <td>{product.price} </td>
                                 <td>{product.quantity} </td>
                                 <td>{product.date} </td>
+                                <td><button className='btn btn-danger '> X </button></td>
+
                             </tr>
                         ))}
                     </tbody>
