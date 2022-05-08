@@ -2,7 +2,7 @@ import Footer from '../Footer/Footer';
 import Header from '../Header/Header';
 import './UserAccount.css'
 import { useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
 
 function UserAccount() {
@@ -32,26 +32,26 @@ function UserAccount() {
                             <ul class="nav nav-pills nav-stacked flex-column">
                                 <li class="active" className='p-3'><a href="#" className='text-decoration-none'> <i class="fa fa-user"></i> Profile</a></li>
                                 <li className='p-3'>
-                                    <a href="/me/products" className='text-decoration-none'>
-                                        <i class="fa fa-calendar">
+                                    <Link to={'/me/products'} className='text-decoration-none'>
+                                    <i class="fa fa-calendar">
                                         </i> My Products
                                         <span class="label label-warning pull-right r-activity">
                                             9
                                         </span>
-                                    </a>
+                                    </Link>
                                 </li>
                                 <li className='p-3'>
-                                    <a href="/me/favorites" className='text-decoration-none'>
+                                    <Link to={"/me/favorites"} className='text-decoration-none'>
                                         <i class="fa fa-calendar"></i>
                                         Favorites
                                         <span class="label label-warning pull-right r-activity">9</span>
-                                    </a>
+                                    </Link>
                                 </li>
                                 <li className='p-3'>
-                                    <a href="/profile/edit" className='text-decoration-none'>
+                                    <Link to={"/profile/edit"} className='text-decoration-none'>
                                         <i class="fa fa-edit"></i>
                                         Edit profile
-                                    </a>
+                                    </Link>
                                 </li>
                             </ul>
                         </div>

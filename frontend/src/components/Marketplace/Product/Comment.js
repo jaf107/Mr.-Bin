@@ -2,22 +2,33 @@ import { useState } from "react";
 import { useAlert } from "react-alert";
 import { useDispatch, useSelector } from "react-redux";
 import { addComment } from "../../../actions/productActions";
+import "./Comment.css"
 function Comment(props) {
-    const dispatch = useDispatch();
-    const alert = useAlert();
-    const [comment, setComment] = useState("");
-    const {user} = useSelector((state) => state.user)
-    const submitComment = (e) => {
-        e.preventDefault();
-        const myForm = new FormData();
-        myForm.set("user_id", user._id);
-        myForm.set("comment_body", comment);
-        dispatch(addComment(myForm, props.product_id))
-    }
+  const dispatch = useDispatch();
+  const alert = useAlert();
+  const [comment, setComment] = useState("");
+  const { user } = useSelector((state) => state.user)
+  const submitComment = (e) => {
+    e.preventDefault();
+    const myForm = new FormData();
+    myForm.set("user_id", user._id);
+    myForm.set("comment_body", comment);
+    dispatch(addComment(myForm, props.product_id))
+  }
   return (
     <div className=" row">
       <div className="col-md-8">
-        <h3>Comment Array</h3>
+        <h3>All Comments</h3>
+        <div className="comment-card panel card">
+          <div className="panel-body">
+            <div className="bio-desk">
+              <h4 className="red">Jitesh Sureka</h4>
+              <p className="comment-text" style={{}}>- Very nice item. Would love to hear from you again</p>
+              <span class="label label-warning pull-right r-activity">09/05/2022</span>
+            </div>
+          </div>
+        </div>
+
         {/* {comment?.map((comment) => (
             <ul>
               <li className="form-control comment">
