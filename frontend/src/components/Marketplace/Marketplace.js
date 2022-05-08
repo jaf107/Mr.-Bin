@@ -74,7 +74,7 @@ const Marketplace = () => {
                         >
                           <i className=" fas fa-heart "></i>
                         </button> */}
-                        <BidButton></BidButton>
+                        <BidButton  product_id={product._id}></BidButton>
                       </div>
                     </div>
                   </div>

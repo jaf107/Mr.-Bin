@@ -23,11 +23,11 @@ const productSchema = new mongoose.Schema({
     {
       public_id: {
         type: String,
-       // required: true,
+        // required: true,
       },
       url: {
         type: String,
-      //  required: true,
+        //  required: true,
       },
     },
   ],
@@ -36,9 +36,9 @@ const productSchema = new mongoose.Schema({
     ref: "User",
     required: true,
   },
-  product_type:{
+  product_type: {
     type: String,
-    default: "marketplace"
+    default: "marketplace",
   },
   description: {
     type: String,
@@ -66,24 +66,26 @@ const productSchema = new mongoose.Schema({
         type: Number,
         // required: [true, "Please enter the amount"],
       },
-      product_id: {
+      exchange_product_id: {
         type: mongoose.Schema.ObjectId,
         // required: [true],
       },
-    }
+    },
   ],
-  comments: {
-    user_id: {
-      type: mongoose.Schema.ObjectId,
+  comments: [
+    {
+      user_id: {
+        type: mongoose.Schema.ObjectId,
+      },
+      comment_body: {
+        type: String,
+      },
+      created_at: {
+        type: Date,
+        default: Date.now,
+      },
     },
-    comment_body: {
-      type: String,
-    },
-    created_at: {
-      type: Date,
-      default: Date.now,
-    },
-  },
+  ],
   created_at: {
     type: Date,
     default: Date.now,

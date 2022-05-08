@@ -6,6 +6,8 @@ import {
   productReducer,
   userProductReducer,
   newProductReducer,
+  bidReducer,
+  commentReducer,
 } from "./reducers/productReducer";
 
 import {
@@ -27,7 +29,7 @@ const reducer = combineReducers({
   //   productDetails: productDetailsReducer,
   user: userReducer,
   favorites:FavoriteReducer,
-  
+
   //   profile: profileReducer,
   //   forgotPassword: forgotPasswordReducer,
   //   cart: cartReducer,
@@ -39,7 +41,8 @@ const reducer = combineReducers({
   newProduct: newProductReducer,
   product: singleProductReducer,
   userProducts: userProductReducer,
-
+  bids:bidReducer,
+  comments:commentReducer,
   //   product: productReducer,
   //   allOrders: allOrdersReducer,
   //   order: orderReducer,
@@ -51,6 +54,7 @@ const reducer = combineReducers({
   recycler: singleRecyclerReducer,
   order: orderReducer,
   userOrders: userOrderReducer,
+ 
 });
 
 let initialState = {
