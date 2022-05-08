@@ -81,10 +81,34 @@ exports.createBid = catchAsyncErrors(async (req, res, next) => {
 //Get all the bids on a product
 exports.getBid = catchAsyncErrors(async (req, res, next) => {
   const product = await Product.findById(req.params.id);
-  const bids = product.bids;
+  const bid = product.bids;
 
   res.status(200).json({
     success: true,
-    bids,
+    bid,
   });
 });
+
+
+//add a comment by user
+exports.addComment = catchAsyncErrors(async (req, res, next) => {
+  const product = await Product.findById(req.params.id);
+  product.comments.push(req.body);
+  await product.save();
+  res.status(201).json({
+    success: true,
+  });
+});
+
+
+//Get all the comments on a product
+exports.getComment = catchAsyncErrors(async (req, res, next) => {
+  const product = await Product.findById(req.params.id);
+  const comment = product.comments;
+
+  res.status(200).json({
+    success: true,
+    comment,
+  });
+});
+

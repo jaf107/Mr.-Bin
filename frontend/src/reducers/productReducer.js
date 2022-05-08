@@ -11,6 +11,18 @@ import {
   GET_SINGLE_PRODUCT_FAIL,
   GET_SINGLE_PRODUCT_REQUEST,
   GET_SINGLE_PRODUCT_SUCCESS,
+  CREATE_BID_FAIL,
+  CREATE_BID_REQUEST,
+  CREATE_BID_SUCCESS,
+  GET_BID_FAIL,
+  GET_BID_REQUEST,
+  GET_BID_SUCCESS,
+  ADD_COMMENT_FAIL,
+  ADD_COMMENT_REQUEST,
+  ADD_COMMENT_SUCCESS,
+  GET_COMMENT_FAIL,
+  GET_COMMENT_REQUEST,
+  GET_COMMENT_SUCCESS,
 } from "../constants/productConstants";
 
 export const productReducer = (state = { products: [] }, action) => {
@@ -25,7 +37,7 @@ export const productReducer = (state = { products: [] }, action) => {
     case GET_PRODUCT_REQUEST:
       return {
         loading: true,
-        products: null,
+        products: [],
       };
     case GET_PRODUCT_SUCCESS:
       return {
@@ -50,7 +62,7 @@ export const userProductReducer = (state = { userProducts: [] }, action) => {
     case GET_USER_PRODUCT_REQUEST:
       return {
         loading: true,
-        userProducts: null,
+        userProducts: [],
       };
     case GET_USER_PRODUCT_SUCCESS:
       return {
@@ -88,7 +100,7 @@ export const newProductReducer = (state = {}, action) => {
 };
 
 
-export const singleProductReducer = (state = { product : {} }, action) => {
+export const singleProductReducer = (state = { product : null }, action) => {
   switch (action.type) {
     case GET_SINGLE_PRODUCT_FAIL:
       return {
@@ -109,4 +121,72 @@ export const singleProductReducer = (state = { product : {} }, action) => {
   }
 };
 
+export const bidReducer = (state = { bids : [] }, action) => {
+  switch (action.type) {
+    case CREATE_BID_FAIL:
+      return {
+        ...state,
+        loading: false,
+        error: action.payload,
+      };
+    case CREATE_BID_REQUEST:
+    case CREATE_BID_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+      
+      };
+      case GET_BID_FAIL:
+        return {
+          ...state,
+          loading: false,
+          error: action.payload,
+        };
+      case GET_BID_REQUEST:
+      case GET_BID_SUCCESS:
+        return {
+          ...state,
+          loading: false,
+          bids: action.payload,
+        
+        };
+    default:
+      return state;
+  }
+};
+
+export const commentReducer = (state = { comments : [] }, action) => {
+  switch (action.type) {
+    case ADD_COMMENT_FAIL:
+      return {
+        ...state,
+        loading: false,
+        error: action.payload,
+      };
+    case ADD_COMMENT_REQUEST:
+    case ADD_COMMENT_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        error: null
+      };
+      case GET_COMMENT_FAIL:
+        return {
+          ...state,
+          loading: false,
+          error: action.payload,
+        };
+      case GET_COMMENT_REQUEST:
+      case GET_COMMENT_SUCCESS:
+        return {
+          ...state,
+          loading: false,
+          comments: action.payload,
+          error: null
+        
+        };
+    default:
+      return state;
+  }
+};
 

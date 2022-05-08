@@ -21,10 +21,10 @@ exports.getBidsForAnAd = catchAsyncErrors(async (req, res, next) => {
   // let id = req.body.params.id;
   let id;
 
-  const allBids = await Product.find({ advertisement_id: id });
+  const bid = await Product.find({ advertisement_id: id });
 
   res.status(200).json({
     success: true,
-    product,
+    bid,
   });
 });

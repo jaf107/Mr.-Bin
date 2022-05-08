@@ -1,8 +1,14 @@
 import { useState } from "react";
+import { useAlert } from "react-alert";
+import { useDispatch, useSelector } from "react-redux";
+import { createBid } from "../../../actions/productActions";
 
-function Bid() {
+function BidButton(props) {
   const [bidAmount, setBidAmount] = useState(0);
-
+  const { user } = useSelector((state) => state.user);
+  const [hasBid, setHasBid] = useState(false);
+  const dispatch = useDispatch();
+  const alert = useAlert();
   const onBidAmountChange = (e) => {
     // setBidAmount({ ...bidAmount, [e.target.name]: e.target.value });
     setBidAmount(e.target.value);
@@ -11,21 +17,31 @@ function Bid() {
   };
 
   const submitBid = (e) => {
-    console.log(bidAmount);
+    e.preventDefault();
+    const myForm = new FormData();
+    myForm.set("buyer_id", user._id);
+    myForm.set("amount", bidAmount);
+    if (!hasBid) {
+      dispatch(createBid(myForm, props.product_id));
+      alert.success("BID OF " + bidAmount + " MADE SUCCESSFULLY");
+    } else {
+      alert.error("BID EXISTS FOR THE CURRENT PRODUCT");
+    }
+    setHasBid(false);
   };
   return (
     <span>
       <button
         type="button"
-        className="flex-fill border-0 btn btn-warning"
+        className=" card-button flex-fill border-0 btn btn-warning"
         data-bs-toggle="modal"
         data-bs-target="#staticBackdrop"
       >
         Bid
       </button>
-      <h4>
-        Your bidded amount is <strong>{bidAmount} </strong>{" "}
-      </h4>
+      {/* <h4>
+       Your bidded amount is <strong>{bidAmount} </strong>{" "}
+      </h4> */}
       <div
         className="modal fade"
         id="staticBackdrop"
@@ -83,4 +99,4 @@ function Bid() {
   );
 }
 
-export default Bid;
+export default BidButton;

@@ -10,8 +10,19 @@ import {
   GET_USER_PRODUCT_SUCCESS,
   GET_SINGLE_PRODUCT_FAIL,
   GET_SINGLE_PRODUCT_REQUEST,
-  GET_SINGLE_PRODUCT_SUCCESS
-
+  GET_SINGLE_PRODUCT_SUCCESS,
+  CREATE_BID_REQUEST,
+  CREATE_BID_SUCCESS,
+  CREATE_BID_FAIL,
+  GET_BID_REQUEST,
+  GET_BID_SUCCESS,
+  GET_BID_FAIL,
+  ADD_COMMENT_REQUEST,
+  ADD_COMMENT_SUCCESS,
+  ADD_COMMENT_FAIL,
+  GET_COMMENT_REQUEST,
+  GET_COMMENT_SUCCESS,
+  GET_COMMENT_FAIL,
 } from "../constants/productConstants";
 const axios = require("axios");
 axios.defaults.withCredentials = true;
@@ -44,7 +55,6 @@ export const getProducts = () => async (dispatch) => {
     const config = { headers: { "Content-Type": "application/json" } };
 
     const { data } = await axios.get(`http://localhost:5000/api/v1/product`);
-    console.log(data.product);
     dispatch({ type: GET_PRODUCT_SUCCESS, payload: data.product });
   } catch (error) {
     dispatch({ type: GET_PRODUCT_FAIL, payload: error });
@@ -71,7 +81,6 @@ export const getUserProducts = (user_id) => async (dispatch) => {
   }
 };
 
-
 // Get single product details
 export const getSingleProduct = (id) => async (dispatch) => {
   try {
@@ -80,10 +89,75 @@ export const getSingleProduct = (id) => async (dispatch) => {
 
     const { data } = await axios.get(
       `http://localhost:5000/api/v1/product/${id}`
-
     );
     dispatch({ type: GET_SINGLE_PRODUCT_SUCCESS, payload: data.product });
   } catch (error) {
-     dispatch({ type: GET_SINGLE_PRODUCT_FAIL , payload: error.response.data.message });
+    dispatch({
+      type: GET_SINGLE_PRODUCT_FAIL,
+      payload: error.response.data.message,
+    });
+  }
+};
+
+export const createBid = (bid, id) => async (dispatch) => {
+  try {
+    dispatch({ type: CREATE_BID_REQUEST });
+    const config = { headers: { "Content-Type": "application/json" } };
+
+    const { data } = await axios.put(
+      `http://localhost:5000/api/v1/product/${id}/bid/new`,
+      bid,
+      config
+    );
+    dispatch({ type: CREATE_BID_SUCCESS });
+  } catch (error) {
+    dispatch({ type: CREATE_BID_FAIL, payload: error.response.data.message });
+  }
+};
+
+export const getBid = (id) => async (dispatch) => {
+  try {
+    dispatch({ type: GET_BID_REQUEST });
+    const config = { headers: { "Content-Type": "application/json" } };
+
+    const { data } = await axios.get(
+      `http://localhost:5000/api/v1/product/${id}/bid`,
+      config
+    );
+    dispatch({ type: GET_BID_SUCCESS, payload: data.bid });
+  } catch (error) {
+    dispatch({ type: GET_BID_FAIL, payload: error.response.data.message });
+  }
+};
+
+export const addComment = (comment, id) => async (dispatch) => {
+  try {
+    dispatch({ type: ADD_COMMENT_REQUEST });
+    const config = { headers: { "Content-Type": "application/json" } };
+
+    const { data } = await axios.put(
+      `http://localhost:5000/api/v1/product/${id}/comment/new`,
+      comment,
+      config
+    );
+    console.log(data);
+    dispatch({ type: ADD_COMMENT_SUCCESS });
+  } catch (error) {
+    dispatch({ type: ADD_COMMENT_FAIL, payload: error.response.data.message });
+  }
+};
+
+export const getComment = (id) => async (dispatch) => {
+  try {
+    dispatch({ type: GET_COMMENT_REQUEST });
+    const config = { headers: { "Content-Type": "application/json" } };
+
+    const { data } = await axios.get(
+      `http://localhost:5000/api/v1/product/${id}/comment`,
+      config
+    );
+    dispatch({ type: GET_COMMENT_SUCCESS, payload: data.bid });
+  } catch (error) {
+    dispatch({ type: GET_COMMENT_FAIL, payload: error.response.data.message });
   }
 };

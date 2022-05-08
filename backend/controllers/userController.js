@@ -216,7 +216,8 @@ exports.addFavoriteProduct = catchAsyncErrors(async (req, res, next) => {
   if (!user) {
     return next(new ErrorHander("User not found", 404));
   }
-  if(user.favorites.find(o => o.product_id === req.param.id))
+  // console.log(user.favorites.find(o => o.product_id === req.params.id))
+  if(user.favorites.find(o => o.product_id === req.params.id))
    {
       res.status(400).json({
         success: false,

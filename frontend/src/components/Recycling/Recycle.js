@@ -8,7 +8,7 @@ import { useEffect } from "react";
 import { useAlert } from "react-alert";
 import { useSelector } from "react-redux";
 import "./Recycle.css";
-import { getUserProducts } from "../../actions/productActions";
+import { getProducts, getUserProducts } from "../../actions/productActions";
 import { getRecyclers } from "../../actions/recyclerActions";
 import RecycleOrders from "./RecyclerOrders";
 
@@ -21,8 +21,6 @@ function Recycle() {
   const [toggleAddNew, setToggleAddNew] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState("");
   const [closeModal, setCloseModal] = useState(false);
-    console.log(userProducts)
-
   const onChooseProduct = (e) => {
     e.preventDefault();
     if (toggleForm === true) setToggleForm(false);
@@ -35,15 +33,15 @@ function Recycle() {
   const handleAddNew = (e) => {
     setToggleAddNew(true);
   };
-  
+
   useEffect(() => {
     if (isAuthenticated) {
       dispatch(getUserProducts(id));
       dispatch(getRecyclers());
+      dispatch(getProducts());
     }
 
-    if(closeModal ===true)
-    {
+    if (closeModal === true) {
       setSelectedProduct("");
       setToggleForm(false);
     }
@@ -52,20 +50,20 @@ function Recycle() {
   const productList = userProducts?.map((products) => (
     <option key={products._id} value={products._id}>
       {products.name}
-    </option> 
+    </option>
   ));
 
   const selectedProductChange = (e) => {
     setSelectedProduct(e.target.value);
-   // setSelectedProduct({ ...selectedProduct, [e.target.name]: e.target.value });
+    // setSelectedProduct({ ...selectedProduct, [e.target.name]: e.target.value });
     //console.log(selectedProduct);
   };
 
-  const onCloseModal = (closeModal) =>{
-    setToggleForm(false)
+  const onCloseModal = (closeModal) => {
+    setToggleForm(false);
     setCloseModal(closeModal);
-  }
-  
+  };
+
   return (
     <div className="">
       <Header />
@@ -198,7 +196,10 @@ function Recycle() {
                     )}
                     {toggleForm && (
                       <div>
-                        <RecycleForm product={selectedProduct} closeModal={onCloseModal}></RecycleForm>
+                        <RecycleForm
+                          product={selectedProduct}
+                          closeModal={onCloseModal}
+                        ></RecycleForm>
                       </div>
                     )}
                   </div>
