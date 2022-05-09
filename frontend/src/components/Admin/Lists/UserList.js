@@ -38,12 +38,9 @@ const UserList = () => {
                         {users.map((user, index) => (
                             <tr>
                                 <td>{index + 1}</td>
-                                <td style={{
-                                    textAlign: 'left'
-                                }}>
-                                    <Link to={'/user'}>
-                                        {user.name}
-                                    </Link> </td>
+                                <td>
+                                    {user.name}
+                                </td>
                                 <td>{user.email} </td>
                                 <td>{user.phone} </td>
                                 {/* <td>{user.favorites} </td> */}
