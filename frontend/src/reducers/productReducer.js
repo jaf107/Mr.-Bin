@@ -177,6 +177,10 @@ export const commentReducer = (state = { comments : [] }, action) => {
           error: action.payload,
         };
       case GET_COMMENT_REQUEST:
+        return{
+          ...state,
+          comments: [],
+        }
       case GET_COMMENT_SUCCESS:
         return {
           ...state,

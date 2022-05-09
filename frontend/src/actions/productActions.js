@@ -156,7 +156,8 @@ export const getComment = (id) => async (dispatch) => {
       `http://localhost:5000/api/v1/product/${id}/comment`,
       config
     );
-    dispatch({ type: GET_COMMENT_SUCCESS, payload: data.bid });
+    console.log(data);
+    dispatch({ type: GET_COMMENT_SUCCESS, payload: data.comment });
   } catch (error) {
     dispatch({ type: GET_COMMENT_FAIL, payload: error.response.data.message });
   }

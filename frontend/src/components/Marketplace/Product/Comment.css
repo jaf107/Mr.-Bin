@@ -5,6 +5,8 @@
 .comment-card {
     /* color: antiquewhite; */
     /* height: 50px; */
+    background-color: whitesmoke !important;
+    /* height: 60px; */
 }
 
 .comment .panel-body{
