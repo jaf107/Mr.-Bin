@@ -74,6 +74,9 @@ const productSchema = new mongoose.Schema({
   ],
   comments: [
     {
+      user_name:{
+        type: String
+      },
       user_id: {
         type: mongoose.Schema.ObjectId,
       },

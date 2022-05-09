@@ -43,7 +43,7 @@ function Comment(props) {
           <div className="comment-card panel card">
             <div className="panel-body">
               <div className="bio-desk">
-                <h4 className="red">{comment.user_id}</h4>
+                <h4 className="red">{comment.user_name}</h4>
                 <p className="comment-text" style={{}}>{comment.comment_body}</p>
                 <span class="label label-warning pull-right r-activity">{comment.created_at}</span>
               </div>

@@ -92,6 +92,7 @@ exports.getBid = catchAsyncErrors(async (req, res, next) => {
 
 //add a comment by user
 exports.addComment = catchAsyncErrors(async (req, res, next) => {
+  req.body.user_name = req.user.name;
   const product = await Product.findById(req.params.id);
   product.comments.push(req.body);
   await product.save();
