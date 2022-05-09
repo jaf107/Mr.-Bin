@@ -11,7 +11,7 @@ import Donate from "./components/Donation/Donate";
 import Recycle from "./components/Recycling/Recycle";
 import Marketplace from "./components/Marketplace/Marketplace";
 import ProductForm from "./components/Marketplace/Product/ProductForm";
-import MyProducts from "./components/Marketplace/UserProduct/MyProducts";
+import MyProducts from "./components/User/UserProduct/MyProducts";
 // import ProductForm from "./components/Marketplace/ProductForm/ProductForm";
 import About from "./components/About/About";
 import store from "./store";
@@ -19,16 +19,18 @@ import { loadUser } from "./actions/userActions";
 import { useEffect } from "react";
 import ProductDetails from "./components/Marketplace/ProductDetails";
 import AddProduct from "./components/Marketplace/Product/AddProduct";
-import Favorites from "./components/Marketplace/UserProduct/Favorites";
+import Favorites from "./components/User/UserProduct/Favorites";
 import EditAccount from "./components/User/EditAccount";
+import UserList from "./components/Admin/Lists/UserList";
+import ProductList from "./components/Admin/Lists/ProductList";
 // import EnhancedTable from "./components/Marketplace/UserProduct/EnhancedTable";
 // import UpdateProfile from "./components/User/UpdateProfile";
 
 
 function App() {
-  useEffect(()=>{
+  useEffect(() => {
     store.dispatch(loadUser());
-  },[])
+  }, [])
   return (
     <div className="App">
       {/* <Header/> */}
@@ -37,9 +39,9 @@ function App() {
           <Route path="/" exact element={<HomePage />}></Route>
           <Route path="/login" exact element={<Login />}></Route>
           <Route path="/register" element={<Register />}></Route>
-          <Route path="/profile/edit" element={<EditAccount/>}></Route>
-          <Route path="/donate" element={<Donate/>}></Route>
-          <Route path="/recycle" element={<Recycle/>}></Route>
+          <Route path="/profile/edit" element={<EditAccount />}></Route>
+          <Route path="/donate" element={<Donate />}></Route>
+          <Route path="/recycle" element={<Recycle />}></Route>
           <Route
             path="/admin/dashboard"
             exact
@@ -49,16 +51,20 @@ function App() {
               </ProtectedRoute>
             }
           ></Route>
+          <Route path="/admin/dashboard/userlist" exact element={<UserList/>}></Route>
+          <Route path="/admin/dashboard/productlist" exact element={<ProductList/>}></Route>
+
+
           <Route path="/account" exact element={<UserAccount></UserAccount>}></Route>
-          <Route path="/marketplace" exact element={<Marketplace/>} ></Route>
-          <Route path="/addproduct" exact element={<AddProduct/>}></Route>
-          <Route path="/about" exact element={<About/>}></Route>
-          <Route path="/product/:id" exact element={<ProductDetails/>}></Route>
-          <Route path="/me/products" exact element={<MyProducts/>} ></Route>
-          <Route path="/me/favorites" exact element={<Favorites/> } ></Route>
+          <Route path="/marketplace" exact element={<Marketplace />} ></Route>
+          <Route path="/addproduct" exact element={<AddProduct />}></Route>
+          <Route path="/about" exact element={<About />}></Route>
+          <Route path="/product/:id" exact element={<ProductDetails />}></Route>
+          <Route path="/me/products" exact element={<MyProducts />} ></Route>
+          <Route path="/me/favorites" exact element={<Favorites />} ></Route>
           {/* <Route path="/me/data-table" exact element={<EnhancedTable/>} ></Route> */}
           {/* <Route path="/profile/update" exact element={<UpdateProfile/>} ></Route> */}
-          
+
 
 
         </Routes>
