@@ -7,6 +7,8 @@ import { logout } from "../../actions/userActions";
 import { useAlert } from "react-alert";
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
+import UserList from './Lists/UserList';
+import ProductList from './Lists/ProductList';
 
 function Dashboard() {
   const dispatch = useDispatch();
@@ -27,6 +29,38 @@ function Dashboard() {
     navigate('/');
   }
 
+  
+
+  const allToggleOff = () => {
+    var ul = document.getElementById('userlist');
+    ul.style.display = "none";
+    var pl = document.getElementById('productlist');
+    pl.style.display = "none"
+    // document.querySelector('productlist').style.display = 'none';
+  }
+
+  const userToggleOn = () => {
+    var ul = document.getElementById('userlist');
+    ul.style.display = "block";
+    // document.querySelector('userlist').style.display = 'block';
+  }
+
+  const userClicked = (e) => {
+    console.log("User list clicked")
+    allToggleOff();
+    userToggleOn();
+  }
+
+  const productToggleOn=()=>{
+    var pl = document.getElementById('productlist');
+    pl.style.display = "block";
+  }
+
+  const productClicked = (e)=>{
+    allToggleOff();
+    productToggleOn();
+  }
+
   return (
     <div>
       {/* <Header /> */}
@@ -36,19 +70,26 @@ function Dashboard() {
 
             <Link to={'/'}><img src={require("../../assets/logo.png")} alt="" width={100} /></Link>
           </div>
-          <div className="sidebar-wrapper">
+          <div className="container sidebar-wrapper">
             <ul className="nav">
               <li >
-                <Link to={'userlist'}>
+                <button className='btn btn-primary' onClick={userClicked}>
                   <i className="nc-icon nc-bank"></i>
                   Users
-                </Link>
+                </button>
+                {/* <Link to={'userlist'} onClick={userClicked}>
+                  Users
+                </Link> */}
               </li>
               <li>
-                <Link to={'productlist'}>
+                <button className='btn btn-primary' onClick={productClicked}>
+                  <i className="nc-icon nc-bank"></i>
+                  Product
+                </button>
+                {/* <Link to={'productlist'}>
                   <i className="nc-icon nc-bank"></i>
                   Products
-                </Link>
+                </Link> */}
               </li>
               <li>
                 <Link to={'admin/dashboard/recyclers-list'}>
@@ -58,7 +99,7 @@ function Dashboard() {
               </li>
 
               <li>
-              <Link to={'admin/dashboard/organization-list'}>
+                <Link to={'admin/dashboard/organization-list'}>
                   <i className="nc-icon nc-bank"></i>
                   Organizations
                 </Link>
@@ -103,8 +144,16 @@ function Dashboard() {
           </nav>
           <div className="content">
             <div className="row">
-              <div className="col-md-12">
-                <h3 className="description">Your content here Jitesh</h3>
+              <div id='userlist' className="col-md-12">
+                <UserList />
+              </div>
+            </div>
+
+            <div className="row">
+              <div id='productlist' className="col-md-12" style={{
+                display: "none"
+              }}>
+                <ProductList />
               </div>
             </div>
           </div>
