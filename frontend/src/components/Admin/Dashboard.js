@@ -68,7 +68,7 @@ function Dashboard() {
   }
 
   return (
-    <div>
+    <div className='admin-dash'>
       {/* <Header/> */}
 
       <div class="container bootstrap snippets bootdey">
@@ -101,7 +101,7 @@ function Dashboard() {
                     aria-controls="v-pills-profile"
                     aria-selected="true"
                   >
-                    <i class="fa fa-user"></i> Profile
+                    <i class="fa fa-user"></i> All Users
                   </a>
                 </li>
                 <li className="p-3">
@@ -115,13 +115,14 @@ function Dashboard() {
                     aria-controls="v-pills-products"
                     aria-selected="false"
                   >
-                    <i class="fa fa-calendar"></i> My Products
+                    <i class="fa fa-calendar"></i> All Products
                     <span class="label label-warning pull-right r-activity">
-                      9
+                      {/* {products.size} */}
                     </span>
                   </a>
                 </li>
-                <li className="p-3 ">
+                
+                 <li className="p-3 ">
                   <a
                     className="text-decoration-none nav-link"
                     id="v-pills-favorites-tab"
@@ -139,7 +140,7 @@ function Dashboard() {
                     </span>
                   </a>
                 </li>
-                <li className="p-3">
+                {/*<li className="p-3">
                   <a
                     className="text-decoration-none nav-link"
                     id="v-pills-edit-profile-tab"
@@ -153,7 +154,8 @@ function Dashboard() {
                     <i class="fa fa-edit"></i>
                     Edit profile
                   </a>
-                </li>
+                </li> */}
+
               </ul>
             </div>
           </div>

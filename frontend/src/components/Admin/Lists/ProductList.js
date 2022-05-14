@@ -1,46 +1,20 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
 import { getProducts } from '../../../actions/productActions';
 
 const ProductList = () => {
     const dispatch = useDispatch();
-    const products = [
-        {
-            name: "Laptop",
-            user: "Jafar Mahin",
-            price: "350",
-            quantity: 3,
-            date: '12/06/1999'
-        },
-        {
-            name: "Ganja Ganja",
-            user: "Jitesh Sureka",
-            price: "350",
-            quantity: 3,
-            date: '12/06/1999'
-        },
-        {
-            name: "Phone",
-            user: "Dada",
-            price: "350",
-            quantity: 3,
-            date: '12/06/1999'
-        },
-    ];
-
-    const { products2 } = useSelector((state) => state.products);
+    const { products } = useSelector((state) => state.products);
 
     useEffect(() => {
         dispatch(getProducts());
-      }, [dispatch]);
+    }, [dispatch]);
 
-    console.log("Product List",products2);
     return (
         <div>
             <div className='container'>
                 <h2>All Products</h2>
-                
+
                 <table class="table">
                     <thead>
                         <tr>
@@ -63,8 +37,8 @@ const ProductList = () => {
                                 </td>
                                 <td>{product.user} </td>
 
-                                <td>{product.price} </td>
-                                <td>{product.date} </td>
+                                <td>{product.purchase_price} </td>
+                                <td>{product.created_at} </td>
                                 <td><button className='btn btn-warning '> Edit </button> </td>
                                 <td><button className='btn btn-danger '> Delete </button></td>
                             </tr>

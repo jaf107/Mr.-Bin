@@ -1,5 +1,6 @@
-import React from 'react'
-import { Link } from 'react-router-dom';
+import React, { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux';
+import { getAllUsers } from '../../../actions/userActions';
 
 const UserList = () => {
     const users = [
@@ -17,11 +18,20 @@ const UserList = () => {
             date: '12/06/1999'
         },
     ];
+
+    const dispatch = useDispatch();
+    const { users2 } = useSelector((state) => state.user);
+
+    useEffect(() => {
+        dispatch(getAllUsers());
+    }, [dispatch]);
+
+    console.log(users2);
     return (
         <div>
             <div className='container'>
                 <h2>All Users</h2>
-                <table class="table">
+                <table className="table">
                     <thead>
                         <tr>
                             <th scope="col">#</th>
