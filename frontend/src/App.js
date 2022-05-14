@@ -23,6 +23,7 @@ import Favorites from "./components/User/UserProduct/Favorites";
 import EditAccount from "./components/User/EditAccount";
 import UserList from "./components/Admin/Lists/UserList";
 import ProductList from "./components/Admin/Lists/ProductList";
+import EditProduct from "./components/Marketplace/Product/EditProduct";
 // import EnhancedTable from "./components/Marketplace/UserProduct/EnhancedTable";
 // import UpdateProfile from "./components/User/UpdateProfile";
 
@@ -60,6 +61,7 @@ function App() {
           <Route path="/addproduct" exact element={<AddProduct />}></Route>
           <Route path="/about" exact element={<About />}></Route>
           <Route path="/product/:id" exact element={<ProductDetails />}></Route>
+          <Route path="/product/:id/edit" exact element={<EditProduct />}></Route>
           <Route path="/me/products" exact element={<MyProducts />} ></Route>
           <Route path="/me/favorites" exact element={<Favorites />} ></Route>
           {/* <Route path="/me/data-table" exact element={<EnhancedTable/>} ></Route> */}

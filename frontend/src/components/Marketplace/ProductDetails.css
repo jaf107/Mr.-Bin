@@ -92,11 +92,11 @@
   padding: 10px;
 }
 
-.product .card {
-  margin-top: 50px;
-  background: #eee;
-  padding: 3em;
-  line-height: 1.5em;
+.product .productCard {
+  margin-top: 50px !important;
+  background: #eee !important;
+  padding: 3em !important;
+  line-height: 1.5em !important;
 }
 
 @media screen and (min-width: 997px) {

@@ -45,6 +45,7 @@ import {
   GET_FAVORITE_FAIL,
   GET_FAVORITE_REQUEST,
   GET_FAVORITE_SUCCESS,
+  DELETE_FAVORITE_SUCCESS,
 } from "../constants/userConstants";
 // import Cookies from 'js-cookie';
 
@@ -97,7 +98,12 @@ export const userReducer = (state = { user: {} }, action) => {
         loading: false,
         error: action.payload,
       };
-
+      case UPDATE_USER_SUCCESS:
+        return {
+          ...state,
+          loading: false,
+          user: action.payload,
+        };
     case CLEAR_ERRORS:
       return {
         ...state,
@@ -121,13 +127,6 @@ export const profileReducer = (state = {}, action) => {
       };
     case UPDATE_PROFILE_SUCCESS:
     case UPDATE_PASSWORD_SUCCESS:
-    case UPDATE_USER_SUCCESS:
-      return {
-        ...state,
-        loading: false,
-        isUpdated: action.payload,
-      };
-
     case DELETE_USER_SUCCESS:
       return {
         ...state,
@@ -308,6 +307,18 @@ export const FavoriteReducer = (state = { favorites:[] }, action) => {
         loading: false,
         favorites: action.payload,
       };
+      case DELETE_USER_FAIL:
+        case DELETE_USER_REQUEST:
+          return {
+            ...state,
+            loading: true,
+            error: null,
+          };
+        case DELETE_FAVORITE_SUCCESS:
+          return {
+            ...state,
+            loading: false,
+          };
     case CLEAR_ERRORS:
       return {
         ...state,

@@ -1,10 +1,16 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Footer from '../../Footer/Footer';
 import Header from '../../Header/Header';
 import "./Favorites.css";
 import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { deleteFavorite, getFavorites } from '../../../actions/userActions';
+import { useAlert } from 'react-alert';
 
-const Favorites = () => {
+const Favorites = (props) => {
+    //const favorites = props.user_data.favorites
+    const { favorites } = useSelector((state) => state.favorites);
+    const dispatch = useDispatch();
     const products = [
         {
             name: "Laptop",
@@ -25,10 +31,12 @@ const Favorites = () => {
             date: '12/06/1999'
         },
     ];
+    const favoritesList =favorites?.map((favorite, index) => (
+      <FavoriteDetails favorite={favorite.product_id} index={index}></FavoriteDetails>
+      ));
   return (
     <div>
-        <Header/>
-        <div className='container'>
+        <div className=''>
             <h2>Favorite Products</h2>
             <table class="table">
                     <thead>
@@ -42,28 +50,45 @@ const Favorites = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {products.map((product, index) => (
-                            <tr>
-                                <td>{index + 1}</td>
-                                <td style={{
-                                  textAlign: 'center'
-                                }}>
-                                    <Link to={'/product'}>
-                                        {product.name}
-                                    </Link> </td>
-                                <td>{product.price} </td>
-                                <td>{product.quantity} </td>
-                                <td>{product.date} </td>
-                                <td><button className='btn btn-danger '> X </button></td>
-
-                            </tr>
-                        ))}
+                        {favoritesList}
                     </tbody>
                 </table>
         </div>
-        <Footer/>
     </div>
   )
 }
 
 export default Favorites
+
+function FavoriteDetails(props) {
+    const { products } = useSelector((state) => state.products);
+    const temp = products.find( o => o._id === props.favorite)
+    const dispatch = useDispatch();
+    const alert = useAlert()
+    const onDeleteFavorite = () =>{
+        dispatch(deleteFavorite(props.favorite))
+        dispatch(getFavorites())
+
+        alert.success("PRODUCT DELETED FROM FAVORITES")
+    }
+    return (
+      <tr>
+        {temp && (
+           <>
+           <td>{props.index + 1}</td>
+           <td style={{
+             textAlign: 'center'
+           }}>
+               <Link to={`/product/${props.favorite}`} className=' text-decoration-none fw-bold'>
+                   {temp.name}
+               </Link> </td>
+           <td>{temp.price} </td>
+           <td>{temp.quantity} </td>
+           <td>{temp.created_at} </td>
+           <td><button className='btn btn-danger ' onClick={()=> {onDeleteFavorite()}}> X </button></td>
+
+       </>
+        )}
+      </tr>
+    );
+        }

@@ -9,7 +9,8 @@ const {
   updatePassword,
   updateProfile,
   addFavoriteProduct,
-  getFavoriteProduct
+  getFavoriteProduct,
+  deleteFavorite
 } = require("../controllers/userController");
 const { isAuthenticatedUser } = require("../middleware/auth");
 
@@ -33,6 +34,8 @@ router.route("/password/update").put(isAuthenticatedUser, updatePassword);
 router.route("/me/update").put(isAuthenticatedUser, updateProfile);
 
 router.route("/me/favorites/:id").put(isAuthenticatedUser, addFavoriteProduct);
+
+router.route("/me/favorites/:id").delete(isAuthenticatedUser, deleteFavorite);
 
 router.route("/me/favorites").get(isAuthenticatedUser, getFavoriteProduct);
 

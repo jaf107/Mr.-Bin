@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useAlert } from "react-alert";
 import { useDispatch, useSelector } from "react-redux";
 import { addComment, getComment } from "../../../actions/productActions";
-import "./Comment.css"
+import "./Comment.css";
 function Comment(props) {
   const dispatch = useDispatch();
   const alert = useAlert();
@@ -12,7 +12,6 @@ function Comment(props) {
 
   useEffect(() => {
     dispatch(getComment(props.product_id));
-
   }, [dispatch]);
 
   console.log(comments);
@@ -22,12 +21,13 @@ function Comment(props) {
     const myForm = new FormData();
     myForm.set("user_id", user._id);
     myForm.set("comment_body", comment);
-    dispatch(addComment(myForm, props.product_id))
-  }
+    dispatch(addComment(myForm, props.product_id));
+  };
   return (
     <div className=" row">
+              <h3 className=" text-center">All Comments</h3>
+
       <div className="col-md-8">
-        <h3>All Comments</h3>
 
         {/* <div className="comment-card panel card">
           <div className="panel-body">
@@ -40,24 +40,30 @@ function Comment(props) {
         </div> */}
 
         {comments?.map((comment) => (
-          <div className="comment-card panel card">
-            <div className="panel-body">
-              <div className="bio-desk">
-                <h4 className="red">{comment.user_name}</h4>
-                <p className="comment-text" style={{}}>{comment.comment_body}</p>
-                <span class="label label-warning pull-right r-activity">{comment.created_at}</span>
-              </div>
-            </div>
+        <div class="card p-3 bg-white">
+        <div class="d-flex justify-content-between align-items-center">
+          <div class="user d-flex flex-row align-items-center p-2">
+            <span>
+              <h6 class="font-weight-bold text-primary">
+              {comment.user_name}
+              </h6>{" "}
+              <small class="font-weight-bold">
+              {comment.comment_body}
+              </small>
+            </span>
           </div>
+
+          <small>{comment.created_at}</small>
+        </div>
+      </div>
         ))}
       </div>
 
       <div className="col-md-4">
-        <h3>Comment Form</h3>
         <form onSubmit={submitComment}>
           <div className="mb-3">
             <textarea
-              className="form-control"
+              className="form-control card"
               rows={2}
               placeholder="Enter Your Comment"
               value={comment}
@@ -68,7 +74,7 @@ function Comment(props) {
           <div className="mb-3">
             <input
               type="submit"
-              className="btn btn-primary"
+              className="btn btn-dark btn-sm"
               value="Submit Comment"
             ></input>
           </div>
