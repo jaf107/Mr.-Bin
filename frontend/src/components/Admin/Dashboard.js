@@ -11,6 +11,12 @@ import UserList from './Lists/UserList';
 import ProductList from './Lists/ProductList';
 
 function Dashboard() {
+
+  const user = {
+    name: "Jitesh"
+
+  }
+
   const dispatch = useDispatch();
   const alert = useAlert();
   const navigate = useNavigate();
@@ -29,7 +35,7 @@ function Dashboard() {
     navigate('/');
   }
 
-  
+
 
   const allToggleOff = () => {
     var ul = document.getElementById('userlist');
@@ -51,129 +57,147 @@ function Dashboard() {
     userToggleOn();
   }
 
-  const productToggleOn=()=>{
+  const productToggleOn = () => {
     var pl = document.getElementById('productlist');
     pl.style.display = "block";
   }
 
-  const productClicked = (e)=>{
+  const productClicked = (e) => {
     allToggleOff();
     productToggleOn();
   }
 
   return (
     <div>
-      {/* <Header /> */}
-      <div className="wrapper dashboard">
-        <div className="sidebar" data-color="white" data-active-color="danger">
-          <div className="logo">
+      {/* <Header/> */}
 
-            <Link to={'/'}><img src={require("../../assets/logo.png")} alt="" width={100} /></Link>
+      <div class="container bootstrap snippets bootdey">
+
+        <div class="row">
+          <div class="profile-nav col-md-3">
+            <div class="panel">
+              <div class="user-heading round">
+                <a href="#">
+                  {/* <img src={user.avatar.url} alt="" /> */}
+                </a>
+                <h1>{user.name}</h1>
+                <p>{user.email}</p>
+              </div>
+
+              <ul
+                class="nav nav-pills nav-stacked flex-column"
+                id="v-pills-tab"
+                role="tablist"
+                aria-orientation="vertical"
+              >
+                <li class="  p-3">
+                  <a
+                    className="text-decoration-none nav-link active"
+                    id="v-pills-profile-tab"
+                    data-bs-toggle="pill"
+                    data-bs-target="#v-pills-profile"
+                    href="#v-pills-profile"
+                    role="tab"
+                    aria-controls="v-pills-profile"
+                    aria-selected="true"
+                  >
+                    <i class="fa fa-user"></i> Profile
+                  </a>
+                </li>
+                <li className="p-3">
+                  <a
+                    className="text-decoration-none nav-link"
+                    id="v-pills-products-tab"
+                    data-bs-toggle="pill"
+                    data-bs-target="#v-pills-products"
+                    href="#v-pills-products"
+                    role="tab"
+                    aria-controls="v-pills-products"
+                    aria-selected="false"
+                  >
+                    <i class="fa fa-calendar"></i> My Products
+                    <span class="label label-warning pull-right r-activity">
+                      9
+                    </span>
+                  </a>
+                </li>
+                <li className="p-3 ">
+                  <a
+                    className="text-decoration-none nav-link"
+                    id="v-pills-favorites-tab"
+                    data-bs-toggle="pill"
+                    data-bs-target="#v-pills-favorites"
+                    href="#v-pills-favorites"
+                    role="tab"
+                    aria-controls="v-pills-favorites"
+                    aria-selected="false"
+                  >
+                    <i class="fa fa-calendar"></i>
+                    Favorites
+                    <span class="label label-warning pull-right r-activity">
+                      9
+                    </span>
+                  </a>
+                </li>
+                <li className="p-3">
+                  <a
+                    className="text-decoration-none nav-link"
+                    id="v-pills-edit-profile-tab"
+                    data-bs-toggle="pill"
+                    data-bs-target="#v-pills-edit-profile"
+                    href="#v-pills-edit-profile"
+                    role="tab"
+                    aria-controls="v-pills-edit-profile"
+                    aria-selected="false"
+                  >
+                    <i class="fa fa-edit"></i>
+                    Edit profile
+                  </a>
+                </li>
+              </ul>
+            </div>
           </div>
-          <div className="container sidebar-wrapper">
-            <ul className="nav">
-              <li >
-                <button className='btn btn-primary' onClick={userClicked}>
-                  <i className="nc-icon nc-bank"></i>
-                  Users
-                </button>
-                {/* <Link to={'userlist'} onClick={userClicked}>
-                  Users
-                </Link> */}
-              </li>
-              <li>
-                <button className='btn btn-primary' onClick={productClicked}>
-                  <i className="nc-icon nc-bank"></i>
-                  Product
-                </button>
-                {/* <Link to={'productlist'}>
-                  <i className="nc-icon nc-bank"></i>
-                  Products
-                </Link> */}
-              </li>
-              <li>
-                <Link to={'admin/dashboard/recyclers-list'}>
-                  <i className="nc-icon nc-bank"></i>
-                  Recyclers
-                </Link>
-              </li>
+          <div class="col-md-9 tab-content " id="v-pills-tabContent">
+            <div className='container p-3 m-3'>
+              <h4>Date</h4>
+            </div>
 
-              <li>
-                <Link to={'admin/dashboard/organization-list'}>
-                  <i className="nc-icon nc-bank"></i>
-                  Organizations
-                </Link>
-              </li>
-            </ul>
+            <div
+              class="tab-pane fade show active "
+              id="v-pills-profile"
+              role="tabpanel"
+              aria-labelledby="v-pills-profile-tab"
+            >
+              <UserList />
+
+            </div>
+            <div
+              class="tab-pane fade "
+              id="v-pills-products"
+              role="tabpanel"
+              aria-labelledby="v-pills-products-tab"
+            >
+              <ProductList />
+
+            </div>
+            {/* <div
+              class="tab-pane fade "
+              id="v-pills-favorites"
+              role="tabpanel"
+              aria-labelledby="v-pills-favorites-tab"
+            >
+            </div>
+            <div
+              class="tab-pane fade "
+              id="v-pills-edit-profile"
+              role="tabpanel"
+              aria-labelledby="v-pills-edit-profile-tab"
+            >
+            </div> */}
           </div>
         </div>
-        <div className="main-panel" style={{ height: 100 + "vh" }}>
-          <nav className="navbar navbar-expand-lg navbar-absolute fixed-top navbar-transparent">
-            <div className="container-fluid">
-              <div className="navbar-wrapper">
-                <div className="navbar-toggle">
-                  <button type="button" className="navbar-toggler">
-                    <span className="navbar-toggler-bar bar1"></span>
-                    <span className="navbar-toggler-bar bar2"></span>
-                    <span className="navbar-toggler-bar bar3"></span>
-                  </button>
-                </div>
-                <a className="navbar-brand" href="javascript:;">Title</a>
-              </div>
-              <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
-                <span className="navbar-toggler-bar navbar-kebab"></span>
-                <span className="navbar-toggler-bar navbar-kebab"></span>
-                <span className="navbar-toggler-bar navbar-kebab"></span>
-              </button>
-              <div className="collapse navbar-collapse justify-content-end" id="navigation">
-                <form>
-                  <div className="input-group no-border">
-                    <input type="text" value="" className="form-control" placeholder="Search..." />
-                    <div className="input-group-append">
-                      <div className="input-group-text">
-                        <i className="nc-icon nc-zoom-split"></i>
-                      </div>
-                    </div>
-                  </div>
-                </form>
-                <ul className="navbar-nav">
-                  <button className=' btn btn-danger' onClick={logoutUser}>Logout</button>
-                </ul>
-              </div>
-            </div>
-          </nav>
-          <div className="content">
-            <div className="row">
-              <div id='userlist' className="col-md-12">
-                <UserList />
-              </div>
-            </div>
 
-            <div className="row">
-              <div id='productlist' className="col-md-12" style={{
-                display: "none"
-              }}>
-                <ProductList />
-              </div>
-            </div>
-          </div>
-          <footer className="footer" >
-            <div className="container-fluid">
-              <div className="row">
-                <nav className="footer-nav">
-
-                </nav>
-                <div className="credits ml-auto">
-                  <span className="copyright">
-                    <i className="fa fa-heart heart"></i> From Mr. Bin
-                  </span>
-                </div>
-              </div>
-            </div>
-          </footer>
-        </div>
       </div>
-      {/* <Footer /> */}
     </div>
   )
 }

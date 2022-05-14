@@ -56,7 +56,7 @@ const Marketplace = () => {
                       />
                     </Link>
                     <div className="card-body">
-                      <h5 className="card-title">{product.name}</h5>
+                      <h6 className="card-title center"  >{product.name}</h6>
                       <p className="card-text p-2">{product.description} </p>
                       <p className="card-text text-center p-2">
                         Price: {product.purchase_price}

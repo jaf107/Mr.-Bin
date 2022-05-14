@@ -38,6 +38,10 @@
     margin-left: 50%;
 }
 
+.center{
+    text-align: center;
+}
+
 .addbtn{
     position: relative;
     margin-left: 65.5%;

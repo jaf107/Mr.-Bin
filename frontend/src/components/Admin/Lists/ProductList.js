@@ -1,7 +1,10 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { getProducts } from '../../../actions/productActions';
 
 const ProductList = () => {
+    const dispatch = useDispatch();
     const products = [
         {
             name: "Laptop",
@@ -25,10 +28,19 @@ const ProductList = () => {
             date: '12/06/1999'
         },
     ];
+
+    const { products2 } = useSelector((state) => state.products);
+
+    useEffect(() => {
+        dispatch(getProducts());
+      }, [dispatch]);
+
+    console.log("Product List",products2);
     return (
         <div>
             <div className='container'>
-                <h2>My Products</h2>
+                <h2>All Products</h2>
+                
                 <table class="table">
                     <thead>
                         <tr>
