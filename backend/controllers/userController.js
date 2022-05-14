@@ -175,11 +175,6 @@ exports.updatePassword = catchAsyncErrors(async (req, res, next) => {
 
 // update User Profile
 exports.updateProfile = catchAsyncErrors(async (req, res, next) => {
-  const newUserData = {
-    name: req.body.name,
-    email: req.body.email,
-  };
-
   if (req.body.avatar !== "") {
     const user = await User.findById(req.user.id);
 
@@ -193,20 +188,17 @@ exports.updateProfile = catchAsyncErrors(async (req, res, next) => {
       crop: "scale",
     });
 
-    newUserData.avatar = {
+    req.body.avatar = {
       public_id: myCloud.public_id,
       url: myCloud.secure_url,
     };
   }
 
-  const user = await User.findByIdAndUpdate(req.user.id, newUserData, {
-    new: true,
-    runValidators: true,
-    useFindAndModify: false,
-  });
+  const user = await User.findByIdAndUpdate(req.user.id, req.body);
 
   res.status(200).json({
     success: true,
+    user
   });
 });
 
@@ -216,7 +208,7 @@ exports.addFavoriteProduct = catchAsyncErrors(async (req, res, next) => {
   if (!user) {
     return next(new ErrorHander("User not found", 404));
   }
-  // console.log(user.favorites.find(o => o.product_id === req.params.id))
+   console.log(user.favorites.find(o => o.product_id === req.params.id))
   if(user.favorites.find(o => o.product_id === req.params.id))
    {
       res.status(400).json({
@@ -225,7 +217,7 @@ exports.addFavoriteProduct = catchAsyncErrors(async (req, res, next) => {
    }
    else{
      const info = {
-       product_id : req.param.id
+       product_id : req.params.id
      }
     user.favorites.push(info);
     await user.save();
@@ -249,6 +241,18 @@ exports.getFavoriteProduct = catchAsyncErrors(async (req, res, next) => {
   });
 });
 
+
+// delete a favorite product
+exports.deleteFavorite = catchAsyncErrors(async (req, res, next) => {
+
+  await User.updateOne(
+    { _id: req.user.id },
+    { $pull: { 'favorites': { product_id:req.params.id } } }
+  );
+  res.status(200).json({
+    success: true,
+  });
+});
 // // Get all users(admin)
 // exports.getAllUser = catchAsyncErrors(async (req, res, next) => {
 //   const users = await User.find();

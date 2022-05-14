@@ -213,9 +213,9 @@ const ProductForm = () => {
               {" "}
               Add Product
             </button> */}
-            <Link className='btn btn-success addbtn' to={'/marketplace'}>
+            <button className='btn btn-success addbtn'>
               Add Product
-            </Link>
+            </button>
           </div>
         </form>
       </div>

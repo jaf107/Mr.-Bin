@@ -1,145 +1,153 @@
-import Footer from '../Footer/Footer';
-import Header from '../Header/Header';
-import './UserAccount.css'
-import { useSelector } from 'react-redux';
-import { Link, useNavigate } from 'react-router-dom';
-import { useEffect } from 'react';
-
+import Footer from "../Footer/Footer";
+import Header from "../Header/Header";
+import "./UserAccount.css";
+import { useDispatch, useSelector } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
+import { useEffect } from "react";
+import MyProfile from "./MyProfile";
+import Favorites from "./UserProduct/Favorites";
+import MyProducts from "./UserProduct/MyProducts";
+import EditAccount from "./EditAccount";
+import { getFavorites } from "../../actions/userActions";
 function UserAccount() {
-
-    const navigate = useNavigate();
-    const { user, isAuthenticated } = useSelector((state) => state.user);
-    useEffect(() => {
-        if (isAuthenticated === false) {
-            navigate("/login");
-        }
-    }, [isAuthenticated]);
-    return (
-        <div>
-            <Header />
-            <div class="container bootstrap snippets bootdey">
-                <div class="row">
-                    <div class="profile-nav col-md-3">
-                        <div class="panel">
-                            <div class="user-heading round">
-                                <a href="#">
-                                    <img src={user.avatar.url} alt="" />
-                                </a>
-                                <h1>{user.name}</h1>
-                                <p>{user.email}</p>
-                            </div>
-
-                            <ul class="nav nav-pills nav-stacked flex-column">
-                                <li class="active" className='p-3'><a href="#" className='text-decoration-none'> <i class="fa fa-user"></i> Profile</a></li>
-                                <li className='p-3'>
-                                    <Link to={'/me/products'} className='text-decoration-none'>
-                                    <i class="fa fa-calendar">
-                                        </i> My Products
-                                        <span class="label label-warning pull-right r-activity">
-                                            9
-                                        </span>
-                                    </Link>
-                                </li>
-                                <li className='p-3'>
-                                    <Link to={"/me/favorites"} className='text-decoration-none'>
-                                        <i class="fa fa-calendar"></i>
-                                        Favorites
-                                        <span class="label label-warning pull-right r-activity">9</span>
-                                    </Link>
-                                </li>
-                                <li className='p-3'>
-                                    <Link to={"/profile/edit"} className='text-decoration-none'>
-                                        <i class="fa fa-edit"></i>
-                                        Edit profile
-                                    </Link>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="profile-info col-md-9">
-                        <div class="panel">
-                            <div class="bio-graph-heading">
-                                General User Profile
-                            </div>
-                            <div class="panel-body bio-graph-info m-5">
-                                <div class="row">
-                                    <div class="bio-row">
-                                        <p><span> Name </span>: {user.name}</p>
-                                    </div>
-                                    <div class="bio-row">
-                                        <p><span>Email </span>: {user.email}</p>
-                                    </div>
-
-                                    <div class="bio-row">
-                                        <p><span>Mobile </span>: (+88) {user.phone}</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="panel card">
-                                        <div class="panel-body">
-                                            <div class="bio-chart">
-                                                <div className='biochartDiv'><canvas width="100" height="100px"></canvas><input class="knob" data-width="100" data-height="100" data-displayprevious="true" data-thickness=".2" value="35" data-fgcolor="#e06b7d" data-bgcolor="#e8e8e8" className='biochartInput' /></div>
-                                            </div>
-                                            <div class="bio-desk">
-                                                <h4 class="red">Sold Items</h4>
-                                                <p>Started : 15 July</p>
-
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="panel card">
-                                        <div class="panel-body">
-                                            <div class="bio-chart">
-                                                <div className='biochartDiv' ><canvas width="100" height="100px"></canvas><input class="knob" data-width="100" data-height="100" data-displayprevious="true" data-thickness=".2" value="63" data-fgcolor="#4CC5CD" data-bgcolor="#e8e8e8" className='biochartInput' /></div>
-                                            </div>
-                                            <div class="bio-desk">
-                                                <h4 class="terques">Recycles</h4>
-                                                <p>Started : 15 July</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="panel card">
-                                        <div class="panel-body">
-                                            <div class="bio-chart">
-                                                <div className='biochartDiv'><canvas width="100" height="100px"></canvas><input class="knob" data-width="100" data-height="100" data-displayprevious="true" data-thickness=".2" value="75" data-fgcolor="#96be4b" data-bgcolor="#e8e8e8" className='biochartInput' /></div>
-                                            </div>
-                                            <div class="bio-desk">
-                                                <h4 class="green">Donations</h4>
-                                                <p>Started : 15 July</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="panel card">
-                                        <div class="panel-body">
-                                            <div class="bio-chart">
-                                                <div className='biochartDiv'><canvas width="100" height="100px"></canvas><input class="knob" data-width="100" data-height="100" data-displayprevious="true" data-thickness=".2" value="50" data-fgcolor="#cba4db" data-bgcolor="#e8e8e8" className='biochartInput' /></div>
-                                            </div>
-                                            <div class="bio-desk">
-                                                <h4 class="purple">Bought Items</h4>
-                                                <p>Started : 15 July</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+   const  dispatch = useDispatch();
+  const navigate = useNavigate();
+  const { user, isAuthenticated } = useSelector((state) => state.user);
+  useEffect(() => {
+    if (isAuthenticated === false) {
+      navigate("/login");
+    }
+    dispatch(getFavorites());
+  }, [dispatch, isAuthenticated]);
+  return (
+    <div className=" userAccount">
+      <Header />
+      <div class="container bootstrap snippets bootdey">
+        {user && (
+          <div class="row">
+            <div class="profile-nav col-md-3">
+              <div class="panel">
+                <div class="user-heading round">
+                  <a href="#">
+                    <img src={user.avatar.url} alt="" />
+                  </a>
+                  <h1>{user.name}</h1>
+                  <p>{user.email}</p>
                 </div>
-            </div>            <Footer />
 
-        </div>
-
-    )
+                <ul
+                  class="nav nav-pills nav-stacked flex-column"
+                  id="v-pills-tab"
+                  role="tablist"
+                  aria-orientation="vertical"
+                >
+                  <li class="  p-3">
+                    <a
+                      className="text-decoration-none nav-link active"
+                      id="v-pills-profile-tab"
+                      data-bs-toggle="pill"
+                      data-bs-target="#v-pills-profile"
+                      href="#v-pills-profile"
+                      role="tab"
+                      aria-controls="v-pills-profile"
+                      aria-selected="true"
+                    >
+                      <i class="fa fa-user"></i> Profile
+                    </a>
+                  </li>
+                  <li className="p-3">
+                    <a
+                      className="text-decoration-none nav-link"
+                      id="v-pills-products-tab"
+                      data-bs-toggle="pill"
+                      data-bs-target="#v-pills-products"
+                      href="#v-pills-products"
+                      role="tab"
+                      aria-controls="v-pills-products"
+                      aria-selected="false"
+                    >
+                      <i class="fa fa-calendar"></i> My Products
+                      <span class="label label-warning pull-right r-activity">
+                        9
+                      </span>
+                    </a>
+                  </li>
+                  <li className="p-3 ">
+                    <a
+                      className="text-decoration-none nav-link"
+                      id="v-pills-favorites-tab"
+                      data-bs-toggle="pill"
+                      data-bs-target="#v-pills-favorites"
+                      href="#v-pills-favorites"
+                      role="tab"
+                      aria-controls="v-pills-favorites"
+                      aria-selected="false"
+                    >
+                      <i class="fa fa-calendar"></i>
+                      Favorites
+                      <span class="label label-warning pull-right r-activity">
+                        9
+                      </span>
+                    </a>
+                  </li>
+                  <li className="p-3">
+                    <a
+                      className="text-decoration-none nav-link"
+                      id="v-pills-edit-profile-tab"
+                      data-bs-toggle="pill"
+                      data-bs-target="#v-pills-edit-profile"
+                      href="#v-pills-edit-profile"
+                      role="tab"
+                      aria-controls="v-pills-edit-profile"
+                      aria-selected="false"
+                    >
+                      <i class="fa fa-edit"></i>
+                      Edit profile
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="col-md-9 tab-content " id="v-pills-tabContent">
+              <div
+                class="tab-pane fade show active "
+                id="v-pills-profile"
+                role="tabpanel"
+                aria-labelledby="v-pills-profile-tab"
+              >
+                <MyProfile user_data={user}></MyProfile>
+              </div>
+              <div
+                class="tab-pane fade "
+                id="v-pills-products"
+                role="tabpanel"
+                aria-labelledby="v-pills-products-tab"
+              >
+                <MyProducts user_data={user}></MyProducts>
+              </div>
+              <div
+                class="tab-pane fade "
+                id="v-pills-favorites"
+                role="tabpanel"
+                aria-labelledby="v-pills-favorites-tab"
+              >
+                <Favorites user_data={user}></Favorites>
+              </div>
+              <div
+              class="tab-pane fade "
+              id="v-pills-edit-profile"
+              role="tabpanel"
+              aria-labelledby="v-pills-edit-profile-tab"
+            >
+              <EditAccount user_data={user}></EditAccount>
+            </div>
+            </div>
+          </div>
+        )}
+      </div>{" "}
+      <Footer />
+    </div>
+  );
 }
 
 export default UserAccount;

@@ -12,7 +12,9 @@ import Comment from "./Product/Comment";
 const Product = () => {
   const dispatch = useDispatch();
   const { product } = useSelector((state) => state.product);
+  const { user } = useSelector((state) => state.user);
   const { id } = useParams();
+  const [isSeller, setisSeller] = useState(false)
   useEffect(() => {
     dispatch(getSingleProduct(id));
   }, [dispatch, id]);
@@ -26,9 +28,6 @@ const Product = () => {
     setBidAmount(e.target.value);
   };
 
-  const submitForm = (e) => {
-    // e.preventDefault()
-  };
 
   const submitBid = (e) => {
     console.log(bidAmount);
@@ -40,7 +39,7 @@ const Product = () => {
       <div className="product">
         <div className="container">
           {product && (
-            <div className="card">
+            <div className="productCard card">
               <div className="container-fliud">
                 <div className=" row mb-5">
                   <div className="preview col-md-6">
@@ -90,6 +89,7 @@ const Product = () => {
                     </div>
                   </div>
                 </div>
+                {(product.user === user._id) && <div> <h1>Show Bids Here</h1></div>}
                 <Comment product_id={product._id}></Comment>
               </div>
             </div>
