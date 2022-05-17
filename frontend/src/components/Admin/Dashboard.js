@@ -9,6 +9,8 @@ import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
 import UserList from './Lists/UserList';
 import ProductList from './Lists/ProductList';
+import RecyclerList from './Lists/RecyclerList';
+import OrganizationList from './Lists/OrganizationList';
 
 function Dashboard() {
 
@@ -101,7 +103,7 @@ function Dashboard() {
                     aria-controls="v-pills-profile"
                     aria-selected="true"
                   >
-                    <i class="fa fa-user"></i> All Users
+                    <i class="fa fa-user"></i> Users
                   </a>
                 </li>
                 <li className="p-3">
@@ -115,7 +117,7 @@ function Dashboard() {
                     aria-controls="v-pills-products"
                     aria-selected="false"
                   >
-                    <i class="fa fa-calendar"></i> All Products
+                    <i class="fa fa-calendar"></i> Products
                     <span class="label label-warning pull-right r-activity">
                       {/* {products.size} */}
                     </span>
@@ -134,13 +136,11 @@ function Dashboard() {
                     aria-selected="false"
                   >
                     <i class="fa fa-calendar"></i>
-                    Favorites
-                    <span class="label label-warning pull-right r-activity">
-                      9
-                    </span>
+                    Recyclers
+                    
                   </a>
                 </li>
-                {/*<li className="p-3">
+                <li className="p-3">
                   <a
                     className="text-decoration-none nav-link"
                     id="v-pills-edit-profile-tab"
@@ -152,9 +152,9 @@ function Dashboard() {
                     aria-selected="false"
                   >
                     <i class="fa fa-edit"></i>
-                    Edit profile
+                    Organizations
                   </a>
-                </li> */}
+                </li> 
 
               </ul>
             </div>
@@ -182,12 +182,13 @@ function Dashboard() {
               <ProductList />
 
             </div>
-            {/* <div
+            <div
               class="tab-pane fade "
               id="v-pills-favorites"
               role="tabpanel"
               aria-labelledby="v-pills-favorites-tab"
             >
+              <RecyclerList/>
             </div>
             <div
               class="tab-pane fade "
@@ -195,7 +196,8 @@ function Dashboard() {
               role="tabpanel"
               aria-labelledby="v-pills-edit-profile-tab"
             >
-            </div> */}
+              <OrganizationList/>
+            </div>
           </div>
         </div>
 

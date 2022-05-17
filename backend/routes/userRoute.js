@@ -10,7 +10,8 @@ const {
   updateProfile,
   addFavoriteProduct,
   getFavoriteProduct,
-  deleteFavorite
+  deleteFavorite,
+  getAllUser
 } = require("../controllers/userController");
 const { isAuthenticatedUser } = require("../middleware/auth");
 
@@ -23,9 +24,12 @@ router.route("/login").post(loginUser);
 
 router.route("/logout").get(logout);
 
- router.route("/me").get(isAuthenticatedUser, getUserDetails);
+router.route("/admin/users").get(isAuthenticatedUser ,getAllUser);
 
- router.route("/password/forgot").post(forgotPassword);
+
+router.route("/me").get(isAuthenticatedUser, getUserDetails);
+
+router.route("/password/forgot").post(forgotPassword);
 
 router.route("/password/reset/:token").put(resetPassword);
 

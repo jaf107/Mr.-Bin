@@ -1,13 +1,17 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { getProducts } from '../../../actions/productActions';
+import { getAllUsers } from '../../../actions/userActions';
 
 const ProductList = () => {
     const dispatch = useDispatch();
     const { products } = useSelector((state) => state.products);
+    const { users } = useSelector((state) => state.allUsers);
+
 
     useEffect(() => {
         dispatch(getProducts());
+        dispatch(getAllUsers());
     }, [dispatch]);
 
     return (
@@ -24,7 +28,7 @@ const ProductList = () => {
 
                             <th scope="col">Price</th>
                             <th scope="col">Date</th>
-                            <th scope="col">Edit</th>
+                            {/* <th scope="col">Edit</th> */}
                             <th scope="col">Delete</th>
                         </tr>
                     </thead>
@@ -35,11 +39,11 @@ const ProductList = () => {
                                 <td>
                                     {product.name}
                                 </td>
-                                <td>{product.user} </td>
+                                <td>{users.find(o => o._id === product.user).name} </td>
 
                                 <td>{product.purchase_price} </td>
                                 <td>{product.created_at} </td>
-                                <td><button className='btn btn-warning '> Edit </button> </td>
+                                {/* <td><button className='btn btn-warning '> Edit </button> </td> */}
                                 <td><button className='btn btn-danger '> Delete </button></td>
                             </tr>
                         ))}

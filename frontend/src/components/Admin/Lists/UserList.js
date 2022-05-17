@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getAllUsers } from '../../../actions/userActions';
 
 const UserList = () => {
-    const users = [
+    const users2 = [
         {
             name: "Jafar Mahin",
             email: "jafarmahin107@gmail.com",
@@ -20,13 +20,13 @@ const UserList = () => {
     ];
 
     const dispatch = useDispatch();
-    const { users2 } = useSelector((state) => state.user);
+    const { users } = useSelector((state) => state.allUsers);
 
     useEffect(() => {
         dispatch(getAllUsers());
     }, [dispatch]);
 
-    console.log(users2);
+    // console.log(users2);
     return (
         <div>
             <div className='container'>
@@ -55,7 +55,7 @@ const UserList = () => {
                                 <td>{user.phone} </td>
                                 {/* <td>{user.favorites} </td> */}
 
-                                <td>{user.date} </td>
+                                <td>{user.createdAt} </td>
                                 {/* <td><button className='btn btn-warning '> Edit </button> </td> */}
                                 <td><button className='btn btn-danger '> Delete </button></td>
                             </tr>
