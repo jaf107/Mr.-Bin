@@ -19,7 +19,7 @@ const ProductList = () => {
             <div className='container'>
                 <h2>All Products</h2>
 
-                <table class="table">
+                <table class="table"> 
                     <thead>
                         <tr>
                             <th scope="col">#</th>
