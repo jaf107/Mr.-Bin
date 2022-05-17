@@ -25,37 +25,26 @@ function Comment(props) {
   };
   return (
     <div className=" row">
-              <h3 className=" text-center">All Comments</h3>
+      <h3 className=" text-center">All Comments</h3>
 
       <div className="col-md-8">
+        {comments?.map((comment) => (
+          <div class="card p-3 bg-white">
+            <div class="d-flex justify-content-between align-items-center">
+              <div class="user d-flex flex-row align-items-center p-2">
+                <span>
+                  <h6 class="font-weight-bold text-primary">
+                    {comment.user_name}
+                  </h6>{" "}
+                  <small class="font-weight-bold">
+                    {comment.comment_body}
+                  </small>
+                </span>
+              </div>
 
-        {/* <div className="comment-card panel card">
-          <div className="panel-body">
-            <div className="bio-desk">
-              <h4 className="red">Jitesh Sureka</h4>
-              <p className="comment-text" style={{}}>- Very nice item. Would love to hear from you again</p>
-              <span class="label label-warning pull-right r-activity">09/05/2022</span>
+              <small>{comment.created_at}</small>
             </div>
           </div>
-        </div> */}
-
-        {comments?.map((comment) => (
-        <div class="card p-3 bg-white">
-        <div class="d-flex justify-content-between align-items-center">
-          <div class="user d-flex flex-row align-items-center p-2">
-            <span>
-              <h6 class="font-weight-bold text-primary">
-              {comment.user_name}
-              </h6>{" "}
-              <small class="font-weight-bold">
-              {comment.comment_body}
-              </small>
-            </span>
-          </div>
-
-          <small>{comment.created_at}</small>
-        </div>
-      </div>
         ))}
       </div>
 
