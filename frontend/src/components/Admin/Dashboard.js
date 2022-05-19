@@ -11,6 +11,8 @@ import UserList from './Lists/UserList';
 import ProductList from './Lists/ProductList';
 import RecyclerList from './Lists/RecyclerList';
 import OrganizationList from './Lists/OrganizationList';
+import RecycleOrder from './Orders/RecycleOrder';
+import DonationOrder from './Orders/DonationOrder';
 
 function Dashboard() {
 
@@ -103,7 +105,8 @@ function Dashboard() {
                     aria-controls="v-pills-user"
                     aria-selected="true"
                   >
-                    <i class="fa fa-user"></i> Users
+                    <i class="fa fa-user"></i>
+                    Users
                   </a>
                 </li>
                 <li className="nav-item  p-3">
@@ -177,15 +180,28 @@ function Dashboard() {
                   >
                     <li>
                       <a
-                        className="nav-link px-5"
-                        href="#">
+                        className="text-decoration-none nav-link px-5"
+                        id="v-pills-order-recyclers-tab"
+                        data-bs-toggle="pill"
+                        data-bs-target="#v-pills-order-recyclers"
+                        href="#v-pills-order-recyclers"
+                        role="tab"
+                        aria-controls="v-pills-order-recyclers"
+                        aria-selected="false"
+                      >
                         - Recycling
                       </a>
                     </li>
                     <li>
                       <a
-                        className="nav-link px-5"
-                        href="#"
+                        className="text-decoration-none nav-link px-5"
+                        id="v-pills-order-donation-tab"
+                        data-bs-toggle="pill"
+                        data-bs-target="#v-pills-order-donation"
+                        href="#v-pills-order-donation"
+                        role="tab"
+                        aria-controls="v-pills-order-donation"
+                        aria-selected="false"
                       >
                         - Donation
                       </a>
@@ -238,6 +254,23 @@ function Dashboard() {
               aria-labelledby="v-pills-organization-tab"
             >
               <OrganizationList />
+            </div>
+            <div
+              class="tab-pane fade"
+              id="v-pills-order-recyclers"
+              role="tabpanel"
+              aria-labelledby="v-pills-order-recyclers-tab"
+            >
+              <RecycleOrder/>
+            </div>
+            
+            <div
+              class="tab-pane fade"
+              id="v-pills-order-donation"
+              role="tabpanel"
+              aria-labelledby="v-pills-order-donation-tab"
+            >
+              <DonationOrder/>
             </div>
           </div>
         </div>
