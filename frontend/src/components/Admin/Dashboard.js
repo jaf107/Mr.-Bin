@@ -92,21 +92,21 @@ function Dashboard() {
                 role="tablist"
                 aria-orientation="vertical"
               >
-                <li class="  p-3">
+                <li className="nav-item  p-3">
                   <a
                     className="text-decoration-none nav-link active"
-                    id="v-pills-profile-tab"
+                    id="v-pills-user-tab"
                     data-bs-toggle="pill"
-                    data-bs-target="#v-pills-profile"
-                    href="#v-pills-profile"
+                    data-bs-target="#v-pills-user"
+                    href="#v-pills-user"
                     role="tab"
-                    aria-controls="v-pills-profile"
+                    aria-controls="v-pills-user"
                     aria-selected="true"
                   >
                     <i class="fa fa-user"></i> Users
                   </a>
                 </li>
-                <li className="p-3">
+                <li className="nav-item  p-3">
                   <a
                     className="text-decoration-none nav-link"
                     id="v-pills-products-tab"
@@ -117,48 +117,112 @@ function Dashboard() {
                     aria-controls="v-pills-products"
                     aria-selected="false"
                   >
-                    <i class="fa fa-calendar"></i> Products
+                    <i class="fa fa-bag-shopping"></i>
+                    Products
                     <span class="label label-warning pull-right r-activity">
                       {/* {products.size} */}
                     </span>
                   </a>
                 </li>
-                
-                 <li className="p-3 ">
+
+                <li className="nav-item  p-3">
                   <a
                     className="text-decoration-none nav-link"
-                    id="v-pills-favorites-tab"
+                    id="v-pills-recycler-tab"
                     data-bs-toggle="pill"
-                    data-bs-target="#v-pills-favorites"
-                    href="#v-pills-favorites"
+                    data-bs-target="#v-pills-recycler"
+                    href="#v-pills-recycler"
                     role="tab"
-                    aria-controls="v-pills-favorites"
+                    aria-controls="v-pills-recycler"
                     aria-selected="false"
                   >
-                    <i class="fa fa-calendar"></i>
+                    <i class="fa fa-recycle"></i>
                     Recyclers
-                    
+
+                  </a>
+                </li>
+                <li className="nav-item  p-3">
+                  <a
+                    className="text-decoration-none nav-link"
+                    id="v-pills-organization-tab"
+                    data-bs-toggle="pill"
+                    data-bs-target="#v-pills-organization"
+                    href="#v-pills-organization"
+                    role="tab"
+                    aria-controls="v-pills-organization"
+                    aria-selected="false"
+                  >
+                    <i class="fa fa-building-ngo"></i>
+                    Organizations
+                  </a>
+                </li>
+                <li className='p-3'>
+                  <a
+                    class="text-decoration-none nav-link dropdown-toggle"
+                    type="button"
+                    id="dropdownOrder"
+                    data-bs-toggle="dropdown"
+                    aria-expanded="false"
+                  >
+                    <i class="fa fa-tty"></i>
+
+                    Order
+                  </a>
+                  <ul class="dropdown-menu" aria-labelledby="dropdownOrder">
+                    <li>
+                      <a
+                        className="dropdown-item"
+                        href="#">
+                        Recycling
+                      </a>
+                    </li>
+                    <li>
+                      <a
+                        className="dropdown-item"
+                        href="#"
+                      >
+                        Donation
+                      </a>
+                    </li>
+                  </ul>
+                </li>
+
+                {/* <li className="p-3">
+                  <a
+                    className="text-decoration-none nav-link"
+                    id="v-pills-organization-tab"
+                    data-bs-toggle="pill"
+                    data-bs-target="#v-pills-organization"
+                    href="#v-pills-organization"
+                    role="tab"
+                    aria-controls="v-pills-organization"
+                    aria-selected="false"
+                  >
+                    <i class="fa fa-tty"></i>
+                    Orders - Recycling
                   </a>
                 </li>
                 <li className="p-3">
                   <a
                     className="text-decoration-none nav-link"
-                    id="v-pills-edit-profile-tab"
+                    id="v-pills-organization-tab"
                     data-bs-toggle="pill"
-                    data-bs-target="#v-pills-edit-profile"
-                    href="#v-pills-edit-profile"
+                    data-bs-target="#v-pills-organization"
+                    href="#v-pills-organization"
                     role="tab"
-                    aria-controls="v-pills-edit-profile"
+                    aria-controls="v-pills-organization"
                     aria-selected="false"
                   >
                     <i class="fa fa-edit"></i>
-                    Organizations
+                    Orders - Donations
                   </a>
-                </li> 
+                </li> */}
+
 
               </ul>
             </div>
           </div>
+
           <div class="col-md-9 tab-content " id="v-pills-tabContent">
             <div className='container p-3 m-3'>
               <h4>Date</h4>
@@ -166,9 +230,9 @@ function Dashboard() {
 
             <div
               class="tab-pane fade show active "
-              id="v-pills-profile"
+              id="v-pills-user"
               role="tabpanel"
-              aria-labelledby="v-pills-profile-tab"
+              aria-labelledby="v-pills-user-tab"
             >
               <UserList />
 
@@ -184,19 +248,19 @@ function Dashboard() {
             </div>
             <div
               class="tab-pane fade "
-              id="v-pills-favorites"
+              id="v-pills-recycler"
               role="tabpanel"
-              aria-labelledby="v-pills-favorites-tab"
+              aria-labelledby="v-pills-recycler-tab"
             >
-              <RecyclerList/>
+              <RecyclerList />
             </div>
             <div
               class="tab-pane fade "
-              id="v-pills-edit-profile"
+              id="v-pills-organization"
               role="tabpanel"
-              aria-labelledby="v-pills-edit-profile-tab"
+              aria-labelledby="v-pills-organization-tab"
             >
-              <OrganizationList/>
+              <OrganizationList />
             </div>
           </div>
         </div>
