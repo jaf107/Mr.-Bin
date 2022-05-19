@@ -156,36 +156,45 @@ function Dashboard() {
                     Organizations
                   </a>
                 </li>
+
                 <li className='p-3'>
                   <a
                     class="text-decoration-none nav-link dropdown-toggle"
-                    type="button"
-                    id="dropdownOrder"
-                    data-bs-toggle="dropdown"
+                    data-bs-toggle="collapse"
+                    href="#collapseList"
+                    role="button"
                     aria-expanded="false"
-                  >
+                    aria-controls="collapseList">
                     <i class="fa fa-tty"></i>
 
-                    Order
+                    Orders
                   </a>
-                  <ul class="dropdown-menu" aria-labelledby="dropdownOrder">
+
+                  <ul
+                    id='collapseList'
+                    className='collapse'
+                    aria-controls='collapseList'
+                  >
                     <li>
                       <a
-                        className="dropdown-item"
+                        className="nav-link"
                         href="#">
                         Recycling
                       </a>
                     </li>
                     <li>
                       <a
-                        className="dropdown-item"
+                        className="nav-link"
                         href="#"
                       >
                         Donation
                       </a>
                     </li>
                   </ul>
+
+
                 </li>
+
 
                 {/* <li className="p-3">
                   <a
