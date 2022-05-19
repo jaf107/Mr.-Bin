@@ -30,6 +30,11 @@
   border: 10px solid rgba(255, 255, 255, 0.3);
   display: inline-block;
 }
+.collapse{
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
 
 .admin-dash .profile-nav .user-heading a img {
   width: 112px;

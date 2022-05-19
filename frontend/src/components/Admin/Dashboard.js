@@ -177,55 +177,23 @@ function Dashboard() {
                   >
                     <li>
                       <a
-                        className="nav-link"
+                        className="nav-link px-5"
                         href="#">
-                        Recycling
+                        - Recycling
                       </a>
                     </li>
                     <li>
                       <a
-                        className="nav-link"
+                        className="nav-link px-5"
                         href="#"
                       >
-                        Donation
+                        - Donation
                       </a>
                     </li>
                   </ul>
 
 
                 </li>
-
-
-                {/* <li className="p-3">
-                  <a
-                    className="text-decoration-none nav-link"
-                    id="v-pills-organization-tab"
-                    data-bs-toggle="pill"
-                    data-bs-target="#v-pills-organization"
-                    href="#v-pills-organization"
-                    role="tab"
-                    aria-controls="v-pills-organization"
-                    aria-selected="false"
-                  >
-                    <i class="fa fa-tty"></i>
-                    Orders - Recycling
-                  </a>
-                </li>
-                <li className="p-3">
-                  <a
-                    className="text-decoration-none nav-link"
-                    id="v-pills-organization-tab"
-                    data-bs-toggle="pill"
-                    data-bs-target="#v-pills-organization"
-                    href="#v-pills-organization"
-                    role="tab"
-                    aria-controls="v-pills-organization"
-                    aria-selected="false"
-                  >
-                    <i class="fa fa-edit"></i>
-                    Orders - Donations
-                  </a>
-                </li> */}
 
 
               </ul>
