@@ -9,6 +9,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import BidButton from "./Product/BidButton";
 import FavoriteButton from "./Product/FavoriteButton";
 import Comment from "./Product/Comment";
+import Bids from "./Product/Bids";
 const Product = () => {
   const dispatch = useDispatch();
   const { product } = useSelector((state) => state.product);
@@ -58,9 +59,9 @@ const Product = () => {
                   <div className="details col-md-6">
                     <h3 className="product-title">{product.name}</h3>
                     <h5 className="price">
-                      current price:
+                       price:
                       <span> </span>
-                      <span>${product.purchase_price}</span>
+                      <span>Tk. {product.purchase_price}</span>
                     </h5>
                     <p className="product-description">{product.description}</p>
                     <p>
@@ -71,11 +72,7 @@ const Product = () => {
                       Date of purchase -{" "}
                       <strong>{product.date_of_purchase} </strong>
                     </p>
-                    <p className="vote">
-                      <strong>91%</strong> of buyers enjoyed this product!{" "}
-                      <strong>(87 votes)</strong>
-                    </p>
-
+                                
                     <div className="action">
                       <button
                         className="flex-fill border-0 btn btn-success"
@@ -89,7 +86,7 @@ const Product = () => {
                     </div>
                   </div>
                 </div>
-                {(product.user === user._id) && <div> <h1>Show Bids Here</h1></div>}
+                {(product.user === user._id) &&  <Bids product_id = {product._id}></Bids>}
                 <Comment product_id={product._id}></Comment>
               </div>
             </div>

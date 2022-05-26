@@ -2,6 +2,7 @@ const catchAsyncErrors = require("../middleware/catchAsyncErrors");
 const Product = require("../models/productModel");
 const cloudinary = require("cloudinary");
 const Recycler = require("../models/recyclerModel.js");
+const User = require("../models/userModel.js");
 const ErrorHander = require("../utils/errorhander");
 
 exports.addProduct = catchAsyncErrors(async (req, res, next) => {
@@ -66,9 +67,11 @@ exports.getSingleProduct = catchAsyncErrors(async (req, res, next) => {
   });
 });
 
-
 //create a bid by user
 exports.createBid = catchAsyncErrors(async (req, res, next) => {
+  const user = await User.findById(req.user.id);
+  req.body.name = user.name;
+  req.body.address = user.address;
   const product = await Product.findById(req.params.id);
   product.bids.push(req.body);
   await product.save();
@@ -76,7 +79,6 @@ exports.createBid = catchAsyncErrors(async (req, res, next) => {
     success: true,
   });
 });
-
 
 //Get all the bids on a product
 exports.getBid = catchAsyncErrors(async (req, res, next) => {
@@ -89,6 +91,19 @@ exports.getBid = catchAsyncErrors(async (req, res, next) => {
   });
 });
 
+//Accept Reject bid on a product
+exports.RejectBid = catchAsyncErrors(async (req, res, next) => {
+  const product = await Product.findById(req.params.id);
+   await product.updateOne(
+      { _id: req.params.id },
+      { $pull: { bids: { id: req.params.bidId } } }, 
+    );
+ await product.save()
+  res.status(200).json({
+    success: true,
+    product,
+  });
+});
 
 //add a comment by user
 exports.addComment = catchAsyncErrors(async (req, res, next) => {
@@ -100,7 +115,6 @@ exports.addComment = catchAsyncErrors(async (req, res, next) => {
     success: true,
   });
 });
-
 
 //Get all the comments on a product
 exports.getComment = catchAsyncErrors(async (req, res, next) => {
@@ -134,7 +148,6 @@ exports.deleteProduct = catchAsyncErrors(async (req, res, next) => {
     message: "Product Delete Successfully",
   });
 });
-
 
 // Update Product -- Admin
 
