@@ -16,6 +16,8 @@ export default function Bids() {
   const onRejectBid = (bidId) => {
     dispatch(rejectBid(id, bidId));
     console.log(bidId);
+    dispatch(getBid(id));
+
 }
   return (
     <div>

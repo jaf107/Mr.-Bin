@@ -93,17 +93,25 @@ exports.getBid = catchAsyncErrors(async (req, res, next) => {
 
 //Accept Reject bid on a product
 exports.RejectBid = catchAsyncErrors(async (req, res, next) => {
-  const product = await Product.findById(req.params.id);
-   await product.updateOne(
+  const product =  await Product.updateOne(
       { _id: req.params.id },
-      { $pull: { bids: { id: req.params.bidId } } }, 
+      { $pull: { bids: { _id: req.params.bidId } } }, 
     );
- await product.save()
   res.status(200).json({
     success: true,
-    product,
+    product
   });
 });
+
+// exports.AcceptBid = catchAsyncErrors(async (req, res, next) => {
+//   await Product.updateOne(
+//      { _id: req.params.id },
+//      { $pull: { bids: { id: req.params.bidId } } }, 
+//    );
+//  res.status(200).json({
+//    success: true,
+//  });
+// });
 
 //add a comment by user
 exports.addComment = catchAsyncErrors(async (req, res, next) => {
