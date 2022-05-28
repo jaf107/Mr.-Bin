@@ -1,6 +1,8 @@
 import React, { useEffect } from 'react'
+import { useAlert } from 'react-alert';
 import { useDispatch, useSelector } from 'react-redux';
-import { getProducts } from '../../../actions/productActions';
+import { Link } from 'react-router-dom';
+import { deleteProduct, getProducts } from '../../../actions/productActions';
 import { getAllUsers } from '../../../actions/userActions';
 
 const ProductList = () => {
@@ -14,12 +16,16 @@ const ProductList = () => {
         dispatch(getAllUsers());
     }, [dispatch]);
 
+    
+    const productList = products?.map((product, index) => (
+        <ProductDetails product={product} users={users} index={index}></ProductDetails>
+    ));
     return (
         <div>
             <div className='container'>
                 <h2>All Products</h2>
 
-                <table class="table"> 
+                <table class="table">
                     <thead>
                         <tr>
                             <th scope="col">#</th>
@@ -33,6 +39,9 @@ const ProductList = () => {
                         </tr>
                     </thead>
                     <tbody>
+                        {productList}
+
+                        {/* 
                         {products.map((product, index) => (
                             <tr>
                                 <td>{index + 1}</td>
@@ -43,10 +52,18 @@ const ProductList = () => {
 
                                 <td>{product.purchase_price} </td>
                                 <td>{product.created_at} </td>
-                                {/* <td><button className='btn btn-warning '> Edit </button> </td> */}
-                                <td><button className='btn btn-danger '> Delete </button></td>
+                                <td>
+                                    <button
+                                        className='btn btn-danger '
+                                        onClick={() => {
+                                            onDeleteProduct();
+                                        }}
+                                    >
+                                        Delete
+                                    </button>
+                                </td>
                             </tr>
-                        ))}
+                        ))} */}
                     </tbody>
                 </table>
             </div>
@@ -55,3 +72,49 @@ const ProductList = () => {
 }
 
 export default ProductList;
+
+function ProductDetails(props) {
+    const dispatch = useDispatch();
+    const alert = useAlert();
+    const onDeleteProduct = () => {
+        dispatch(deleteProduct(props.product._id));
+        alert.success("PRODUCT DELETED SUCCESSFULLY");
+    };
+    return (
+        <tr>
+            {
+                <>
+                    <td>{props.index + 1}</td>
+                    <td
+                        style={{
+                            textAlign: "center",
+                        }}
+                    >
+                        <Link
+                            to={`/product/${props.product._id}`}
+                            className=" text-decoration-none fw-bold"
+                        >
+                            {props.product.name}
+                        </Link>{" "}
+                    </td>
+                    <td>{props.users.find(o => o._id === props.product.user).name} </td>
+                    
+                    <td>{props.product.purchase_price} </td>
+                    {/* <td>{props.product.quantity} </td> */}
+                    <td>{props.product.created_at} </td>
+                    
+                    <td>
+                        <button
+                            className="btn btn-danger "
+                            onClick={() => {
+                                onDeleteProduct();
+                            }}
+                        >
+                            Delete
+                        </button>
+                    </td>
+                </>
+            }
+        </tr>
+    );
+}

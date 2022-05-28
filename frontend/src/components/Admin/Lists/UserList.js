@@ -1,24 +1,10 @@
 import React, { useEffect } from 'react'
+import { useAlert } from 'react-alert';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllUsers } from '../../../actions/userActions';
 
 const UserList = () => {
-    const users2 = [
-        {
-            name: "Jafar Mahin",
-            email: "jafarmahin107@gmail.com",
-            phone: "01717743519",
-            favorites: "1,2,3",
-            date: '12/06/1999'
-        }, {
-            name: "Jitesh Sureka",
-            email: "jiteshsureka@gmail.com",
-            phone: "01717123123",
-            favorites: "1,2,3",
-            date: '12/06/1999'
-        },
-    ];
-
+    
     const dispatch = useDispatch();
     const { users } = useSelector((state) => state.allUsers);
 
@@ -26,7 +12,10 @@ const UserList = () => {
         dispatch(getAllUsers());
     }, [dispatch]);
 
-    // console.log(users2);
+
+    const userList = users?.map((user, index) => (
+        <UserDetails user={user} index={index}></UserDetails>
+    ));
     return (
         <div>
             <div className='container'>
@@ -38,28 +27,14 @@ const UserList = () => {
                             <th scope="col">User Name</th>
                             <th scope="col">Email</th>
                             <th scope="col">Phone</th>
-                            {/* <th scope="col">Favorites</th> */}
                             <th scope="col">Created on</th>
 
                             <th scope="col">Delete</th>
                         </tr>
                     </thead>
                     <tbody>
-                        {users.map((user, index) => (
-                            <tr>
-                                <td>{index + 1}</td>
-                                <td>
-                                    {user.name}
-                                </td>
-                                <td>{user.email} </td>
-                                <td>{user.phone} </td>
-                                {/* <td>{user.favorites} </td> */}
-
-                                <td>{user.createdAt} </td>
-                                {/* <td><button className='btn btn-warning '> Edit </button> </td> */}
-                                <td><button className='btn btn-danger '> Delete </button></td>
-                            </tr>
-                        ))}
+                        {userList}
+                        
                     </tbody>
                 </table>
             </div>
@@ -67,4 +42,35 @@ const UserList = () => {
     )
 }
 
-export default UserList
+export default UserList;
+
+function UserDetails(props) {
+    const dispatch = useDispatch();
+    const alert = useAlert();
+    const onDeleteUser = () => {
+        // dispatch(deleteUser(props.user.user_id));
+        alert.success("User DELETED SUCCESSFULLY");
+        // dispatch(getUserProducts());
+    };
+
+    return (
+        <tr>
+            <td>{props.index + 1}</td>
+            <td>
+                {props.user.name}
+            </td>
+            <td>{props.user.email} </td>
+            <td>{props.user.phone} </td>
+            <td>{props.user.createdAt} </td>
+            <td>
+                <button
+                    className='btn btn-danger '
+                    onClick={() => {
+                        onDeleteUser();
+                      }}                >
+                    Delete
+                </button>
+            </td>
+        </tr>
+    )
+}

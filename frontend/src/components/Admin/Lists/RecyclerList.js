@@ -11,7 +11,6 @@ const RecyclerList = () => {
     dispatch(getRecyclers());
   }, [dispatch]);
 
-  console.log(recyclers);
 
   return (
     <div>
