@@ -32,6 +32,9 @@ import {
   UPDATE_PRODUCT_FAIL,
   UPDATE_PRODUCT_SUCCESS,
   UPDATE_PRODUCT_REQUEST,
+  REJECT_BID_FAIL,
+  REJECT_BID_REQUEST,
+  REJECT_BID_SUCCESS,
 } from "../constants/productConstants";
 
 export const productReducer = (state = { products: [] }, action) => {
@@ -159,6 +162,18 @@ export const bidReducer = (state = { bids : [] }, action) => {
           bids: action.payload,
         
         };
+        case REJECT_BID_FAIL:
+          return {
+            ...state,
+            loading: false,
+            error: action.payload,
+          };
+        case REJECT_BID_REQUEST:
+        case REJECT_BID_SUCCESS:
+          return {
+            ...state,
+            loading: false,          
+          };
     default:
       return state;
   }

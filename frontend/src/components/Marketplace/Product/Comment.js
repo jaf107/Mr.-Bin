@@ -14,7 +14,6 @@ function Comment(props) {
     dispatch(getComment(props.product_id));
   }, [dispatch]);
 
-  console.log(comments);
 
   const submitComment = (e) => {
     e.preventDefault();
@@ -22,12 +21,25 @@ function Comment(props) {
     myForm.set("user_id", user._id);
     myForm.set("comment_body", comment);
     dispatch(addComment(myForm, props.product_id));
+    alert.success("COMMENTED ON THE PRODUCT");
+    dispatch(getComment(props.product_id));
+    setComment("");
   };
   return (
     <div className=" row">
       <h3 className=" text-center">All Comments</h3>
 
       <div className="col-md-8">
+        {/* <div className="comment-card panel card">
+          <div className="panel-body">
+            <div className="bio-desk">
+              <h4 className="red">Jitesh Sureka</h4>
+              <p className="comment-text" style={{}}>- Very nice item. Would love to hear from you again</p>
+              <span class="label label-warning pull-right r-activity">09/05/2022</span>
+            </div>
+          </div>
+        </div> */}
+
         {comments?.map((comment) => (
           <div class="card p-3 bg-white">
             <div class="d-flex justify-content-between align-items-center">
@@ -36,9 +48,7 @@ function Comment(props) {
                   <h6 class="font-weight-bold text-primary">
                     {comment.user_name}
                   </h6>{" "}
-                  <small class="font-weight-bold">
-                    {comment.comment_body}
-                  </small>
+                  <small class="font-weight-bold">{comment.comment_body}</small>
                 </span>
               </div>
 

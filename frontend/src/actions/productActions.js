@@ -28,7 +28,10 @@ import {
   DELETE_PRODUCT_SUCCESS,
   UPDATE_PRODUCT_REQUEST,
   UPDATE_PRODUCT_SUCCESS,
-  UPDATE_PRODUCT_FAIL
+  UPDATE_PRODUCT_FAIL,
+  REJECT_BID_FAIL,
+  REJECT_BID_REQUEST,
+  REJECT_BID_SUCCESS
 } from "../constants/productConstants";
 const axios = require("axios");
 axios.defaults.withCredentials = true;
@@ -136,6 +139,25 @@ export const getBid = (id) => async (dispatch) => {
   }
 };
 
+
+//Accept Reject Bid
+export const rejectBid = (id, bidId) => async (dispatch) => {
+  try {
+    dispatch({ type: REJECT_BID_REQUEST });
+    const config = { headers: { "Content-Type": "application/json" } };
+
+    const { data } = await axios.delete(
+      `http://localhost:5000/api/v1/product/${id}/bid/${bidId}`,
+      config
+    );
+    dispatch({ type: REJECT_BID_SUCCESS, payload: data });
+  } catch (error) {
+    dispatch({ type: REJECT_BID_FAIL, payload: error.response.data.message });
+  }
+};
+
+
+
 export const addComment = (comment, id) => async (dispatch) => {
   try {
     dispatch({ type: ADD_COMMENT_REQUEST });
@@ -146,7 +168,6 @@ export const addComment = (comment, id) => async (dispatch) => {
       comment,
       config
     );
-    console.log(data);
     dispatch({ type: ADD_COMMENT_SUCCESS });
   } catch (error) {
     dispatch({ type: ADD_COMMENT_FAIL, payload: error.response.data.message });
@@ -162,7 +183,6 @@ export const getComment = (id) => async (dispatch) => {
       `http://localhost:5000/api/v1/product/${id}/comment`,
       config
     );
-    console.log(data);
     dispatch({ type: GET_COMMENT_SUCCESS, payload: data.comment });
   } catch (error) {
     dispatch({ type: GET_COMMENT_FAIL, payload: error.response.data.message });

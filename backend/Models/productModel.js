@@ -62,6 +62,13 @@ const productSchema = new mongoose.Schema({
         type: Date,
         default: Date.now,
       },
+      name: {
+        type: String,
+        trim: true,
+      },
+      address: {
+        type: String,
+      },
       amount: {
         type: Number,
         // required: [true, "Please enter the amount"],
@@ -74,8 +81,8 @@ const productSchema = new mongoose.Schema({
   ],
   comments: [
     {
-      user_name:{
-        type: String
+      user_name: {
+        type: String,
       },
       user_id: {
         type: mongoose.Schema.ObjectId,
