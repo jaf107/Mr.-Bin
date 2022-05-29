@@ -16,7 +16,7 @@ const ProductList = () => {
         dispatch(getAllUsers());
     }, [dispatch]);
 
-    
+
     const productList = products?.map((product, index) => (
         <ProductDetails product={product} users={users} index={index}></ProductDetails>
     ));
@@ -90,19 +90,20 @@ function ProductDetails(props) {
                             textAlign: "center",
                         }}
                     >
+
                         <Link
                             to={`/product/${props.product._id}`}
                             className=" text-decoration-none fw-bold"
                         >
                             {props.product.name}
+
                         </Link>{" "}
                     </td>
                     <td>{props.users.find(o => o._id === props.product.user).name} </td>
-                    
+
                     <td>{props.product.purchase_price} </td>
-                    {/* <td>{props.product.quantity} </td> */}
                     <td>{props.product.created_at} </td>
-                    
+
                     <td>
                         <button
                             className="btn btn-danger "

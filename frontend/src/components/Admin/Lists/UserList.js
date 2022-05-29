@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { useAlert } from 'react-alert';
 import { useDispatch, useSelector } from 'react-redux';
-import { getAllUsers } from '../../../actions/userActions';
+import { deleteUser, getAllUsers } from '../../../actions/userActions';
 
 const UserList = () => {
     
@@ -48,9 +48,8 @@ function UserDetails(props) {
     const dispatch = useDispatch();
     const alert = useAlert();
     const onDeleteUser = () => {
-        // dispatch(deleteUser(props.user.user_id));
+        dispatch(deleteUser(props.user._id));
         alert.success("User DELETED SUCCESSFULLY");
-        // dispatch(getUserProducts());
     };
 
     return (
