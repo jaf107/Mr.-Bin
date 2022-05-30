@@ -5,8 +5,6 @@ import { useSelector, useDispatch } from "react-redux";
 import { clearErrors } from "../../actions/userActions";
 import { logout } from "../../actions/userActions";
 import { useAlert } from "react-alert";
-import Header from '../Header/Header';
-import Footer from '../Footer/Footer';
 import UserList from './Lists/UserList';
 import ProductList from './Lists/ProductList';
 import RecyclerList from './Lists/RecyclerList';
@@ -18,7 +16,6 @@ function Dashboard() {
 
   const user = {
     name: "Jitesh"
-
   }
 
   const dispatch = useDispatch();
@@ -41,39 +38,8 @@ function Dashboard() {
 
 
 
-  const allToggleOff = () => {
-    var ul = document.getElementById('userlist');
-    ul.style.display = "none";
-    var pl = document.getElementById('productlist');
-    pl.style.display = "none"
-    // document.querySelector('productlist').style.display = 'none';
-  }
-
-  const userToggleOn = () => {
-    var ul = document.getElementById('userlist');
-    ul.style.display = "block";
-    // document.querySelector('userlist').style.display = 'block';
-  }
-
-  const userClicked = (e) => {
-    console.log("User list clicked")
-    allToggleOff();
-    userToggleOn();
-  }
-
-  const productToggleOn = () => {
-    var pl = document.getElementById('productlist');
-    pl.style.display = "block";
-  }
-
-  const productClicked = (e) => {
-    allToggleOff();
-    productToggleOn();
-  }
-
   return (
     <div className='admin-dash'>
-      {/* <Header/> */}
 
       <div class="container bootstrap snippets bootdey">
 
@@ -89,7 +55,7 @@ function Dashboard() {
               </div>
 
               <ul
-                class="nav nav-pills nav-stacked flex-column"
+                className="nav nav-pills nav-stacked flex-column"
                 id="v-pills-tab"
                 role="tablist"
                 aria-orientation="vertical"
@@ -222,7 +188,7 @@ function Dashboard() {
             </div>
 
             <div
-              class="tab-pane fade show active "
+              className="tab-pane fade show active "
               id="v-pills-user"
               role="tabpanel"
               aria-labelledby="v-pills-user-tab"
@@ -231,7 +197,7 @@ function Dashboard() {
 
             </div>
             <div
-              class="tab-pane fade "
+              className="tab-pane fade "
               id="v-pills-products"
               role="tabpanel"
               aria-labelledby="v-pills-products-tab"
@@ -240,7 +206,7 @@ function Dashboard() {
 
             </div>
             <div
-              class="tab-pane fade "
+              className="tab-pane fade "
               id="v-pills-recycler"
               role="tabpanel"
               aria-labelledby="v-pills-recycler-tab"
@@ -248,7 +214,7 @@ function Dashboard() {
               <RecyclerList />
             </div>
             <div
-              class="tab-pane fade "
+              className="tab-pane fade "
               id="v-pills-organization"
               role="tabpanel"
               aria-labelledby="v-pills-organization-tab"
@@ -256,7 +222,7 @@ function Dashboard() {
               <OrganizationList />
             </div>
             <div
-              class="tab-pane fade"
+              className="tab-pane fade"
               id="v-pills-order-recyclers"
               role="tabpanel"
               aria-labelledby="v-pills-order-recyclers-tab"
@@ -265,7 +231,7 @@ function Dashboard() {
             </div>
             
             <div
-              class="tab-pane fade"
+              className="tab-pane fade"
               id="v-pills-order-donation"
               role="tabpanel"
               aria-labelledby="v-pills-order-donation-tab"
