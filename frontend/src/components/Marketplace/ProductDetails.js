@@ -22,7 +22,7 @@ const Product = () => {
   const [isSeller, setisSeller] = useState(false);
   useEffect(() => {
     dispatch(getSingleProduct(id));
-    if (product) {
+    if (product && user) {
       if (product.user === user._id) {
         dispatch(getUserDetails(product.buyer));
         console.log("Hello")
@@ -92,7 +92,7 @@ const Product = () => {
                     </div>
                   </div>
                 </div>
-                {product.buyer && product.buyer === user._id && (
+                {product.buyer && user && product.buyer === user._id && (
                   <div>
                     <div class="card text-center">
                       <h6 class="card-header">Seller Information</h6>
@@ -108,7 +108,7 @@ const Product = () => {
                     </div>
                   </div>
                 )}
-                {product.buyer && product.user === user._id && (
+                {product.buyer && user  && product.user === user._id && (
                   <div>
                     <div class="card text-center">
                       <h6 class="card-header">Buyer Information</h6>
@@ -124,7 +124,7 @@ const Product = () => {
                     </div>
                   </div>
                 )}
-                {!product.buyer && product.user === user._id && (
+                {!product.buyer && user && product.user === user._id && (
                   <Bids product_id={product._id}></Bids>
                 )}
                 <Comment product_id={product._id}></Comment>

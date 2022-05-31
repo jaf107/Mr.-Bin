@@ -47,7 +47,7 @@ const Marketplace = () => {
             <div className="row">
               {products?.map((product) => (
                <>
-                {!product.buyer &&  <div className="separate-card col-lg-3 col-sm-6 col-11">
+                {!product.buyer && (product.product_type === "marketplace") && <div className="separate-card col-lg-3 col-sm-6 col-11">
                   <div className="card">
                     <Link to={`/product/${product._id}`}>
                       <img
