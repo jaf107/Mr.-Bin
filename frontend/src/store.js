@@ -12,6 +12,8 @@ import {
 
 import {
   FavoriteReducer,
+  NotificationReducer,
+  userDetailsReducer,
   //   allUsersReducer,
   //   forgotPasswordReducer,
   //   profileReducer,
@@ -29,7 +31,7 @@ const reducer = combineReducers({
   //   productDetails: productDetailsReducer,
   user: userReducer,
   favorites:FavoriteReducer,
-
+  notifications: NotificationReducer,
   //   profile: profileReducer,
   //   forgotPassword: forgotPasswordReducer,
   //   cart: cartReducer,
@@ -47,7 +49,7 @@ const reducer = combineReducers({
   //   allOrders: allOrdersReducer,
   //   order: orderReducer,
   //   allUsers: allUsersReducer,
-  //   userDetails: userDetailsReducer,
+     userDetails: userDetailsReducer,
   //   productReviews: productReviewsReducer,
   //   review: reviewReducer,
   recyclers: recyclerReducer,

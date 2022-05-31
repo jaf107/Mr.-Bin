@@ -1,7 +1,8 @@
 import { useDispatch, useSelector } from "react-redux";
 import React, { useEffect, useState } from "react";
-import { getBid, rejectBid } from "../../../actions/productActions";
+import { acceptBid, getBid, getProducts, getSingleProduct, rejectBid } from "../../../actions/productActions";
 import { useNavigate, useParams } from "react-router-dom";
+import { sendNotification} from "../../../actions/userActions"
 
 export default function Bids() {
   const dispatch = useDispatch();
@@ -10,14 +11,22 @@ export default function Bids() {
   useEffect(() => {
     dispatch(getBid(id));
   }, [dispatch, id]);
-  const onAcceptBid = (bidId) => {
-    dispatch(rejectBid(id, bidId))
+  const onAcceptBid = (buyer_id) => {
+    dispatch(acceptBid(id, buyer_id));
+    dispatch(getSingleProduct(id));
+    const myForm = new FormData();
+    myForm.set("description", "Congratulations! Seller has accepted your bid for the product");
+    myForm.set("link", "/product/"+id);
+    dispatch(sendNotification(myForm, buyer_id))
   }
-  const onRejectBid = (bidId) => {
+  const onRejectBid = (bidId, buyer_id) => {
     dispatch(rejectBid(id, bidId));
     console.log(bidId);
     dispatch(getBid(id));
-
+    const myForm = new FormData();
+    myForm.set("description", "Seller has rejected your bid for the product");
+    myForm.set("link", "/product/"+id);
+    dispatch(sendNotification(myForm, buyer_id))
 }
   return (
     <div>
@@ -46,10 +55,10 @@ export default function Bids() {
                 role="group"
                 aria-label="Basic mixed styles example"
               >
-                <button type="button" class="btn btn-success" onClick={() => {onAcceptBid(bid._id)}}>
+                <button type="button" class="btn btn-success" onClick={() => {onAcceptBid(bid.buyer_id)}}>
                   <i class="fa-solid fa-check"></i>
                 </button>
-                <button type="button" class="btn btn-danger" onClick={() =>{onRejectBid(bid._id)}}>
+                <button type="button" class="btn btn-danger" onClick={() =>{onRejectBid(bid._id, bid.buyer_id)}}>
                   <i class="fa-solid fa-xmark"></i>
                 </button>
               </div>

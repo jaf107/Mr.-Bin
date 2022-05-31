@@ -36,6 +36,9 @@ const productSchema = new mongoose.Schema({
     ref: "User",
     required: true,
   },
+  buyer: {
+    type: mongoose.Schema.ObjectId,
+  },
   product_type: {
     type: String,
     default: "marketplace",

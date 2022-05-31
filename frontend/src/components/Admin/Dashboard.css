@@ -802,10 +802,6 @@
     padding-bottom: 0.625rem;
     min-height: 53px;
     margin-bottom: 20px; }
-    .navbar a {
-      vertical-align: middle; }
-      .navbar a:not(.btn):not(.dropdown-item) {
-        color: #FFFFFF; }
       .navbar a.dropdown-item {
         color: #66615B; }
     .navbar.bg-white .input-group .form-control,
@@ -983,9 +979,7 @@
       color: #51bcda; }
     .navbar.bg-white .logo-container {
       border: 1px solid #66615B; }
-    .navbar .navbar-collapse .nav-item a {
-      font-size: 14px; }
-  
+
   .bg-default {
     background-color: #66615B !important; }
   

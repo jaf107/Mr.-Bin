@@ -103,15 +103,15 @@ exports.RejectBid = catchAsyncErrors(async (req, res, next) => {
   });
 });
 
-// exports.AcceptBid = catchAsyncErrors(async (req, res, next) => {
-//   await Product.updateOne(
-//      { _id: req.params.id },
-//      { $pull: { bids: { id: req.params.bidId } } }, 
-//    );
-//  res.status(200).json({
-//    success: true,
-//  });
-// });
+exports.AcceptBid = catchAsyncErrors(async (req, res, next) => {
+  await Product.updateOne(
+     { _id: req.params.id },
+     {  $set: { buyer: req.params.buyerId } }, 
+   );
+ res.status(200).json({
+   success: true,
+ });
+});
 
 //add a comment by user
 exports.addComment = catchAsyncErrors(async (req, res, next) => {

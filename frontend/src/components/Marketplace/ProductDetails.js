@@ -10,25 +10,35 @@ import BidButton from "./Product/BidButton";
 import FavoriteButton from "./Product/FavoriteButton";
 import Comment from "./Product/Comment";
 import Bids from "./Product/Bids";
+import { getUserDetails } from "../../actions/userActions";
+import BuyButton from "./Product/BuyButton";
 const Product = () => {
   const dispatch = useDispatch();
   const { product } = useSelector((state) => state.product);
+  const { userDetail } = useSelector((state) => state.userDetails);
+
   const { user } = useSelector((state) => state.user);
   const { id } = useParams();
-  const [isSeller, setisSeller] = useState(false)
+  const [isSeller, setisSeller] = useState(false);
   useEffect(() => {
     dispatch(getSingleProduct(id));
+    if (product) {
+      if (product.user === user._id) {
+        dispatch(getUserDetails(product.buyer));
+        console.log("Hello")
+      }
+      if (product.buyer === user._id) {
+        dispatch(getUserDetails(product.user));
+        console.log(product.user);
+      }
+    }
   }, [dispatch, id]);
 
-  const navigate = useNavigate();
-
-  const [comment, setComment] = useState("");
   const [bidAmount, setBidAmount] = useState(0);
 
   const onBidAmountChange = (e) => {
     setBidAmount(e.target.value);
   };
-
 
   const submitBid = (e) => {
     console.log(bidAmount);
@@ -59,7 +69,7 @@ const Product = () => {
                   <div className="details col-md-6">
                     <h3 className="product-title">{product.name}</h3>
                     <h5 className="price">
-                       price:
+                      price:
                       <span> </span>
                       <span>Tk. {product.purchase_price}</span>
                     </h5>
@@ -72,21 +82,51 @@ const Product = () => {
                       Date of purchase -{" "}
                       <strong>{product.date_of_purchase} </strong>
                     </p>
-                                
+
                     <div className="action">
-                      <button
-                        className="flex-fill border-0 btn btn-success"
-                        type="button"
-                      >
-                        Buy
-                      </button>
+                      <BuyButton product={product}></BuyButton>
+
                       <FavoriteButton product_id={product._id}></FavoriteButton>
 
                       <BidButton product_id={product._id}></BidButton>
                     </div>
                   </div>
                 </div>
-                {(product.user === user._id) &&  <Bids product_id = {product._id}></Bids>}
+                {product.buyer && product.buyer === user._id && (
+                  <div>
+                    <div class="card text-center">
+                      <h6 class="card-header">Seller Information</h6>
+                      <div class="card-body">
+                        <p class="card-title">Name : {userDetail.name}</p>
+                        <p class="card-title">Address : {userDetail.address}</p>
+                        <p class="card-title">Email : {userDetail.email}</p>
+
+                        <a href="#" class="btn btn-primary">
+                          Chat Now
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                )}
+                {product.buyer && product.user === user._id && (
+                  <div>
+                    <div class="card text-center">
+                      <h6 class="card-header">Buyer Information</h6>
+                      <div class="card-body">
+                        <p class="card-title">Name : {userDetail.name}</p>
+                        <p class="card-title">Address : {userDetail.address}</p>
+                        <p class="card-title">Email : {userDetail.email}</p>
+
+                        <a href="#" class="btn btn-primary">
+                          Chat Now
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                )}
+                {!product.buyer && product.user === user._id && (
+                  <Bids product_id={product._id}></Bids>
+                )}
                 <Comment product_id={product._id}></Comment>
               </div>
             </div>

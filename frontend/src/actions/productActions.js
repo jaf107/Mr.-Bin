@@ -31,7 +31,10 @@ import {
   UPDATE_PRODUCT_FAIL,
   REJECT_BID_FAIL,
   REJECT_BID_REQUEST,
-  REJECT_BID_SUCCESS
+  REJECT_BID_SUCCESS,
+  ACCEPT_BID_REQUEST,
+  ACCEPT_BID_SUCCESS,
+  ACCEPT_BID_FAIL
 } from "../constants/productConstants";
 const axios = require("axios");
 axios.defaults.withCredentials = true;
@@ -156,6 +159,20 @@ export const rejectBid = (id, bidId) => async (dispatch) => {
   }
 };
 
+export const acceptBid = (id, buyerId) => async (dispatch) => {
+  try {
+    dispatch({ type: ACCEPT_BID_REQUEST });
+    const config = { headers: { "Content-Type": "application/json" } };
+
+    const { data } = await axios.put(
+      `http://localhost:5000/api/v1/product/${id}/${buyerId}`,
+      config
+    );
+    dispatch({ type: ACCEPT_BID_SUCCESS, payload: data });
+  } catch (error) {
+    dispatch({ type: ACCEPT_BID_FAIL, payload: error.response.data.message });
+  }
+};
 
 
 export const addComment = (comment, id) => async (dispatch) => {

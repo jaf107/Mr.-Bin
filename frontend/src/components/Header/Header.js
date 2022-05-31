@@ -5,7 +5,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { clearErrors } from "../../actions/userActions";
 import { logout } from "../../actions/userActions";
 import { useAlert } from "react-alert";
-
+import { Notification } from "./Notifications";
 function Header() {
   const dispatch = useDispatch();
   const alert = useAlert();
@@ -25,7 +25,7 @@ function Header() {
   }
 
   return (
-    <div className="container header">
+    <div className="container header z-index-n1">
       <nav class="navbar navbar-expand-lg">
         <a class="navbar-brand" href="#">
           <img src={require("../../assets/logo.png")} alt="logo" width={70} />
@@ -106,9 +106,7 @@ function Header() {
                 </Link>
               </li>
               <li class="nav-item p-2 pt-3">
-                <Link to="/" className=" nav-link">
-                  <i className="fa-solid fa-bell fs-4"></i>
-                </Link>
+                  <Notification></Notification>
               </li>
               <li class="nav-item p-2 pt-3">
                 <Link to="/account" className=" nav-link">

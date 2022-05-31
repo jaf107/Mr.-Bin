@@ -1,0 +1,9 @@
+.notification .card{
+    padding: 10px;
+    background-color: #20C1BD;
+    color: white;
+}
+
+ body{
+	overflow: scroll !important;
+}
