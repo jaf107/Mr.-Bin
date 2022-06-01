@@ -35,6 +35,9 @@ function Dashboard() {
     alert.success("Logout Successfully");
     navigate('/');
   }
+  function toHome() {
+    navigate('/');
+  }
 
 
 

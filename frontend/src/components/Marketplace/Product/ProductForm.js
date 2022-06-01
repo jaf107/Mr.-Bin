@@ -22,6 +22,7 @@ const ProductForm = () => {
     description: "",
     date_of_purchase: "",
     purchase_price: "",
+    product_type:"",
   });
 
   const {
@@ -32,6 +33,7 @@ const ProductForm = () => {
     description,
     date_of_purchase,
     purchase_price,
+    product_type
   } = product;
 
   const [images, setImages] = useState([]);
@@ -47,6 +49,8 @@ const ProductForm = () => {
     productForm.set("description", description);
     productForm.set("date_of_purchase", date_of_purchase);
     productForm.set("purchase_price", purchase_price);
+    productForm.set("product_type", product_type);
+
     images.forEach((image) => {
       productForm.append("images", image);
     });
@@ -60,6 +64,7 @@ const ProductForm = () => {
       description: "",
       date_of_purchase: "",
       purchase_price: "",
+      product_type:"",
     })
     setImages([]);
     setImagesPreview([]);
@@ -119,6 +124,23 @@ const ProductForm = () => {
               <option>Plastic</option>
               <option>Glassware</option>
               <option>Electronics</option>
+            </select>
+          </div>
+          <div className="form-group mb-4">
+            <select
+              id="product_type"
+              name="product_type"
+              className="form-control"
+              value={product_type}
+              onChange={productDataChange}
+              required
+            >
+              <option value="" disabled selected>
+                Select Product Type
+              </option>
+              <option>Marketplace</option>
+              <option>Recycle</option>
+              <option>Donation</option>
             </select>
           </div>
 

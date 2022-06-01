@@ -14,16 +14,17 @@ function Comment(props) {
     dispatch(getComment(props.product_id));
   }, [dispatch]);
 
-
   const submitComment = (e) => {
     e.preventDefault();
-    const myForm = new FormData();
-    myForm.set("user_id", user._id);
-    myForm.set("comment_body", comment);
-    dispatch(addComment(myForm, props.product_id));
-    alert.success("COMMENTED ON THE PRODUCT");
-    dispatch(getComment(props.product_id));
-    setComment("");
+    if (comment !== "") {
+      const myForm = new FormData();
+      myForm.set("user_id", user._id);
+      myForm.set("comment_body", comment);
+      dispatch(addComment(myForm, props.product_id));
+      alert.success("COMMENTED ON THE PRODUCT");
+      dispatch(getComment(props.product_id));
+      setComment("");
+    } else alert.error("PLEASE ENTER A COMMENT");
   };
   return (
     <div className=" row">

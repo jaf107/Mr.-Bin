@@ -11,10 +11,10 @@ const {
   addFavoriteProduct,
   getFavoriteProduct,
   deleteFavorite,
-  getAllUser
+  addNotification,
+  getSpecificUserDetails,
 } = require("../controllers/userController");
 const { isAuthenticatedUser } = require("../middleware/auth");
-
 
 const router = express.Router();
 
@@ -23,9 +23,6 @@ router.route("/register").post(registerUser);
 router.route("/login").post(loginUser);
 
 router.route("/logout").get(logout);
-
-router.route("/admin/users").get(isAuthenticatedUser ,getAllUser);
-
 
 router.route("/me").get(isAuthenticatedUser, getUserDetails);
 
@@ -43,5 +40,18 @@ router.route("/me/favorites/:id").delete(isAuthenticatedUser, deleteFavorite);
 
 router.route("/me/favorites").get(isAuthenticatedUser, getFavoriteProduct);
 
+router.route("/admin/user/:id").get(isAuthenticatedUser, getSpecificUserDetails);
+
+router.route("/notification/:id").post(isAuthenticatedUser, addNotification);
+
+// router
+//   .route("/admin/users")
+//   .get(isAuthenticatedUser, authorizeRoles("admin"), getAllUser);
+
+// router
+//   .route("/admin/user/:id")
+//   .get(isAuthenticatedUser, authorizeRoles("admin"), getSingleUser)
+//   .put(isAuthenticatedUser, authorizeRoles("admin"), updateUserRole)
+//   .delete(isAuthenticatedUser, authorizeRoles("admin"), deleteUser);
 
 module.exports = router;

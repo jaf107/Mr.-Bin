@@ -44,6 +44,9 @@ import {
   DELETE_FAVORITE_FAIL,
   DELETE_FAVORITE_REQUEST,
   DELETE_FAVORITE_SUCCESS,
+  SEND_NOTIFICATION_REQUEST,
+  SEND_NOTIFICATION_SUCCESS,
+  SEND_NOTIFICATION_FAIL,
 } from "../constants/userConstants";
 import axios from "axios";
 axios.defaults.withCredentials = true;
@@ -199,7 +202,9 @@ export const resetPassword = (token, passwords) => async (dispatch) => {
 export const getAllUsers = () => async (dispatch) => {
   try {
     dispatch({ type: ALL_USERS_REQUEST });
-    const { data } = await axios.get(`http://localhost:5000/api/v1/admin/users`);
+    const { data } = await axios.get(
+      `http://localhost:5000/api/v1/admin/users`
+    );
 
     dispatch({ type: ALL_USERS_SUCCESS, payload: data.users });
     // console.log(data.users);
@@ -212,7 +217,9 @@ export const getAllUsers = () => async (dispatch) => {
 export const getUserDetails = (id) => async (dispatch) => {
   try {
     dispatch({ type: USER_DETAILS_REQUEST });
-    const { data } = await axios.get(`/api/v1/admin/user/${id}`);
+    const { data } = await axios.get(
+      `http://localhost:5000/api/v1/admin/user/${id}`
+    );
 
     dispatch({ type: USER_DETAILS_SUCCESS, payload: data.user });
   } catch (error) {
@@ -301,12 +308,31 @@ export const deleteFavorite = (id) => async (dispatch) => {
   try {
     dispatch({ type: DELETE_FAVORITE_REQUEST });
 
-    const { data } = await axios.delete(`http://localhost:5000/api/v1/me/favorites/${id}`);
+    const { data } = await axios.delete(
+      `http://localhost:5000/api/v1/me/favorites/${id}`
+    );
     dispatch({ type: DELETE_FAVORITE_SUCCESS });
   } catch (error) {
     dispatch({
       type: DELETE_FAVORITE_FAIL,
       payload: error.response.data.message,
     });
+  }
+};
+
+//Send Notificaiton to buyers
+export const sendNotification = (info, id) => async (dispatch) => {
+  try {
+    dispatch({ type: SEND_NOTIFICATION_REQUEST });
+    const config = { headers: { "Content-Type": "application/json" } };
+
+    const { data } = await axios.post(
+      `http://localhost:5000/api/v1/notification/${id}`,
+      info,
+      config
+    );
+    dispatch({ type: SEND_NOTIFICATION_SUCCESS , payload: data.notification });
+  } catch (error) {
+    dispatch({ type: SEND_NOTIFICATION_FAIL, payload: error.response.data.message });
   }
 };

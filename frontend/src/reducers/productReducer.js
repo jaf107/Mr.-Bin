@@ -35,11 +35,13 @@ import {
   REJECT_BID_FAIL,
   REJECT_BID_REQUEST,
   REJECT_BID_SUCCESS,
+  ACCEPT_BID_FAIL,
+  ACCEPT_BID_REQUEST,
+  ACCEPT_BID_SUCCESS,
 } from "../constants/productConstants";
 
 export const productReducer = (state = { products: [] }, action) => {
   switch (action.type) {
-    
     case GET_PRODUCT_FAIL:
       return {
         ...state,
@@ -69,7 +71,7 @@ export const userProductReducer = (state = { userProducts: [] }, action) => {
         ...state,
         loading: false,
         error: action.payload,
-        userProducts: []
+        userProducts: [],
       };
     case GET_USER_PRODUCT_REQUEST:
       return {
@@ -81,7 +83,6 @@ export const userProductReducer = (state = { userProducts: [] }, action) => {
         ...state,
         loading: false,
         userProducts: action.payload,
-      
       };
     default:
       return state;
@@ -111,8 +112,7 @@ export const newProductReducer = (state = {}, action) => {
   }
 };
 
-
-export const singleProductReducer = (state = { product : null }, action) => {
+export const singleProductReducer = (state = { product: null }, action) => {
   switch (action.type) {
     case GET_SINGLE_PRODUCT_FAIL:
       return {
@@ -126,14 +126,13 @@ export const singleProductReducer = (state = { product : null }, action) => {
         ...state,
         loading: false,
         product: action.payload,
-      
       };
     default:
       return state;
   }
 };
 
-export const bidReducer = (state = { bids : [] }, action) => {
+export const bidReducer = (state = { bids: [] }, action) => {
   switch (action.type) {
     case CREATE_BID_FAIL:
       return {
@@ -146,40 +145,50 @@ export const bidReducer = (state = { bids : [] }, action) => {
       return {
         ...state,
         loading: false,
-      
       };
-      case GET_BID_FAIL:
-        return {
-          ...state,
-          loading: false,
-          error: action.payload,
-        };
-      case GET_BID_REQUEST:
-      case GET_BID_SUCCESS:
-        return {
-          ...state,
-          loading: false,
-          bids: action.payload,
-        
-        };
-        case REJECT_BID_FAIL:
-          return {
-            ...state,
-            loading: false,
-            error: action.payload,
-          };
-        case REJECT_BID_REQUEST:
-        case REJECT_BID_SUCCESS:
-          return {
-            ...state,
-            loading: false,          
-          };
+    case GET_BID_FAIL:
+      return {
+        ...state,
+        loading: false,
+        error: action.payload,
+      };
+    case GET_BID_REQUEST:
+    case GET_BID_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        bids: action.payload,
+      };
+    case REJECT_BID_FAIL:
+      return {
+        ...state,
+        loading: false,
+        error: action.payload,
+      };
+    case REJECT_BID_REQUEST:
+    case REJECT_BID_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+      };
+    case ACCEPT_BID_FAIL:
+      return {
+        ...state,
+        loading: false,
+        error: action.payload,
+      };
+    case ACCEPT_BID_REQUEST:
+    case ACCEPT_BID_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+      };
     default:
       return state;
   }
 };
 
-export const commentReducer = (state = { comments : [] }, action) => {
+export const commentReducer = (state = { comments: [] }, action) => {
   switch (action.type) {
     case ADD_COMMENT_FAIL:
       return {
@@ -192,27 +201,26 @@ export const commentReducer = (state = { comments : [] }, action) => {
       return {
         ...state,
         loading: false,
-        error: null
+        error: null,
       };
-      case GET_COMMENT_FAIL:
-        return {
-          ...state,
-          loading: false,
-          error: action.payload,
-        };
-      case GET_COMMENT_REQUEST:
-        return{
-          ...state,
-          comments: [],
-        }
-      case GET_COMMENT_SUCCESS:
-        return {
-          ...state,
-          loading: false,
-          comments: action.payload,
-          error: null
-        
-        };
+    case GET_COMMENT_FAIL:
+      return {
+        ...state,
+        loading: false,
+        error: action.payload,
+      };
+    case GET_COMMENT_REQUEST:
+      return {
+        ...state,
+        comments: [],
+      };
+    case GET_COMMENT_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        comments: action.payload,
+        error: null,
+      };
     default:
       return state;
   }

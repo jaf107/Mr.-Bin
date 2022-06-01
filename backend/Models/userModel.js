@@ -45,6 +45,16 @@ const userSchema = new mongoose.Schema({
       }
     }
   ],
+  notifications: [
+    {
+      description :{
+        type: String
+      },
+      link :{
+        type: String
+      }
+    }
+  ],
   avatar: {
     public_id: {
       type: String,

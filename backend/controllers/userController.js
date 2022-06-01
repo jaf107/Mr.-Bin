@@ -50,7 +50,6 @@ exports.loginUser = catchAsyncErrors(async (req, res, next) => {
   if (!isPasswordMatched) {
     return next(new ErrorHander("Invalid email or password", 401));
   }
-  console.log(user);
   sendToken(user, 200, res);
 });
 
@@ -145,6 +144,17 @@ exports.resetPassword = catchAsyncErrors(async (req, res, next) => {
 // Get User Detail
 exports.getUserDetails = catchAsyncErrors(async (req, res, next) => {
   const user = await User.findById(req.user.id);
+
+  res.status(200).json({
+    success: true,
+    user,
+  });
+});
+
+
+// Get User Detail
+exports.getSpecificUserDetails = catchAsyncErrors(async (req, res, next) => {
+  const user = await User.findById(req.params.id);
 
   res.status(200).json({
     success: true,
@@ -253,6 +263,25 @@ exports.deleteFavorite = catchAsyncErrors(async (req, res, next) => {
     success: true,
   });
 });
+
+
+//add notification 
+
+exports.addNotification = catchAsyncErrors(async (req, res, next) => {
+  const user = await User.findById(req.params.id);
+  user.notifications.push(req.body);
+   user.save();
+   const notification = user.notifications;
+  res.status(200).json({
+    success: true,
+    notification
+  });
+});
+
+
+// // Get all users(admin)
+// exports.getAllUser = catchAsyncErrors(async (req, res, next) => {
+//   const users = await User.find();
 
 // Get all users(admin)
 exports.getAllUser = catchAsyncErrors(async (req, res, next) => {

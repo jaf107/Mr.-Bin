@@ -2,16 +2,6 @@ const catchAsyncErrors = require("../middleware/catchAsyncErrors");
 const Recycler = require("../models/recyclerModel.js");
 const cloudinary = require("cloudinary");
 
-// create an array of documents to insert
-const recyclers = [
-    { name: "Abdur Rahman", company: "Denton Plastics", location: "204, Nazimuddin Road, Dhaka" , phone :"01945004500"},
-    { name: "Abdus Selim", company: "Selim Recycling", location: "201, Chawkbazar Road, Dhaka" , phone :"01745104510"},
-    { name: "Abed Hossain", company: "Rematter", location: "13, New Elephant Road, Dhaka" , phone :"01945004500"},
-    { name: "Hamid Khan", company: " Hamid Electronics", location: "204, Jashim Uddin Road, North Komolapur, Dhaka" , phone :"01945004500"},
-    { name: "Abdur Rahman", company: "Denton Plastics", location: "204, Nazimuddin Road, Dhaka" , phone :"01945004500"},
- 
-
-  ];
 // Create a recycler
 exports.createRecycler = catchAsyncErrors(async (req, res, next) => {
 

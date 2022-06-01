@@ -24,9 +24,10 @@ import EditAccount from "./components/User/EditAccount";
 import UserList from "./components/Admin/Lists/UserList";
 import ProductList from "./components/Admin/Lists/ProductList";
 import EditProduct from "./components/Marketplace/Product/EditProduct";
+import Chat from "./components/Chat";
+import Home from "./components/Home"
 // import EnhancedTable from "./components/Marketplace/UserProduct/EnhancedTable";
 // import UpdateProfile from "./components/User/UpdateProfile";
-
 
 function App() {
   useEffect(() => {
@@ -39,6 +40,9 @@ function App() {
         <Routes>
           <Route path="/" exact element={<HomePage />}></Route>
           <Route path="/login" exact element={<Login />}></Route>
+          <Route path="/chat" exact element={<Chat />}></Route>
+          <Route path="/home" exact element={<Home />}></Route>
+
           <Route path="/register" element={<Register />}></Route>
           <Route path="/profile/edit" element={<EditAccount />}></Route>
           <Route path="/donate" element={<Donate />}></Route>

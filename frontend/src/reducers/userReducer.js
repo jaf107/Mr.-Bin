@@ -46,6 +46,9 @@ import {
   GET_FAVORITE_REQUEST,
   GET_FAVORITE_SUCCESS,
   DELETE_FAVORITE_SUCCESS,
+  SEND_NOTIFICATION_FAIL,
+  SEND_NOTIFICATION_REQUEST,
+  SEND_NOTIFICATION_SUCCESS,
 } from "../constants/userConstants";
 // import Cookies from 'js-cookie';
 
@@ -244,7 +247,7 @@ export const allUsersReducer = (state = { users: [] }, action) => {
   }
 };
 
-export const userDetailsReducer = (state = { user: {} }, action) => {
+export const userDetailsReducer = (state = { userDetail: {} }, action) => {
   switch (action.type) {
     case USER_DETAILS_REQUEST:
       return {
@@ -255,7 +258,7 @@ export const userDetailsReducer = (state = { user: {} }, action) => {
       return {
         ...state,
         loading: false,
-        user: action.payload,
+        userDetail: action.payload,
       };
 
     case USER_DETAILS_FAIL:
@@ -319,6 +322,37 @@ export const FavoriteReducer = (state = { favorites:[] }, action) => {
             ...state,
             loading: false,
           };
+    case CLEAR_ERRORS:
+      return {
+        ...state,
+        error: null,
+      };
+
+    default:
+      return state;
+  }
+};
+
+
+export const NotificationReducer = (state = { notifications:[]}, action) => {
+  switch (action.type) {
+    case SEND_NOTIFICATION_FAIL:
+      return{
+        ...state,
+        error : true
+      }
+    case SEND_NOTIFICATION_REQUEST:
+      return {
+        ...state,
+        loading: true,
+        error: null,
+      };
+    case SEND_NOTIFICATION_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        notifications : action.payload
+      };
     case CLEAR_ERRORS:
       return {
         ...state,
