@@ -76,8 +76,8 @@ function ProductDetails(props) {
 
                         </Link>{" "}
                     </td>
-                    <td>{props.users?.find(o => o._id === props.product.user).name} </td>
-
+                    {/* <td>{props.users?.find(o => o._id === props.product.user).name} </td> */}
+                    {/* <td>{props.users?.find(o => {if(o._id === props.product.user) return o.name})} </td> */}
                     <td>{props.product.purchase_price} </td>
                     <td>{props.product.created_at} </td>
 

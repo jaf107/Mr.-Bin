@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react'
-import { useAlert } from 'react-alert';
 import { useDispatch, useSelector } from 'react-redux'
 import { getOrders } from '../../../actions/orderActions';
 
@@ -11,9 +10,10 @@ const RecycleOrder = () => {
         dispatch(getOrders());
     }, [dispatch]);
 
-    console.log(recycleOrders)
-    const orderList = recycleOrders?.map((recycleOrder, index) => {
-        <OrderDetails recycleOrder={recycleOrder} index={index} ></OrderDetails>
+    const recycleOrderList = recycleOrders?.map((recycleOrder, index) => {
+        // console.log(recycleOrder);
+        <OrderDetails order={recycleOrder} index={index} ></OrderDetails>
+        
     })
 
     return (
@@ -35,9 +35,7 @@ const RecycleOrder = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {/* {recycleOrderList} */}
-
-
+                        {recycleOrderList}
                     </tbody>
                 </table>
             </div>
@@ -48,16 +46,16 @@ const RecycleOrder = () => {
 export default RecycleOrder;
 
 function OrderDetails(props) {
-    const dispatch = useDispatch();
-    const alert = useAlert();
-
+    console.log(props);
     return (
         <tr>
-            {
-                <>
-                    <td></td>
-                </>
-            }
+            <td>{props.index} </td>
+            <td>{props.order.product} </td>
+            <td>{props.order.user} </td>
+            <td>{props.order.recycler} </td>
+            <td>{props.order.address} </td>
+            <td>{props.order.pickupDate}</td>
+            <td>{props.order.status} </td>
         </tr>
     )
 }

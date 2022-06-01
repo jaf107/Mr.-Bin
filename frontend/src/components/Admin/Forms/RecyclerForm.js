@@ -11,7 +11,7 @@ const RecyclerForm = (props, state) => {
     })
 
     const submitRecycler = (e) => {
-        e.preventDefault();
+        // e.preventDefault();
 
         const myForm = new FormData();
     }

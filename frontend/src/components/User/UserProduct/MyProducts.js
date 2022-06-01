@@ -68,7 +68,7 @@ function ProductDetails(props) {
               {props.product.name}
             </Link>{" "}
           </td>
-          <td>{props.product.price} </td>
+          <td>{props.product.purchase_price} </td>
           <td>{props.product.quantity} </td>
           <td>{props.product.created_at} </td>
           <td>
