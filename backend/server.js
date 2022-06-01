@@ -69,7 +69,7 @@ io.on("connection", (socket) => {
   socket.on("disconnect", () => {
     const user = removeUser(socket.id);
     console.log(user);
-    if(user.room){
+    if(user){
       io.to(user.room).emit("message", {
         user: "Admin",
         text: `${user.name} just left the room`,

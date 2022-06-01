@@ -12,6 +12,7 @@ const {
   getFavoriteProduct,
   deleteFavorite,
   addNotification,
+  getSpecificUserDetails,
 } = require("../controllers/userController");
 const { isAuthenticatedUser } = require("../middleware/auth");
 
@@ -39,7 +40,7 @@ router.route("/me/favorites/:id").delete(isAuthenticatedUser, deleteFavorite);
 
 router.route("/me/favorites").get(isAuthenticatedUser, getFavoriteProduct);
 
-router.route("/admin/user/:id").get(isAuthenticatedUser, getUserDetails);
+router.route("/admin/user/:id").get(isAuthenticatedUser, getSpecificUserDetails);
 
 router.route("/notification/:id").post(isAuthenticatedUser, addNotification);
 

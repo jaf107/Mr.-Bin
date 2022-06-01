@@ -9,7 +9,7 @@ import { Notification } from "./Notifications";
 function Header() {
   const dispatch = useDispatch();
   const alert = useAlert();
-  const { error, isAuthenticated } = useSelector((state) => state.user);
+  const { error, isAuthenticated, user } = useSelector((state) => state.user);
   useEffect(() => {
     if (error) {
       alert.error(error);
@@ -100,11 +100,7 @@ function Header() {
           )}
           {isAuthenticated && (
             <ul class="navbar-nav mr-auto">
-              <li class="nav-item p-2 pt-3">
-                <Link to="/account" className=" nav-link">
-                  <i className="fa-solid fa-message fs-4"></i>
-                </Link>
-              </li>
+
               <li class="nav-item p-2 pt-3">
                   <Notification></Notification>
               </li>
@@ -113,6 +109,15 @@ function Header() {
                   <i className="fa-solid fa-user fs-4"></i>
                 </Link>
               </li>
+            { (user && user.email==="jiteshsureka@gmail.com" &&   <li class="nav-item p-2 pt-3">
+              <Link
+                  class="nav-link  text-white fw-bold"
+                  to="/admin/dashboard"
+                >
+                                   <i class="fa-brands fa-adn fs-4"></i>
+
+                </Link>
+              </li>)}
               <li class="nav-item p-2">
                 <button
                   class="nav-link btn text-white fw-bold"

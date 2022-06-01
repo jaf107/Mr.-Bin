@@ -26,6 +26,9 @@ function Dashboard() {
     alert.success("Logout Successfully");
     navigate('/');
   }
+  function toHome() {
+    navigate('/');
+  }
 
   return (
     <div>
@@ -85,7 +88,7 @@ function Dashboard() {
                 <span className="navbar-toggler-bar navbar-kebab"></span>
               </button>
               <div className="collapse navbar-collapse justify-content-end" id="navigation">
-                <form>
+                {/* <form>
                   <div className="input-group no-border">
                     <input type="text" value="" className="form-control" placeholder="Search..." />
                     <div className="input-group-append">
@@ -94,9 +97,12 @@ function Dashboard() {
                       </div>
                     </div>
                   </div>
-                </form>
+                </form> */}
                 <ul className="navbar-nav">
+                <button className=' btn btn-success' onClick={toHome}>Home</button>
+
                   <button className=' btn btn-danger' onClick={logoutUser}>Logout</button>
+
                 </ul>
               </div>
             </div>
