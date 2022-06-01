@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom';
 import Footer from '../Footer/Footer'
 import Header from '../Header/Header'
 import "./Donate.css";
@@ -24,11 +25,12 @@ const Donate = () => {
         </div>
       </div>
       <div className='container'>
-        <button
+        <Link
           className="middle btn btn-info white fw-bold btn-lg  mb-4 mt-4 p-4"
+          to={'/donation/form'}
         >
           Donate An Item
-        </button>
+        </Link>
       </div>
 
       <div className='container wheat p-4 mb-4'>
