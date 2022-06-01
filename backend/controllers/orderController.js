@@ -21,3 +21,13 @@ exports.getUserOrder = catchAsyncErrors(async (req, res, next) => {
     order,
   });
 });
+
+//Get all Orders
+exports.getOrders = catchAsyncErrors(async (req, res, next) => {
+  const order = await Order.find({orderType:"recycle"});
+
+  res.status(200).json({
+    success: true,
+    order,
+  });
+});

@@ -34,36 +34,13 @@ const ProductList = () => {
 
                             <th scope="col">Price</th>
                             <th scope="col">Date</th>
-                            {/* <th scope="col">Edit</th> */}
                             <th scope="col">Delete</th>
                         </tr>
                     </thead>
                     <tbody>
                         {productList}
 
-                        {/* 
-                        {products.map((product, index) => (
-                            <tr>
-                                <td>{index + 1}</td>
-                                <td>
-                                    {product.name}
-                                </td>
-                                <td>{users.find(o => o._id === product.user).name} </td>
-
-                                <td>{product.purchase_price} </td>
-                                <td>{product.created_at} </td>
-                                <td>
-                                    <button
-                                        className='btn btn-danger '
-                                        onClick={() => {
-                                            onDeleteProduct();
-                                        }}
-                                    >
-                                        Delete
-                                    </button>
-                                </td>
-                            </tr>
-                        ))} */}
+                       
                     </tbody>
                 </table>
             </div>
@@ -99,7 +76,7 @@ function ProductDetails(props) {
 
                         </Link>{" "}
                     </td>
-                    <td>{props.users.find(o => o._id === props.product.user).name} </td>
+                    <td>{props.users?.find(o => o._id === props.product.user).name} </td>
 
                     <td>{props.product.purchase_price} </td>
                     <td>{props.product.created_at} </td>

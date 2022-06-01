@@ -23,7 +23,7 @@ import {
   recyclerReducer,
   singleRecyclerReducer,
 } from "./reducers/recyclerReducer";
-import { orderReducer, userOrderReducer } from "./reducers/orderReducer";
+import { orderReducer, recycleOrderReducer, userOrderReducer } from "./reducers/orderReducer";
 
 const reducer = combineReducers({
   //   products: productsReducer,
@@ -53,6 +53,8 @@ const reducer = combineReducers({
   //   review: reviewReducer,
   recyclers: recyclerReducer,
   recycler: singleRecyclerReducer,
+  recycleOrders: recycleOrderReducer,
+
   order: orderReducer,
   userOrders: userOrderReducer,
 

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { getRecyclers } from '../../../actions/recyclerActions';
+import RecyclerForm from '../Forms/RecyclerForm';
 
 const RecyclerList = () => {
 
@@ -57,33 +58,9 @@ const RecyclerList = () => {
         </div>)}
 
       {!form && (
-        <div
-          className='container p-4 '
-        >
-          <input
-            placeholder='Recycler name'
-            className='form-control mb-4'
-            type='text'
-          />
-          <input
-            placeholder='Company name'
-            className='form-control mb-4'
-            type='text'
-          />
-          <input
-            placeholder='Location'
-            className='form-control p-3 mb-4'
-            type='text'
-          />
 
-          <input
-            placeholder='Contact Number'
-            className='form-control mb-4'
-            type='number'
-          />
+        <RecyclerForm />
 
-          <button type='submit' className='btn btn-success'>Submit</button>
-        </div>
       )}
     </div>
   )
