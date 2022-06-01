@@ -29,7 +29,9 @@ import Home from "./components/Home"
 // import EnhancedTable from "./components/Marketplace/UserProduct/EnhancedTable";
 // import UpdateProfile from "./components/User/UpdateProfile";
 
+
 function App() {
+
   useEffect(() => {
     store.dispatch(loadUser());
   }, [])

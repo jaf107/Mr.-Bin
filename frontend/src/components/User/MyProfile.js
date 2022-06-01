@@ -1,3 +1,6 @@
+import OTPVerify from "./OTPVerify";
+
+
 function MyProfile(props) {
     const user = props.user_data
   return (
@@ -21,6 +24,7 @@ function MyProfile(props) {
               <p>
                 <span>Mobile </span>: (+88) {user.phone}
               </p>
+              <OTPVerify number={"+88" + user.phone}></OTPVerify>
             </div>
           </div>
         </div>
