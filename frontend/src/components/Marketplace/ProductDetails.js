@@ -5,7 +5,7 @@ import "./ProductDetails.css";
 import Carousel from "react-bootstrap/Carousel";
 import { useDispatch, useSelector } from "react-redux";
 import { getSingleProduct } from "../../actions/productActions";
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import BidButton from "./Product/BidButton";
 import FavoriteButton from "./Product/FavoriteButton";
 import Comment from "./Product/Comment";
@@ -25,7 +25,7 @@ const Product = () => {
     if (product && user) {
       if (product.user === user._id) {
         dispatch(getUserDetails(product.buyer));
-        console.log("Hello")
+        console.log("Hello");
       }
       if (product.buyer === user._id) {
         dispatch(getUserDetails(product.user));
@@ -100,15 +100,19 @@ const Product = () => {
                         <p class="card-title">Name : {userDetail.name}</p>
                         <p class="card-title">Address : {userDetail.address}</p>
                         <p class="card-title">Email : {userDetail.email}</p>
-
-                        <a href="#" class="btn btn-primary">
-                          Chat Now
-                        </a>
+                        <Link
+                          onClick={(e) =>
+                            !user.name || !id ? e.preventDefault() : null
+                          }
+                          to={`/chat?name=${user.name}&room=${id}`}
+                        >
+                          <a type="submit" className=" btn btn-primary">Chat Now</a>
+                        </Link>
                       </div>
                     </div>
                   </div>
                 )}
-                {product.buyer && user  && product.user === user._id && (
+                {product.buyer && user && product.user === user._id && (
                   <div>
                     <div class="card text-center">
                       <h6 class="card-header">Buyer Information</h6>
@@ -116,10 +120,14 @@ const Product = () => {
                         <p class="card-title">Name : {userDetail.name}</p>
                         <p class="card-title">Address : {userDetail.address}</p>
                         <p class="card-title">Email : {userDetail.email}</p>
-
-                        <a href="#" class="btn btn-primary">
-                          Chat Now
-                        </a>
+                        <Link
+                          onClick={(e) =>
+                            !user.name || !id ? e.preventDefault() : null
+                          }
+                          to={`/chat?name=${user.name}&room=${id}`}
+                        >
+                          <a type="submit" className=" btn btn-primary">Chat Now</a>
+                        </Link>
                       </div>
                     </div>
                   </div>

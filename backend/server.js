@@ -1,6 +1,8 @@
 const app = require("./index.js");
 const connectDatabase = require("./config/database");
 const cloudinary = require("cloudinary");
+const { addUser, removeUser } = require("./user");
+
 
 // Handling Uncaught Exception
 process.on("uncaughtException", (err) => {
@@ -23,10 +25,61 @@ cloudinary.config({
 // Connecting to database
 connectDatabase();
 
+
+
+//chatting socket
 let port = process.env.port || 5000;
 const server = app.listen(port, () => {
   console.log(`Server is working on http://localhost:${port}`);
 });
+const io = require("socket.io")(server, {
+  cors: {
+    origin: "http://localhost:3000",
+    methods: ["GET", "POST"],
+    allowedHeaders: ["my-custom-header"],
+    credentials: true,
+  },
+});
+
+
+
+io.on("connection", (socket) => {
+  socket.on("join", ({ name, room }, callBack) => {
+    const { user, error } = addUser({ id: socket.id, name, room });
+    if (error) return callBack(error);
+
+    socket.join(user.room);
+    socket.emit("message", {
+      user: "Admin",
+      text: `Welocome to the product chat room`,
+    });
+
+    socket.broadcast
+      .to(user.room)
+      .emit("message", { user: "Admin", text: `${user.name} has joined!` });
+    callBack(null);
+
+    socket.on("sendMessage", ({ message }) => {
+      io.to(user.room).emit("message", {
+        user: user.name,
+        text: message,
+      });
+    });
+  });
+  socket.on("disconnect", () => {
+    const user = removeUser(socket.id);
+    console.log(user);
+    if(user.room){
+      io.to(user.room).emit("message", {
+        user: "Admin",
+        text: `${user.name} just left the room`,
+      });
+    }
+    console.log("A disconnection has been made");
+  });
+});
+
+
 
 // Unhandled Promise Rejection
 process.on("unhandledRejection", (err) => {
