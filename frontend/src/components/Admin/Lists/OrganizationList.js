@@ -25,8 +25,8 @@ const OrganizationList = () => {
             <thead>
               <tr>
                 <th scope="col">#</th>
-                <th scope="col">Recycler Name</th>
-                <th scope="col">Company</th>
+                <th scope="col">Organization Name</th>
+                <th scope="col">Type</th>
                 <th scope="col">Location</th>
                 <th scope="col">Contact No.</th>
 

@@ -6,7 +6,7 @@ import { deleteUser, getAllUsers } from '../../../actions/userActions';
 const UserList = () => {
     
     const dispatch = useDispatch();
-    const { users } = useSelector((state) => state.allUsers);
+    const { users } = useSelector((state) => state.users);
 
     useEffect(() => {
         dispatch(getAllUsers());
