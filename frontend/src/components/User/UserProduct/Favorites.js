@@ -82,7 +82,7 @@ function FavoriteDetails(props) {
                <Link to={`/product/${props.favorite}`} className=' text-decoration-none fw-bold'>
                    {temp.name}
                </Link> </td>
-           <td>{temp.price} </td>
+           <td>{temp.purchase_price} </td>
            <td>{temp.quantity} </td>
            <td>{temp.created_at} </td>
            <td><button className='btn btn-danger ' onClick={()=> {onDeleteFavorite()}}> X </button></td>

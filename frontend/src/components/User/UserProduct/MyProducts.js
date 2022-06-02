@@ -103,7 +103,7 @@ function ProductDetails(props) {
           <td>{props.product.quantity} </td>
           <td>{props.product.created_at} </td>
           <td>
-          <Link  className="btn btn-warning " to={`/product/${props.product._id}/edit`}>Edit</Link>
+            <Link className="btn btn-warning " to={`/product/${props.product._id}/edit`}>Edit</Link>
           </td>
           <td>
             <button

@@ -11,6 +11,7 @@ import {
 } from "./reducers/productReducer";
 
 import {
+  allUsersReducer,
   FavoriteReducer,
   NotificationReducer,
   userDetailsReducer,
@@ -24,7 +25,7 @@ import {
   recyclerReducer,
   singleRecyclerReducer,
 } from "./reducers/recyclerReducer";
-import { orderReducer, userOrderReducer } from "./reducers/orderReducer";
+import { orderReducer, recycleOrderReducer, userOrderReducer } from "./reducers/orderReducer";
 
 const reducer = combineReducers({
   //   products: productsReducer,
@@ -43,8 +44,9 @@ const reducer = combineReducers({
   newProduct: newProductReducer,
   product: singleProductReducer,
   userProducts: userProductReducer,
-  bids:bidReducer,
-  comments:commentReducer,
+  bids: bidReducer,
+  comments: commentReducer,
+  users: allUsersReducer,
   //   product: productReducer,
   //   allOrders: allOrdersReducer,
   //   order: orderReducer,
@@ -54,9 +56,11 @@ const reducer = combineReducers({
   //   review: reviewReducer,
   recyclers: recyclerReducer,
   recycler: singleRecyclerReducer,
+  recycleOrders: recycleOrderReducer,
+
   order: orderReducer,
   userOrders: userOrderReducer,
- 
+
 });
 
 let initialState = {

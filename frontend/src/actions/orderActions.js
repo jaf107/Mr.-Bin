@@ -4,7 +4,10 @@ import {
     PLACE_ORDER_FAIL,
     GET_USER_ORDER_REQUEST,
     GET_USER_ORDER_SUCCESS,
-    GET_USER_ORDER_FAIL
+    GET_USER_ORDER_FAIL,
+    GET_ORDER_REQUEST,
+    GET_ORDER_SUCCESS,
+    GET_ORDER_FAIL
   
   } from "../constants/orderConstants";
   const axios = require("axios");
@@ -39,6 +42,18 @@ import {
       dispatch({ type: GET_USER_ORDER_SUCCESS, payload: data.order });
     } catch (error) {
        dispatch({ type: GET_USER_ORDER_FAIL, payload: error.response.data.message });
+    }
+  };
+
+  export const getOrders = () => async (dispatch) => {
+    try {
+      dispatch({ type: GET_ORDER_REQUEST });
+      const config = { headers: { "Content-Type": "application/json" } };
+  
+      const { data } = await axios.get(`http://localhost:5000/api/v1/admin/recycle/order`);
+      dispatch({ type: GET_ORDER_SUCCESS, payload: data.order });
+    } catch (error) {
+      dispatch({ type: GET_ORDER_FAIL, payload: error });
     }
   };
   

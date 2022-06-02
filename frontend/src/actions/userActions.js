@@ -210,6 +210,7 @@ export const getAllUsers = () => async (dispatch) => {
     );
 
     dispatch({ type: ALL_USERS_SUCCESS, payload: data.users });
+    // console.log(data.users);
   } catch (error) {
     dispatch({ type: ALL_USERS_FAIL, payload: error.response.data.message });
   }
@@ -279,7 +280,10 @@ export const deleteUser = (id) => async (dispatch) => {
 
     const { data } = await axios.delete(`/api/v1/admin/user/${id}`);
 
-    dispatch({ type: DELETE_USER_SUCCESS, payload: data });
+    dispatch({
+      type: DELETE_USER_SUCCESS,
+      payload: data
+    });
   } catch (error) {
     dispatch({
       type: DELETE_USER_FAIL,

@@ -26,6 +26,7 @@ import ProductList from "./components/Admin/Lists/ProductList";
 import EditProduct from "./components/Marketplace/Product/EditProduct";
 import Chat from "./components/Chat";
 import Home from "./components/Home"
+import DonationForm from "./components/Donation/DonationForm";
 // import EnhancedTable from "./components/Marketplace/UserProduct/EnhancedTable";
 // import UpdateProfile from "./components/User/UpdateProfile";
 
@@ -61,7 +62,7 @@ function App() {
           <Route path="/admin/dashboard/userlist" exact element={<UserList/>}></Route>
           <Route path="/admin/dashboard/productlist" exact element={<ProductList/>}></Route>
 
-
+         
           <Route path="/account" exact element={<UserAccount></UserAccount>}></Route>
           <Route path="/marketplace" exact element={<Marketplace />} ></Route>
           <Route path="/addproduct" exact element={<AddProduct />}></Route>
@@ -70,6 +71,8 @@ function App() {
           <Route path="/product/:id/edit" exact element={<EditProduct />}></Route>
           <Route path="/me/products" exact element={<MyProducts />} ></Route>
           <Route path="/me/favorites" exact element={<Favorites />} ></Route>
+          <Route path="/donation/form" exact element={<DonationForm />} ></Route>
+
           {/* <Route path="/me/data-table" exact element={<EnhancedTable/>} ></Route> */}
           {/* <Route path="/profile/update" exact element={<UpdateProfile/>} ></Route> */}
 
