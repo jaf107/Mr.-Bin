@@ -2,10 +2,14 @@ import { useState } from "react";
 import firebase from "firebase/compat/app";
 import "firebase/compat/auth";
 import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { loadUser, verifyUser } from "../../actions/userActions";
 
 export default function OTPVerify(props) {
   const [showBox, setShowBox] = useState(false);
   const [showButton, setShowButton] = useState(true);
+
+  const dispatch = useDispatch()
   const firebaseConfig = {
     apiKey: "AIzaSyDDiBZXe3o6L9vNEkbH_4LrzzNOo_jhZK4",
     authDomain: "mr-bin-9e7ea.firebaseapp.com",
@@ -39,7 +43,7 @@ export default function OTPVerify(props) {
   const onVerifyClick = () => {
     setShowBox(true);
     setShowButton(false);
-    let phone_number = "+8801780935761";
+    let phone_number = props.number;
     const appVerifier = window.recaptchaVerifier;
 
     auth
@@ -47,14 +51,14 @@ export default function OTPVerify(props) {
       .then((confirmationResult) => {
         // SMS sent. Prompt user to type the code from the message, then sign the
         // user in with confirmationResult.confirm(code).
-        console.log("otp sent");
-        window.confirmationResult = confirmationResult;
+        //dispatch(verifyUser());
         // ...
+        window.confirmationResult = confirmationResult
       })
       .catch((error) => {
         // Error; SMS not sent
         // ...
-        alert(error.message + "HELLO");
+        alert(error.message);
       });
   };
 
@@ -65,9 +69,10 @@ export default function OTPVerify(props) {
     window.confirmationResult
       .confirm(opt_number)
       .then((confirmationResult) => {
-        console.log(confirmationResult);
-        console.log("success");
         setShowBox(false);
+        dispatch(verifyUser());
+        dispatch(loadUser());
+        alert("User Verified");
       })
       .catch((error) => {
         // User couldn't sign in (bad verification code?)

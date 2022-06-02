@@ -12,6 +12,7 @@ function MyProfile(props) {
             <div class="bio-row">
               <p>
                 <span> Name </span>: {user.name}
+
               </p>
             </div>
             <div class="bio-row">
@@ -23,8 +24,9 @@ function MyProfile(props) {
             <div class="bio-row">
               <p>
                 <span>Mobile </span>: (+88) {user.phone}
+                { user.isVerified &&<i class="fa-solid fa-circle-check text-success "></i>}
               </p>
-              <OTPVerify number={"+88" + user.phone}></OTPVerify>
+              { !user.isVerified && <OTPVerify number={user.phone}></OTPVerify>}
             </div>
           </div>
         </div>

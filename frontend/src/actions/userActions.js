@@ -47,6 +47,9 @@ import {
   SEND_NOTIFICATION_REQUEST,
   SEND_NOTIFICATION_SUCCESS,
   SEND_NOTIFICATION_FAIL,
+  VERIFY_USER_REQUEST,
+  VERIFY_USER_SUCCESS,
+  VERIFY_USER_FAIL
 } from "../constants/userConstants";
 import axios from "axios";
 axios.defaults.withCredentials = true;
@@ -243,6 +246,27 @@ export const updateUser = (id, userData) => async (dispatch) => {
   } catch (error) {
     dispatch({
       type: UPDATE_USER_FAIL,
+      payload: error.response.data.message,
+    });
+  }
+};
+
+//Verify User With Phone Number
+export const verifyUser = () => async (dispatch) => {
+  try {
+    dispatch({ type: VERIFY_USER_REQUEST });
+
+    const config = { headers: { "Content-Type": "application/json" } };
+
+    const { data } = await axios.put(
+      `http://localhost:5000/api/v1/me/verify`,
+      config
+    );
+
+    dispatch({ type: VERIFY_USER_SUCCESS, payload: data });
+  } catch (error) {
+    dispatch({
+      type: VERIFY_USER_FAIL,
       payload: error.response.data.message,
     });
   }
