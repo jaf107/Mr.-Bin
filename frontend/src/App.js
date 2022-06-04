@@ -29,7 +29,7 @@ import Home from "./components/Home"
 import DonationForm from "./components/Donation/DonationForm";
 // import EnhancedTable from "./components/Marketplace/UserProduct/EnhancedTable";
 // import UpdateProfile from "./components/User/UpdateProfile";
-
+import ObjectDetect from './components/Marketplace/ObjectDetect'
 
 function App() {
 
@@ -41,6 +41,8 @@ function App() {
       {/* <Header/> */}
       <BrowserRouter>
         <Routes>
+        <Route path="/object-detect/:id/:category" exact element={<ObjectDetect />}></Route>
+
           <Route path="/" exact element={<HomePage />}></Route>
           <Route path="/login" exact element={<Login />}></Route>
           <Route path="/chat" exact element={<Chat />}></Route>

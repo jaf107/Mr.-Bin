@@ -43,8 +43,8 @@
 }
 
 .addbtn{
-    position: relative;
-    margin-left: 65.5%;
+    background-color: #20C1BD ;
+    color: aliceblue;
 }
 
 .marketplace .card-button{
@@ -59,7 +59,7 @@
 
 .marketplace .separate-card{
     /* border: 1px solid black; */
-    margin: 10px;
+    /* margin: 5px; */
 }
 
 .marketplace .fa-circle {
