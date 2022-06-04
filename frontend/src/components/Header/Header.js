@@ -1,22 +1,20 @@
-import { Link, Navigate, useNavigate } from "react-router-dom";
+import { Link} from "react-router-dom";
 import "./Header.css";
 import { React, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { clearErrors } from "../../actions/userActions";
 import { logout } from "../../actions/userActions";
 import { useAlert } from "react-alert";
-
+import { Notification } from "./Notifications";
 function Header() {
   const dispatch = useDispatch();
   const alert = useAlert();
-  const navigate = useNavigate();
-  const { error, isAuthenticated, token} = useSelector((state) => state.user);
+  const { error, isAuthenticated, user } = useSelector((state) => state.user);
   useEffect(() => {
     if (error) {
       alert.error(error);
       dispatch(clearErrors());
     }
-      console.log(token)
   }, [dispatch, error, alert, isAuthenticated]);
 
   function logoutUser() {
@@ -27,7 +25,7 @@ function Header() {
   }
 
   return (
-    <div className="container header">
+    <div className="container header z-index-n1">
       <nav class="navbar navbar-expand-lg">
         <a class="navbar-brand" href="#">
           <img src={require("../../assets/logo.png")} alt="logo" width={70} />
@@ -60,7 +58,7 @@ function Header() {
           </form>
           <ul class="navbar-nav  fw-normal">
             <li class="nav-item active p-2">
-              <Link class="nav-link"to="/">
+              <Link class="nav-link" to="/">
                 Home
               </Link>
             </li>
@@ -80,9 +78,10 @@ function Header() {
               </Link>
             </li>
             <li class="nav-item p-2">
-              <a class="nav-link" href="#">
+              <Link class="nav-link" to="/about">
                 About
-              </a>
+              </Link>
+
             </li>
           </ul>
           {!isAuthenticated && (
@@ -101,21 +100,24 @@ function Header() {
           )}
           {isAuthenticated && (
             <ul class="navbar-nav mr-auto">
+
               <li class="nav-item p-2 pt-3">
-                <Link to="/account" className=" nav-link">
-                  <i className="fa-solid fa-message fs-4"></i>
-                </Link>
-              </li>
-              <li class="nav-item p-2 pt-3">
-                <Link to="/" className=" nav-link">
-                  <i className="fa-solid fa-bell fs-4"></i>
-                </Link>
+                  <Notification></Notification>
               </li>
               <li class="nav-item p-2 pt-3">
                 <Link to="/account" className=" nav-link">
                   <i className="fa-solid fa-user fs-4"></i>
                 </Link>
               </li>
+            { (user && user.email==="jiteshsureka@gmail.com" &&   <li class="nav-item p-2 pt-3">
+              <Link
+                  class="nav-link  text-white fw-bold"
+                  to="/admin/dashboard"
+                >
+                                   <i class="fa-brands fa-adn fs-4"></i>
+
+                </Link>
+              </li>)}
               <li class="nav-item p-2">
                 <button
                   class="nav-link btn text-white fw-bold"

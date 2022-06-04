@@ -11,6 +11,15 @@ const userSchema = new mongoose.Schema({
     maxLength: [30, "Name cannot exceed 30 characters"],
     minLength: [4, "Name should have more than 4 characters"],
   },
+  isVerified : {
+    type: Boolean,
+    default : false
+  },
+  address: {
+    type: String,
+    maxLength: [300, "Name cannot exceed 300 characters"],
+    minLength: [4, "Name should have more than 4 characters"],
+  },
   email: {
     type: String,
     required: [true, "Please Enter Your Email"],
@@ -26,6 +35,39 @@ const userSchema = new mongoose.Schema({
   role: {
     type: String,
     default: "user",
+  },
+  phone: {
+    type: String,
+    unique: [true, "Phone Number Already Exists"],
+  },
+  favorites: [
+    {
+      product_id :{
+        type: mongoose.Schema.ObjectId,
+        ref: "Product",
+        unique:true
+      }
+    }
+  ],
+  notifications: [
+    {
+      description :{
+        type: String
+      },
+      link :{
+        type: String
+      }
+    }
+  ],
+  avatar: {
+    public_id: {
+      type: String,
+      required: true,
+    },
+    url: {
+      type: String,
+      required: true,
+    },
   },
   createdAt: {
     type: Date,

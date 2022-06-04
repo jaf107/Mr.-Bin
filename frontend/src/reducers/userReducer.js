@@ -39,20 +39,23 @@ import {
   USER_DETAILS_SUCCESS,
   USER_DETAILS_FAIL,
   CLEAR_ERRORS,
+  ADD_FAVORITE_FAIL,
+  ADD_FAVORITE_REQUEST,
+  ADD_FAVORITE_SUCCESS,
+  GET_FAVORITE_FAIL,
+  GET_FAVORITE_REQUEST,
+  GET_FAVORITE_SUCCESS,
+  DELETE_FAVORITE_SUCCESS,
+  SEND_NOTIFICATION_FAIL,
+  SEND_NOTIFICATION_REQUEST,
+  SEND_NOTIFICATION_SUCCESS,
+  VERIFY_USER_REQUEST,
+  VERIFY_USER_SUCCESS,
+  VERIFY_USER_FAIL,
 } from "../constants/userConstants";
-import Cookies from 'js-cookie';
+// import Cookies from 'js-cookie';
 
-const initialState = {
-  user: {},
-  isAuthenticated: null,
-  token: Cookies.get('token'),
-  //token: localStorage.getItem('token') && {isAuthenticated : true},
-
-  isLoading: false,
-  isRegistered: false
-}
-
-export const userReducer = (state =initialState, action) => {
+export const userReducer = (state = { user: {} }, action) => {
   switch (action.type) {
     case LOGIN_REQUEST:
     case REGISTER_USER_REQUEST:
@@ -101,7 +104,12 @@ export const userReducer = (state =initialState, action) => {
         loading: false,
         error: action.payload,
       };
-
+      case UPDATE_USER_SUCCESS:
+        return {
+          ...state,
+          loading: false,
+          user: action.payload,
+        };
     case CLEAR_ERRORS:
       return {
         ...state,
@@ -125,13 +133,6 @@ export const profileReducer = (state = {}, action) => {
       };
     case UPDATE_PROFILE_SUCCESS:
     case UPDATE_PASSWORD_SUCCESS:
-    case UPDATE_USER_SUCCESS:
-      return {
-        ...state,
-        loading: false,
-        isUpdated: action.payload,
-      };
-
     case DELETE_USER_SUCCESS:
       return {
         ...state,
@@ -163,7 +164,17 @@ export const profileReducer = (state = {}, action) => {
         ...state,
         isDeleted: false,
       };
-
+      case VERIFY_USER_REQUEST:
+      case VERIFY_USER_SUCCESS:
+        return {
+          ...state,
+          success: action.payload,
+        };
+        case VERIFY_USER_FAIL:
+          return {
+            ...state,
+            error: action.payload,
+          };
     case CLEAR_ERRORS:
       return {
         ...state,
@@ -249,7 +260,7 @@ export const allUsersReducer = (state = { users: [] }, action) => {
   }
 };
 
-export const userDetailsReducer = (state = { user: {} }, action) => {
+export const userDetailsReducer = (state = { userDetail: {} }, action) => {
   switch (action.type) {
     case USER_DETAILS_REQUEST:
       return {
@@ -260,7 +271,7 @@ export const userDetailsReducer = (state = { user: {} }, action) => {
       return {
         ...state,
         loading: false,
-        user: action.payload,
+        userDetail: action.payload,
       };
 
     case USER_DETAILS_FAIL:
@@ -270,6 +281,91 @@ export const userDetailsReducer = (state = { user: {} }, action) => {
         error: action.payload,
       };
 
+    case CLEAR_ERRORS:
+      return {
+        ...state,
+        error: null,
+      };
+
+    default:
+      return state;
+  }
+};
+
+export const FavoriteReducer = (state = { favorites:[] }, action) => {
+  switch (action.type) {
+    case ADD_FAVORITE_FAIL:
+      return{
+        ...state,
+        error : true
+      }
+    case ADD_FAVORITE_REQUEST:
+      return {
+        ...state,
+        loading: true,
+        error: null,
+      };
+    case ADD_FAVORITE_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+      };
+    case GET_FAVORITE_FAIL:
+    case GET_FAVORITE_REQUEST:
+      return {
+        ...state,
+        loading: true,
+        error: null,
+      };
+    case GET_FAVORITE_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        favorites: action.payload,
+      };
+      case DELETE_USER_FAIL:
+        case DELETE_USER_REQUEST:
+          return {
+            ...state,
+            loading: true,
+            error: null,
+          };
+        case DELETE_FAVORITE_SUCCESS:
+          return {
+            ...state,
+            loading: false,
+          };
+    case CLEAR_ERRORS:
+      return {
+        ...state,
+        error: null,
+      };
+
+    default:
+      return state;
+  }
+};
+
+
+export const NotificationReducer = (state = { notifications:[]}, action) => {
+  switch (action.type) {
+    case SEND_NOTIFICATION_FAIL:
+      return{
+        ...state,
+        error : true
+      }
+    case SEND_NOTIFICATION_REQUEST:
+      return {
+        ...state,
+        loading: true,
+        error: null,
+      };
+    case SEND_NOTIFICATION_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        notifications : action.payload
+      };
     case CLEAR_ERRORS:
       return {
         ...state,

@@ -3,6 +3,11 @@
     color: grey
 }
 
+.spanMarket{
+    font-size: 20px;
+}
+
+
 .marketplace #sidebar {
     width: 20%;
     padding: 10px;
@@ -27,36 +32,58 @@
     text-decoration: none
 }
 
+.myproductbtn{
+
+    margin: 5%;
+    margin-left: 50%;
+}
+
+.center{
+    text-align: center;
+}
+
+.addbtn{
+    background-color: #20C1BD ;
+    color: aliceblue;
+}
+
+.marketplace .card-button{
+    margin: 5px;
+    border-radius: 10px;
+}
+
 .marketplace li a:hover {
     text-decoration: none;
     color: darksalmon
+}
+
+.marketplace .separate-card{
+    /* border: 1px solid black; */
+    /* margin: 5px; */
 }
 
 .marketplace .fa-circle {
     font-size: 20px
 }
 
-.marketplace #red {
-    color: #e94545d7
-}
-
-.marketplace #teal {
-    color: rgb(69, 129, 129)
-}
-
-.marketplace #blue {
-    color: #0000ff
-}
 
 .marketplace .card {
+    margin: 10px;
+    border-radius: 10px;
     width: 250px;
     display: inline-block;
-    height: 300px
+    /* height: 300px */
+}
+
+.marketplace .card-title{
+    margin: 5px;
 }
 
 .marketplace .card-img-top {
     width: 250px;
-    height: 210px
+    height: 200px;
+    border-radius: 10px;
+    opacity: .9;
 }
 
 .marketplace .card-body p {
@@ -73,6 +100,13 @@
     padding: 0;
     margin: 0
 }
+
+.favorite-btn:focus{
+    background-color: white;
+    color:red;
+    border: 1px solid red;
+}
+
 /* 
 @media(min-width:991px) {
     .marketplace .navbar-nav {

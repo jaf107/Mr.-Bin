@@ -4,7 +4,18 @@
 }
 
 .recycle .btn:hover{
+    color: white !important;
+    background-color: #20C1BD !important;
+    border: 0px !important;
+}
+
+.recycle .btn{
     color: #20C1BD !important;
     background-color: white !important;
     border: 1px solid black !important;
+}
+.itemsCard{
+    border: 1px solid black;
+    border-radius: 5px;
+    
 }

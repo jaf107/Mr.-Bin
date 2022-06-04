@@ -1,119 +1,247 @@
-import './Dashboard.css';
-import {  useNavigate } from "react-router-dom";
+import "./Dashboard.css";
+import { Link, useNavigate } from "react-router-dom";
 import { React, useEffect } from "react";
-import {  useSelector, useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { clearErrors } from "../../actions/userActions";
 import { logout } from "../../actions/userActions";
 import { useAlert } from "react-alert";
- 
-function Dashboard(){
-    const dispatch = useDispatch();
-    const alert = useAlert();
-    const navigate = useNavigate();
-    const { error, isAuthenticated } = useSelector((state) => state.user);
-    useEffect(() => {
-      if (error) {
-        alert.error(error);
-        dispatch(clearErrors());
-      }
-    }, [dispatch, error, alert, isAuthenticated]);
-  
-    function logoutUser() {
-      dispatch(logout());
-      console.log(isAuthenticated);
-      alert.success("Logout Successfully");
-      navigate('/');
+import UserList from "./Lists/UserList";
+import ProductList from "./Lists/ProductList";
+import RecyclerList from "./Lists/RecyclerList";
+import OrganizationList from "./Lists/OrganizationList";
+import RecycleOrder from "./Orders/RecycleOrder";
+import DonationOrder from "./Orders/DonationOrder";
+import Header from "../Header/Header";
+import Footer from "../Footer/Footer";
+function Dashboard() {
+  const user = {
+    name: "Jitesh",
+  };
+
+  const dispatch = useDispatch();
+  const alert = useAlert();
+  const navigate = useNavigate();
+  const { error, isAuthenticated } = useSelector((state) => state.user);
+  useEffect(() => {
+    if (error) {
+      alert.error(error);
+      dispatch(clearErrors());
     }
-  
-    return(
-        <div class="wrapper dashboard">
-        <div class="sidebar" data-color="white" data-active-color="danger">
-          <div class="logo">
-         
-            <a href=""><img src={require("../../assets/logo.png")} alt="" width={100}/></a>
-          </div>
-          <div class="sidebar-wrapper">
-            <ul class="nav">
-              <li class="active ">
-                <a href="javascript:;">
-                  <i class="nc-icon nc-bank"></i>
-                  <p>Users</p>
-                </a>
-              </li>
-              <li>
-                <a href="javascript:;">
-                  <i class="nc-icon nc-diamond"></i>
-                  <p>Transactions</p>
-                </a>
-              </li>
-              <li>
-                <a href="javascript:;">
-                  <i class="nc-icon nc-pin-3"></i>
-                  <p>Statistics</p>
-                </a>
-              </li>
-            </ul>
+  }, [dispatch, error, alert, isAuthenticated]);
+
+  function logoutUser() {
+    dispatch(logout());
+    console.log(isAuthenticated);
+    alert.success("Logout Successfully");
+    navigate("/");
+  }
+  function toHome() {
+    navigate("/");
+  }
+
+  return (
+    <div className="admin-dash ">
+      <nav class="navbar navbar-light bg-light p-3">
+        <div class="container-fluid">
+          <a class="navbar-brand">ADMIN PANEL</a>
+          <div class="d-flex btn-group">
+            <button class="btn btn-primary" onClick={toHome}>Home</button>
+            <button class="btn btn-danger" onClick={logoutUser}>Logout</button>
           </div>
         </div>
-        <div class="main-panel" style={{height: 100 + "vh"}}>
-          <nav class="navbar navbar-expand-lg navbar-absolute fixed-top navbar-transparent">
-            <div class="container-fluid">
-              <div class="navbar-wrapper">
-                <div class="navbar-toggle">
-                  <button type="button" class="navbar-toggler">
-                    <span class="navbar-toggler-bar bar1"></span>
-                    <span class="navbar-toggler-bar bar2"></span>
-                    <span class="navbar-toggler-bar bar3"></span>
-                  </button>
-                </div>
-                <a class="navbar-brand" href="javascript:;">Title</a>
+      </nav>
+      <div class="">
+        <div class="row">
+          <div class="profile-nav col-md-3 bg-light">
+            <div class="panel">
+              <div class="user-heading round">
+                <a href="#">{/* <img src={user.avatar.url} alt="" /> */}</a>
+                <h1>Mr. Bin</h1>
+
               </div>
-              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-bar navbar-kebab"></span>
-                <span class="navbar-toggler-bar navbar-kebab"></span>
-                <span class="navbar-toggler-bar navbar-kebab"></span>
-              </button>
-              <div class="collapse navbar-collapse justify-content-end" id="navigation">
-                <form>
-                  <div class="input-group no-border">
-                    <input type="text" value="" class="form-control" placeholder="Search..."/>
-                    <div class="input-group-append">
-                      <div class="input-group-text">
-                        <i class="nc-icon nc-zoom-split"></i>
-                      </div>
-                    </div>
-                  </div>
-                </form>
-                <ul class="navbar-nav">
-                  <button className=' btn btn-danger' onClick={logoutUser}>Logout</button>
-                </ul>
-              </div>
-            </div>
-          </nav>
-          <div class="content">
-            <div class="row">
-              <div class="col-md-12">
-                <h3 class="description">Your content here</h3>
-              </div>
+
+              <ul
+                className="nav nav-stacked flex-column"
+                id="v-pills-tab"
+                role="tablist"
+                aria-orientation="vertical"
+              >
+                <li className="nav-item  p-3">
+                  <a
+                    className="text-decoration-none nav-link active"
+                    id="v-pills-user-tab"
+                    data-bs-toggle="pill"
+                    data-bs-target="#v-pills-user"
+                    href="#v-pills-user"
+                    role="tab"
+                    aria-controls="v-pills-user"
+                    aria-selected="true"
+                  >
+                    <i class="fa fa-user"></i>
+                    Users
+                  </a>
+                </li>
+                <li className="nav-item  p-3">
+                  <a
+                    className="text-decoration-none nav-link"
+                    id="v-pills-products-tab"
+                    data-bs-toggle="pill"
+                    data-bs-target="#v-pills-products"
+                    href="#v-pills-products"
+                    role="tab"
+                    aria-controls="v-pills-products"
+                    aria-selected="false"
+                  >
+                    <i class="fa fa-bag-shopping"></i>
+                    Products
+                    <span class="label label-warning pull-right r-activity">
+                      {/* {products.size} */}
+                    </span>
+                  </a>
+                </li>
+
+                <li className="nav-item  p-3">
+                  <a
+                    className="text-decoration-none nav-link"
+                    id="v-pills-recycler-tab"
+                    data-bs-toggle="pill"
+                    data-bs-target="#v-pills-recycler"
+                    href="#v-pills-recycler"
+                    role="tab"
+                    aria-controls="v-pills-recycler"
+                    aria-selected="false"
+                  >
+                    <i class="fa fa-recycle"></i>
+                    Recyclers
+                  </a>
+                </li>
+                <li className="nav-item  p-3">
+                  <a
+                    className="text-decoration-none nav-link"
+                    id="v-pills-organization-tab"
+                    data-bs-toggle="pill"
+                    data-bs-target="#v-pills-organization"
+                    href="#v-pills-organization"
+                    role="tab"
+                    aria-controls="v-pills-organization"
+                    aria-selected="false"
+                  >
+                    <i class="fa fa-building-ngo"></i>
+                    Organizations
+                  </a>
+                </li>
+
+                <li className="p-3">
+                  <a
+                    class="text-decoration-none nav-link dropdown-toggle"
+                    data-bs-toggle="collapse"
+                    href="#collapseList"
+                    role="button"
+                    aria-expanded="false"
+                    aria-controls="collapseList"
+                  >
+                    <i class="fa fa-tty"></i>
+                    Orders
+                  </a>
+
+                  <ul
+                    id="collapseList"
+                    className="collapse"
+                    aria-controls="collapseList"
+                  >
+                    <li>
+                      <a
+                        className="text-decoration-none nav-link px-5"
+                        id="v-pills-order-recyclers-tab"
+                        data-bs-toggle="pill"
+                        data-bs-target="#v-pills-order-recyclers"
+                        href="#v-pills-order-recyclers"
+                        role="tab"
+                        aria-controls="v-pills-order-recyclers"
+                        aria-selected="false"
+                      >
+                        - Recycling
+                      </a>
+                    </li>
+                    <li>
+                      <a
+                        className="text-decoration-none nav-link px-5"
+                        id="v-pills-order-donation-tab"
+                        data-bs-toggle="pill"
+                        data-bs-target="#v-pills-order-donation"
+                        href="#v-pills-order-donation"
+                        role="tab"
+                        aria-controls="v-pills-order-donation"
+                        aria-selected="false"
+                      >
+                        - Donation
+                      </a>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
             </div>
           </div>
-          <footer class="footer" >
-            <div class="container-fluid">
-              <div class="row">
-                <nav class="footer-nav">
-                 
-                </nav>
-                <div class="credits ml-auto">
-                  <span class="copyright">
-                <i class="fa fa-heart heart"></i> From Mr. Bin
-                  </span>
-                </div>
-              </div>
+
+          <div class="col-md-9 tab-content" id="v-pills-tabContent">
+            <div className="container p-3 m-3">
+              <h4>Date : { new Date().getDate() } - { new Date().getMonth()+1 }- { new Date().getFullYear()  }</h4>
             </div>
-          </footer>
+
+            <div
+              className="tab-pane fade show active "
+              id="v-pills-user"
+              role="tabpanel"
+              aria-labelledby="v-pills-user-tab"
+            >
+              <UserList />
+            </div>
+            <div
+              className="tab-pane fade "
+              id="v-pills-products"
+              role="tabpanel"
+              aria-labelledby="v-pills-products-tab"
+            >
+              <ProductList />
+            </div>
+            <div
+              className="tab-pane fade "
+              id="v-pills-recycler"
+              role="tabpanel"
+              aria-labelledby="v-pills-recycler-tab"
+            >
+              <RecyclerList />
+            </div>
+            <div
+              className="tab-pane fade "
+              id="v-pills-organization"
+              role="tabpanel"
+              aria-labelledby="v-pills-organization-tab"
+            >
+              <OrganizationList />
+            </div>
+            <div
+              className="tab-pane fade"
+              id="v-pills-order-recyclers"
+              role="tabpanel"
+              aria-labelledby="v-pills-order-recyclers-tab"
+            >
+              <RecycleOrder />
+            </div>
+
+            <div
+              className="tab-pane fade"
+              id="v-pills-order-donation"
+              role="tabpanel"
+              aria-labelledby="v-pills-order-donation-tab"
+            >
+              <DonationOrder />
+            </div>
+          </div>
         </div>
       </div>
-    )
+    </div>
+  );
 }
 
 export default Dashboard;

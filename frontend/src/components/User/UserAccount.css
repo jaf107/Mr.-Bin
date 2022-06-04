@@ -407,3 +407,12 @@ ul.summary-list > li:last-child {
   -webkit-appearance: none;
   background: none;
 }
+
+
+.userAccount .active{
+  background-color: white !important;
+}
+
+.nav-pills .nav-link.active, .nav-pills .show>.nav-link{
+  color: black;
+}

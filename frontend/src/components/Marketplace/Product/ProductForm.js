@@ -1,179 +1,248 @@
-import React, { useState } from 'react'
-import Header from '../../Header/Header'
+import React, { useState } from "react";
+import Header from "../../Header/Header";
 import { useDispatch, useSelector } from "react-redux";
-
+import Footer from "../../Footer/Footer";
+import { addProduct } from "../../../actions/productActions";
+import { useRef } from "react";
+import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
+import "./ProductForm.css";
+import { useAlert } from "react-alert";
 
 const ProductForm = () => {
-    const dispatch = useDispatch();
+  const dispatch = useDispatch();
+  const ref = useRef();
+  const navigate = useNavigate();
+  const alert = useAlert();
+  const [product, setProduct] = useState({
+    name: "",
+    category: "",
+    quantity: "",
+    condition: "",
+    description: "",
+    date_of_purchase: "",
+    purchase_price: "",
+    product_type:"",
+  });
 
-    const [product, setProduct] = useState({
-        name: "",
-        category: "",
-        quantity: "",
-        condition: "",
-        description: "",
-        date_of_purchase: new Date(),
-        purchase_price: "",
+  const {
+    name,
+    category,
+    quantity,
+    condition,
+    description,
+    date_of_purchase,
+    purchase_price,
+    product_type
+  } = product;
+
+  const [images, setImages] = useState([]);
+  const [imagesPreview, setImagesPreview] = useState([]);
+
+  const productSubmit = (e) => {
+    e.preventDefault();
+    const productForm = new FormData();
+    productForm.set("name", name);
+    productForm.set("category", category);
+    productForm.set("quantity", quantity);
+    productForm.set("condition", condition);
+    productForm.set("description", description);
+    productForm.set("date_of_purchase", date_of_purchase);
+    productForm.set("purchase_price", purchase_price);
+    productForm.set("product_type", product_type);
+
+    images.forEach((image) => {
+      productForm.append("images", image);
+    });
+    dispatch(addProduct(productForm));
+    alert.success("PRODUCT ADDED SUCCESSFULLY");
+    setProduct({
+      name: "",
+      category: "",
+      quantity: "",
+      condition: "",
+      description: "",
+      date_of_purchase: "",
+      purchase_price: "",
+      product_type:"",
     })
+    setImages([]);
+    setImagesPreview([]);
+  };
 
-    const registerSubmit = (e) => {
-        e.preventDefault();
+  const productDataChange = (e) => {
+    setProduct({ ...product, [e.target.name]: e.target.value });
+  };
 
-        const productForm = FormData();
-        productForm.set("name", name);
-        productForm.set("category", category);
-        productForm.set("quantity", quantity);
-        productForm.set("condition", condition);
-        productForm.set("date_of_purchase", date_of_purchase);
-        productForm.set("purchase_price", purchase_price);
+  const createProductImagesChange = (e) => {
+    const files = Array.from(e.target.files);
+    setImages([]);
+    setImagesPreview([]);
+    files.forEach((file) => {
+      const reader = new FileReader();
 
-
-        // dispatch(addProduct(productForm));
-    }
-
-    const registerDataChange = (e) => {
-        
-        setProduct({ ...product, [e.target.name]: e.target.value });
-        
+      reader.onload = () => {
+        if (reader.readyState === 2) {
+          setImagesPreview((old) => [...old, reader.result]);
+          setImages((old) => [...old, reader.result]);
+        }
       };
+      reader.readAsDataURL(file);
+    });
+  };
 
-    const { name, category, quantity, condition, description, date_of_purchase, purchase_price } = product;
+  return (
+    <div>
+      <div className="container productform">
+        <h3 className=" mt-3 mb-4">Add A New Product </h3>
+        <form className="form-floating" onSubmit={productSubmit}>
+          <div className="form-group mb-4">
+            <input
+              placeholder="Name"
+              className="form-control"
+              required
+              name="name"
+              type="text"
+              value={name}
+              onChange={productDataChange}
+            />
+          </div>
+          <div className="form-group mb-4">
+            <select
+              id="product_categorie"
+              name="category"
+              className="form-control"
+              value={category}
+              onChange={productDataChange}
+            >
+              <option value="" disabled selected>
+                Select Product Category
+              </option>
+              <option>Book</option>
+              <option>Newspaper</option>
+              <option>Cell Phone</option>
+              <option>Bottle</option>
+              <option>Glass</option>
+              <option>Laptop</option>
+            </select>
+          </div>
+          <div className="form-group mb-4">
+            <select
+              id="product_type"
+              name="product_type"
+              className="form-control"
+              value={product_type.toLowerCase()}
+              onChange={productDataChange}
+              required
+            >
+              <option value="" disabled selected>
+                Select Product Type
+              </option>
+              <option>Marketplace</option>
+              <option>Recycle</option>
+              <option>Donation</option>
+            </select>
+          </div>
 
-    return (
-        <div>
-            <Header />
-            <div className='container productform'>
+          <div className="form-group mb-4">
+            <input
+              id="quantity"
+              name="quantity"
+              placeholder="Available Quantity"
+              className="form-control"
+              required=""
+              type="text"
+              value={quantity}
+              onChange={productDataChange}
+            />
+          </div>
 
-                <form className="form-horizontal" onSubmit={registerSubmit}>
-                    <fieldset>
+          <div className="form-group mb-4">
+            <textarea
+              className="form-control"
+              placeholder=" Write Product Description here"
+              id="product_description"
+              name="description"
+              value={description}
+              onChange={productDataChange}
+            ></textarea>
+          </div>
 
-                        <h2>Product Form</h2>
-                        <div className="form-group">
-                            <label
-                                className="col-md-4 control-label" for="product_name">
-                                PRODUCT NAME
-                            </label>
-                            <div className="col-md-4">
-                                <input
-                                    id="product_name" name="product_name" placeholder="PRODUCT NAME" className="form-control input-md" required="" type="text"
-                                    value={name}
-                                    onChange={registerDataChange}
+          <div className="form-group mb-4">
+            <select
+              id="product_condition"
+              name="condition"
+              className="form-control"
+              value={condition}
+              onChange={productDataChange}
+            >
+              <option value="" disabled selected>
+                Select Product Condition
+              </option>
+              <option>New</option>
+              <option>Used</option>
+            </select>
+          </div>
+          <div className="form-group mb-4">
+            <input
+              id="purchase_price"
+              name="purchase_price"
+              placeholder="Purchase Price"
+              className="form-control "
+              required=""
+              type="number"
+              value={purchase_price}
+              onChange={productDataChange}
+            />
+          </div>
 
-                                />
-                            </div>
-                        </div>
+          <div className="form-group mb-3">
+            <input
+              id="date_of_purchase"
+              name="date_of_purchase"
+              ref={ref}
+              placeholder="Enter Date of Purchase"
+              onFocus={() => (ref.current.type = "date")}
+              onBlur={() => (ref.current.type = "text")}
+              className="form-control"
+              required=""
+              type="text"
+              value={date_of_purchase}
+              onChange={productDataChange}
+            />
+          </div>
+          <div id="createProductFormFile">
+            <input
+              type="file"
+              name="avatar"
+              accept="image/*"
+              onChange={createProductImagesChange}
+              multiple
+            />
+          </div>
 
-                        <div className="form-group">
-                            <label
-                                className="col-md-4 control-label" for="product_categorie"
-                            >
-                                PRODUCT CATEGORY
-                            </label>
-                            <div className="col-md-4">
-                                <select
-                                    id="product_categorie" name="product_categorie" className="form-control"
-                                >
-                                    <option value="book">BOOKS</option>
-                                    <option value="newspaper">NEWSPAPERr</option>
-                                    <option value="clothes">CLOTHES</option>
-                                    <option value="plastic">PLASTIC</option>
-                                    <option value="glasswares">GLASSWARES</option>
+          <div id="createProductFormImage">
+            {imagesPreview.map((image, index) => (
+              <img key={index} src={image} alt="Product Preview" />
+            ))}
+          </div>
 
-                                </select>
-                            </div>
-                        </div>
+          <div className=" ">
+            {/* <button
+              type="submit"
+              className="btn btn-success border-0  fw-normal"
+            >
+              {" "}
+              Add Product
+            </button> */}
+            <button className='btn btn-success addbtn'>
+              Add Product
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  );
+};
 
-                        <div className="form-group">
-                            <label
-                                className="col-md-4 control-label" for="quantity"
-                            >
-                                QUANTITY
-                            </label>
-                            <div className="col-md-4">
-                                <input
-                                    id="quantity" name="quantity" placeholder="AVAILABLE QUANTITY" className="form-control input-md" required="" type="text"
-                                    value={quantity}
-                                    onChange={registerDataChange}
-                                />
-
-                            </div>
-                        </div>
-
-                        <div className="form-group">
-                            <label
-                                className="col-md-4 control-label" for="product_description"
-                            >
-                                PRODUCT DESCRIPTION
-                            </label>
-                            <div className="col-md-4">
-                                <textarea
-                                    className="form-control" id="product_description" name="product_description"
-                                    value={description}
-                                    onChange={registerDataChange}
-                                >
-
-                                </textarea>
-                            </div>
-                        </div>
-
-                        <div className="form-group">
-                            <label
-                                className="col-md-4 control-label" for="product_condition"
-                            >
-                                PRODUCT CONDITION
-                            </label>
-                            <div className="col-md-4">
-                                <input
-                                    id="product_condition" name="product_condition" placeholder="PRODUCT CONDITION" className="form-control input-md" required="" type="text"
-                                    value={condition}
-                                    onChange={registerDataChange}
-                                />
-
-                            </div>
-                        </div>
-                        <div className="form-group">
-                            <label
-                                className="col-md-4 control-label" for="purchase_price"
-                            >
-                                PURCHASE PRICE
-                            </label>
-                            <div className="col-md-4">
-                                <input
-                                    id="purchase_price" name="purchase_price" placeholder="PURCHASE PRICE" className="form-control input-md" required="" type="text"
-                                    value={purchase_price}
-                                    onChange={registerDataChange}
-                                />
-
-                            </div>
-                        </div>
-
-
-                        <div className="form-group">
-                            <label
-                                className="col-md-4 control-label" for="date_of_purchase"
-                            >
-                                DATE OF PURCHASE
-                            </label>
-                            <div className="col-md-4">
-                                <input
-                                    id="date_of_purchase" name="date_of_purchase" placeholder="ONLINE DATE" className="form-control input-md" required="" type="date"
-                                    value={date_of_purchase}
-                                    onChange={registerDataChange}
-                                />
-
-                            </div>
-                        </div>
-
-                        <button className='btn btn-success'> Add Product</button>
-
-                    </fieldset>
-                </form>
-
-
-            </div>
-
-        </div>
-    )
-}
-
-export default ProductForm
+export default ProductForm;

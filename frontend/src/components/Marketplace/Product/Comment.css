@@ -1,0 +1,17 @@
+.comment-card .panel{
+    background-color: blue;
+    
+}
+.comment-card {
+    /* color: antiquewhite; */
+    /* height: 50px; */
+    background-color: whitesmoke !important;
+    /* height: 60px; */
+}
+
+.comment .panel-body{
+    margin-top: 0%;
+    /* background-color: white; */
+
+}
+
