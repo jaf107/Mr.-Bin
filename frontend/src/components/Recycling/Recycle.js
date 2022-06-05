@@ -65,8 +65,10 @@ function Recycle() {
   };
 
   return (
-    <div className="">
+    <div className="recycle">
       <Header />
+      <h4 className="  text-center bg-light p-4">RECYCLE</h4>
+
       <div className="container recycle">
         <div className=" row counterRow text-center align-items-center text-white">
           <div className="col-md-4">

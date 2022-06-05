@@ -33,41 +33,43 @@ const Marketplace = () => {
     <div>
       <Header />
       <div className="marketplace">
+        <h4 className="  text-center bg-light p-4">MARKETPLACE</h4>
+        <div className='container'>
+          <Link
+            className="center text-center btn btn-info white fw-bold btn-lg  mb-4 mt-4 p-4"
+            to={'/addproduct'}
+          >
+            Post an add
+          </Link>
+        </div>
         <section id="products">
-          <span className="p-5 spanMarket">Marketplace</span>
-          <div className="container">
-            {/* <Link className='btn btn-success myproductbtn' to={'/my/products'}>
-              My Products
-            </Link> */}
-            <Link className="btn btn-success addbtn" to={"/addproduct"}>
-              Add Product
-            </Link>
-          </div>
-          <div className="container">
-            <div className="row">
+
+
+          <div className="">
+            <div className="row g-4">
               {products?.map((product) => (
-               <>
-                {!product.buyer && (product.product_type === "marketplace") && <div className="separate-card col-lg-3 col-sm-6 col-11">
-                  <div className="card">
-                    <Link to={`/product/${product._id}`}>
-                      <img
-                        className="card-img-top"
-                        src={product.images[0].url}
-                        alt="Card image cap"
-                      />
-                    </Link>
-                    <div className="card-body">
-                      <h6 className="card-title center"  >{product.name}</h6>
-                      <p className="card-text p-2">{product.description} </p>
-                      <p className="card-text text-center p-2">
-                        Price: {product.purchase_price}
-                      </p>
-                      <div className="d-flex">
-                        <div className="card-button flex-fill border-0 btn btn-success">
-                          Buy
-                        </div>
-                        <FavoriteButton product_id={product._id}></FavoriteButton>
-                        {/* <button
+                <>
+                  {!product.buyer && (product.product_type === "marketplace") && <div className="separate-card col-lg-3 col-sm-6 col-11">
+                    <div className="card">
+                      <Link to={`/product/${product._id}`}>
+                        <img
+                          className="card-img-top"
+                          src={product.images[0].url}
+                          alt="Card image cap"
+                        />
+                      </Link>
+                      <div className="card-body">
+                        <h6 className="card-title center"  >{product.name}</h6>
+                        <p className="card-text p-2">{product.description} </p>
+                        <p className="card-text text-center p-2">
+                          Price: {product.purchase_price}
+                        </p>
+                        <div className="d-flex">
+                          <div className="card-button flex-fill border-0 btn btn-success">
+                            Buy
+                          </div>
+                          <FavoriteButton product_id={product._id}></FavoriteButton>
+                          {/* <button
                           className="card-button flex-fill border-0 btn btn-danger  favorite-btn"
                           onClick={() => {
                             onFavoriteClick(product._id);
@@ -75,12 +77,12 @@ const Marketplace = () => {
                         >
                           <i className=" fas fa-heart "></i>
                         </button> */}
-                        <BidButton  product_id={product._id}></BidButton>
+                          <BidButton product_id={product._id}></BidButton>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                </div>}
-               </>
+                  </div>}
+                </>
               ))}
             </div>
           </div>

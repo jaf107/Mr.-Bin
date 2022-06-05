@@ -7,6 +7,10 @@
     font-size: 20px;
 }
 
+.center{
+    margin-left: 43%;
+}
+
 
 .marketplace #sidebar {
     width: 20%;
@@ -70,7 +74,7 @@
 .marketplace .card {
     margin: 10px;
     border-radius: 10px;
-    width: 250px;
+    width: 300px;
     display: inline-block;
     /* height: 300px */
 }
@@ -80,8 +84,8 @@
 }
 
 .marketplace .card-img-top {
-    width: 250px;
-    height: 200px;
+    width: 300px;
+    height: 250px;
     border-radius: 10px;
     opacity: .9;
 }

@@ -2,6 +2,12 @@
     margin: 20px 40%;
 }
 
+.donate .counterRowD{
+    background:linear-gradient(0deg, rgba(49, 49, 49, 0.747), rgba(49, 49, 49, 0.733)), url('../../assets/aid.jpg');
+    min-height: 300px;
+    
+}
+
 .center{
     text-align: center;
 }

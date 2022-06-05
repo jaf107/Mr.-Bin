@@ -1,4 +1,4 @@
-.counterRow{
+.recycle .counterRow{
     background:linear-gradient(0deg, rgba(49, 49, 49, 0.747), rgba(49, 49, 49, 0.733)), url('../../assets/recyclecover.png');
     min-height: 300px;
 }

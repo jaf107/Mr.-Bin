@@ -8,8 +8,10 @@ const Donate = () => {
   return (
     <div>
       <Header />
-      <div className='container' style={{ height: "300px" }} >
-        <div className=" row counterRow text-center align-items-center text-white">
+      <h4 className="  text-center bg-light p-4 mb-2">DONATE</h4>
+
+      <div className='container donate' style={{ height: "300px" }} >
+        <div className=" row counterRowD text-center align-items-center text-white">
           <div className="col-md-4">
             <h6>Total Organizations</h6>
             <h1>100</h1>
