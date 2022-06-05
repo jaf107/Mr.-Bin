@@ -8,7 +8,7 @@ import { getAllUsers } from '../../../actions/userActions';
 const ProductList = () => {
     const dispatch = useDispatch();
     const { products } = useSelector((state) => state.products);
-    const { users } = useSelector((state) => state.allUsers);
+    const { users } = useSelector((state) => state.users);
 
 
     useEffect(() => {

@@ -13,6 +13,7 @@ const {
   deleteFavorite,
   addNotification,
   getSpecificUserDetails,
+  verifyUser,
 } = require("../controllers/userController");
 const { isAuthenticatedUser } = require("../middleware/auth");
 
@@ -25,6 +26,9 @@ router.route("/login").post(loginUser);
 router.route("/logout").get(logout);
 
 router.route("/me").get(isAuthenticatedUser, getUserDetails);
+
+router.route("/me/verify").put(isAuthenticatedUser, verifyUser);
+
 
 router.route("/password/forgot").post(forgotPassword);
 

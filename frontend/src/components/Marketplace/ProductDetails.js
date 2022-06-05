@@ -16,14 +16,14 @@ const Product = () => {
   const dispatch = useDispatch();
   const { product } = useSelector((state) => state.product);
   const { userDetail } = useSelector((state) => state.userDetails);
-
+  const navigate = useNavigate();
   const { user } = useSelector((state) => state.user);
   const { id } = useParams();
   const [isSeller, setisSeller] = useState(false);
   useEffect(() => {
     dispatch(getSingleProduct(id));
     if (product && user) {
-      if (product.user === user._id) {
+      if (product.buyer && product.user === user._id) {
         dispatch(getUserDetails(product.buyer));
         console.log("Hello");
       }
@@ -43,6 +43,7 @@ const Product = () => {
   const submitBid = (e) => {
     console.log(bidAmount);
   };
+
 
   return (
     <div>
@@ -65,6 +66,9 @@ const Product = () => {
                         </Carousel.Item>
                       ))}
                     </Carousel>
+                    <div className=" text-center">
+                    <Link className="btn btn-dark m-3 " to={`/object-detect/${id}/${product.category.toLowerCase()}`}>Verify</Link>
+                    </div>
                   </div>
                   <div className="details col-md-6">
                     <h3 className="product-title">{product.name}</h3>
@@ -74,6 +78,10 @@ const Product = () => {
                       <span>Tk. {product.purchase_price}</span>
                     </h5>
                     <p className="product-description">{product.description}</p>
+                    <p>
+                      Category -<span> </span>
+                      <strong>{product.category}</strong>
+                    </p>
                     <p>
                       Condition -<span> </span>
                       <strong>{product.condition}</strong>

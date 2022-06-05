@@ -118,12 +118,12 @@ const ProductForm = () => {
               <option value="" disabled selected>
                 Select Product Category
               </option>
-              <option>Books</option>
-              <option>Newspapers</option>
-              <option>Clothes</option>
-              <option>Plastic</option>
-              <option>Glassware</option>
-              <option>Electronics</option>
+              <option>Book</option>
+              <option>Newspaper</option>
+              <option>Cell Phone</option>
+              <option>Bottle</option>
+              <option>Glass</option>
+              <option>Laptop</option>
             </select>
           </div>
           <div className="form-group mb-4">
@@ -131,7 +131,7 @@ const ProductForm = () => {
               id="product_type"
               name="product_type"
               className="form-control"
-              value={product_type}
+              value={product_type.toLowerCase()}
               onChange={productDataChange}
               required
             >

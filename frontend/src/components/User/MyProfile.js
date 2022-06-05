@@ -1,3 +1,6 @@
+import OTPVerify from "./OTPVerify";
+
+
 function MyProfile(props) {
     const user = props.user_data
   return (
@@ -9,6 +12,7 @@ function MyProfile(props) {
             <div class="bio-row">
               <p>
                 <span> Name </span>: {user.name}
+
               </p>
             </div>
             <div class="bio-row">
@@ -20,7 +24,9 @@ function MyProfile(props) {
             <div class="bio-row">
               <p>
                 <span>Mobile </span>: (+88) {user.phone}
+                { user.isVerified &&<i class="fa-solid fa-circle-check text-success "></i>}
               </p>
+              { !user.isVerified && <OTPVerify number={user.phone}></OTPVerify>}
             </div>
           </div>
         </div>

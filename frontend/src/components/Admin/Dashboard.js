@@ -1,22 +1,22 @@
-import './Dashboard.css';
+import "./Dashboard.css";
 import { Link, useNavigate } from "react-router-dom";
 import { React, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { clearErrors } from "../../actions/userActions";
 import { logout } from "../../actions/userActions";
 import { useAlert } from "react-alert";
-import UserList from './Lists/UserList';
-import ProductList from './Lists/ProductList';
-import RecyclerList from './Lists/RecyclerList';
-import OrganizationList from './Lists/OrganizationList';
-import RecycleOrder from './Orders/RecycleOrder';
-import DonationOrder from './Orders/DonationOrder';
-
+import UserList from "./Lists/UserList";
+import ProductList from "./Lists/ProductList";
+import RecyclerList from "./Lists/RecyclerList";
+import OrganizationList from "./Lists/OrganizationList";
+import RecycleOrder from "./Orders/RecycleOrder";
+import DonationOrder from "./Orders/DonationOrder";
+import Header from "../Header/Header";
+import Footer from "../Footer/Footer";
 function Dashboard() {
-
   const user = {
-    name: "Jitesh"
-  }
+    name: "Jitesh",
+  };
 
   const dispatch = useDispatch();
   const alert = useAlert();
@@ -33,32 +33,35 @@ function Dashboard() {
     dispatch(logout());
     console.log(isAuthenticated);
     alert.success("Logout Successfully");
-    navigate('/');
+    navigate("/");
   }
   function toHome() {
-    navigate('/');
+    navigate("/");
   }
 
-
-
   return (
-    <div className='admin-dash'>
-
-      <div class="container bootstrap snippets bootdey">
-
+    <div className="admin-dash ">
+      <nav class="navbar navbar-light bg-light p-3">
+        <div class="container-fluid">
+          <a class="navbar-brand">ADMIN PANEL</a>
+          <div class="d-flex btn-group">
+            <button class="btn btn-primary" onClick={toHome}>Home</button>
+            <button class="btn btn-danger" onClick={logoutUser}>Logout</button>
+          </div>
+        </div>
+      </nav>
+      <div class="">
         <div class="row">
-          <div class="profile-nav col-md-3">
+          <div class="profile-nav col-md-3 bg-light">
             <div class="panel">
               <div class="user-heading round">
-                <a href="#">
-                  {/* <img src={user.avatar.url} alt="" /> */}
-                </a>
-                <h1>{user.name}</h1>
-                <p>{user.email}</p>
+                <a href="#">{/* <img src={user.avatar.url} alt="" /> */}</a>
+                <h1>Mr. Bin</h1>
+
               </div>
 
               <ul
-                className="nav nav-pills nav-stacked flex-column"
+                className="nav nav-stacked flex-column"
                 id="v-pills-tab"
                 role="tablist"
                 aria-orientation="vertical"
@@ -110,7 +113,6 @@ function Dashboard() {
                   >
                     <i class="fa fa-recycle"></i>
                     Recyclers
-
                   </a>
                 </li>
                 <li className="nav-item  p-3">
@@ -129,23 +131,23 @@ function Dashboard() {
                   </a>
                 </li>
 
-                <li className='p-3'>
+                <li className="p-3">
                   <a
                     class="text-decoration-none nav-link dropdown-toggle"
                     data-bs-toggle="collapse"
                     href="#collapseList"
                     role="button"
                     aria-expanded="false"
-                    aria-controls="collapseList">
+                    aria-controls="collapseList"
+                  >
                     <i class="fa fa-tty"></i>
-
                     Orders
                   </a>
 
                   <ul
-                    id='collapseList'
-                    className='collapse'
-                    aria-controls='collapseList'
+                    id="collapseList"
+                    className="collapse"
+                    aria-controls="collapseList"
                   >
                     <li>
                       <a
@@ -176,18 +178,14 @@ function Dashboard() {
                       </a>
                     </li>
                   </ul>
-
-
                 </li>
-
-
               </ul>
             </div>
           </div>
 
-          <div class="col-md-9 tab-content " id="v-pills-tabContent">
-            <div className='container p-3 m-3'>
-              <h4>Date</h4>
+          <div class="col-md-9 tab-content" id="v-pills-tabContent">
+            <div className="container p-3 m-3">
+              <h4>Date : { new Date().getDate() } - { new Date().getMonth()+1 }- { new Date().getFullYear()  }</h4>
             </div>
 
             <div
@@ -197,7 +195,6 @@ function Dashboard() {
               aria-labelledby="v-pills-user-tab"
             >
               <UserList />
-
             </div>
             <div
               className="tab-pane fade "
@@ -206,7 +203,6 @@ function Dashboard() {
               aria-labelledby="v-pills-products-tab"
             >
               <ProductList />
-
             </div>
             <div
               className="tab-pane fade "
@@ -230,23 +226,22 @@ function Dashboard() {
               role="tabpanel"
               aria-labelledby="v-pills-order-recyclers-tab"
             >
-              <RecycleOrder/>
+              <RecycleOrder />
             </div>
-            
+
             <div
               className="tab-pane fade"
               id="v-pills-order-donation"
               role="tabpanel"
               aria-labelledby="v-pills-order-donation-tab"
             >
-              <DonationOrder/>
+              <DonationOrder />
             </div>
           </div>
         </div>
-
       </div>
     </div>
-  )
+  );
 }
 
 export default Dashboard;

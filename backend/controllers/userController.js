@@ -264,6 +264,19 @@ exports.deleteFavorite = catchAsyncErrors(async (req, res, next) => {
   });
 });
 
+// verify a user
+exports.verifyUser = catchAsyncErrors(async (req, res, next) => {
+
+  await User.updateOne(
+    { _id: req.user.id },
+    { $set: { 'isVerified': true } }
+  );
+  res.status(200).json({
+    success: true,
+  });
+});
+
+
 
 //add notification 
 

@@ -49,6 +49,9 @@ import {
   SEND_NOTIFICATION_FAIL,
   SEND_NOTIFICATION_REQUEST,
   SEND_NOTIFICATION_SUCCESS,
+  VERIFY_USER_REQUEST,
+  VERIFY_USER_SUCCESS,
+  VERIFY_USER_FAIL,
 } from "../constants/userConstants";
 // import Cookies from 'js-cookie';
 
@@ -161,7 +164,17 @@ export const profileReducer = (state = {}, action) => {
         ...state,
         isDeleted: false,
       };
-
+      case VERIFY_USER_REQUEST:
+      case VERIFY_USER_SUCCESS:
+        return {
+          ...state,
+          success: action.payload,
+        };
+        case VERIFY_USER_FAIL:
+          return {
+            ...state,
+            error: action.payload,
+          };
     case CLEAR_ERRORS:
       return {
         ...state,
