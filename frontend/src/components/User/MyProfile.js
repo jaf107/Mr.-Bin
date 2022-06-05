@@ -26,7 +26,7 @@ function MyProfile(props) {
                 <span>Mobile </span>: (+88) {user.phone}
                 { user.isVerified &&<i class="fa-solid fa-circle-check text-success "></i>}
               </p>
-              { !user.isVerified && <OTPVerify number={user.phone}></OTPVerify>}
+              { !user.isVerified && <OTPVerify number={"+88" + user.phone}></OTPVerify>}
             </div>
           </div>
         </div>

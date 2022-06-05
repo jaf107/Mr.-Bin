@@ -208,3 +208,35 @@ exports.updateProduct = catchAsyncErrors(async (req, res, next) => {
     product,
   });
 });
+
+// verify a user
+exports.verifyProduct = catchAsyncErrors(async (req, res, next) => {
+
+  await Product.updateOne(
+    { _id: req.params.id },
+    { $set: { 'isVerified': true } }
+  );
+  res.status(200).json({
+    success: true,
+  });
+});
+
+
+// verify a user
+exports.editBid = catchAsyncErrors(async (req, res, next) => {
+  console.log(req.body.amount)
+  await Product.updateOne(
+    { _id: req.params.id,
+      bids : { _id: req.params.bidId }
+    },
+    { $set: {  bids : { amount : req.body.amount } } }
+  );
+
+  const product = await Product.findById(req.params.id);
+  product.bids.push(req.body);
+  await product.save();
+
+  res.status(200).json({
+    success: true,
+  });
+});

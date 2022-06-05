@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { createBid, getBid } from "../../../actions/productActions";
 
 function BidButton(props) {
-  const [bidAmount, setBidAmount] = useState(0);
+  const [bidAmount, setBidAmount] = useState("");
   const { user } = useSelector((state) => state.user);
   const [hasBid, setHasBid] = useState(false);
   const dispatch = useDispatch();

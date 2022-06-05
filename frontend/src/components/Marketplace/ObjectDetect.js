@@ -12,6 +12,8 @@ import Webcam from "react-webcam";
 import { drawRect } from "./utilities";
 import { useNavigate, useParams } from "react-router-dom";
 import { useAlert } from "react-alert";
+import { useDispatch } from "react-redux";
+import { verifyProduct } from "../../actions/productActions";
 
 function ObjectDetect(props) {
 
@@ -19,8 +21,9 @@ function ObjectDetect(props) {
   const canvasRef = useRef(null);
   const { id } = useParams();
   const { category } = useParams();
-
+  const alert = useAlert();
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   // Main function
   const runCoco = async () => {
     // 3. TODO - Load network
@@ -61,8 +64,11 @@ function ObjectDetect(props) {
 
       obj?.map((obj) => {
         if (obj.class === category) {
-          alert("OBJECT FOUND SUCCESSFULLY");
+
+         // alert("OBJECT FOUND SUCCESSFULLY");
+         dispatch(verifyProduct(id));
           navigate(`/product/${id}`);
+
         }
       });
       // 5. TODO - Update drawing utility
@@ -76,9 +82,9 @@ function ObjectDetect(props) {
   }, []);
 
   return (
-    <div className="object-detect">
+    <div className="object-detect h-100">
       <Header></Header>
-      <header className="object-detect-header">
+      <div className="object-detect-header h-100">
         <Webcam
           ref={webcamRef}
           muted={true}
@@ -109,7 +115,8 @@ function ObjectDetect(props) {
             height: 480,
           }}
         />
-      </header>
+      </div>
+      <h5 className=" text-center"> Please put the object infront of Webcam</h5>
     </div>
   );
 }
