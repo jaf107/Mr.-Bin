@@ -11,9 +11,9 @@ const RecyclerForm = (props, state) => {
         location: "",
         phone: "",
     })
-const {name, company, location, phone} = recycler
+    const { name, company, location, phone } = recycler
     const submitRecycler = (e) => {
-         e.preventDefault();
+        e.preventDefault();
         const myForm = new FormData();
         myForm.set("name", name);
         myForm.set("location", location);
@@ -21,11 +21,12 @@ const {name, company, location, phone} = recycler
         myForm.set("company", company);
         console.log(myForm)
         dispatch(addRecycler(myForm))
+
     }
 
     const recyclerDataChange = (e) => {
         setRecycler({ ...recycler, [e.target.name]: e.target.value });
-      };
+    };
     return (
         <div
             className='container p-4 '

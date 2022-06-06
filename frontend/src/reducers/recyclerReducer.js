@@ -22,9 +22,9 @@ export const recyclerReducer = (state = { recyclers: [] }, action) => {
         error: action.payload,
       };
     case GET_RECYCLER_REQUEST:
-      return{
+      return {
         ...state,
-        recyclers:[]
+        recyclers: []
 
       }
     case GET_RECYCLER_SUCCESS:
@@ -34,48 +34,48 @@ export const recyclerReducer = (state = { recyclers: [] }, action) => {
         recyclers: action.payload,
       };
 
-      case CREATE_RECYCLER_FAIL:
-        return {
-          ...state,
-          loading: false,
-          error: action.payload,
-        };
-      case CREATE_RECYCLER_REQUEST:
-        return{
-          ...state
-        }
-      case CREATE_RECYCLER_SUCCESS:
-        return {
-          ...state,
-          loading: false,
-          recyclers: action.payload,
-        };
+    case CREATE_RECYCLER_FAIL:
+      return {
+        ...state,
+        loading: false,
+        error: action.payload,
+      };
+    case CREATE_RECYCLER_REQUEST:
+      return {
+        ...state
+      }
+    case CREATE_RECYCLER_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        recyclers: action.payload,
+      };
 
 
-        case DELETE_RECYCLER_FAIL:
-          return {
-            ...state,
-            loading: false,
-            error: action.payload,
-          };
-        case DELETE_RECYCLER_REQUEST:
-          return{
-            ...state
-          }
-        case DELETE_RECYCLER_SUCCESS:
-          return {
-            ...state,
-            loading: false,
-            recyclers: action.payload,
-          };
-    
+    case DELETE_RECYCLER_FAIL:
+      return {
+        ...state,
+        loading: false,
+        error: action.payload,
+      };
+    case DELETE_RECYCLER_REQUEST:
+      return {
+        ...state
+      }
+    case DELETE_RECYCLER_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        recyclers: action.payload,
+      };
+
     default:
       return state;
   }
 };
 
 
-export const singleRecyclerReducer = (state = { recycler : {} }, action) => {
+export const singleRecyclerReducer = (state = { recycler: {} }, action) => {
   switch (action.type) {
     case GET_SINGLE_RECYCLER_FAIL:
       return {
@@ -94,7 +94,7 @@ export const singleRecyclerReducer = (state = { recycler : {} }, action) => {
         ...state,
         loading: false,
         recycler: action.payload,
-      
+
       };
     default:
       return state;
