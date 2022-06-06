@@ -170,9 +170,9 @@ export const rejectBid = (id, bidId) => async (dispatch) => {
 export const editBid = (id, bidId, amount) => async (dispatch) => {
   try {
     dispatch({ type: EDIT_BID_REQUEST });
-    const config = { headers: { "Content-Type": "application/json" } };
+    const config = { headers: { "Content-Type": "multipart/form-data" } };
     const { data } = await axios.put(
-      `http://localhost:5000/api/v1/product/${id}/bid/${bidId}`,
+      `http://localhost:5000/api/v1/product/${id}/bid/${bidId}/edit`,
       config,
       {amount : amount}
     );

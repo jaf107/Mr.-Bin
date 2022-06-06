@@ -14,6 +14,8 @@ const {
   addNotification,
   getSpecificUserDetails,
   verifyUser,
+  getAllUser,
+  deleteUser,
 } = require("../controllers/userController");
 const { isAuthenticatedUser } = require("../middleware/auth");
 
@@ -48,14 +50,11 @@ router.route("/admin/user/:id").get(isAuthenticatedUser, getSpecificUserDetails)
 
 router.route("/notification/:id").post(isAuthenticatedUser, addNotification);
 
-// router
-//   .route("/admin/users")
-//   .get(isAuthenticatedUser, authorizeRoles("admin"), getAllUser);
+router
+  .route("/admin/users")
+  .get(isAuthenticatedUser, getAllUser);
 
-// router
-//   .route("/admin/user/:id")
-//   .get(isAuthenticatedUser, authorizeRoles("admin"), getSingleUser)
-//   .put(isAuthenticatedUser, authorizeRoles("admin"), updateUserRole)
-//   .delete(isAuthenticatedUser, authorizeRoles("admin"), deleteUser);
+router
+  .route("/admin/user/:id").delete(isAuthenticatedUser, deleteUser);
 
 module.exports = router;

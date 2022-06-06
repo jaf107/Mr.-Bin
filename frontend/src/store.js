@@ -56,7 +56,7 @@ const reducer = combineReducers({
   //   review: reviewReducer,
   recyclers: recyclerReducer,
   recycler: singleRecyclerReducer,
-  recycleOrders: recycleOrderReducer,
+  orders: recycleOrderReducer,
 
   order: orderReducer,
   userOrders: userOrderReducer,

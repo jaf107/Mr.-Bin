@@ -13,6 +13,7 @@ import RecycleOrder from "./Orders/RecycleOrder";
 import DonationOrder from "./Orders/DonationOrder";
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
+import { getOrders } from "../../actions/orderActions";
 function Dashboard() {
   const user = {
     name: "Jitesh",
@@ -26,6 +27,7 @@ function Dashboard() {
     if (error) {
       alert.error(error);
       dispatch(clearErrors());
+      dispatch(getOrders());
     }
   }, [dispatch, error, alert, isAuthenticated]);
 
@@ -130,54 +132,35 @@ function Dashboard() {
                     Organizations
                   </a>
                 </li>
-
-                <li className="p-3">
+                <li className="nav-item  p-3">
                   <a
-                    class="text-decoration-none nav-link dropdown-toggle"
-                    data-bs-toggle="collapse"
-                    href="#collapseList"
-                    role="button"
-                    aria-expanded="false"
-                    aria-controls="collapseList"
+                    className="text-decoration-none nav-link"
+                    id="v-pills-order-recyclers-tab"
+                    data-bs-toggle="pill"
+                    data-bs-target="#v-pills-order-recyclers"
+                    href="#v-pills-order-recyclers"
+                    role="tab"
+                    aria-controls="v-pills-order-recyclers"
+                    aria-selected="false"
                   >
-                    <i class="fa fa-tty"></i>
-                    Orders
+                    <i class="fa fa-building-ngo"></i>
+                    Recycle Orders
                   </a>
-
-                  <ul
-                    id="collapseList"
-                    className="collapse"
-                    aria-controls="collapseList"
+                </li>
+                <li className="nav-item  p-3">
+                  <a
+                    className="text-decoration-none nav-link"
+                    id="v-pills-order-donation-tab"
+                    data-bs-toggle="pill"
+                    data-bs-target="#v-pills-order-donation"
+                    href="#v-pills-order-donation"
+                    role="tab"
+                    aria-controls="v-pills-order-donation"
+                    aria-selected="false"
                   >
-                    <li>
-                      <a
-                        className="text-decoration-none nav-link px-5"
-                        id="v-pills-order-recyclers-tab"
-                        data-bs-toggle="pill"
-                        data-bs-target="#v-pills-order-recyclers"
-                        href="#v-pills-order-recyclers"
-                        role="tab"
-                        aria-controls="v-pills-order-recyclers"
-                        aria-selected="false"
-                      >
-                        - Recycling
-                      </a>
-                    </li>
-                    <li>
-                      <a
-                        className="text-decoration-none nav-link px-5"
-                        id="v-pills-order-donation-tab"
-                        data-bs-toggle="pill"
-                        data-bs-target="#v-pills-order-donation"
-                        href="#v-pills-order-donation"
-                        role="tab"
-                        aria-controls="v-pills-order-donation"
-                        aria-selected="false"
-                      >
-                        - Donation
-                      </a>
-                    </li>
-                  </ul>
+                    <i class="fa fa-building-ngo"></i>
+                    Donation Orders
+                  </a>
                 </li>
               </ul>
             </div>

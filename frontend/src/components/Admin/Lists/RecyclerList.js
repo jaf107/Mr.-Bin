@@ -1,34 +1,35 @@
-import React, { useEffect, useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { getRecyclers } from '../../../actions/recyclerActions';
-import RecyclerForm from '../Forms/RecyclerForm';
+import React, { useEffect, useState } from "react";
+import { useAlert } from "react-alert";
+import { useDispatch, useSelector } from "react-redux";
+import { deleteRecycler, getRecyclers } from "../../../actions/recyclerActions";
+import RecyclerForm from "../Forms/RecyclerForm";
 
 const RecyclerList = () => {
-
   const dispatch = useDispatch();
   const { recyclers } = useSelector((state) => state.recyclers);
-
+  const alert  = useAlert();
   useEffect(() => {
     dispatch(getRecyclers());
   }, [dispatch]);
 
   const [form, setForm] = useState(true);
-
+  const removeRecycler = (id) => {
+    dispatch(deleteRecycler(id));
+    alert("RECYCLER DELETED SUCCESSFULLY");
+  };
 
   return (
     <div>
-      <div className='container'>
-        <button className='btn btn-danger'
-          onClick={() => setForm(false)}>
+      <div className="container">
+        <button className="btn btn-danger" onClick={() => setForm(false)}>
           Form
         </button>
-        <button className='btn btn-warning m-4'
-          onClick={() => setForm(true)}>
+        <button className="btn btn-warning m-4" onClick={() => setForm(true)}>
           List
         </button>
       </div>
       {form && (
-        <div className='m-4 p4'>
+        <div className="m-4 p4">
           <table class="table">
             <thead>
               <tr>
@@ -49,21 +50,27 @@ const RecyclerList = () => {
                   <td>{recycler.company}</td>
                   <td>{recycler.location}</td>
                   <td>{recycler.phone}</td>
-                  <td><button className='btn btn-danger '> Delete </button></td>
+                  <td>
+                    <button
+                      className="btn btn-danger "
+                      onClick={() => {
+                        removeRecycler(recycler._id);
+                      }}
+                    >
+                      {" "}
+                      Delete{" "}
+                    </button>
+                  </td>
                 </tr>
               ))}
-
             </tbody>
           </table>
-        </div>)}
-
-      {!form && (
-
-        <RecyclerForm />
-
+        </div>
       )}
-    </div>
-  )
-}
 
-export default RecyclerList
+      {!form && <RecyclerForm />}
+    </div>
+  );
+};
+
+export default RecyclerList;

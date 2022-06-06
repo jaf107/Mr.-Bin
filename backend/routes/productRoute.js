@@ -16,7 +16,7 @@ router.route("/product/:id/verify").put(isAuthenticatedUser, verifyProduct);
 router.route("/product/:id/bid/new").put(isAuthenticatedUser, createBid);
 router.route("/product/:id/bid").get(isAuthenticatedUser,getBid);
 router.route("/product/:id/bid/:bidId").delete(isAuthenticatedUser,RejectBid);
-router.route("/product/:id/bid/:bidId").put(isAuthenticatedUser,editBid);
+router.route("/product/:id/bid/:bidId/edit").put(isAuthenticatedUser,editBid);
 router.route("/product/:id/:buyerId").put(isAuthenticatedUser,AcceptBid);
 
 router.route("/product/:id/comment/new").put(isAuthenticatedUser, addComment);
