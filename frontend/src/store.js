@@ -26,6 +26,7 @@ import {
   singleRecyclerReducer,
 } from "./reducers/recyclerReducer";
 import { orderReducer, recycleOrderReducer, userOrderReducer } from "./reducers/orderReducer";
+import { organizationReducer } from "./reducers/organizationReducer";
 
 const reducer = combineReducers({
   //   products: productsReducer,
@@ -57,6 +58,9 @@ const reducer = combineReducers({
   recyclers: recyclerReducer,
   recycler: singleRecyclerReducer,
   orders: recycleOrderReducer,
+
+
+  organization: organizationReducer,
 
   order: orderReducer,
   userOrders: userOrderReducer,

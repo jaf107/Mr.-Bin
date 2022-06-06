@@ -1,12 +1,23 @@
-import React, { useState } from 'react'
-import { useDispatch } from 'react-redux'
+import React, { useEffect, useState } from 'react'
+import { useAlert } from 'react-alert';
+import { useDispatch, useSelector } from 'react-redux'
+import { deleteOrganization, getOrganizations } from '../../../actions/organizationActions';
 import OrganizationForm from '../Forms/OrganizationForm';
 import "./OrganizationList.css"
 const OrganizationList = () => {
 
   const dispatch = useDispatch();
-
+  const { organizations } = useSelector((state) => state.organization);
+  const alert = useAlert();
+  useEffect(() => {
+    dispatch(getOrganizations());
+  }, [dispatch]);
   const [form, setForm] = useState(true);
+
+  const removeOrganization = (id) => {
+    dispatch(deleteOrganization(id));
+    alert("ORGANIZATION DELETED SUCCESSFULLY");
+  }
 
   return (
     <div>
@@ -35,13 +46,31 @@ const OrganizationList = () => {
               </tr>
             </thead>
             <tbody>
-
-
+              {organizations.map((organization, index) => (
+                <tr>
+                  <td>{index + 1}</td>
+                  <td>{organization.name}</td>
+                  <td>{organization.type}</td>
+                  <td>{organization.location}</td>
+                  <td>{organization.phone}</td>
+                  <td>
+                    <button
+                      className="btn btn-danger "
+                      onClick={() => {
+                        removeOrganization(organization._id);
+                      }}
+                    >
+                      {" "}
+                      Delete{" "}
+                    </button>
+                  </td>
+                </tr>
+              ))}
             </tbody>
           </table>
         </div>)}
 
-      {!form && <OrganizationForm/>}
+      {!form && <OrganizationForm />}
     </div>
   )
 }

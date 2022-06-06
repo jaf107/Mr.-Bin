@@ -15,7 +15,7 @@ exports.createOrganization = catchAsyncErrors(async (req, res, next) => {
     const organization = await Organization.create({
       name,
       type,
-      company,
+      location,
       phone,
     //   avatar: {
     //     public_id: myCloud.public_id,

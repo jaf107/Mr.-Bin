@@ -43,12 +43,14 @@ const user = require("./routes/userRoute");
 const product = require("./routes/productRoute");
 const recycler = require("./routes/recyclerRoute");
 const order = require("./routes/orderRoute");
+const organization = require('./routes/organizationRoute');
 
 
 app.use("/api/v1", user);
 app.use("/api/v1", product);
 app.use("/api/v1/",recycler);
 app.use("/api/v1/",order);
+app.use("/api/v1/", organization)
 
 app.use(express.static(path.join(__dirname, "../frontend/build")));
 
