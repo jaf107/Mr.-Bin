@@ -1,6 +1,7 @@
 import React from 'react'
 import Footer from '../Footer/Footer';
 import Header from '../Header/Header';
+import "./DonationForm.css"
 
 const DonationForm = () => {
 
@@ -11,8 +12,8 @@ const DonationForm = () => {
   return (
     <div>
       <Header />
-      <div className='container'>
-        <h2>Donation Form</h2>
+      <div className='container dform'>
+      <h4 className="  text-center bg-light p-4 mb-2">DONATION FORM</h4>
       </div>
 
       <div className='container'>
@@ -55,7 +56,7 @@ const DonationForm = () => {
 
         <button
           type='submit'
-          className='btn btn-success'
+          className='btn btn-success middle submit-button mt-2 mb-2'
           onClick={sendDonatioNRequest()}
         >
           Submit

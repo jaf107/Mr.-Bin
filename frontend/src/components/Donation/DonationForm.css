@@ -1,0 +1,10 @@
+.dform .middle {
+    /* margin-left: 45%; */
+    display: block;
+    margin: auto;
+}
+
+.dform .submit-button{
+    height: 40px;
+    width: 300px;
+}

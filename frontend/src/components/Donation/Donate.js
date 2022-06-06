@@ -28,9 +28,9 @@ const Donate = () => {
           </div>
         </div>
       </div>
-      <div className='container'>
+      <div className='container donate'>
         <Link
-          className="middle btn btn-info white fw-bold btn-lg  mb-4 mt-4 p-4"
+          className="btn border-info btn-lg fw-bold mt-5 p-4 middle "
           to={'/donation/form'}
         >
           Donate An Item

@@ -1,4 +1,4 @@
-.middle{
+.donate .middle{
     margin: 20px 40%;
 }
 
@@ -8,14 +8,27 @@
     
 }
 
-.center{
+.donate .center{
     text-align: center;
 }
 
-.white{
+.donate .white{
     color: white;
 }
 
-.wheat{
+.donate .wheat{
     background-color: whitesmoke;
+}
+
+
+.donate .btn:hover{
+    color: black !important;
+    background-color: white !important;
+    border: 1px solid !important;
+}
+
+.donate .btn{
+    color: white !important;
+    background-color: #20C1BD !important;
+    border: 1px solid whitesmoke !important;
 }

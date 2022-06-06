@@ -52,3 +52,14 @@ exports.getSingleOrganization = catchAsyncErrors(async (req, res, next) => {
     organization,
   });
 });
+
+exports.deleteOrganization = catchAsyncErrors(async (req, res, next) => {
+  const organization = await Organization.findById(req.params.id);
+  organization.remove();
+  
+  const Organizations = await  Organization.findById(req.params.id) 
+  res.status(200).json({
+    success: true,
+    Organizations,
+  });
+});
