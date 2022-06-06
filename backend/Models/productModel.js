@@ -10,6 +10,9 @@ const productSchema = new mongoose.Schema({
     type: String,
     required: [true, "Please enter Product Category"],
   },
+  address: {
+    type: Object,
+  },
   isVerified: {
     type: Boolean,
     default: false

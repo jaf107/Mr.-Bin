@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import "./ProductForm.css";
 import { useAlert } from "react-alert";
+import GoogleMap from "../../GoogleMap";
 
 const ProductForm = () => {
   const dispatch = useDispatch();
@@ -33,9 +34,10 @@ const ProductForm = () => {
     description,
     date_of_purchase,
     purchase_price,
-    product_type
+    product_type,
   } = product;
 
+  const [address, setAddress] =  useState();
   const [images, setImages] = useState([]);
   const [imagesPreview, setImagesPreview] = useState([]);
 
@@ -50,6 +52,8 @@ const ProductForm = () => {
     productForm.set("date_of_purchase", date_of_purchase);
     productForm.set("purchase_price", purchase_price);
     productForm.set("product_type", product_type);
+    productForm.set("address", address);
+
 
     images.forEach((image) => {
       productForm.append("images", image);
@@ -90,6 +94,10 @@ const ProductForm = () => {
       reader.readAsDataURL(file);
     });
   };
+ const  handleAddress = (langValue) => {
+    setAddress(langValue)
+}
+console.log(address)
 
   return (
     <div>
@@ -157,6 +165,7 @@ const ProductForm = () => {
             />
           </div>
 
+          <GoogleMap className="form-group mb-4" onSetAddress={handleAddress}></GoogleMap>
           <div className="form-group mb-4">
             <textarea
               className="form-control"

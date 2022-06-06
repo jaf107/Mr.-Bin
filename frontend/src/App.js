@@ -30,6 +30,7 @@ import DonationForm from "./components/Donation/DonationForm";
 // import EnhancedTable from "./components/Marketplace/UserProduct/EnhancedTable";
 // import UpdateProfile from "./components/User/UpdateProfile";
 import ObjectDetect from './components/Marketplace/ObjectDetect'
+import GoogleMap from "./components/GoogleMap";
 
 function App() {
 
@@ -47,6 +48,7 @@ function App() {
           <Route path="/login" exact element={<Login />}></Route>
           <Route path="/chat" exact element={<Chat />}></Route>
           <Route path="/home" exact element={<Home />}></Route>
+          <Route path="/map" exact element={<GoogleMap />}></Route>
 
           <Route path="/register" element={<Register />}></Route>
           <Route path="/profile/edit" element={<EditAccount />}></Route>

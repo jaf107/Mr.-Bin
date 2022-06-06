@@ -55,13 +55,15 @@ const Marketplace = () => {
                 </div>
                 <Search></Search>
               </div>
+
               <div className=" col-md-9">
-                <div className="row">
+                
+                <div className="">
                   {products?.map((product) => (
                     <>
                       {!product.buyer &&
                         product.product_type === "marketplace" && (
-                          <div className="separate-card col-md-4 col-sm-6 ">
+                          <span className="separate-card ">
                             <div className="card">
                               <Link to={`/product/${product._id}`}>
                                 <img
@@ -87,21 +89,13 @@ const Marketplace = () => {
                                   <FavoriteButton
                                     product_id={product._id}
                                   ></FavoriteButton>
-                                  {/* <button
-                          className="card-button flex-fill border-0 btn btn-danger  favorite-btn"
-                          onClick={() => {
-                            onFavoriteClick(product._id);
-                          }}
-                        >
-                          <i className=" fas fa-heart "></i>
-                        </button> */}
                                   <BidButton
                                     product_id={product._id}
                                   ></BidButton>
                                 </div>
                               </div>
                             </div>
-                          </div>
+                          </span>
                         )}
                     </>
                   ))}
