@@ -10,6 +10,10 @@ const productSchema = new mongoose.Schema({
     type: String,
     required: [true, "Please enter Product Category"],
   },
+  isVerified: {
+    type: Boolean,
+    default: false
+  },
   quantity: {
     type: Number,
     required: [true, "Please enter the Product Stock Quantity"],

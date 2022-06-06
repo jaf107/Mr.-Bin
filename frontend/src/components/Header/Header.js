@@ -46,7 +46,7 @@ function Header() {
           class="collapse navbar-collapse justify-content-between"
           id="navbarSupportedContent"
         >
-          <form class="form-inline my-2 my-lg-0">
+          {/* <form class="form-inline my-2 my-lg-0">
             <div class="input-group input-group-sm">
               <input typse="text" class="form-control " placeholder="Search" />
               <div class="input-group-append ">
@@ -55,7 +55,7 @@ function Header() {
                 </button>
               </div>
             </div>
-          </form>
+          </form> */}
           <ul class="navbar-nav  fw-normal">
             <li class="nav-item active p-2">
               <Link class="nav-link" to="/">

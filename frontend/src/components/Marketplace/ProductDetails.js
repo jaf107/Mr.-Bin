@@ -67,11 +67,12 @@ const Product = () => {
                       ))}
                     </Carousel>
                     <div className=" text-center">
-                    <Link className="btn btn-dark m-3 " to={`/object-detect/${id}/${product.category.toLowerCase()}`}>Verify</Link>
+                    {(product.user === user._id) &&  !product.isVerified && <Link className="btn btn-dark m-3 " to={`/object-detect/${id}/${product.category.toLowerCase()}`}>Verify</Link>} 
                     </div>
                   </div>
                   <div className="details col-md-6">
                     <h3 className="product-title">{product.name}</h3>
+                   { product.isVerified &&  <span className=" mb-3 fw-bold text-success">(Verified)</span>}
                     <h5 className="price">
                       price:
                       <span> </span>

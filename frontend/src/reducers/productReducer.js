@@ -38,7 +38,17 @@ import {
   ACCEPT_BID_FAIL,
   ACCEPT_BID_REQUEST,
   ACCEPT_BID_SUCCESS,
+  VERIFY_PRODUCT_FAIL,
+  VERIFY_PRODUCT_REQUEST,
+  VERIFY_PRODUCT_SUCCESS,
+  EDIT_BID_FAIL,
+  EDIT_BID_REQUEST,
+  EDIT_BID_SUCCESS,
 } from "../constants/productConstants";
+import {
+  VERIFY_USER_REQUEST,
+  VERIFY_USER_SUCCESS,
+} from "../constants/userConstants";
 
 export const productReducer = (state = { products: [] }, action) => {
   switch (action.type) {
@@ -59,6 +69,18 @@ export const productReducer = (state = { products: [] }, action) => {
         loading: false,
         products: action.payload,
       };
+      case EDIT_BID_FAIL:
+        return {
+          ...state,
+          loading: false,
+          error: action.payload,
+        };
+      case EDIT_BID_REQUEST:
+      case EDIT_BID_SUCCESS:
+        return {
+          ...state,
+          loading: false,
+        };
     default:
       return state;
   }
@@ -264,6 +286,13 @@ export const updateProductReducer = (state = {}, action) => {
         ...state,
         isUpdated: false,
       };
+    case VERIFY_PRODUCT_REQUEST:
+    case VERIFY_PRODUCT_SUCCESS:
+      return {
+        ...state,
+        success : true
+      }
+    case VERIFY_PRODUCT_FAIL:
     case CLEAR_ERRORS:
       return {
         ...state,

@@ -1,5 +1,6 @@
+const { verify } = require("crypto");
 const express = require("express");
-const { addProduct, getProducts, getUserProducts, getSingleProduct, createBid, getBid, addComment, getComment, deleteProduct, updateProduct, RejectBid, AcceptBid } = require("../controllers/productController");
+const { addProduct, getProducts, getUserProducts, getSingleProduct, createBid, getBid, addComment, getComment, deleteProduct, updateProduct, RejectBid, AcceptBid, verifyProduct, editBid } = require("../controllers/productController");
 const { isAuthenticatedUser } = require("../middleware/auth");
 
 const router = express.Router();
@@ -10,10 +11,12 @@ router.route("/me/product").get(isAuthenticatedUser, getUserProducts);
 
 router.route("/product/:id").get(getSingleProduct);
 router.route("/product/:id").delete(isAuthenticatedUser, deleteProduct);
+router.route("/product/:id/verify").put(isAuthenticatedUser, verifyProduct);
 
 router.route("/product/:id/bid/new").put(isAuthenticatedUser, createBid);
 router.route("/product/:id/bid").get(isAuthenticatedUser,getBid);
 router.route("/product/:id/bid/:bidId").delete(isAuthenticatedUser,RejectBid);
+router.route("/product/:id/bid/:bidId/edit").put(isAuthenticatedUser,editBid);
 router.route("/product/:id/:buyerId").put(isAuthenticatedUser,AcceptBid);
 
 router.route("/product/:id/comment/new").put(isAuthenticatedUser, addComment);

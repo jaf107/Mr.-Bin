@@ -22,10 +22,10 @@ exports.createRecycler = catchAsyncErrors(async (req, res, next) => {
     //     url: myCloud.secure_url,
     //   },
     });
-  
+    const recyclers = await Recycler.find();
     res.status(200).json({
         success: true,
-        recycler,
+        recyclers,
       });
   });
 
@@ -52,3 +52,16 @@ exports.getSingleRecycler = catchAsyncErrors(async (req, res, next) => {
     recycler,
   });
 });
+
+  // Get Single Recycler Details
+  exports.deleteRecycler = catchAsyncErrors(async (req, res, next) => {
+    const recycler = await Recycler.findById(req.params.id);
+    recycler.remove();
+    
+    const recyclers = await  Recycler.findById(req.params.id) 
+    res.status(200).json({
+      success: true,
+      recyclers,
+    });
+  });
+  

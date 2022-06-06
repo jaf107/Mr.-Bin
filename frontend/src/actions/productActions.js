@@ -34,8 +34,15 @@ import {
   REJECT_BID_SUCCESS,
   ACCEPT_BID_REQUEST,
   ACCEPT_BID_SUCCESS,
-  ACCEPT_BID_FAIL
+  ACCEPT_BID_FAIL,
+  VERIFY_PRODUCT_REQUEST,
+  VERIFY_PRODUCT_SUCCESS,
+  VERIFY_PRODUCT_FAIL,
+  EDIT_BID_REQUEST,
+  EDIT_BID_SUCCESS,
+  EDIT_BID_FAIL
 } from "../constants/productConstants";
+import { VERIFY_USER_REQUEST } from "../constants/userConstants";
 const axios = require("axios");
 axios.defaults.withCredentials = true;
 
@@ -61,12 +68,12 @@ export const addProduct = (productData) => async (dispatch) => {
 };
 
 // Get Products
-export const getProducts = () => async (dispatch) => {
+export const getProducts = ( keyword = "", category = "" ) => async (dispatch) => {
   try {
     dispatch({ type: GET_PRODUCT_REQUEST });
     const config = { headers: { "Content-Type": "application/json" } };
 
-    const { data } = await axios.get(`http://localhost:5000/api/v1/product`);
+    const { data } = await axios.get(`http://localhost:5000/api/v1/product?keyword=${keyword}&category=${category}`);
     dispatch({ type: GET_PRODUCT_SUCCESS, payload: data.product });
   } catch (error) {
     dispatch({ type: GET_PRODUCT_FAIL, payload: error });
@@ -156,6 +163,22 @@ export const rejectBid = (id, bidId) => async (dispatch) => {
     dispatch({ type: REJECT_BID_SUCCESS, payload: data });
   } catch (error) {
     dispatch({ type: REJECT_BID_FAIL, payload: error.response.data.message });
+  }
+};
+
+//Edit Bid
+export const editBid = (id, bidId, amount) => async (dispatch) => {
+  try {
+    dispatch({ type: EDIT_BID_REQUEST });
+    const config = { headers: { "Content-Type": "multipart/form-data" } };
+    const { data } = await axios.put(
+      `http://localhost:5000/api/v1/product/${id}/bid/${bidId}/edit`,
+      config,
+      {amount : amount}
+    );
+    dispatch({ type: EDIT_BID_SUCCESS, payload: data });
+  } catch (error) {
+    dispatch({ type: EDIT_BID_FAIL, payload: error.response.data.message });
   }
 };
 
@@ -250,5 +273,24 @@ export const updateProduct = (id, productData) => async (dispatch) => {
       type: UPDATE_PRODUCT_FAIL,
       payload: error.response.data.message,
     });
+  }
+};
+
+
+// Verify Product
+
+
+export const verifyProduct = (id) => async (dispatch) => {
+  try {
+    dispatch({ type: VERIFY_PRODUCT_REQUEST });
+    const config = { headers: { "Content-Type": "application/json" } };
+
+    const { data } = await axios.put(
+      `http://localhost:5000/api/v1/product/${id}/verify`,
+      config
+    );
+    dispatch({ type: VERIFY_PRODUCT_SUCCESS, payload: data.success });
+  } catch (error) {
+    dispatch({ type: VERIFY_PRODUCT_FAIL, payload: error.response.data.message });
   }
 };

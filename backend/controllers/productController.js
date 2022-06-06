@@ -4,6 +4,7 @@ const cloudinary = require("cloudinary");
 const Recycler = require("../models/recyclerModel.js");
 const User = require("../models/userModel.js");
 const ErrorHander = require("../utils/errorhander");
+const ApiFeatures = require("../utils/apifeatures");
 
 exports.addProduct = catchAsyncErrors(async (req, res, next) => {
   let images = [];
@@ -37,8 +38,11 @@ exports.addProduct = catchAsyncErrors(async (req, res, next) => {
 });
 
 exports.getProducts = catchAsyncErrors(async (req, res, next) => {
-  const product = await Product.find();
 
+  const apiFeature = new ApiFeatures(Product.find(), req.query)
+    .search().searchCategory();
+
+  let product = await apiFeature.query;
   res.status(200).json({
     success: true,
     product,
@@ -93,24 +97,24 @@ exports.getBid = catchAsyncErrors(async (req, res, next) => {
 
 //Accept Reject bid on a product
 exports.RejectBid = catchAsyncErrors(async (req, res, next) => {
-  const product =  await Product.updateOne(
-      { _id: req.params.id },
-      { $pull: { bids: { _id: req.params.bidId } } }, 
-    );
+  const product = await Product.updateOne(
+    { _id: req.params.id },
+    { $pull: { bids: { _id: req.params.bidId } } }
+  );
   res.status(200).json({
     success: true,
-    product
+    product,
   });
 });
 
 exports.AcceptBid = catchAsyncErrors(async (req, res, next) => {
   await Product.updateOne(
-     { _id: req.params.id },
-     {  $set: { buyer: req.params.buyerId } }, 
-   );
- res.status(200).json({
-   success: true,
- });
+    { _id: req.params.id },
+    { $set: { buyer: req.params.buyerId } }
+  );
+  res.status(200).json({
+    success: true,
+  });
 });
 
 //add a comment by user
@@ -206,5 +210,33 @@ exports.updateProduct = catchAsyncErrors(async (req, res, next) => {
   res.status(200).json({
     success: true,
     product,
+  });
+});
+
+// verify a user
+exports.verifyProduct = catchAsyncErrors(async (req, res, next) => {
+  await Product.updateOne(
+    { _id: req.params.id },
+    { $set: { isVerified: true } }
+  );
+  res.status(200).json({
+    success: true,
+  });
+});
+
+// verify a user
+exports.editBid = catchAsyncErrors(async (req, res, next) => {
+  console.log(req.body.amount);
+  await Product.updateOne(
+    { _id: req.params.id, bids: { _id: req.params.bidId } },
+    { $set: { bids: { amount: req.body.amount } } }
+  );
+
+  const product = await Product.findById(req.params.id);
+  product.bids.push(req.body);
+  await product.save();
+
+  res.status(200).json({
+    success: true,
   });
 });

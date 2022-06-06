@@ -1,17 +1,20 @@
 import { useEffect, useState } from "react";
 import { useAlert } from "react-alert";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { addComment, getComment } from "../../../actions/productActions";
 import "./Comment.css";
 function Comment(props) {
   const dispatch = useDispatch();
   const alert = useAlert();
+  const navigate = useNavigate();
   const [comment, setComment] = useState("");
   const { user } = useSelector((state) => state.user);
   const { comments } = useSelector((state) => state.comments);
 
   useEffect(() => {
     dispatch(getComment(props.product_id));
+    navigate(`/product/${props.product_id}`)
   }, [dispatch]);
 
   const submitComment = (e) => {

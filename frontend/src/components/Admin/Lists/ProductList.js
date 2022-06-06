@@ -57,6 +57,7 @@ function ProductDetails(props) {
         dispatch(deleteProduct(props.product._id));
         alert.success("PRODUCT DELETED SUCCESSFULLY");
     };
+    const user = props.users?.find(o => o._id === props.product.user)
     return (
         <tr>
             {
@@ -76,8 +77,10 @@ function ProductDetails(props) {
 
                         </Link>{" "}
                     </td>
-                    {/* <td>{props.users?.find(o => o._id === props.product.user).name} </td> */}
-                    {/* <td>{props.users?.find(o => {if(o._id === props.product.user) return o.name})} </td> */}
+                    {user && <td>{user.name} </td>}
+
+                    {/* <td>{.name} </td> */}
+                    {/* <td>{props.users?.some(o => {if(o._id === props.product.user) return o.name})} </td> */}
                     <td>{props.product.purchase_price} </td>
                     <td>{props.product.created_at} </td>
 

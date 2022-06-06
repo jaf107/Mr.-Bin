@@ -49,7 +49,7 @@ function UserDetails(props) {
     const alert = useAlert();
     const onDeleteUser = () => {
         dispatch(deleteUser(props.user._id));
-        alert.success("User DELETED SUCCESSFULLY");
+        alert.success("USER DELETED SUCCESSFULLY");
     };
 
     return (

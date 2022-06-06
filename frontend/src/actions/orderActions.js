@@ -7,7 +7,10 @@ import {
     GET_USER_ORDER_FAIL,
     GET_ORDER_REQUEST,
     GET_ORDER_SUCCESS,
-    GET_ORDER_FAIL
+    GET_ORDER_FAIL,
+    CHANGE_ORDER_STATUS_REQUEST,
+    CHANGE_ORDER_STATUS_SUCCESS,
+    CHANGE_ORDER_STATUS_FAIL
   
   } from "../constants/orderConstants";
   const axios = require("axios");
@@ -57,19 +60,15 @@ import {
     }
   };
   
-//   // Get user specific Products
-//   export const getUserProducts = (user_id) => async (dispatch) => {
-//     try {
-//       dispatch({ type: GET_USER_PRODUCT_REQUEST });
-//       const config = { headers: { "Content-Type": "application/json" } };
+// Change order status
+  export const updateStatus = (id, status) => async (dispatch) => {
+    try {
+      dispatch({ type: CHANGE_ORDER_STATUS_REQUEST });
+      const config = { headers: { "Content-Type": "application/json" } };
   
-//       const { data } = await axios.get(
-//         `http://localhost:5000/api/v1/me/product`,
-//         user_id,
-//         config
-//       );
-//       dispatch({ type: GET_USER_PRODUCT_SUCCESS, payload: data.product });
-//     } catch (error) {
-//        dispatch({ type: GET_USER_PRODUCT_FAIL, payload: error.response.data.message });
-//     }
-//   };
+      const { data } = await axios.put(`http://localhost:5000/api/v1/admin/recycle/order/${id}/${status}`);
+      dispatch({ type: CHANGE_ORDER_STATUS_SUCCESS, payload: data });
+    } catch (error) {
+      dispatch({ type: CHANGE_ORDER_STATUS_FAIL, payload: error });
+    }
+  };
