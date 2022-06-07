@@ -83,7 +83,7 @@ const Marketplace = () => {
                                   Price: {product.purchase_price}
                                 </p>
                                 <div className="d-flex">
-                                  <div className="card-button flex-fill border-0 btn btn-success">
+                                  <div className="card-button border-0 btn btn-success">
                                     Buy
                                   </div>
                                   <FavoriteButton

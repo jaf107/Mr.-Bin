@@ -55,6 +55,8 @@
 .marketplace .card-button{
     margin: 5px;
     border-radius: 10px;
+    width: 100px;
+    /* height: 30px; */
 }
 
 .marketplace li a:hover {
