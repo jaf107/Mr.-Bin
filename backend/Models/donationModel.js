@@ -30,9 +30,9 @@ const donationSchema = new mongoose.Schema(
       },
     },
     {
-      collection: "orders",
+      collection: "donations",
     }
   );
   
-  module.exports = mongoose.model("Orders", orderSchema);
+  module.exports = mongoose.model("Donation", donationSchema);
   
