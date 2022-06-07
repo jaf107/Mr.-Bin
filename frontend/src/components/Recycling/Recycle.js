@@ -320,7 +320,7 @@ function Recycle() {
             </div>
           </div>
         </div>
-        <div className=" row">
+        <div className=" row mb-3">
           <div className="col-md-12">
             <img
               src={require("../../assets/recycleBottom.png")}

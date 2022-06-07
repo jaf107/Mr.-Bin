@@ -22,17 +22,20 @@ const OrganizationList = () => {
   return (
     <div>
       <div className='container'>
-        <button className='btn btn-danger'
+        <button className='btn btn-danger m-1'
           onClick={() => setForm(false)}>
           Form
         </button>
-        <button className='btn btn-warning m-4'
+        <button className='btn btn-warning m-1'
           onClick={() => setForm(true)}>
           List
         </button>
       </div>
       {form && (
         <div className='m-4 p4'>
+
+          <h2 className='text-center bg-light p-4'>ORGANIZATION LIST</h2>
+
           <table class="table">
             <thead>
               <tr>

@@ -31,6 +31,8 @@ const RecyclerForm = (props, state) => {
         <div
             className='container p-4 '
         >
+            <h2 className='text-center bg-light p-4'>RECYCLERS FORM</h2>
+
             <input
                 name='name'
                 placeholder='Recycler name'

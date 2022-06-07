@@ -47,8 +47,8 @@ function Dashboard() {
         <div class="container-fluid">
           <a class="navbar-brand">ADMIN PANEL</a>
           <div class="d-flex btn-group">
-            <button class="btn btn-primary" onClick={toHome}>Home</button>
-            <button class="btn btn-danger" onClick={logoutUser}>Logout</button>
+            <button class="btn btn-primary m-1" onClick={toHome}>Home</button>
+            <button class="btn btn-danger m-1" onClick={logoutUser}>Logout</button>
           </div>
         </div>
       </nav>
@@ -57,7 +57,6 @@ function Dashboard() {
           <div class="profile-nav col-md-3 bg-light">
             <div class="panel">
               <div class="user-heading round">
-                <a href="#">{/* <img src={user.avatar.url} alt="" /> */}</a>
                 <h1>Mr. Bin</h1>
 
               </div>

@@ -28,6 +28,9 @@ const OrganizationForm = () => {
     };
     return (
         <div>
+            
+      <h2 className='text-center bg-light p-4'>ORGANIZATION FORM</h2>
+
             <div
                 className='container p-4 '
             >

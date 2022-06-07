@@ -16,8 +16,7 @@ export default function RecycleOrder() {
   return (
     <div>
       <div className="container">
-        <h2>All Recycle Orders</h2>
-
+        <h2 className='text-center bg-light p-4'>RECYCLE ORDERS</h2>
         <table class="table">
           <thead>
             <tr>

@@ -23,7 +23,7 @@ const ProductList = () => {
     return (
         <div>
             <div className='container'>
-                <h2>All Products</h2>
+                <h2 className='text-center bg-light p-4'>PRODUCTS LIST</h2>
 
                 <table class="table">
                     <thead>

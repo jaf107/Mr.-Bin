@@ -7,7 +7,7 @@ import RecyclerForm from "../Forms/RecyclerForm";
 const RecyclerList = () => {
   const dispatch = useDispatch();
   const { recyclers } = useSelector((state) => state.recyclers);
-  const alert  = useAlert();
+  const alert = useAlert();
   useEffect(() => {
     dispatch(getRecyclers());
   }, [dispatch]);
@@ -21,15 +21,17 @@ const RecyclerList = () => {
   return (
     <div>
       <div className="container">
-        <button className="btn btn-danger" onClick={() => setForm(false)}>
+        <button className="btn btn-danger m-1" onClick={() => setForm(false)}>
           Form
         </button>
-        <button className="btn btn-warning m-4" onClick={() => setForm(true)}>
+        <button className="btn btn-warning m-1" onClick={() => setForm(true)}>
           List
         </button>
       </div>
       {form && (
         <div className="m-4 p4">
+          <h2 className='text-center bg-light p-4'>RECYCLERS LIST</h2>
+
           <table class="table">
             <thead>
               <tr>
