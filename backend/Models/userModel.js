@@ -16,9 +16,7 @@ const userSchema = new mongoose.Schema({
     default : false
   },
   address: {
-    type: String,
-    maxLength: [300, "Name cannot exceed 300 characters"],
-    minLength: [4, "Name should have more than 4 characters"],
+    type: Object,
   },
   email: {
     type: String,

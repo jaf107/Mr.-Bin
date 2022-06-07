@@ -2,17 +2,15 @@ const nodeMailer = require("nodemailer");
 
 const sendEmail = async (options) => {
   const transporter = nodeMailer.createTransport({
-    host: process.env.SMPT_HOST,
-    port: process.env.SMPT_PORT,
+    host: "smtp-mail.outlook.com",
     auth: {
-      user: process.env.SMPT_MAIL,
-      pass: process.env.SMPT_PASSWORD,
+      user: "mrbin2022@outlook.com",
+      pass: "Mrbin@2022",
     },
-  
   });
 
   const mailOptions = {
-    from: process.env.SMPT_MAIL,
+    from: "mrbin2022@outlook.com",
     to: options.email,
     subject: options.subject,
     text: options.message,

@@ -25,14 +25,13 @@ const Product = () => {
     if (product && user) {
       if (product.buyer && product.user === user._id) {
         dispatch(getUserDetails(product.buyer));
-        console.log("Hello");
       }
       if (product.buyer === user._id) {
         dispatch(getUserDetails(product.user));
         console.log(product.user);
       }
     }
-  }, [dispatch, id]);
+  }, [dispatch]);
 
   const [bidAmount, setBidAmount] = useState(0);
 

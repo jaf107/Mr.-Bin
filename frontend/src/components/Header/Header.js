@@ -79,7 +79,7 @@ function Header() {
             </li>
             <li class="nav-item p-2">
               <Link class="nav-link" to="/about">
-                About
+                Product Map
               </Link>
 
             </li>

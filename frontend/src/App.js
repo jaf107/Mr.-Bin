@@ -30,6 +30,9 @@ import DonationForm from "./components/Donation/DonationForm";
 // import EnhancedTable from "./components/Marketplace/UserProduct/EnhancedTable";
 // import UpdateProfile from "./components/User/UpdateProfile";
 import ObjectDetect from './components/Marketplace/ObjectDetect'
+import GoogleMap from "./components/GoogleMap";
+import ForgotPassword from "./components/User/ForgotPassword";
+import ResetPassword from "./components/User/ResetPassword";
 
 function App() {
 
@@ -47,6 +50,9 @@ function App() {
           <Route path="/login" exact element={<Login />}></Route>
           <Route path="/chat" exact element={<Chat />}></Route>
           <Route path="/home" exact element={<Home />}></Route>
+          <Route path="/map" exact element={<GoogleMap />}></Route>
+          <Route exact path="/password/forgot" element={<ForgotPassword></ForgotPassword>} />
+          <Route exact path="/password/reset/:token" element={<ResetPassword/>} />
 
           <Route path="/register" element={<Register />}></Route>
           <Route path="/profile/edit" element={<EditAccount />}></Route>

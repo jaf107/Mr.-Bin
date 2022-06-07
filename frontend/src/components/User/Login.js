@@ -79,12 +79,12 @@ function Login({ history, location }) {
                   <span class="pl-2 fw-light">Remember Me</span>
                 </div> */}
                   <div>
-                    <a
-                      href="forgetPassword.js"
+                    <Link
+                      to={'/password/forgot'}
                       class="text-decoration-none text-danger"
                     >
                       Forget Password?
-                    </a>
+                    </Link>
                   </div>
                 </div>
                 <div class="pb-2 text-center mt-4">
@@ -97,12 +97,6 @@ function Login({ history, location }) {
                   </button>
                 </div>
               </form>
-              <div class="sideline">OR</div>
-              <div class="text-center">
-                <button type="button" class="login-with-google-btn w-50">
-                  Sign in with Google
-                </button>{" "}
-              </div>
               <div class="pt-4 text-center">
                 Dont have an Account?{" "}
                 <Link

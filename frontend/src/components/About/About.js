@@ -1,26 +1,59 @@
-import React from 'react'
-import Footer from '../Footer/Footer'
-import Header from '../Header/Header'
-import "./About.css"
-const About = () => {
+import React, { useState } from "react";
+import Footer from "../Footer/Footer";
+import Header from "../Header/Header";
+import { Map, Marker, GoogleApiWrapper, InfoWindow } from "google-maps-react";
+import { useSelector } from "react-redux";
+
+const About = (props) => {
+  const { user } = useSelector((state) => state.user);
+  const { products } = useSelector((state) => state.products);
+  const [isOpen, setIsOpen] = useState(false);
+  const [activeMarker, setActiveMarker] = useState(null);
+
+  const handleActiveMarker = (marker) => {
+    if (marker === activeMarker) {
+      return;
+    }
+    setActiveMarker(marker);
+  };
+  const MarkerList = products?.map((product) => (
+    <Marker
+      position={{
+        lat: product.address.lat,
+        lng: product.address.lng,
+      }}
+      onClick={() => handleActiveMarker(product._id)}
+    >
+            <InfoWindow  visible={true}>
+              Hello
+            </InfoWindow>
+    </Marker>
+  ));
   return (
     <div>
       <Header />
-      <div className='container holder'>
-        <h4 className="  text-center bg-light p-4 mb-2">About</h4>
-
-        <div className='card about-card'>
-          <h3 className='card-title center'>Mr. Bin</h3>
-          Mr. Bin is a dynamic web application which serves as a medium of increasing the reusability of commodities that are left unused at households. Through this app, a user can exchange a commodity with other users. The most common unused items are old Books, clothes, plastic Items, electronics, glassware etc.
-          A certain item can be sold or recycled based on its current physical conditions. A buyer can bid on a product and can make contact with the seller regarding confirmation, If the seller opts to recycle, then an estimated value will be generated against the product, and a recycler will be informed to collect the product against the generated price.
-          Furthermore, a user can donate items like clothes, books to libraries, NGOs through our app.
-          Based on selling, recycling & donations, a user will get loyalty points which can be further availed to get discount from collaborated brands.
-
+      {user && (
+        <div className="container-fluid">
+          <Map
+            className=""
+            google={props.google}
+            initialCenter={{
+              lat: user.address.lat,
+              lng: user.address.lng,
+            }}
+            center={{
+              lat: user.address.lat,
+              lng: user.address.lng,
+            }}
+          >
+            {MarkerList}
+          </Map>
         </div>
-      </div>
-      <Footer />
+      )}
     </div>
-  )
-}
+  );
+};
 
-export default About
+export default GoogleApiWrapper({
+  apiKey: "AIzaSyAcSo1pAkX6PtA4ZGMvzgABMNgSSpQJFz4",
+})(About);
