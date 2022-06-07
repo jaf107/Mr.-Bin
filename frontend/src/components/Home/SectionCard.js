@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import './SectionCard.css'
 
 class SectionCard extends React.Component {
@@ -15,7 +16,7 @@ class SectionCard extends React.Component {
             <div class="card border-0 text-white">
               <img src={require("../../assets/donate.png")} class="card-img" alt="..." />
               <div class="card-img-overlay text-center">
-                <button className="btn btn-lg mt-5">Donate</button>
+                <Link className="btn btn-lg mt-5" to={'/donate'}>Donate</Link>
               </div>
             </div>
           </div>
@@ -23,7 +24,7 @@ class SectionCard extends React.Component {
             <div class="card bg-dark border-0 text-white">
               <img src={require("../../assets/Shop.png")} class="card-img" alt="..." />
               <div class="card-img-overlay text-center">
-                <button className="btn mt-5 btn-lg">Shop</button>
+              <Link className="btn btn-lg mt-5" to={'/marketplace'}>Shop</Link>
               </div>
             </div>
           </div>
@@ -31,7 +32,7 @@ class SectionCard extends React.Component {
             <div class="card bg-dark border-0 text-white">
               <img src={require("../../assets/Recycle.png")} class="card-img" alt="..." />
               <div class="card-img-overlay text-center">
-                <button className="btn mt-5 btn-lg">Recycle</button>
+              <Link className="btn btn-lg mt-5" to={'/recycle'}>Recycle</Link>
               </div>
             </div>
           </div>
