@@ -25,7 +25,7 @@ function UserAccount() {
       <div class="container bootstrap snippets bootdey">
         {user && (
           <div class="row">
-            <div class="profile-nav col-md-3">
+            <div class="profile-nav col-md-3 mt-3">
               <div class="panel">
                 <div class="user-heading round">
                   <a href="#">
@@ -108,7 +108,7 @@ function UserAccount() {
                 </ul>
               </div>
             </div>
-            <div class="col-md-9 tab-content " id="v-pills-tabContent">
+            <div class="col-md-9 tab-content mt-3" id="v-pills-tabContent">
               <div
                 class="tab-pane fade show active "
                 id="v-pills-profile"
