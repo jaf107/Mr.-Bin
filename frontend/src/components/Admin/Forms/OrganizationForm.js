@@ -11,7 +11,6 @@ const OrganizationForm = () => {
         location: "",
         phone: "",
     })
-
     const { name, type, location, phone } = organization
     const submitOrganization = (e) => {
         e.preventDefault()
@@ -20,11 +19,11 @@ const OrganizationForm = () => {
         myForm.set("type", type);
         myForm.set("phone", phone);
         myForm.set("location", location);
-        console.log(myForm)
         dispatch(addOrganization(myForm))
     }
     const organizationDataChange = (e) => {
         setOrganization({ ...organization, [e.target.name]: e.target.value });
+
     };
     return (
         <div>
@@ -51,8 +50,8 @@ const OrganizationForm = () => {
                     value={type}
                     onChange={organizationDataChange}
                 >
-                    <option value="NGO">NGO</option>
-                    <option value="Library" >Library</option>
+                    <option selected>NGO</option>
+                    <option>Library</option>
                 </select>
 
                 <input

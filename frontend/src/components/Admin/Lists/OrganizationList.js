@@ -49,7 +49,7 @@ const OrganizationList = () => {
               </tr>
             </thead>
             <tbody>
-              {organizations.map((organization, index) => (
+              {organizations?.map((organization, index) => (
                 <tr>
                   <td>{index + 1}</td>
                   <td>{organization.name}</td>

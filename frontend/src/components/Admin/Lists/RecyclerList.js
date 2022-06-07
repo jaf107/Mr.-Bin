@@ -40,7 +40,6 @@ const RecyclerList = () => {
                 <th scope="col">Company</th>
                 <th scope="col">Location</th>
                 <th scope="col">Contact No.</th>
-
                 <th scope="col">Delete</th>
               </tr>
             </thead>

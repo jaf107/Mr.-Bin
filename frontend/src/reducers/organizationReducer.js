@@ -48,7 +48,6 @@ export const organizationReducer = (state = { organizations: [] }, action) => {
             return {
                 ...state,
                 loading: false,
-                organizations: action.payload,
             };
 
 
