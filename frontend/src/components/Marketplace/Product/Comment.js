@@ -31,7 +31,6 @@ function Comment(props) {
   };
   return (
     <div className=" row">
-      <h3 className=" text-center">All Comments</h3>
 
       <div className="col-md-8">
         {/* <div className="comment-card panel card">
@@ -43,6 +42,7 @@ function Comment(props) {
             </div>
           </div>
         </div> */}
+        <h4 className="  text-center text-light bg-primary mb-3 p-3">COMMENT SECTION</h4>
 
         {comments?.map((comment) => (
           <div class="card p-3 bg-white">
@@ -63,11 +63,12 @@ function Comment(props) {
       </div>
 
       <div className="col-md-4">
+      <h4 className="  text-center text-light bg-info mb-3 p-3">COMMENT BOX</h4>
         <form onSubmit={submitComment}>
           <div className="mb-3">
             <textarea
               className="form-control card"
-              rows={2}
+              rows={3}
               placeholder="Enter Your Comment"
               value={comment}
               onChange={(e) => setComment(e.target.value)}
@@ -77,7 +78,7 @@ function Comment(props) {
           <div className="mb-3">
             <input
               type="submit"
-              className="btn btn-dark btn-sm"
+              className="btn btn-success submit-btn btn-sm"
               value="Submit Comment"
             ></input>
           </div>
