@@ -47,7 +47,7 @@ export default function Bids() {
             <tr>
               <th scope="row">{index + 1}</th>
               <td>{bid.name}</td>
-              <td>{bid.address}</td>
+              <td>{bid.address.location}</td>
               <td>{bid.date}</td>
               <td>{bid.amount}</td>
               <div

@@ -25,13 +25,15 @@ const Product = () => {
     if (product && user) {
       if (product.buyer && product.user === user._id) {
         dispatch(getUserDetails(product.buyer));
+        navigate(`/product/${id}`)
       }
-      if (product.buyer === user._id) {
+      else if (product.buyer === user._id) {
         dispatch(getUserDetails(product.user));
-        console.log(product.user);
+        navigate(`/product/${id}`)
+
       }
     }
-  }, [dispatch]);
+  }, [dispatch, navigate,id]);
 
   const [bidAmount, setBidAmount] = useState(0);
 
@@ -106,7 +108,7 @@ const Product = () => {
                       <h6 class="card-header">Seller Information</h6>
                       <div class="card-body">
                         <p class="card-title">Name : {userDetail.name}</p>
-                        <p class="card-title">Address : {userDetail.address}</p>
+                        {/* <p class="card-title">Address : {userDetail.address.location}</p> */}
                         <p class="card-title">Email : {userDetail.email}</p>
                         <Link
                           onClick={(e) =>
@@ -126,7 +128,7 @@ const Product = () => {
                       <h6 class="card-header">Buyer Information</h6>
                       <div class="card-body">
                         <p class="card-title">Name : {userDetail.name}</p>
-                        <p class="card-title">Address : {userDetail.address}</p>
+                        {/* <p class="card-title">Address : {userDetail.address.location}</p> */}
                         <p class="card-title">Email : {userDetail.email}</p>
                         <Link
                           onClick={(e) =>

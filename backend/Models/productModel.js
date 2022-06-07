@@ -86,7 +86,16 @@ const productSchema = new mongoose.Schema({
         trim: true,
       },
       address: {
-        type: String,
+
+        location: {
+          type: String
+        },
+        lat: {
+          type: Number,
+        },
+        lng: {
+          type: Number,
+        },
       },
       amount: {
         type: Number,

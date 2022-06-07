@@ -33,10 +33,16 @@ import ObjectDetect from './components/Marketplace/ObjectDetect'
 import GoogleMap from "./components/GoogleMap";
 import ForgotPassword from "./components/User/ForgotPassword";
 import ResetPassword from "./components/User/ResetPassword";
-
+import {
+  useLoadScript,
+} from "@react-google-maps/api";
 function App() {
 
+  const { isLoaded } = useLoadScript({
+    googleMapsApiKey: "AIzaSyAcSo1pAkX6PtA4ZGMvzgABMNgSSpQJFz4",
+  });
   useEffect(() => {
+
     store.dispatch(loadUser());
   }, [])
   return (

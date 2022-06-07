@@ -16,7 +16,16 @@ const userSchema = new mongoose.Schema({
     default : false
   },
   address: {
-    type: Object,
+
+    location: {
+      type: String
+    },
+    lat: {
+      type: Number,
+    },
+    lng: {
+      type: Number,
+    },
   },
   email: {
     type: String,
