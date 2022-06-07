@@ -1,14 +1,8 @@
-// Import dependencies
 import React, { useRef, useState, useEffect } from "react";
 import * as tf from "@tensorflow/tfjs";
 import * as cocossd from "@tensorflow-models/coco-ssd";
 import Header from "../Header/Header";
-import Footer from "../Footer/Footer";
-// 1. TODO - Import required model here
-// e.g. import * as tfmodel from "@tensorflow-models/tfmodel";
 import Webcam from "react-webcam";
-// 2. TODO - Import drawing utility here
-//import { drawRect } from './utlities'
 import { drawRect } from "./utilities";
 import { useNavigate, useParams } from "react-router-dom";
 import { useAlert } from "react-alert";
@@ -17,7 +11,7 @@ import { verifyProduct } from "../../actions/productActions";
 
 function ObjectDetect(props) {
 
-    const webcamRef = useRef(null);
+  const webcamRef = useRef(null);
   const canvasRef = useRef(null);
   const { id } = useParams();
   const { category } = useParams();
@@ -26,17 +20,13 @@ function ObjectDetect(props) {
   const dispatch = useDispatch();
   // Main function
   const runCoco = async () => {
-    // 3. TODO - Load network
-    // e.g. const net = await cocossd.load();
     const net = await cocossd.load();
-    //  Loop and detect hands
     setInterval(() => {
       detect(net);
-    }, 10);
+    }, 100);
   };
 
   const detect = async (net) => {
-    // Check data is available
     if (
       typeof webcamRef.current !== "undefined" &&
       webcamRef.current !== null &&
@@ -55,24 +45,22 @@ function ObjectDetect(props) {
       canvasRef.current.width = videoWidth;
       canvasRef.current.height = videoHeight;
 
-      // 4. TODO - Make Detections
-      // e.g. const obj = await net.detect(video);
-
+      // Make Detections
       const obj = await net.detect(video);
+      
       // Draw mesh
       const ctx = canvasRef.current.getContext("2d");
 
       obj?.map((obj) => {
         if (obj.class === category) {
 
-         // alert("OBJECT FOUND SUCCESSFULLY");
-         dispatch(verifyProduct(id));
+          // alert("OBJECT FOUND SUCCESSFULLY");
+          dispatch(verifyProduct(id));
           navigate(`/product/${id}`);
 
         }
       });
-      // 5. TODO - Update drawing utility
-      // drawSomething(obj, ctx)
+      // Update drawing utility
       drawRect(obj, ctx);
     }
   };

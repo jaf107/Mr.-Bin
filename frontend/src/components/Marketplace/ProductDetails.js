@@ -58,7 +58,7 @@ const Product = () => {
                       {product.images.map((image) => (
                         <Carousel.Item>
                           <img
-                            className="d-block w-100"
+                            className="d-block w-100 cardImg"
                             src={image.url}
                             alt="First slide"
                           />
