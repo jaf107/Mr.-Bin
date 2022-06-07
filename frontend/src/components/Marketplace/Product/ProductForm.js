@@ -51,7 +51,7 @@ const ProductForm = () => {
     productForm.set("description", description);
     productForm.set("date_of_purchase", date_of_purchase);
     productForm.set("purchase_price", purchase_price);
-    productForm.set("product_type", product_type);
+    productForm.set("product_type", product_type.toLowerCase());
     productForm.set("address", address);
 
 
@@ -97,7 +97,7 @@ const ProductForm = () => {
  const  handleAddress = (langValue) => {
     setAddress(langValue)
 }
-console.log(address)
+// console.log(address)
 
   return (
     <div>
