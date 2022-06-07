@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { clearErrors, register } from "../../actions/userActions";
 import { useAlert } from "react-alert";
-
+import GoogleMap from "../GoogleMap";
 function Register({ location }) {
   const dispatch = useDispatch();
   const alert = useAlert();
@@ -20,6 +20,7 @@ function Register({ location }) {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [avatar, setAvatar] = useState("/Profile.png");
   const [avatarPreview, setAvatarPreview] = useState("/Profile.png");
+  const [address, setAddress] =  useState();
 
   const registerSubmit = (e) => {
     e.preventDefault();
@@ -34,9 +35,13 @@ function Register({ location }) {
     myForm.set("password", password);
     myForm.set("phone", phone);
     myForm.set("avatar", avatar);
+    myForm.set("address", address);
+
     dispatch(register(myForm));
   };
-
+  const  handleAddress = (langValue) => {
+    setAddress(langValue)
+}
   const registerDataChange = (e) => {
     if (e.target.name === "avatar") {
       const reader = new FileReader();
@@ -111,6 +116,7 @@ function Register({ location }) {
                   onChange={registerDataChange}
                 />
               </div>
+              <GoogleMap className="form-group mb-4" onSetAddress={handleAddress}></GoogleMap>
               <div className="form-group pb-3">
                 <input
                   type="tel"

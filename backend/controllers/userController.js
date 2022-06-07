@@ -13,7 +13,7 @@ exports.registerUser = catchAsyncErrors(async (req, res, next) => {
     width: 150,
     crop: "scale",
   });
-  const { name, email, password, phone } = req.body;
+  const { name, email, password, phone, address } = req.body;
   console.log(name);
   const user = await User.create({
     name,
@@ -24,6 +24,7 @@ exports.registerUser = catchAsyncErrors(async (req, res, next) => {
       public_id: myCloud.public_id,
       url: myCloud.secure_url,
     },
+    address
   });
 
   sendToken(user, 201, res);

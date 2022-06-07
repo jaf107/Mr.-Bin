@@ -33,7 +33,7 @@ const Map = (props) => {
       {user && (
         <div className="container">
           <GoogleMap
-            zoom={10}
+            zoom={14}
             initialCenter={{
               lat: user.address.lat,
               lng: user.address.lng,
@@ -56,7 +56,10 @@ const Map = (props) => {
                 }}
               >
                 <div className="separate-card ">
-                  <Link className="card text-decoration-none" to={`/product/${selected._id}`}>
+                  <Link
+                    className="card text-decoration-none"
+                    to={`/product/${selected._id}`}
+                  >
                     <div className="card-body bg-light">
                       <h6 className="card-title center">{selected.name}</h6>
                       <p className="card-text p-2">{selected.description} </p>
@@ -71,6 +74,7 @@ const Map = (props) => {
           </GoogleMap>
         </div>
       )}
+      <Footer></Footer>
     </div>
   );
 };
