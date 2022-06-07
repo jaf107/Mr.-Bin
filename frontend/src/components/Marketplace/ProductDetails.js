@@ -31,7 +31,7 @@ const Product = () => {
         console.log(product.user);
       }
     }
-  }, [dispatch, id,product, user]);
+  }, [dispatch]);
 
   const [bidAmount, setBidAmount] = useState(0);
 
