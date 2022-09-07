@@ -1,5 +1,5 @@
 # Mr.-Bin
-Mr. Bin is a commodity recycle and exchange platform. This is a Web Application developed for SPL 2 Project for Jitesh Sureka & Abu Jafar Saifullah.
+Mr. Bin is a commodity recycle and exchange platform. This is a Web Application developed for SPL 2 Project by Abu Jafar Saifullah & Jitesh Sureka.
 
 •	Installation
   o	Clone the project
