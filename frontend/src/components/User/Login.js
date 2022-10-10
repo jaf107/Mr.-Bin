@@ -4,8 +4,7 @@ import "./Login.css";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useAlert } from "react-alert";
-import { login,clearErrors } from "../../actions/userActions";
-
+import { login, clearErrors } from "../../actions/userActions";
 
 function Login({ history, location }) {
   const dispatch = useDispatch();
@@ -15,10 +14,25 @@ function Login({ history, location }) {
 
   const [loginEmail, setLoginEmail] = useState("");
   const [loginPassword, setLoginPassword] = useState("");
-
+  const validateEmail = (email) => {
+    return String(email)
+      .toLowerCase()
+      .match(
+        /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+      );
+  };
+  function checkPassword(str) {
+    var re = /^(?=.*\d)(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{8,16}$/;
+    return re.test(str);
+  }
   const loginSubmit = (e) => {
     e.preventDefault();
-    dispatch(login(loginEmail, loginPassword));
+    if (validateEmail(loginEmail)) 
+        if(checkPassword(loginPassword))
+        dispatch(login(loginEmail, loginPassword));
+        else
+        alert.error("Enter Valid Password");
+    else alert.error("Enter Valid Email Address");
   };
 
   useEffect(() => {
@@ -28,91 +42,90 @@ function Login({ history, location }) {
     }
 
     if (isAuthenticated) {
-      if(loginEmail === "jiteshsureka@gmail.com")
-          navigate("/admin/dashboard");
-      else 
-      navigate("/");
-     
+      if (loginEmail === "jiteshsureka@gmail.com") navigate("/admin/dashboard");
+      else navigate("/");
     }
   }, [dispatch, error, alert, navigate, isAuthenticated, loginEmail]);
 
   return (
-      <div class="container pb-5">
-        <div class="row m-5  shadow-lg">
-          <div class="col-md-6 d-none d-md-block">
-            <img
-              src={require("../../assets/login.jpg")}
-              class="img-fluid"
-              alt="login"
-            />
-          </div>
-          <div class="col-md-6 bg-white p-4">
-            <h3 class="pb-3 text-center fw-bold mt-5">SIGN IN</h3>
-            <div class="form-style p-5">
-              <form className="loginForm" onSubmit={loginSubmit}>
-                <div class="form-group pb-3">
-                  <input
-                    type="email"
-                    placeholder="Email"
-                    class="form-control"
-                    id="exampleInputEmail1"
-                    aria-describedby="emailHelp"
-                    required
-                    value={loginEmail}
-                    onChange={(e) => setLoginEmail(e.target.value)}
-                  />
-                </div>
-                <div class="form-group pb-3">
-                  <input
-                    type="password"
-                    placeholder="Password"
-                    class="form-control"
-                    id="exampleInputPassword1"
-                    required
-                    value={loginPassword}
-                    onChange={(e) => setLoginPassword(e.target.value)}
-                  />
-                </div>
-                <div class="d-flex align-items-center justify-content-between">
-                  {/* <div class="d-flex align-items-center">
+    <div class="container pb-5">
+      <div class="row m-5  shadow-lg">
+        <div class="col-md-6 d-none d-md-block">
+          <img
+            src={require("../../assets/login.jpg")}
+            class="img-fluid"
+            alt="login"
+          />
+        </div>
+        <div class="col-md-6 bg-white p-4">
+          <h3 class="pb-3 text-center fw-bold mt-5">SIGN IN</h3>
+          <div class="form-style p-5">
+            <form className="loginForm" onSubmit={loginSubmit}>
+              <div class="form-group pb-3">
+                <input
+                  type="text"
+                  placeholder="Email"
+                  class="form-control"
+                  id="exampleInputEmail1"
+                  aria-describedby="emailHelp"
+                  required
+                  value={loginEmail}
+                  onChange={(e) => setLoginEmail(e.target.value)}
+                />
+              </div>
+              <div class="form-group pb-3">
+                <input
+                  type="password"
+                  placeholder="Password"
+                  class="form-control"
+                  id="exampleInputPassword1"
+                  required
+                  value={loginPassword}
+                  onChange={(e) => setLoginPassword(e.target.value)}
+                />
+              </div>
+              <div class="d-flex align-items-center justify-content-between">
+                {/* <div class="d-flex align-items-center">
                   <input name="" type="checkbox" value="" />{" "}
                   <span class="pl-2 fw-light">Remember Me</span>
                 </div> */}
-                  <div>
-                    <Link
-                      to={'/password/forgot'}
-                      class="text-decoration-none text-danger"
-                    >
-                      Forget Password?
-                    </Link>
-                  </div>
-                </div>
-                <div class="pb-2 text-center mt-4">
-                  <button
-                    type="submit"
-                    class="btn btn-success w-50"
-                    value={Login}
+                <div>
+                  <Link
+                    to={"/password/forgot"}
+                    class="text-decoration-none text-danger"
                   >
-                    Login
-                  </button>
+                    Forget Password?
+                  </Link>
                 </div>
-              </form>
-              <div class="pt-4 text-center">
-                Dont have an Account?{" "}
-                <Link
-                  to="/register"
-                  class=" text-success text-decoration-none fw-bold"
+              </div>
+              <div class="pb-2 text-center mt-4">
+                <button
+                  type="submit"
+                  class="btn btn-success w-50"
+                  value={Login}
                 >
-                  Sign Up
-                </Link>
+                  Login
+                </button>
               </div>
-              <div className=" text-center pt-3"> 
-                <Link to={'/'} className='text-decoration-none fw-bolder'>Return to Home</Link>
-              </div>
+            </form>
+            <div class="pt-4 text-center">
+              Dont have an Account?{" "}
+              <Link
+                to="/register"
+                class=" text-success text-decoration-none fw-bold"
+              >
+                Sign Up
+              </Link>
+            </div>
+            <div className=" text-center pt-3">
+              <Link to={"/"} className="text-decoration-none fw-bolder">
+                Return to Home
+              </Link>
             </div>
           </div>
         </div>
       </div>
+    </div>
   );
 }
 

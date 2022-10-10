@@ -20,14 +20,39 @@ function Register({ location }) {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [avatar, setAvatar] = useState("/Profile.png");
   const [avatarPreview, setAvatarPreview] = useState("/Profile.png");
-  const [address, setAddress] =  useState();
-
+  const [address, setAddress] = useState();
+  const validateEmail = (email) => {
+    return String(email)
+      .toLowerCase()
+      .match(
+        /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+      );
+  };
+  function checkPassword(str) {
+    var re = /^(?=.*\d)(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{8,16}$/;
+    return re.test(str);
+  }
+  function checkPhone(str) {
+    var re =   /^(?:(?:\+|00)88|01)?\d{11}$/;
+    return re.test(str);
+  }
   const registerSubmit = (e) => {
     e.preventDefault();
 
     const myForm = new FormData();
-    if (password !== confirmPassword) {
+    if (!validateEmail(email)) {
+      alert.error("Enter Valid Email");
+      return;
+    } else if (!checkPassword(password)) {
+      alert.error("Enter a valid Password");
+      return;
+    } else if (password !== confirmPassword) {
       alert.error("Password Not Matching");
+      return;
+    }
+    else if(!checkPhone(phone))
+    {
+      alert.error("Phone Number Invalid");
       return;
     }
     myForm.set("name", name);
@@ -39,9 +64,9 @@ function Register({ location }) {
 
     dispatch(register(myForm));
   };
-  const  handleAddress = (langValue) => {
-    setAddress(langValue)
-}
+  const handleAddress = (langValue) => {
+    setAddress(langValue);
+  };
   const registerDataChange = (e) => {
     if (e.target.name === "avatar") {
       const reader = new FileReader();
@@ -86,7 +111,12 @@ function Register({ location }) {
           <div className="form-style p-5">
             <form onSubmit={registerSubmit}>
               <div className="form-group pb-3 text-center">
-                <img src={avatarPreview} alt="Avatar Preview" className=" text-center" width={100} />
+                <img
+                  src={avatarPreview}
+                  alt="Avatar Preview"
+                  className=" text-center"
+                  width={100}
+                />
                 <input
                   type="file"
                   name="avatar"
@@ -116,7 +146,10 @@ function Register({ location }) {
                   onChange={registerDataChange}
                 />
               </div>
-              <GoogleMap className="form-group mb-4" onSetAddress={handleAddress}></GoogleMap>
+              <GoogleMap
+                className="form-group mb-4"
+                onSetAddress={handleAddress}
+              ></GoogleMap>
               <div className="form-group pb-3">
                 <input
                   type="tel"
@@ -150,8 +183,6 @@ function Register({ location }) {
                   onChange={(e) => setConfirmPassword(e.target.value)}
                 />
               </div>
-
-
 
               <div className="pb-2 text-center mt-4">
                 <button type="submit" className="btn btn-success w-50">
