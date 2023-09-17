@@ -11,14 +11,13 @@ const userSchema = new mongoose.Schema({
     maxLength: [30, "Name cannot exceed 30 characters"],
     minLength: [4, "Name should have more than 4 characters"],
   },
-  isVerified : {
+  isVerified: {
     type: Boolean,
-    default : false
+    default: false,
   },
   address: {
-
     location: {
-      type: String
+      type: String,
     },
     lat: {
       type: Number,
@@ -49,33 +48,33 @@ const userSchema = new mongoose.Schema({
   },
   favorites: [
     {
-      product_id :{
+      product_id: {
         type: mongoose.Schema.ObjectId,
         ref: "Product",
-        unique:true
-      }
-    }
+        unique: true,
+      },
+    },
   ],
   notifications: [
     {
-      description :{
-        type: String
+      description: {
+        type: String,
       },
-      link :{
-        type: String
-      }
-    }
+      link: {
+        type: String,
+      },
+    },
   ],
-  avatar: {
-    public_id: {
-      type: String,
-      required: true,
-    },
-    url: {
-      type: String,
-      required: true,
-    },
-  },
+  // avatar: {
+  //   public_id: {
+  //     type: String,
+  //     required: true,
+  //   },
+  //   url: {
+  //     type: String,
+  //     required: true,
+  //   },
+  // },
   createdAt: {
     type: Date,
     default: Date.now,
@@ -95,9 +94,15 @@ userSchema.pre("save", async function (next) {
 
 // JWT TOKEN
 userSchema.methods.getJWTToken = function () {
-  return jwt.sign({ id: this._id }, process.env.JWT_SECRET, {
-    expiresIn: process.env.JWT_EXPIRE,
-  });
+  return jwt.sign(
+    {
+      id: this._id,
+    },
+    process.env.JWT_SECRET,
+    {
+      expiresIn: process.env.JWT_EXPIRE,
+    }
+  );
 };
 
 // Compare Password

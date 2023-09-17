@@ -3,6 +3,9 @@ const connectDatabase = require("./config/database");
 const cloudinary = require("cloudinary");
 const { addUser, removeUser } = require("./user");
 
+app.get("/getversion", (req, res) => {
+  res.send("1.0");
+});
 
 // Handling Uncaught Exception
 process.on("uncaughtException", (err) => {
@@ -16,16 +19,14 @@ if (process.env.NODE_ENV !== "PRODUCTION") {
   require("dotenv").config({ path: "./config/config.env" });
 }
 //Cloudinary Config
-cloudinary.config({ 
-  cloud_name: 'mr-bin', 
-  api_key: '758227615992231', 
-  api_secret: 'yOjbVwGc3q_OcGoLbldPNHnMvns' 
+cloudinary.config({
+  cloud_name: "mr-bin",
+  api_key: "758227615992231",
+  api_secret: "yOjbVwGc3q_OcGoLbldPNHnMvns",
 });
 
 // Connecting to database
 connectDatabase();
-
-
 
 //chatting socket
 let port = process.env.port || 5000;
@@ -40,8 +41,6 @@ const io = require("socket.io")(server, {
     credentials: true,
   },
 });
-
-
 
 io.on("connection", (socket) => {
   socket.on("join", ({ name, room }, callBack) => {
@@ -69,7 +68,7 @@ io.on("connection", (socket) => {
   socket.on("disconnect", () => {
     const user = removeUser(socket.id);
     console.log(user);
-    if(user){
+    if (user) {
       io.to(user.room).emit("message", {
         user: "Admin",
         text: `${user.name} just left the room`,
@@ -78,8 +77,6 @@ io.on("connection", (socket) => {
     console.log("A disconnection has been made");
   });
 });
-
-
 
 // Unhandled Promise Rejection
 process.on("unhandledRejection", (err) => {

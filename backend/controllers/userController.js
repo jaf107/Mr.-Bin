@@ -4,27 +4,27 @@ const User = require("../models/userModel");
 const sendToken = require("../utils/jwtToken");
 const sendEmail = require("../utils/sendEmail");
 const crypto = require("crypto");
-const cloudinary = require("cloudinary");
+// const cloudinary = require("cloudinary");
 
 // Register a User
 exports.registerUser = catchAsyncErrors(async (req, res, next) => {
-  const myCloud = await cloudinary.v2.uploader.upload(req.body.avatar, {
-    folder: "avatars",
-    width: 150,
-    crop: "scale",
-  });
+  // console.log(name);
+  // const myCloud = await cloudinary.v2.uploader.upload(req.body.avatar, {
+  //   folder: "avatars",
+  //   width: 150,
+  //   crop: "scale",
+  // });
   const { name, email, password, phone, address } = req.body;
-  console.log(name);
   const user = await User.create({
     name,
     email,
     password,
     phone,
-    avatar: {
-      public_id: myCloud.public_id,
-      url: myCloud.secure_url,
-    },
-    address
+    // avatar: {
+    //   public_id: myCloud.public_id,
+    //   url: myCloud.secure_url,
+    // },
+    address,
   });
 
   sendToken(user, 201, res);
@@ -150,7 +150,6 @@ exports.getUserDetails = catchAsyncErrors(async (req, res, next) => {
   });
 });
 
-
 // Get User Detail
 exports.getSpecificUserDetails = catchAsyncErrors(async (req, res, next) => {
   const user = await User.findById(req.params.id);
@@ -207,36 +206,31 @@ exports.updateProfile = catchAsyncErrors(async (req, res, next) => {
 
   res.status(200).json({
     success: true,
-    user
+    user,
   });
 });
 
 exports.addFavoriteProduct = catchAsyncErrors(async (req, res, next) => {
- 
   const user = await User.findById(req.user.id);
   if (!user) {
     return next(new ErrorHander("User not found", 404));
   }
-   console.log(user.favorites.find(o => o.product_id === req.params.id))
-  if(user.favorites.find(o => o.product_id === req.params.id))
-   {
-      res.status(400).json({
-        success: false,
-      });
-   }
-   else{
-     const info = {
-       product_id : req.params.id
-     }
+  console.log(user.favorites.find((o) => o.product_id === req.params.id));
+  if (user.favorites.find((o) => o.product_id === req.params.id)) {
+    res.status(400).json({
+      success: false,
+    });
+  } else {
+    const info = {
+      product_id: req.params.id,
+    };
     user.favorites.push(info);
     await user.save();
-  
+
     res.status(200).json({
       success: true,
     });
-   }
- 
- 
+  }
 });
 
 exports.getFavoriteProduct = catchAsyncErrors(async (req, res, next) => {
@@ -250,13 +244,11 @@ exports.getFavoriteProduct = catchAsyncErrors(async (req, res, next) => {
   });
 });
 
-
 // delete a favorite product
 exports.deleteFavorite = catchAsyncErrors(async (req, res, next) => {
-
   await User.updateOne(
     { _id: req.user.id },
-    { $pull: { 'favorites': { product_id:req.params.id } } }
+    { $pull: { favorites: { product_id: req.params.id } } }
   );
   res.status(200).json({
     success: true,
@@ -265,31 +257,24 @@ exports.deleteFavorite = catchAsyncErrors(async (req, res, next) => {
 
 // verify a user
 exports.verifyUser = catchAsyncErrors(async (req, res, next) => {
-
-  await User.updateOne(
-    { _id: req.user.id },
-    { $set: { 'isVerified': true } }
-  );
+  await User.updateOne({ _id: req.user.id }, { $set: { isVerified: true } });
   res.status(200).json({
     success: true,
   });
 });
 
-
-
-//add notification 
+//add notification
 
 exports.addNotification = catchAsyncErrors(async (req, res, next) => {
   const user = await User.findById(req.params.id);
   user.notifications.push(req.body);
-   user.save();
-   const notification = user.notifications;
+  user.save();
+  const notification = user.notifications;
   res.status(200).json({
     success: true,
-    notification
+    notification,
   });
 });
-
 
 // // Get all users(admin)
 // exports.getAllUser = catchAsyncErrors(async (req, res, next) => {

@@ -49,7 +49,7 @@ import {
   SEND_NOTIFICATION_FAIL,
   VERIFY_USER_REQUEST,
   VERIFY_USER_SUCCESS,
-  VERIFY_USER_FAIL
+  VERIFY_USER_FAIL,
 } from "../constants/userConstants";
 import axios from "axios";
 axios.defaults.withCredentials = true;
@@ -83,6 +83,7 @@ export const register = (userData) => async (dispatch) => {
       userData,
       config
     );
+    console.log(data);
 
     dispatch({ type: REGISTER_USER_SUCCESS, payload: data.user });
   } catch (error) {
@@ -168,7 +169,11 @@ export const forgotPassword = (email) => async (dispatch) => {
 
     const config = { headers: { "Content-Type": "application/json" } };
 
-    const { data } = await axios.post(`http://localhost:5000/api/v1/password/forgot`, email, config);
+    const { data } = await axios.post(
+      `http://localhost:5000/api/v1/password/forgot`,
+      email,
+      config
+    );
 
     dispatch({ type: FORGOT_PASSWORD_SUCCESS, payload: data.message });
   } catch (error) {
@@ -282,7 +287,7 @@ export const deleteUser = (id) => async (dispatch) => {
 
     dispatch({
       type: DELETE_USER_SUCCESS,
-      payload: data
+      payload: data,
     });
   } catch (error) {
     dispatch({
@@ -355,8 +360,11 @@ export const sendNotification = (info, id) => async (dispatch) => {
       info,
       config
     );
-    dispatch({ type: SEND_NOTIFICATION_SUCCESS , payload: data.notification });
+    dispatch({ type: SEND_NOTIFICATION_SUCCESS, payload: data.notification });
   } catch (error) {
-    dispatch({ type: SEND_NOTIFICATION_FAIL, payload: error.response.data.message });
+    dispatch({
+      type: SEND_NOTIFICATION_FAIL,
+      payload: error.response.data.message,
+    });
   }
 };

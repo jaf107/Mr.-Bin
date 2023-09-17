@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { clearErrors, register } from "../../actions/userActions";
 import { useAlert } from "react-alert";
-import GoogleMap from "../GoogleMap";
+// import GoogleMap from "../GoogleMap";
 function Register({ location }) {
   const dispatch = useDispatch();
   const alert = useAlert();
@@ -33,7 +33,7 @@ function Register({ location }) {
     return re.test(str);
   }
   function checkPhone(str) {
-    var re =   /^(?:(?:\+|00)88|01)?\d{11}$/;
+    var re = /^(?:(?:\+|00)88|01)?\d{11}$/;
     return re.test(str);
   }
   const registerSubmit = (e) => {
@@ -49,9 +49,7 @@ function Register({ location }) {
     } else if (password !== confirmPassword) {
       alert.error("Password Not Matching");
       return;
-    }
-    else if(!checkPhone(phone))
-    {
+    } else if (!checkPhone(phone)) {
       alert.error("Phone Number Invalid");
       return;
     }
@@ -146,10 +144,10 @@ function Register({ location }) {
                   onChange={registerDataChange}
                 />
               </div>
-              <GoogleMap
+              {/* <GoogleMap
                 className="form-group mb-4"
                 onSetAddress={handleAddress}
-              ></GoogleMap>
+              ></GoogleMap> */}
               <div className="form-group pb-3">
                 <input
                   type="tel"

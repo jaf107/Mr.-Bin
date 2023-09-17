@@ -10,7 +10,7 @@ import MyProducts from "./UserProduct/MyProducts";
 import EditAccount from "./EditAccount";
 import { getFavorites } from "../../actions/userActions";
 function UserAccount() {
-   const  dispatch = useDispatch();
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const { user, isAuthenticated } = useSelector((state) => state.user);
   useEffect(() => {
@@ -28,9 +28,7 @@ function UserAccount() {
             <div class="profile-nav col-md-3 mt-3">
               <div class="panel">
                 <div class="user-heading round">
-                  <a href="#">
-                    <img src={user.avatar.url} alt="" />
-                  </a>
+                  <a href="#">{/* <img src={user.avatar.url} alt="" /> */}</a>
                   <h1>{user.name}</h1>
                   <p>{user.email}</p>
                 </div>
@@ -134,13 +132,13 @@ function UserAccount() {
                 <Favorites user_data={user}></Favorites>
               </div>
               <div
-              class="tab-pane fade "
-              id="v-pills-edit-profile"
-              role="tabpanel"
-              aria-labelledby="v-pills-edit-profile-tab"
-            >
-              <EditAccount user_data={user}></EditAccount>
-            </div>
+                class="tab-pane fade "
+                id="v-pills-edit-profile"
+                role="tabpanel"
+                aria-labelledby="v-pills-edit-profile-tab"
+              >
+                <EditAccount user_data={user}></EditAccount>
+              </div>
             </div>
           </div>
         )}

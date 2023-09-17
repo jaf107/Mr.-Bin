@@ -8,6 +8,12 @@ const cors = require("cors");
 
 const errorMiddleware = require("./middleware/error");
 
+// Swagger
+const swaggerUi = require("swagger-ui-express");
+const swaggerSpec = require("./swagger");
+
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+
 // Config
 if (process.env.NODE_ENV !== "PRODUCTION") {
   require("dotenv").config({ path: "backend/config/config.env" });
@@ -17,42 +23,45 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(fileUpload());
-app.use(cors({credentials : true, origin : 'http://localhost:3000'}));
+app.use(cors({ credentials: true, origin: "http://localhost:3000" }));
 app.use(function (req, res, next) {
-
   // Website you wish to allow to connect
-  res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
+  res.setHeader("Access-Control-Allow-Origin", "http://localhost:3000");
 
   // Request methods you wish to allow
-  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+  res.setHeader(
+    "Access-Control-Allow-Methods",
+    "GET, POST, OPTIONS, PUT, PATCH, DELETE"
+  );
 
   // Request headers you wish to allow
-  res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
+  res.setHeader(
+    "Access-Control-Allow-Headers",
+    "X-Requested-With,content-type"
+  );
 
   // Set to true if you need the website to include cookies in the requests sent
   // to the API (e.g. in case you use sessions)
-  res.setHeader('Access-Control-Allow-Credentials', true);
+  res.setHeader("Access-Control-Allow-Credentials", true);
 
   // Pass to next layer of middleware
   next();
 });
-
 
 // Route Imports
 const user = require("./routes/userRoute");
 const product = require("./routes/productRoute");
 const recycler = require("./routes/recyclerRoute");
 const order = require("./routes/orderRoute");
-const organization = require('./routes/organizationRoute');
+const organization = require("./routes/organizationRoute");
 const donation = require("./routes/donationRoute");
 
-
-app.use("/api/v1", user);
-app.use("/api/v1", product);
-app.use("/api/v1/",recycler);
-app.use("/api/v1/",order);
+app.use("/api/v1/", user);
+app.use("/api/v1/", product);
+app.use("/api/v1/", recycler);
+app.use("/api/v1/", order);
 app.use("/api/v1/", organization);
-app.use("/api/v1/", donation)
+app.use("/api/v1/", donation);
 
 app.use(express.static(path.join(__dirname, "../frontend/build")));
 

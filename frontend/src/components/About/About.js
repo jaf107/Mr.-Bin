@@ -5,7 +5,7 @@ import Header from "../Header/Header";
 import { useSelector } from "react-redux";
 import {
   useLoadScript,
-  GoogleMap,
+  // GoogleMap,
   Marker,
   InfoWindow,
 } from "@react-google-maps/api";
@@ -32,7 +32,7 @@ const Map = (props) => {
       <Header />
       {user && (
         <div className="container">
-          <GoogleMap
+          {/* <GoogleMap
             zoom={14}
             initialCenter={{
               lat: user.address.lat,
@@ -72,6 +72,7 @@ const Map = (props) => {
               </InfoWindow>
             ) : null}
           </GoogleMap>
+         */}
         </div>
       )}
       <Footer></Footer>

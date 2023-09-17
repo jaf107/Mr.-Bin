@@ -31,7 +31,6 @@ router.route("/me").get(isAuthenticatedUser, getUserDetails);
 
 router.route("/me/verify").put(isAuthenticatedUser, verifyUser);
 
-
 router.route("/password/forgot").post(forgotPassword);
 
 router.route("/password/reset/:token").put(resetPassword);
@@ -46,15 +45,14 @@ router.route("/me/favorites/:id").delete(isAuthenticatedUser, deleteFavorite);
 
 router.route("/me/favorites").get(isAuthenticatedUser, getFavoriteProduct);
 
-router.route("/admin/user/:id").get(isAuthenticatedUser, getSpecificUserDetails);
+router
+  .route("/admin/user/:id")
+  .get(isAuthenticatedUser, getSpecificUserDetails);
 
 router.route("/notification/:id").post(isAuthenticatedUser, addNotification);
 
-router
-  .route("/admin/users")
-  .get(isAuthenticatedUser, getAllUser);
+router.route("/admin/users").get(isAuthenticatedUser, getAllUser);
 
-router
-  .route("/admin/user/:id").delete(isAuthenticatedUser, deleteUser);
+router.route("/admin/user/:id").delete(isAuthenticatedUser, deleteUser);
 
 module.exports = router;
