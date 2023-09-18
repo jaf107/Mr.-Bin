@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useAlert } from "react-alert";
 import { useDispatch, useSelector } from "react-redux";
-import { deleteRecycler, getRecyclers } from "../../../actions/recyclerActions";
+import {
+  deleteRecycler,
+  getRecyclers,
+} from "../../../redux/actions/recyclerActions";
 import RecyclerForm from "../Forms/RecyclerForm";
 
 const RecyclerList = () => {
@@ -30,7 +33,7 @@ const RecyclerList = () => {
       </div>
       {form && (
         <div className="m-4 p4">
-          <h2 className='text-center bg-light p-4'>RECYCLERS LIST</h2>
+          <h2 className="text-center bg-light p-4">RECYCLERS LIST</h2>
 
           <table class="table">
             <thead>

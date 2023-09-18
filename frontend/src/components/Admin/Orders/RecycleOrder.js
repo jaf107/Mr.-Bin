@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getOrders, updateStatus } from "../../../actions/orderActions";
+import { getOrders, updateStatus } from "../../../redux/actions/orderActions";
 import { useAlert } from "react-alert";
 
 export default function RecycleOrder() {
@@ -16,7 +16,7 @@ export default function RecycleOrder() {
   return (
     <div>
       <div className="container">
-        <h2 className='text-center bg-light p-4'>RECYCLE ORDERS</h2>
+        <h2 className="text-center bg-light p-4">RECYCLE ORDERS</h2>
         <table class="table">
           <thead>
             <tr>

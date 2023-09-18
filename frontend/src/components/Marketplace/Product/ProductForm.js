@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Header from "../../Header/Header";
 import { useDispatch, useSelector } from "react-redux";
 import Footer from "../../Footer/Footer";
-import { addProduct } from "../../../actions/productActions";
+import { addProduct } from "../../../redux/actions/productActions";
 import { useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
@@ -23,7 +23,7 @@ const ProductForm = () => {
     description: "",
     date_of_purchase: "",
     purchase_price: "",
-    product_type:"",
+    product_type: "",
   });
 
   const {
@@ -37,7 +37,7 @@ const ProductForm = () => {
     product_type,
   } = product;
 
-  const [address, setAddress] =  useState();
+  const [address, setAddress] = useState();
   const [images, setImages] = useState([]);
   const [imagesPreview, setImagesPreview] = useState([]);
 
@@ -54,7 +54,6 @@ const ProductForm = () => {
     productForm.set("product_type", product_type.toLowerCase());
     productForm.set("address", address);
 
-
     images.forEach((image) => {
       productForm.append("images", image);
     });
@@ -68,8 +67,8 @@ const ProductForm = () => {
       description: "",
       date_of_purchase: "",
       purchase_price: "",
-      product_type:"",
-    })
+      product_type: "",
+    });
     setImages([]);
     setImagesPreview([]);
   };
@@ -94,10 +93,10 @@ const ProductForm = () => {
       reader.readAsDataURL(file);
     });
   };
- const  handleAddress = (langValue) => {
-    setAddress(langValue)
-}
-// console.log(address)
+  const handleAddress = (langValue) => {
+    setAddress(langValue);
+  };
+  // console.log(address)
 
   return (
     <div>
@@ -165,7 +164,10 @@ const ProductForm = () => {
             />
           </div>
 
-          <GoogleMap className="form-group mb-4" onSetAddress={handleAddress}></GoogleMap>
+          <GoogleMap
+            className="form-group mb-4"
+            onSetAddress={handleAddress}
+          ></GoogleMap>
           <div className="form-group mb-4">
             <textarea
               className="form-control"
@@ -244,9 +246,7 @@ const ProductForm = () => {
               {" "}
               Add Product
             </button> */}
-            <button className='btn btn-success addbtn'>
-              Add Product
-            </button>
+            <button className="btn btn-success addbtn">Add Product</button>
           </div>
         </form>
       </div>

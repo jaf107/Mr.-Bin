@@ -1,7 +1,7 @@
 import React, { Fragment, useState, useEffect } from "react";
 import "./ForgotPassword.css";
 import { useDispatch, useSelector } from "react-redux";
-import { clearErrors, forgotPassword } from "../../actions/userActions";
+import { clearErrors, forgotPassword } from "../../redux/actions/userActions";
 import { useAlert } from "react-alert";
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";

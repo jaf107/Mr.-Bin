@@ -8,8 +8,11 @@ import { useEffect } from "react";
 import { useAlert } from "react-alert";
 import { useSelector } from "react-redux";
 import "./Recycle.css";
-import { getProducts, getUserProducts } from "../../actions/productActions";
-import { getRecyclers } from "../../actions/recyclerActions";
+import {
+  getProducts,
+  getUserProducts,
+} from "../../redux/actions/productActions";
+import { getRecyclers } from "../../redux/actions/recyclerActions";
 import RecycleOrders from "./RecyclerOrders";
 
 function Recycle() {

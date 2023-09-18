@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useAlert } from "react-alert";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { addComment, getComment } from "../../../actions/productActions";
+import { addComment, getComment } from "../../../redux/actions/productActions";
 import "./Comment.css";
 function Comment(props) {
   const dispatch = useDispatch();
@@ -14,7 +14,7 @@ function Comment(props) {
 
   useEffect(() => {
     dispatch(getComment(props.product_id));
-    navigate(`/product/${props.product_id}`)
+    navigate(`/product/${props.product_id}`);
   }, [dispatch]);
 
   const submitComment = (e) => {
@@ -31,7 +31,6 @@ function Comment(props) {
   };
   return (
     <div className=" row">
-
       <div className="col-md-8">
         {/* <div className="comment-card panel card">
           <div className="panel-body">
@@ -42,7 +41,9 @@ function Comment(props) {
             </div>
           </div>
         </div> */}
-        <h4 className="  text-center text-light bg-primary mb-3 p-3">COMMENT SECTION</h4>
+        <h4 className="  text-center text-light bg-primary mb-3 p-3">
+          COMMENT SECTION
+        </h4>
 
         {comments?.map((comment) => (
           <div class="card p-3 bg-white">
@@ -63,7 +64,9 @@ function Comment(props) {
       </div>
 
       <div className="col-md-4">
-      <h4 className="  text-center text-light bg-info mb-3 p-3">COMMENT BOX</h4>
+        <h4 className="  text-center text-light bg-info mb-3 p-3">
+          COMMENT BOX
+        </h4>
         <form onSubmit={submitComment}>
           <div className="mb-3">
             <textarea

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useAlert } from "react-alert";
 import { useDispatch, useSelector } from "react-redux";
-import { createBid, getBid } from "../../../actions/productActions";
+import { createBid, getBid } from "../../../redux/actions/productActions";
 
 function BidButton(props) {
   const [bidAmount, setBidAmount] = useState("");
@@ -22,10 +22,9 @@ function BidButton(props) {
     myForm.set("buyer_id", user._id);
     myForm.set("amount", bidAmount);
     if (!hasBid) {
-      dispatch(getBid( props.product_id));
+      dispatch(getBid(props.product_id));
       dispatch(createBid(myForm, props.product_id));
       alert.success("BID OF " + bidAmount + " MADE SUCCESSFULLY");
-
     } else {
       alert.error("BID EXISTS FOR THE CURRENT PRODUCT");
     }

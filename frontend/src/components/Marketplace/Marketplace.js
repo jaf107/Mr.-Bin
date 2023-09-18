@@ -6,9 +6,9 @@ import "./Marketplace.css";
 // import "./Card.css"
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { getProducts } from "../../actions/productActions";
+import { getProducts } from "../../redux/actions/productActions";
 import { useAlert } from "react-alert";
-import { addToFavorite, getFavorites } from "../../actions/userActions";
+import { addToFavorite, getFavorites } from "../../redux/actions/userActions";
 import FavoriteButton from "./Product/FavoriteButton";
 import BidButton from "./Product/BidButton";
 import Search from "../Marketplace/Search";
@@ -46,18 +46,17 @@ const Marketplace = () => {
             <div className="row">
               <div className=" col-md-3">
                 <div class="d-grid gap-2">
-                <Link
-                  className="btn border-0 addbtn btn-block"
-                  to={"/addproduct"}
-                >
-                  Add Product
-                </Link>
+                  <Link
+                    className="btn border-0 addbtn btn-block"
+                    to={"/addproduct"}
+                  >
+                    Add Product
+                  </Link>
                 </div>
                 <Search></Search>
               </div>
 
               <div className=" col-md-9">
-                
                 <div className="">
                   {products?.map((product) => (
                     <>

@@ -1,7 +1,7 @@
 import { React, useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { clearErrors, register } from "../../actions/userActions";
+import { clearErrors, register } from "../../redux/actions/userActions";
 import { useAlert } from "react-alert";
 // import GoogleMap from "../GoogleMap";
 function Register({ location }) {

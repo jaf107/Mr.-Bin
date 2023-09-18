@@ -8,7 +8,7 @@ import {
   newProductReducer,
   bidReducer,
   commentReducer,
-} from "./reducers/productReducer";
+} from "./redux/reducers/productReducer";
 
 import {
   allUsersReducer,
@@ -20,19 +20,23 @@ import {
   //   profileReducer,
   //   userDetailsReducer,
   userReducer,
-} from "./reducers/userReducer";
+} from "./redux/reducers/userReducer";
 import {
   recyclerReducer,
   singleRecyclerReducer,
-} from "./reducers/recyclerReducer";
-import { orderReducer, recycleOrderReducer, userOrderReducer } from "./reducers/orderReducer";
-import { organizationReducer } from "./reducers/organizationReducer";
+} from "./redux/reducers/recyclerReducer";
+import {
+  orderReducer,
+  recycleOrderReducer,
+  userOrderReducer,
+} from "./redux/reducers/orderReducer";
+import { organizationReducer } from "./redux/reducers/organizationReducer";
 
 const reducer = combineReducers({
   //   products: productsReducer,
   //   productDetails: productDetailsReducer,
   user: userReducer,
-  favorites:FavoriteReducer,
+  favorites: FavoriteReducer,
   notifications: NotificationReducer,
   //   profile: profileReducer,
   //   forgotPassword: forgotPasswordReducer,
@@ -52,19 +56,17 @@ const reducer = combineReducers({
   //   allOrders: allOrdersReducer,
   //   order: orderReducer,
   //   allUsers: allUsersReducer,
-     userDetails: userDetailsReducer,
+  userDetails: userDetailsReducer,
   //   productReviews: productReviewsReducer,
   //   review: reviewReducer,
   recyclers: recyclerReducer,
   recycler: singleRecyclerReducer,
   orders: recycleOrderReducer,
 
-
   organization: organizationReducer,
 
   order: orderReducer,
   userOrders: userOrderReducer,
-
 });
 
 let initialState = {

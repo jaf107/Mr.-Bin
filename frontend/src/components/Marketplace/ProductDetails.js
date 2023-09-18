@@ -4,13 +4,13 @@ import Header from "../Header/Header";
 import "./ProductDetails.css";
 import Carousel from "react-bootstrap/Carousel";
 import { useDispatch, useSelector } from "react-redux";
-import { getSingleProduct } from "../../actions/productActions";
+import { getSingleProduct } from "../../redux/actions/productActions";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import BidButton from "./Product/BidButton";
 import FavoriteButton from "./Product/FavoriteButton";
 import Comment from "./Product/Comment";
 import Bids from "./Product/Bids";
-import { getUserDetails } from "../../actions/userActions";
+import { getUserDetails } from "../../redux/actions/userActions";
 import BuyButton from "./Product/BuyButton";
 const Product = () => {
   const dispatch = useDispatch();
@@ -25,15 +25,13 @@ const Product = () => {
     if (product && user) {
       if (product.buyer && product.user === user._id) {
         dispatch(getUserDetails(product.buyer));
-        navigate(`/product/${id}`)
-      }
-      else if (product.buyer === user._id) {
+        navigate(`/product/${id}`);
+      } else if (product.buyer === user._id) {
         dispatch(getUserDetails(product.user));
-        navigate(`/product/${id}`)
-
+        navigate(`/product/${id}`);
       }
     }
-  }, [dispatch, navigate,id]);
+  }, [dispatch, navigate, id]);
 
   const [bidAmount, setBidAmount] = useState(0);
 
@@ -44,7 +42,6 @@ const Product = () => {
   const submitBid = (e) => {
     console.log(bidAmount);
   };
-
 
   return (
     <div>
@@ -68,12 +65,23 @@ const Product = () => {
                       ))}
                     </Carousel>
                     <div className=" text-center">
-                    {(product.user === user._id) &&  !product.isVerified && <Link className="btn btn-dark m-3 " to={`/object-detect/${id}/${product.category.toLowerCase()}`}>Verify</Link>} 
+                      {product.user === user._id && !product.isVerified && (
+                        <Link
+                          className="btn btn-dark m-3 "
+                          to={`/object-detect/${id}/${product.category.toLowerCase()}`}
+                        >
+                          Verify
+                        </Link>
+                      )}
                     </div>
                   </div>
                   <div className="details col-md-6">
                     <h3 className="product-title">{product.name}</h3>
-                   { product.isVerified &&  <span className=" mb-3 fw-bold text-success">(Verified)</span>}
+                    {product.isVerified && (
+                      <span className=" mb-3 fw-bold text-success">
+                        (Verified)
+                      </span>
+                    )}
                     <h5 className="price">
                       price:
                       <span> </span>
@@ -116,7 +124,9 @@ const Product = () => {
                           }
                           to={`/chat?name=${user.name}&room=${id}`}
                         >
-                          <a type="submit" className=" btn btn-primary">Chat Now</a>
+                          <a type="submit" className=" btn btn-primary">
+                            Chat Now
+                          </a>
                         </Link>
                       </div>
                     </div>
@@ -136,7 +146,9 @@ const Product = () => {
                           }
                           to={`/chat?name=${user.name}&room=${id}`}
                         >
-                          <a type="submit" className=" btn btn-primary">Chat Now</a>
+                          <a type="submit" className=" btn btn-primary">
+                            Chat Now
+                          </a>
                         </Link>
                       </div>
                     </div>

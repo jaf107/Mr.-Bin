@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getUserOrder } from "../../actions/orderActions";
-import { getSingleProduct } from "../../actions/productActions";
-import { getSingleRecycler } from "../../actions/recyclerActions";
+import { getUserOrder } from "../../redux/actions/orderActions";
+import { getSingleProduct } from "../../redux/actions/productActions";
+import { getSingleRecycler } from "../../redux/actions/recyclerActions";
 
 function RecycleOrders() {
   const dispatch = useDispatch();
@@ -43,7 +43,7 @@ function ProductDetails(props) {
   const dispatch = useDispatch();
   const { product } = useSelector((state) => state.product);
   const { products } = useSelector((state) => state.products);
-  const temp = products.find( o => o._id === props.order.product)
+  const temp = products.find((o) => o._id === props.order.product);
 
   return (
     <div>
@@ -64,8 +64,7 @@ function RecyclerDetails(props) {
   const { recycler } = useSelector((state) => state.recycler);
   const dispatch = useDispatch();
   const { recyclers } = useSelector((state) => state.recyclers);
-  const temp = recyclers.find( o => o._id === props.order.recycler)
-
+  const temp = recyclers.find((o) => o._id === props.order.recycler);
 
   return (
     <div>

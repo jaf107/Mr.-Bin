@@ -8,7 +8,7 @@ import MyProfile from "./MyProfile";
 import Favorites from "./UserProduct/Favorites";
 import MyProducts from "./UserProduct/MyProducts";
 import EditAccount from "./EditAccount";
-import { getFavorites } from "../../actions/userActions";
+import { getFavorites } from "../../redux/actions/userActions";
 function UserAccount() {
   const dispatch = useDispatch();
   const navigate = useNavigate();

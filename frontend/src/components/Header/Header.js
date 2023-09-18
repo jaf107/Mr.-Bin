@@ -1,9 +1,9 @@
-import { Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 import "./Header.css";
 import { React, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { clearErrors } from "../../actions/userActions";
-import { logout } from "../../actions/userActions";
+import { clearErrors } from "../../redux/actions/userActions";
+import { logout } from "../../redux/actions/userActions";
 import { useAlert } from "react-alert";
 import { Notification } from "./Notifications";
 function Header() {
@@ -81,7 +81,6 @@ function Header() {
               <Link class="nav-link" to="/about">
                 Product Map
               </Link>
-
             </li>
           </ul>
           {!isAuthenticated && (
@@ -100,24 +99,24 @@ function Header() {
           )}
           {isAuthenticated && (
             <ul class="navbar-nav mr-auto">
-
               <li class="nav-item p-2 pt-3">
-                  <Notification></Notification>
+                <Notification></Notification>
               </li>
               <li class="nav-item p-2 pt-3">
                 <Link to="/account" className=" nav-link">
                   <i className="fa-solid fa-user fs-4"></i>
                 </Link>
               </li>
-            { (user && user.email==="jiteshsureka@gmail.com" &&   <li class="nav-item p-2 pt-3">
-              <Link
-                  class="nav-link  text-white fw-bold"
-                  to="/admin/dashboard"
-                >
-                                   <i class="fa-brands fa-adn fs-4"></i>
-
-                </Link>
-              </li>)}
+              {user && user.email === "jiteshsureka@gmail.com" && (
+                <li class="nav-item p-2 pt-3">
+                  <Link
+                    class="nav-link  text-white fw-bold"
+                    to="/admin/dashboard"
+                  >
+                    <i class="fa-brands fa-adn fs-4"></i>
+                  </Link>
+                </li>
+              )}
               <li class="nav-item p-2">
                 <button
                   class="nav-link btn text-white fw-bold"

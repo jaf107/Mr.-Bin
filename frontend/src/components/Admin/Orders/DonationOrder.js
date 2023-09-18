@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react'
-import { useAlert } from 'react-alert';
-import { useDispatch, useSelector } from 'react-redux';
-import { getOrders, updateStatus } from '../../../actions/orderActions';
+import React, { useEffect, useState } from "react";
+import { useAlert } from "react-alert";
+import { useDispatch, useSelector } from "react-redux";
+import { getOrders, updateStatus } from "../../../redux/actions/orderActions";
 
 const DonationOrder = () => {
   const dispatch = useDispatch();
@@ -16,7 +16,7 @@ const DonationOrder = () => {
   return (
     <div>
       <div className="container">
-        <h2 className='text-center bg-light p-4'>DONATIONS</h2>
+        <h2 className="text-center bg-light p-4">DONATIONS</h2>
         <table class="table">
           <thead>
             <tr>
@@ -33,8 +33,8 @@ const DonationOrder = () => {
         </table>
       </div>
     </div>
-  )
-}
+  );
+};
 
 export default DonationOrder;
 

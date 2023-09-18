@@ -3,13 +3,13 @@ import firebase from "firebase/compat/app";
 import "firebase/compat/auth";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { loadUser, verifyUser } from "../../actions/userActions";
+import { loadUser, verifyUser } from "../../redux/actions/userActions";
 
 export default function OTPVerify(props) {
   const [showBox, setShowBox] = useState(false);
   const [showButton, setShowButton] = useState(true);
 
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const firebaseConfig = {
     apiKey: "AIzaSyDDiBZXe3o6L9vNEkbH_4LrzzNOo_jhZK4",
     authDomain: "mr-bin-9e7ea.firebaseapp.com",
@@ -53,7 +53,7 @@ export default function OTPVerify(props) {
         // user in with confirmationResult.confirm(code).
         //dispatch(verifyUser());
         // ...
-        window.confirmationResult = confirmationResult
+        window.confirmationResult = confirmationResult;
       })
       .catch((error) => {
         // Error; SMS not sent

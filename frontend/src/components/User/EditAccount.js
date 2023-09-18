@@ -6,7 +6,7 @@ import {
   loadUser,
   register,
   updateProfile,
-} from "../../actions/userActions";
+} from "../../redux/actions/userActions";
 import { useAlert } from "react-alert";
 
 function EditAccount({ location }) {
@@ -37,8 +37,7 @@ function EditAccount({ location }) {
     if (name !== "") myForm.set("name", name);
     if (password !== "") myForm.set("password", password);
     if (phone !== "") myForm.set("phone", phone);
-     if(avatar!== "")
-     myForm.set("avatar", avatar);
+    if (avatar !== "") myForm.set("avatar", avatar);
     if (address !== "") myForm.set("address", address);
 
     dispatch(updateProfile(myForm));
@@ -76,15 +75,20 @@ function EditAccount({ location }) {
       <form onSubmit={updateSubmit}>
         <div className="row">
           <div className="col-md-6">
-          <div className="form-group pb-3 text-center">
-                <img src={avatarPreview} alt="Avatar Preview" className=" text-center" width={100} />
-                <input
-                  type="file"
-                  name="avatar"
-                  accept="image/*"
-                  onChange={editDataChange}
-                />
-              </div>
+            <div className="form-group pb-3 text-center">
+              <img
+                src={avatarPreview}
+                alt="Avatar Preview"
+                className=" text-center"
+                width={100}
+              />
+              <input
+                type="file"
+                name="avatar"
+                accept="image/*"
+                onChange={editDataChange}
+              />
+            </div>
             <div className="form-group pb-3">
               <input
                 type="text"

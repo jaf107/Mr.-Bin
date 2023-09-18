@@ -7,10 +7,9 @@ import { drawRect } from "./utilities";
 import { useNavigate, useParams } from "react-router-dom";
 import { useAlert } from "react-alert";
 import { useDispatch } from "react-redux";
-import { verifyProduct } from "../../actions/productActions";
+import { verifyProduct } from "../../redux/actions/productActions";
 
 function ObjectDetect(props) {
-
   const webcamRef = useRef(null);
   const canvasRef = useRef(null);
   const { id } = useParams();
@@ -47,17 +46,15 @@ function ObjectDetect(props) {
 
       // Make Detections
       const obj = await net.detect(video);
-      
+
       // Draw mesh
       const ctx = canvasRef.current.getContext("2d");
 
       obj?.map((obj) => {
         if (obj.class === category) {
-
           // alert("OBJECT FOUND SUCCESSFULLY");
           dispatch(verifyProduct(id));
           navigate(`/product/${id}`);
-
         }
       });
       // Update drawing utility

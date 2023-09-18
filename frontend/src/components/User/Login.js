@@ -4,7 +4,7 @@ import "./Login.css";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useAlert } from "react-alert";
-import { login, clearErrors } from "../../actions/userActions";
+import { login, clearErrors } from "../../redux/actions/userActions";
 
 function Login({ history, location }) {
   const dispatch = useDispatch();
@@ -27,11 +27,10 @@ function Login({ history, location }) {
   }
   const loginSubmit = (e) => {
     e.preventDefault();
-    if (validateEmail(loginEmail)) 
-        if(checkPassword(loginPassword))
+    if (validateEmail(loginEmail))
+      if (checkPassword(loginPassword))
         dispatch(login(loginEmail, loginPassword));
-        else
-        alert.error("Enter Valid Password");
+      else alert.error("Enter Valid Password");
     else alert.error("Enter Valid Email Address");
   };
 

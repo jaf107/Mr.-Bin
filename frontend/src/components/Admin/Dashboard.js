@@ -2,8 +2,8 @@ import "./Dashboard.css";
 import { Link, useNavigate } from "react-router-dom";
 import { React, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { clearErrors } from "../../actions/userActions";
-import { logout } from "../../actions/userActions";
+import { clearErrors } from "../../redux/actions/userActions";
+import { logout } from "../../redux/actions/userActions";
 import { useAlert } from "react-alert";
 import UserList from "./Lists/UserList";
 import ProductList from "./Lists/ProductList";
@@ -13,7 +13,7 @@ import RecycleOrder from "./Orders/RecycleOrder";
 import DonationOrder from "./Orders/DonationOrder";
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
-import { getOrders } from "../../actions/orderActions";
+import { getOrders } from "../../redux/actions/orderActions";
 function Dashboard() {
   const user = {
     name: "Jitesh",
@@ -47,8 +47,12 @@ function Dashboard() {
         <div class="container-fluid">
           <a class="navbar-brand">ADMIN PANEL</a>
           <div class="d-flex btn-group">
-            <button class="btn btn-primary m-1" onClick={toHome}>Home</button>
-            <button class="btn btn-danger m-1" onClick={logoutUser}>Logout</button>
+            <button class="btn btn-primary m-1" onClick={toHome}>
+              Home
+            </button>
+            <button class="btn btn-danger m-1" onClick={logoutUser}>
+              Logout
+            </button>
           </div>
         </div>
       </nav>
@@ -58,7 +62,6 @@ function Dashboard() {
             <div class="panel">
               <div class="user-heading round">
                 <h1>Mr. Bin</h1>
-
               </div>
 
               <ul
@@ -167,7 +170,10 @@ function Dashboard() {
 
           <div class="col-md-9 tab-content" id="v-pills-tabContent">
             <div className="container p-3 m-3">
-              <h4>Date : { new Date().getDate() } - { new Date().getMonth()+1 }- { new Date().getFullYear()  }</h4>
+              <h4>
+                Date : {new Date().getDate()} - {new Date().getMonth() + 1}-{" "}
+                {new Date().getFullYear()}
+              </h4>
             </div>
 
             <div

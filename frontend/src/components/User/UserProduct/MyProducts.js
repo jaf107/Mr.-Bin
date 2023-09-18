@@ -7,11 +7,11 @@ import {
   getProducts,
   getUserProducts,
   rejectBid,
-} from "../../../actions/productActions";
+} from "../../../redux/actions/productActions";
 import Footer from "../../Footer/Footer";
 import Header from "../../Header/Header";
 import "./MyProducts.css";
-import { deleteProduct } from "../../../actions/productActions";
+import { deleteProduct } from "../../../redux/actions/productActions";
 const MyProducts = () => {
   const dispatch = useDispatch();
   const { userProducts } = useSelector((state) => state.userProducts);
@@ -149,8 +149,8 @@ function ProductBidDetails(props) {
   };
   const onEditBid = (e) => {
     e.preventDefault();
-  //  const myForm = new FormData();
-  //  myForm.set("editAmount", editAmount);
+    //  const myForm = new FormData();
+    //  myForm.set("editAmount", editAmount);
     bids.amount = editAmount;
     dispatch(editBid(props.product._id, bids._id, editAmount));
     alert.success("BID EDITED SUCCESSFULLY");
@@ -159,8 +159,7 @@ function ProductBidDetails(props) {
   const onRemoveBid = () => {
     dispatch(rejectBid(props.product._id, bids._id));
     alert.success("BID REMOVED SUCCESSFULLY");
-
-}
+  };
 
   const onEditAmountChange = (e) => {
     // setBidAmount({ ...bidAmount, [e.target.name]: e.target.value });
@@ -214,7 +213,7 @@ function ProductBidDetails(props) {
                 <div className="modal-content">
                   <div className="modal-header">
                     <h5 className="modal-title" id="staticBackdropLabel">
-                     Edit Bid
+                      Edit Bid
                     </h5>
                     <button
                       type="button"
@@ -256,10 +255,7 @@ function ProductBidDetails(props) {
             </div>{" "}
           </td>
           <td>
-            <button
-              className="btn btn-danger btn-sm"
-              onClick={onRemoveBid}
-            >
+            <button className="btn btn-danger btn-sm" onClick={onRemoveBid}>
               Remove
             </button>
           </td>

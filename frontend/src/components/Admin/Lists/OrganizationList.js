@@ -1,11 +1,13 @@
-import React, { useEffect, useState } from 'react'
-import { useAlert } from 'react-alert';
-import { useDispatch, useSelector } from 'react-redux'
-import { deleteOrganization, getOrganizations } from '../../../actions/organizationActions';
-import OrganizationForm from '../Forms/OrganizationForm';
-import "./OrganizationList.css"
+import React, { useEffect, useState } from "react";
+import { useAlert } from "react-alert";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  deleteOrganization,
+  getOrganizations,
+} from "../../../redux/actions/organizationActions";
+import OrganizationForm from "../Forms/OrganizationForm";
+import "./OrganizationList.css";
 const OrganizationList = () => {
-
   const dispatch = useDispatch();
   const { organizations } = useSelector((state) => state.organization);
   const alert = useAlert();
@@ -17,24 +19,21 @@ const OrganizationList = () => {
   const removeOrganization = (id) => {
     dispatch(deleteOrganization(id));
     alert("ORGANIZATION DELETED SUCCESSFULLY");
-  }
+  };
 
   return (
     <div>
-      <div className='container'>
-        <button className='btn btn-danger m-1'
-          onClick={() => setForm(false)}>
+      <div className="container">
+        <button className="btn btn-danger m-1" onClick={() => setForm(false)}>
           Form
         </button>
-        <button className='btn btn-warning m-1'
-          onClick={() => setForm(true)}>
+        <button className="btn btn-warning m-1" onClick={() => setForm(true)}>
           List
         </button>
       </div>
       {form && (
-        <div className='m-4 p4'>
-
-          <h2 className='text-center bg-light p-4'>ORGANIZATION LIST</h2>
+        <div className="m-4 p4">
+          <h2 className="text-center bg-light p-4">ORGANIZATION LIST</h2>
 
           <table class="table">
             <thead>
@@ -71,11 +70,12 @@ const OrganizationList = () => {
               ))}
             </tbody>
           </table>
-        </div>)}
+        </div>
+      )}
 
       {!form && <OrganizationForm />}
     </div>
-  )
-}
+  );
+};
 
-export default OrganizationList
+export default OrganizationList;
